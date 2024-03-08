@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "format": "prettier --write . ",
-    "lintF": "eslint --fix . ",
+    "format": "prettier --write .",
+    "lintF": "eslint --fix .",
     "test": "npm run format && npm run lintF"
   },
   "dependencies": {
