@@ -9,7 +9,7 @@
     "lint": "next lint",
     "prepare": "husky",
     "format": "prettier --write . --ignore-path .gitignore",
-    "lintF": "eslint --fix . --ignore-path . gitignore",
+    "lintF": "eslint --fix . --ignore-path .gitignore",
     "test": "npm run format && npm run lintF"
   },
   "dependencies": {
