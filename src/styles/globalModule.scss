@@ -1,0 +1,63 @@
+@import './variables.scss';
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.container {
+  width:100%;
+  box-sizing: border-box;
+  height : auto; 
+  background-color: red;
+}
+
+.content {
+  box-sizing: border-box;
+  max-width: 1120px;
+  height:auto;
+  background-color: aqua;
+  margin: $content-margin-desktop-top auto $content-margin-desktop-bottom;
+  word-wrap: break-word;
+
+  @media (max-width: 640px) {
+      margin: $content-margin-mobile-top auto $content-margin-mobile-bottom;
+      max-width: calc(100% - ($padding-mobile * 2));
+  }
+
+  @media (min-width: 640px) and (max-width: 1200px) {
+      margin:$content-margin-tablet-top auto $content-margin-tablet-bottom;
+      max-width: calc(100% - ($padding-tablet * 2));
+  }
+}
+
+
+
+
+/*#region to delete*/
+.ad {
+  height: 200px;
+}
+
+h1 {
+  color: aliceblue;
+  
+}
+
+.e1 {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+}
+
+.short {
+  max-width: 300px;
+  
+}
+
+/*#endregion */
+
+
