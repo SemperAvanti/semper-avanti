@@ -1,0 +1,27 @@
+@import './reset.scss';
+@import './variables.scss';
+@import './typography.scss';
+@import './mixins.scss';
+
+
+
+section {
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+}
+
+.container {
+  box-sizing: border-box;
+  max-width: 1120px;
+  height: auto;
+  margin: 0 auto;
+
+  @include device(mobile) {
+    max-width: calc(100% - ($padding-mobile * 2));
+  }
+
+  @include device(tablet) {
+    max-width: calc(100% - ($padding-tablet * 2));
+  }
+}
