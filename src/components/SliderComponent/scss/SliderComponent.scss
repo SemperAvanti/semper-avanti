@@ -1,36 +1,33 @@
 .section {
-    color: white;
-    width: 100%;
+  color: white;
+  width: 100%;
+  margin: auto;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 80%;
     margin: auto;
-    
 
-    &__header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 80%;
-        margin: auto;
-
-        & > h2 {
-            font-size: 60px;
-            // font-weight: index.$font-weight-medium;
-            text-align: center;
-            & > span { 
-                // color: index.$color-highlight;
-            }
-        }
-
-        & .buttons {
-            display: flex;
-            gap: 40px;
-
-            & button {
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
-            }
-        }
-
-        
+    & > h2 {
+      font-size: 60px;
+      // font-weight: index.$font-weight-medium;
+      text-align: center;
+      & > span {
+        // color: index.$color-highlight;
+      }
     }
+
+    & .buttons {
+      display: flex;
+      gap: 40px;
+
+      & button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
 }
