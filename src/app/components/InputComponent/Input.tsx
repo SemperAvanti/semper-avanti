@@ -1,17 +1,14 @@
 'use client';
-import './Input.scss';
 
 interface Props {
   label: string;
   htmlFor: string;
   value: string;
   type: string;
-  placeholder: string;
-  error: number;
-  isDisabled: boolean;
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  isFocused: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  error: boolean;
+  errorMessage: string;
+  minLength?: number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input: React.FC<Props> = ({
@@ -19,9 +16,9 @@ export const Input: React.FC<Props> = ({
   htmlFor,
   type,
   value,
-  placeholder,
   error,
-  isDisabled,
+  minLength,
+  errorMessage,
   onChange,
 }) => {
   return (
@@ -30,18 +27,23 @@ export const Input: React.FC<Props> = ({
         <div className="input__label">
           <label htmlFor={htmlFor}>{label}</label>
         </div>
+
         <div className="input__wrapper-item">
           <input
-            className={error === 0 ? 'input__item' : 'input__item--isError'}
+            className="input__item"
             type={type}
             id={htmlFor}
             name={htmlFor}
             value={value}
             onChange={onChange}
-            placeholder={placeholder}
-            disabled={isDisabled}
+            minLength={minLength}
           />
         </div>
+        {error && errorMessage && (
+          <div className="input__error-container">
+            <p className="input__error-msg">{errorMessage}</p>
+          </div>
+        )}
       </div>
     </div>
   );
