@@ -1,0 +1,54 @@
+.input {
+  &__label {
+    padding-bottom: 8px;
+  }
+
+  &__wrapper-item {
+    max-width: 548px;
+    width: 100%;
+  }
+
+  &__item {
+    max-width: 548px;
+    width: 100%;
+
+    padding: 12.5px 0;
+    border-radius: 12px;
+    border: 2px solid #b7b7b7;
+
+    background: #fcfcfc;
+    color: #000;
+
+    text-indent: 16px;
+
+    &--isError {
+      border: 2px solid #b7b7b7;
+    }
+
+    &::placeholder {
+      /*   color: #b7b7b7; */
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    &--focus {
+      max-width: 548px;
+      width: 100%;
+
+      padding: 12.5px 0;
+      border: 2px solid #2c74d3;
+      border-radius: 12px;
+      background: #fcfcfc;
+      color: #000;
+      text-indent: 16px;
+    }
+
+    &:hover {
+      border: 2px solid #818181;
+      background: #fcfcfc;
+    }
+  }
+}
