@@ -1,19 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './Form.scss';
 
 import { Input } from '@/app/components/InputComponent/Input';
 import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
+import { z } from 'zod';
+
+const formDataSchema = z.object({
+  fullname: z.string().min(5, 'Error name'),
+  email: z.string().email('Error email format'),
+});
 
 export const Form = () => {
   const [fullname, setFullname] = useState('');
   const [email, setemail] = useState('');
   const [country, setCountry] = useState('');
   const [check, setCheck] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errors, setErrors] = useState<T[]>([]);
+
+  useEffect(() => {
+    setErrors([]);
+  }, [fullname, email]);
 
   const handlerFullNameValue = (value: string): void => {
     setFullname(value.target.value);
@@ -26,8 +35,6 @@ export const Form = () => {
   };
   const handlerCheckboxValue = (value: boolean): void => {
     setCheck(value.target.checked);
-
-    console.log(value.target.checked);
   };
 
   const reset = (): void => {
@@ -40,17 +47,20 @@ export const Form = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    if (fullname && email && country) {
-      const dataToSend = {
-        name: fullname,
-        email,
-        country,
-        futureCourses: check,
-      };
+    const formData = {
+      fullname,
+      email,
+      country,
+      check,
+    };
 
-      console.log(dataToSend);
+    try {
+      const validation = formDataSchema.parse(formData);
+      console.log(validation);
 
       reset();
+    } catch (error) {
+      setErrors(error.errors);
     }
   };
 
@@ -74,16 +84,38 @@ export const Form = () => {
                 placeholder="John Doe"
                 onChange={handlerFullNameValue}
               />
+
+              {errors.map((error, index): string | null => {
+                if (error.path.includes('fullname')) {
+                  return (
+                    <p key={index} className="form__error">
+                      {error.message}
+                    </p>
+                  );
+                }
+                return null;
+              })}
             </div>
             <div className="form__input-elem">
               <Input
                 htmlFor="email"
                 label="Email *"
-                type="email"
+                type="text"
                 value={email}
                 placeholder="aqe@email.com"
                 onChange={handlerEmailValue}
               />
+
+              {errors.map((error, index): string | null => {
+                if (error.path.includes('email')) {
+                  return (
+                    <p key={index} className="form__error">
+                      {error.message}
+                    </p>
+                  );
+                }
+                return null;
+              })}
             </div>
             <div className="form__input-elem">
               <Input
