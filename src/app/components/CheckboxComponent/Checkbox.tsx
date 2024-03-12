@@ -1,5 +1,4 @@
-
-import './Checkbox.scss'
+import './Checkbox.scss';
 
 interface Props {
   htmlFor: string;
