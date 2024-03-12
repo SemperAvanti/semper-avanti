@@ -1,0 +1,283 @@
+
+/*#region RESET CSS*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*#endregion */
+
+/*#region VARIABLES*/
+
+$color-black: #191919;
+$color-primary: #2c74d3;
+$color-description: #6c6c6c;                              
+$color-form-placeholder: #cfcfcf;
+$color-background-secondary: #f7f7f7;              
+$color-background-primary: #fcfcfc;               
+
+$color-button: $color-primary;
+$color-button-hover: #2465bb;
+$color-button-active: #612cd3;
+$color-button-disabled: #dcdcdc;
+
+$padding-mobile: 16px;
+$padding-tablet: 24px;
+
+
+/*#endregion */
+
+/*#region FONTS*/
+
+.H1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 83px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.H2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 72px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.H3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 72px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+.H4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 60px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.H5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.big-body-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.accented-body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.body-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.description-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+
+
+
+
+/*#endregion */
+
+/*#region MIXINS*/
+
+@mixin device($size) {
+  @if $size == mobile {
+    @media (max-width: 640px) {
+      @content;
+    }
+  }
+  @else if $size == tablet {
+    @media (min-width: 641px) and (max-width: 1200px) {
+      @content;
+    }
+  }
+  @else if $size == desktop {
+    @media (min-width: 1201px) {
+      @content;
+    }
+  }
+}
+
+/*#endregion */
+
+section {
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+}
+
+.container {
+  box-sizing: border-box;
+  max-width: 1120px;
+  height: auto;
+  margin: 0 auto ;
+
+  @include device(mobile) {
+    max-width: calc(100% - ($padding-mobile * 2));
+  }
+
+  @include device(tablet) {
+    max-width: calc(100% - ($padding-tablet * 2));
+  }
+}
+
+
