@@ -18,15 +18,22 @@
 
     background: #fcfcfc;
     color: #000;
-
     text-indent: 16px;
 
     &--isError {
-      border: 2px solid #b7b7b7;
+      max-width: 548px;
+      width: 100%;
+
+      padding: 12.5px 0;
+      border-radius: 12px;
+      border: 2px solid #e44e4e;
+      background: #fcfcfc;
+      color: #000;
+      text-indent: 16px;
     }
 
     &::placeholder {
-      /*   color: #b7b7b7; */
+      color: #b7b7b7;
       font-family: Poppins;
       font-size: 16px;
       font-style: normal;
@@ -34,7 +41,7 @@
       line-height: normal;
     }
 
-    &--focus {
+    &:focus {
       max-width: 548px;
       width: 100%;
 
@@ -44,6 +51,7 @@
       background: #fcfcfc;
       color: #000;
       text-indent: 16px;
+      outline: none;
     }
 
     &:hover {
