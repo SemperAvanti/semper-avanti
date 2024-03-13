@@ -1,9 +1,11 @@
+@import '@/styles/variables';
+
 .modal {
   max-width: 357px;
   padding: 24px;
 
   border-radius: 12px;
-  background: #fcfcfc;
+  background: $color-background-primary;
 
   &__icons-wrapper {
     display: flex;
@@ -12,7 +14,7 @@
 
   &__text-container {
     padding-top: 16px;
-    color: #000;
+    color: $color-black-primary;
 
     font-family: Poppins;
     font-size: 20px;
@@ -23,7 +25,7 @@
 
   &__info {
     padding-top: 12px;
-    color: #393939;
+    color: $color-grey-dark;
 
     font-family: Poppins;
     font-size: 16px;
@@ -36,7 +38,7 @@
   }
 
   &__info-sub-text {
-    color: #21c932;
+    color: $color-green;
     font-family: Poppins;
     font-size: 16px;
     font-style: normal;
@@ -52,7 +54,7 @@
 
   &__btn {
     border-radius: 12px;
-    background: #2c74d3;
+    background: $color-primary;
     border: 1px solid transparent;
     width: 100%;
     padding: 13px 0;
