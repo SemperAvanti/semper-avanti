@@ -1,9 +1,11 @@
 .form {
-  max-width: 548px;
   width: 100%;
+  max-width: 1440px;
 
   background-color: #000000;
   margin: 0 auto;
+
+  padding: 72px 0;
 
   @media (max-width: 480px) {
     padding: 0 16px;
@@ -17,7 +19,7 @@
     max-width: 500px;
     width: 100%;
 
-    padding-top: 72px;
+    margin: 0 auto;
 
     @media (max-width: 480px) {
       max-width: 260px;
@@ -55,7 +57,11 @@
   }
 
   &__container {
+    max-width: 548px;
+    width: 100%;
+
     padding-top: 62px;
+    margin: 0 auto;
 
     @media (max-width: 480px) {
       padding-top: 24px;
