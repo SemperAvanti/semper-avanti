@@ -45,7 +45,9 @@ export const Form = () => {
     setCheck(false);
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): void => {
     event.preventDefault();
 
     const formData = {
