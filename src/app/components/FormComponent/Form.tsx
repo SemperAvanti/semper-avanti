@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { FormData } from '@/app/types/zod';
 
 import './Form.scss';
 
@@ -8,7 +9,7 @@ import { Input } from '@/app/components/InputComponent/Input';
 import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
 import { z } from 'zod';
 
-const formDataSchema = z.object({
+const formDataSchema: ZodType<FormData> = z.object({
   fullname: z.string().min(5, 'Error name'),
   email: z.string().email('Error email format'),
 });
