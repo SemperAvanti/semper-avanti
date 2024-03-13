@@ -1,0 +1,35 @@
+.aqu-section {
+  max-width: 1440px;
+  width: 100%;
+
+  margin: 0 auto;
+
+  padding: 80px 160px;
+
+  background-color: antiquewhite;
+
+  &__header-text {
+    color: var(--Black, #191919);
+
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -1.2px;
+  }
+
+  &__container {
+    padding-top: 67px;
+  }
+
+  &__item {
+    width: 548px;
+    height: 240px;
+    padding: 24px 32px;
+
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: 1px solid var(--Gray-40, #cfcfcf);
+    background: var(--White, #fcfcfc);
+  }
+}
