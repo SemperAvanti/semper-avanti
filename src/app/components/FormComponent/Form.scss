@@ -9,11 +9,11 @@
   background-color: $color-black-primary;
 
   @media (max-width: 480px) {
-    padding: 0 16px;
+    padding: 48px 16px;
   }
 
   @media (min-width: 481px) and (max-width: 768px) {
-    padding: 0 24px;
+    padding: 72px 24px;
   }
 
   &__header {
@@ -24,14 +24,12 @@
 
     @media (max-width: 768px) {
       max-width: 550px;
-      padding-top: 72px;
     }
 
     @media (max-width: 480px) {
       max-width: 260px;
       width: 100%;
 
-      padding-top: 48px;
       margin: 0 auto;
     }
   }
