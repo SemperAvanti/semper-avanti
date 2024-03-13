@@ -1,9 +1,12 @@
-import { FAQ } from '@/components/FAQ/FAQ';
+import { Form } from '@/app/components/FormComponent/Form';
+import { Modal } from '@/app/components/ModalComponent/Modal';
 
 export default function Home() {
   return (
     <main>
-      <FAQ />
+      <Form />
+
+      <Modal />
     </main>
   );
 }
