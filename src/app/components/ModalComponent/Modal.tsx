@@ -13,7 +13,7 @@ interface Props {
 export const Modal: React.FC<Props> = () => {
   const error = false;
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     /* setIsModalOpen(true); */
