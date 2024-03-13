@@ -5,7 +5,6 @@
   color: #fff;
   border-radius: 12px;
   border: none;
-  width: 262px;
   height: 56px;
   padding: 10px;
   text-align: center;
@@ -31,11 +30,11 @@
   }
 
   &:focus {
-    background-color: $color-button-active;
+    background-color: $color-button-hover;
   }
 
-  @include device(tablet) {
-    width: 262px;
+  &:active {
+    background-color: $color-button-active;
   }
 
   @include device(mobile) {
