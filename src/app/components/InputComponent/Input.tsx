@@ -7,7 +7,7 @@ interface Props {
   value: string;
   type: string;
   placeholder: string;
-  error: number,
+  error: number;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   isFocused: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
