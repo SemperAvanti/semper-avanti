@@ -1,6 +1,9 @@
+@import '@/styles/variables';
+
 .input {
   &__label {
     padding-bottom: 8px;
+    color: $color-white;
   }
 
   &__wrapper-item {
@@ -14,10 +17,10 @@
 
     padding: 12.5px 0;
     border-radius: 12px;
-    border: 2px solid #b7b7b7;
+    border: 2px solid $color-border-primary;
 
-    background: #fcfcfc;
-    color: #000;
+    background: $color-background-primary;
+    color: $color-black-primary;
     text-indent: 16px;
 
     &--isError {
@@ -26,14 +29,14 @@
 
       padding: 12.5px 0;
       border-radius: 12px;
-      border: 2px solid #e44e4e;
-      background: #fcfcfc;
-      color: #000;
+      border: 2px solid $color-red;
+      background: $color-form-placeholder;
+      color: $color-black-primary;
       text-indent: 16px;
     }
 
     &::placeholder {
-      color: #b7b7b7;
+      color: $color-border-primary;
       font-family: Poppins;
       font-size: 16px;
       font-style: normal;
@@ -46,17 +49,17 @@
       width: 100%;
 
       padding: 12.5px 0;
-      border: 2px solid #2c74d3;
+      border: 2px solid $color-primary;
       border-radius: 12px;
-      background: #fcfcfc;
-      color: #000;
+      background: $color-form-placeholder;
+      color: $color-black-primary;
       text-indent: 16px;
       outline: none;
     }
 
     &:hover {
-      border: 2px solid #818181;
-      background: #fcfcfc;
+      border: 2px solid $color-grey;
+      background: $color-background-primary;
     }
   }
 }
