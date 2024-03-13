@@ -55,8 +55,8 @@ export const Form = () => {
     };
 
     try {
-      const validation = formDataSchema.parse(formData);
-      console.log(validation);
+      formDataSchema.parse(formData);
+      console.log(formData);
 
       reset();
     } catch (error) {
