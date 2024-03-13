@@ -3,8 +3,6 @@
 @import './typography.scss';
 @import './mixins.scss';
 
-
-
 section {
   width: 100%;
   box-sizing: border-box;
@@ -24,4 +22,32 @@ section {
   @include device(tablet) {
     max-width: calc(100% - ($padding-tablet * 2));
   }
+}
+
+.description {
+
+  &.title {
+
+  }
+
+  &.container {
+    width: 100%;
+    height: auto;
+
+  }
+}
+
+.two-column-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
+
+  @include device(tablet) {
+    grid-template-columns: repeat(1, 1fr); 
+  }
+
+  @include device(mobile) {
+    grid-template-columns: repeat(1, 1fr); 
+  }
+
 }
