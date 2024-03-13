@@ -19,7 +19,7 @@ export const Form = () => {
   const [email, setemail] = useState('');
   const [country, setCountry] = useState('');
   const [check, setCheck] = useState(false);
-  const [errors, setErrors] = useState<T[]>([]);
+  const [errors, setErrors] = useState<T[] | []>([]);
 
   useEffect(() => {
     setErrors([]);
@@ -84,6 +84,7 @@ export const Form = () => {
                 value={fullname}
                 placeholder="John Doe"
                 onChange={handlerFullNameValue}
+                error={errors.length}
               />
 
               {errors.map((error, index): string | null => {
@@ -105,6 +106,7 @@ export const Form = () => {
                 value={email}
                 placeholder="aqe@email.com"
                 onChange={handlerEmailValue}
+                error={errors.length}
               />
 
               {errors.map((error, index): string | null => {
@@ -126,6 +128,7 @@ export const Form = () => {
                 value={country}
                 placeholder="Poland"
                 onChange={handlerCountryValue}
+                error={0}
               />
             </div>
             <div className="form__input-elem">
