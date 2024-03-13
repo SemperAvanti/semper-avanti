@@ -1,69 +1,65 @@
 .modal {
-    max-width: 357px;
-    padding: 24px;
+  max-width: 357px;
+  padding: 24px;
 
+  border-radius: 12px;
+  background: #fcfcfc;
+
+  &__icons-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__text-container {
+    padding-top: 16px;
+    color: #000;
+
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__info {
+    padding-top: 12px;
+    color: #393939;
+
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+
+    max-width: 86%;
+    letter-spacing: 0.7px;
+  }
+
+  &__info-sub-text {
+    color: #21c932;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    padding-right: 50px;
+  }
+
+  &__btn-wrapper {
+    padding-top: 16px;
+    text-align: center;
+  }
+
+  &__btn {
     border-radius: 12px;
-    background: #fcfcfc;
+    background: #2c74d3;
+    border: 1px solid transparent;
+    width: 100%;
+    padding: 13px 0;
 
-    &__icons-wrapper {
-        display: flex;
-        justify-content: space-between;
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
     }
-
-    &__text-container {
-        padding-top: 16px;
-        color: #000;
-
-        font-family: Poppins;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-    }
-
-    &__info {
-        padding-top: 12px;
-        color: #393939;
-
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 150%;
-
-        max-width: 86%;
-        letter-spacing: 0.7px;
-
-
-    }
-
-    &__info-sub-text {
-        color: #21c932;
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 150%;
-        padding-right: 50px;
-    }
-
-    &__btn-wrapper {
-        padding-top: 16px;
-        text-align: center;
-
-
-    }
-
-    &__btn {
-        border-radius: 12px;
-        background: #2C74D3;
-        border: 1px solid transparent;
-        width: 100%;
-        padding: 13px 0;
-
-            &:hover {
-                opacity: .9;
-                cursor: pointer;
-            }
-    }
+  }
 }
