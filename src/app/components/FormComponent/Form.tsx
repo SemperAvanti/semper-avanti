@@ -134,7 +134,7 @@ export const Form = () => {
               />
             </div>
             <div className="form__input-elem">
-              <Checkbox onChange={handlerCheckboxValue} checked={check}/>
+              <Checkbox onChange={handlerCheckboxValue} checked={check} />
 
               <p className="form__checkbox-text">
                 I agree to receive the information about the further courses
