@@ -33,8 +33,6 @@ section {
 
 }
 
-
-
 .container {
   box-sizing: border-box;
   max-width: 1120px;
@@ -51,24 +49,14 @@ section {
 }
 
 
-.aboutUs__gridContainer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-
-  @include device(tablet) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  @include device(mobile) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-
-
-
 .description {
+
+  &-container {
+    width: 100%;
+    height: auto;
+    
+  }
+
   &-title {
     font-size: $h5-font-size;
     font-weight: $h5-font-weight;
@@ -86,12 +74,6 @@ section {
     }
   }
 
-  &-container {
-    width: 100%;
-    height: auto;
-    
-  }
-
   &-text {
     font-size: $description-text-font-size;
     font-weight: $description-text-font-weight;
@@ -102,70 +84,6 @@ section {
     &--accented {
       color: $color-primary;
     }
-  }
-}
-
-
-
-.imgMeet {
-  background-image: url('../../public/images/meetingEvent.png');
-  height: auto;
-  width:100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  object-fit: cover;
-
-  @include device(tablet) {
-    background-image: url('../../public/images/meetingEvent-tablet.png');
-  }
-
-  @include device(mobile) {
-    background-image: url('../../public/images/meetingEvent-mobile.png');
-  }
-}
-
-.sectionAbout__container {
-  display: flex;
-  flex-direction: column;
-}
-
-.sectionAbout-title {
-  order: 1;
-}
-
-.aboutUs__gridContainer {
-  order: 2;
-  
-  margin-bottom: 45px;
-
-  @include device(tablet) {
-    margin-bottom: 64px;
-  }
-
-  @include device(mobile) {
-    margin-bottom: 48px;
-  }
-}
-
-.aboutUs__image {
-  height: auto;
-  min-width:100%;
-  max-width: 100%;
-  margin-bottom: 64px;
-  content: url('../../public/images/meetingEvent.png');
-  order: 3;
-
-
-  @include device(tablet) {
-    content: url('../../public/images/meetingEvent-tablet.png');
-    margin-bottom: 32px;
-    order: 1;
-  }
-
-  @include device(mobile) {
-    content: url('../../public/images/meetingEvent-mobile.png');
-    margin-bottom: 24px;
-    order: 1;
   }
 }
 

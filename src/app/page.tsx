@@ -1,13 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
+import './page.scss';
+
 export default function Home() {
   return (
     <main>
       <section>
-        <div className="sectionAbout__container container">
-          <h2 className="section-title sectionAbout-title">About us</h2>
+        <div className="sectionAboutUs__container container">
+          <h2 className="section-title sectionAboutUs-title">About us</h2>
 
-          <div className="aboutUs__gridContainer">
+          <div className="sectionAboutUs__gridContainer">
             <div className="description-container">
-              <h1 className="description-title">Our mission</h1>
+              <h5 className="description-title">Our mission</h5>
               <p className="description-text">
                 Through innovative training initiatives and personalized
                 support, we aim to equip educators with the{' '}
@@ -20,7 +23,7 @@ export default function Home() {
             </div>
 
             <div className="description-container">
-              <h1 className="description-title">Our vision</h1>
+              <h5 className="description-title">Our vision</h5>
               <p className="description-text ">
                 Our vision at AQE is to create a world where every educator has
                 access to high-quality training and resources, empowering them
@@ -32,8 +35,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-
-          <img className="aboutUs__image" alt="sdsd" />
+          <img className="sectionAboutUs-image" alt="meeting-event" />
         </div>
       </section>
     </main>
