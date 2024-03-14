@@ -1,0 +1,39 @@
+@import '@/styles/index.scss';
+
+.button {
+  background-color: $color-primary;
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  height: 56px;
+  padding: 10px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &--secondary {
+    width: 100%;
+  }
+
+  &--deactivated {
+    background-color: $color-button-disabled;
+    color: #aaa;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background-color: $color-button-hover;
+  }
+
+  &:active {
+    background-color: $color-button-active;
+  }
+
+  @include device(mobile) {
+    width: 100%;
+  }
+}
