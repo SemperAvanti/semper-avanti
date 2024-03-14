@@ -7,7 +7,33 @@ section {
   width: 100%;
   box-sizing: border-box;
   height: auto;
+
+ 
 }
+
+.section-title {
+  font-family: $font-family;
+  font-size: $h2-font-size;
+  font-weight: $h2-font-weight;
+  line-height: $h2-line-height;
+  letter-spacing: $h2-letter-spacing;
+  margin: 80px 0 43px;
+
+  @include device(tablet) {
+    margin: 64px 0 48px
+  }
+
+  @include device(mobile) {
+    font-size: $accented-body-font-size;
+    font-weight: $accented-body-font-weight;
+    line-height: $accented-body-line-height;
+    letter-spacing: $accented-body-letter-spacing;
+    margin: 48px 0 32px
+  }
+
+}
+
+
 
 .container {
   box-sizing: border-box;
@@ -24,30 +50,126 @@ section {
   }
 }
 
-.description {
 
-  &.title {
-
-  }
-
-  &.container {
-    width: 100%;
-    height: auto;
-
-  }
-}
-
-.two-column-grid-container {
+.aboutUs__gridContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 20px; 
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 
   @include device(tablet) {
-    grid-template-columns: repeat(1, 1fr); 
+    grid-template-columns: repeat(1, 1fr);
   }
 
   @include device(mobile) {
-    grid-template-columns: repeat(1, 1fr); 
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
+
+
+.description {
+  &-title {
+    font-size: $h5-font-size;
+    font-weight: $h5-font-weight;
+    line-height: $h5-line-height;
+    letter-spacing: $h5-letter-spacing;
+    margin-bottom: 16px;
+
+
+    @include device(mobile) {
+      font-size: $body-text-font-size;
+      font-weight: $body-text-font-weight;
+      line-height: $body-text-line-height;
+      letter-spacing: $body-text-letter-spacing;
+      margin-bottom: 12px;
+    }
   }
 
+  &-container {
+    width: 100%;
+    height: auto;
+    
+  }
+
+  &-text {
+    font-size: $description-text-font-size;
+    font-weight: $description-text-font-weight;
+    line-height: $body-text-line-height;
+    letter-spacing: $description-text-letter-spacing;
+    
+
+    &--accented {
+      color: $color-primary;
+    }
+  }
 }
+
+
+
+.imgMeet {
+  background-image: url('../../public/images/meetingEvent.png');
+  height: auto;
+  width:100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+
+  @include device(tablet) {
+    background-image: url('../../public/images/meetingEvent-tablet.png');
+  }
+
+  @include device(mobile) {
+    background-image: url('../../public/images/meetingEvent-mobile.png');
+  }
+}
+
+.sectionAbout__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionAbout-title {
+  order: 1;
+}
+
+.aboutUs__gridContainer {
+  order: 2;
+  
+  margin-bottom: 45px;
+
+  @include device(tablet) {
+    margin-bottom: 64px;
+  }
+
+  @include device(mobile) {
+    margin-bottom: 48px;
+  }
+}
+
+.aboutUs__image {
+  height: auto;
+  min-width:100%;
+  max-width: 100%;
+  margin-bottom: 64px;
+  content: url('../../public/images/meetingEvent.png');
+  order: 3;
+
+
+  @include device(tablet) {
+    content: url('../../public/images/meetingEvent-tablet.png');
+    margin-bottom: 32px;
+    order: 1;
+  }
+
+  @include device(mobile) {
+    content: url('../../public/images/meetingEvent-mobile.png');
+    margin-bottom: 24px;
+    order: 1;
+  }
+}
+
+
+
+
+
