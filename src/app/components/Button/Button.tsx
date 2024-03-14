@@ -9,7 +9,11 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ name, variant }) => {
   const buttonClass = `button button--${variant}`;
-  return <button className={buttonClass} disabled={variant === 'deactivated'}>{name}</button>;
+  return (
+    <button className={buttonClass} disabled={variant === 'deactivated'}>
+      {name}
+    </button>
+  );
 };
 
 export default Button;
