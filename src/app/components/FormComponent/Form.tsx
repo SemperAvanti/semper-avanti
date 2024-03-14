@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { FormData } from '@/app/types/zod';
+import Button from '@/app/components/Button/Button';
 
 import './Form.scss';
 
@@ -141,9 +142,8 @@ export const Form = () => {
                 from AQE
               </p>
             </div>
-
             <div className="form__input-elem">
-              <input type="submit" />
+              <Button variant="primary" name="Get info package" />
             </div>
           </div>
         </form>
