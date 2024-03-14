@@ -14,8 +14,10 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({ title }) => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
   const slidesAmount = {
-    desktop: 5,
+    desktopL: 5,
+    desktopS: 4,
     tablet: 3,
+    tablets: 2,
     mobile: 1,
   };
 
@@ -24,9 +26,13 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({ title }) => {
       const width = window.innerWidth;
 
       if (width >= 1300) {
-        swiper.params.slidesPerView = slidesAmount.desktop;
-      } else if (width >= 950) {
+        swiper.params.slidesPerView = slidesAmount.desktopL;
+      } else if (width >= 1000) {
+        swiper.params.slidesPerView = slidesAmount.desktopS;
+      } else if (width >= 750) {
         swiper.params.slidesPerView = slidesAmount.tablet;
+      } else if (width >= 550) {
+        swiper.params.slidesPerView = slidesAmount.tablets;
       } else {
         swiper.params.slidesPerView = slidesAmount.mobile;
       }
@@ -85,7 +91,13 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({ title }) => {
         </div>
       </div>
 
-      <Slider setSwiper={setSwiper} />
+      <Slider
+        setSwiper={setSwiper}
+        spaceBetween={25}
+        slidesPerView={5}
+        slidesOffset={170}
+        initialSlide={1}
+      />
     </section>
   );
 };

@@ -1,16 +1,11 @@
-// @use '../../../sass/abstracts/index.scss';
+
 
 .container {
-  color: white;
   width: 100%;
   margin: auto;
   & > h2 {
     font-size: 42px;
-    // font-weight: index.$font-weight-medium;
     text-align: center;
-    & > span {
-      // color: index.$color-highlight;
-    }
   }
 
   & > p {
@@ -34,13 +29,12 @@
   }
 
   & .swiper {
-    width: 80%;
+    width: 100%;
     margin-bottom: 40px;
     margin-top: 40px;
     &__slide {
       display: flex !important;
       justify-content: center;
-      width: 262px;
     }
   }
 }

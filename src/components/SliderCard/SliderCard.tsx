@@ -1,5 +1,5 @@
 'use client';
-import img from './img.png';
+import img from '../../img/img.png';
 import React from 'react';
 import Image from 'next/image';
 import './scss/SliderCard.scss';
