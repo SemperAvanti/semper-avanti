@@ -1,3 +1,9 @@
+import { FAQ } from '@/components/FAQ/FAQ';
+
 export default function Home() {
-  return <main></main>;
+  return (
+    <main>
+      <FAQ />
+    </main>
+  );
 }
