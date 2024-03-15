@@ -9,11 +9,11 @@
   padding: 72px 0;
   background-color: $color-black-primary;
 
-  @media (max-width: 480px) {
+  @include device(mobile) {
     padding: 48px 16px;
   }
 
-  @media (min-width: 481px) and (max-width: 768px) {
+  @include device(tablet) {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -24,15 +24,15 @@
 
     margin: 0 auto;
 
-    @media (max-width: 768px) {
-      max-width: 550px;
-    }
-
-    @media (max-width: 480px) {
+    @include device(mobile) {
       max-width: 260px;
       width: 100%;
 
       margin: 0 auto;
+    }
+
+    @include device(tablet) {
+      max-width: 550px;
     }
   }
 
@@ -46,7 +46,7 @@
     line-height: 120%;
     letter-spacing: -1.2px;
 
-    @media (max-width: 480px) {
+    @include device(mobile) {
       font-size: 24px;
     }
   }
@@ -70,11 +70,11 @@
     padding-top: 62px;
     margin: 0 auto;
 
-    @media (max-width: 480px) {
+    @include device(mobile) {
       padding-top: 24px;
     }
 
-    @media (min-width: 481px) and (max-width: 768px) {
+    @include device(tablet) {
       padding-top: 48px;
     }
   }
@@ -82,7 +82,7 @@
   &__input-elem {
     padding-bottom: 16px;
 
-    @media (min-width: 481px) and (max-width: 768px) {
+    @include device(tablet) {
       max-width: 358px;
       width: 100%;
 
@@ -118,13 +118,13 @@
     text-align: justify;
     letter-spacing: 0.4px;
 
-    @media (max-width: 480px) {
+    @include device(mobile) {
       font-size: 11px;
       margin-top: -5px;
       margin-right: 0;
     }
 
-    @media (min-width: 481px) and (max-width: 768px) {
+    @include device(tablet) {
       color: $color-white;
       font-family: Poppins;
       font-size: 16px;
