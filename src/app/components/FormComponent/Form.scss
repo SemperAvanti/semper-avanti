@@ -39,7 +39,6 @@
   &__header-text {
     color: $color-white;
     text-align: center;
-    font-family: Poppins;
     font-size: 60px;
     font-style: normal;
     font-weight: 600;
@@ -56,7 +55,6 @@
 
     color: $color-background-primary;
     text-align: center;
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -96,7 +94,6 @@
       gap: 12px;
 
       color: $color-white;
-      font-family: Poppins;
       font-size: 20px;
       font-style: normal;
       font-weight: 500;
@@ -126,7 +123,6 @@
 
     @include device(tablet) {
       color: $color-white;
-      font-family: Poppins;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -137,7 +133,6 @@
 
   &__error {
     color: $color-red;
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

@@ -29,7 +29,6 @@
 
     text-align: center;
 
-    font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -60,8 +59,6 @@
   &__text-container {
     padding-top: 16px;
     color: $color-black-primary;
-
-    font-family: Poppins;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -73,8 +70,6 @@
 
     padding-top: 12px;
     color: $color-grey-dark;
-
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -89,7 +84,6 @@
 
   &__info-sub-text-error {
     color: $color-red;
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -99,7 +93,6 @@
   &__info-sub-text-success {
     width: 100%;
     color: $color-green;
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -110,7 +103,6 @@
 
   &__info-sub-text-email {
     color: $color-black-primary;
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
