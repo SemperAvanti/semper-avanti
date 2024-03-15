@@ -54,7 +54,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({ title }) => {
   return (
     <section className="section">
       <div className="section__header">
-        <h2>{title}</h2>
+        <h2 className="H2">{title}</h2>
         <div className="buttons">
           <button onClick={() => swiper && swiper.slidePrev()}>
             <svg
