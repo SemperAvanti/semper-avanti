@@ -35,6 +35,20 @@
       }
     }
 
+    &:disabled {
+      max-width: 548px;
+      width: 100%;
+
+      padding: 12.5px 0;
+      border-radius: 12px;
+      border: 2px solid $color-border-disabled;
+      background-color: $color-background-disabled;
+
+      &::placeholder {
+        visibility: hidden;
+      }
+    }
+
     &::placeholder {
       color: $color-border-primary;
       font-size: 16px;
