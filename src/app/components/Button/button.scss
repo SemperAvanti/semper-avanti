@@ -36,4 +36,12 @@
   @include device(mobile) {
     width: 100%;
   }
+
+  @include device(tablet) {
+    width: 100%;
+  }
+
+  @include device(desktop) {
+    width: 100%;
+  }
 }
