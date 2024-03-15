@@ -8,6 +8,7 @@ interface Props {
   type: string;
   placeholder: string;
   error: number;
+  isDisabled: boolean;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   isFocused: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -20,6 +21,7 @@ export const Input: React.FC<Props> = ({
   value,
   placeholder,
   error,
+  isDisabled,
   onChange,
 }) => {
   return (
@@ -37,6 +39,7 @@ export const Input: React.FC<Props> = ({
             value={value}
             onChange={onChange}
             placeholder={placeholder}
+            disabled={isDisabled}
           />
         </div>
       </div>
