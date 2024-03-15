@@ -11,12 +11,12 @@ interface Props {
 }
 
 export const Modal: React.FC<Props> = () => {
-  const error = false;
+  const error = true;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    /* setIsModalOpen(true); */
+   /*  setIsModalOpen(true); */
   }, [error]);
 
   const isError = error ? 'Error' : 'Success';
@@ -68,7 +68,7 @@ export const Modal: React.FC<Props> = () => {
                 width={32}
                 height={32}
                 onClick={handlerCloseModal}
-              ></Image>
+              />
             </div>
 
             <div className="modal__text-container">
