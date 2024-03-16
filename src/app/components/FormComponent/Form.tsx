@@ -66,7 +66,10 @@ export const Form: React.FC<Props> = ({ onClose }) => {
       }, 2000);
     } catch (error) {
       setErrors(error.errors);
-      onClose(formData.email, false);
+
+      if (formData.email > 0 && btnColor === 'primary') {
+        onClose(formData.email, false);
+      }
     }
   };
 
