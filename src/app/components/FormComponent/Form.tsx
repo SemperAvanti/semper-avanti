@@ -15,12 +15,15 @@ const formDataSchema: ZodType<FormData> = z.object({
   email: z.string().email('Error email format'),
 });
 
-export const Form = () => {
-  const [fullname, setFullname] = useState('');
-  const [email, setemail] = useState('');
-  const [country, setCountry] = useState('');
-  const [check, setCheck] = useState(false);
-  const [errors, setErrors] = useState<T[] | []>([]);
+interface Props {
+  onClose: () => void;
+}
+
+export const Form: React.FC<Props> = ({ onClose }) => {
+  const [formData, setFormData] = useState<FormInitialData>(initialData);
+  const [errors, setErrors] = useState<ZodErrorMessage | []>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [btnColor, setBtnColor] = useState('primary');
 
   useEffect(() => {
     setErrors([]);
@@ -62,9 +65,19 @@ export const Form = () => {
       formDataSchema.parse(formData);
       console.log(formData);
 
-      reset();
+      setFormData(initialData);
+
+      setIsSubmitting(true);
+      setBtnColor('deactivated');
+
+      setTimeout((): void => {
+        setIsSubmitting(false);
+        setBtnColor('primary');
+        onClose(formData.email, true);
+      }, 2000);
     } catch (error) {
       setErrors(error.errors);
+      onClose(formData.email, false);
     }
   };
 
