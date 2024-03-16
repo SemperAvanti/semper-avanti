@@ -2,51 +2,49 @@
 
 import './Modal.scss';
 
-import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 interface Props {
-  error: boolean;
+  isEmailSentSuccessfully: boolean;
   sendedEmail: string;
+  isOpen: boolean;
+  closeModal: () => void;
 }
 
-export const Modal: React.FC<Props> = () => {
-  const error = true;
+export const Modal: React.FC<Props> = ({
+  sendedEmail,
+  isOpen,
+  isEmailSentSuccessfully,
+  closeModal,
+}) => {
+  const isError = !isEmailSentSuccessfully ? 'Error' : 'Success';
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-   /*  setIsModalOpen(true); */
-  }, [error]);
-
-  const isError = error ? 'Error' : 'Success';
-
-  const modalInfo = error ? (
+  const modalInfo = !isEmailSentSuccessfully ? (
     <p className="modal__info">
       Email with the training info has{' '}
       <span className="modal__info-sub-text-error">NOT </span> been sent to{' '}
-      <span className="modal__info-sub-text-email">emai@email.com</span>
+      <span className="modal__info-sub-text-email">{sendedEmail}</span>
     </p>
   ) : (
     <p className="modal__info">
       Email with the training info has been sent to{' '}
-      <span className="modal__info-sub-text-email">emai@email.com</span>
+      <span className="modal__info-sub-text-email">{sendedEmail}</span>
       <br></br>
       <div className="modal__info-sub-text-success">successfully</div>
     </p>
   );
 
   const handlerCloseModal = (): void => {
-    setIsModalOpen(false);
+    closeModal(true);
   };
 
   return (
     <>
-      {isModalOpen && (
+      {isOpen && (
         <div className="modal">
           <div className="modal__container">
             <div className="modal__icons-wrapper">
-              {!error ? (
+              {isEmailSentSuccessfully ? (
                 <Image
                   src="/mdi_tick.svg"
                   alt="icon success"
