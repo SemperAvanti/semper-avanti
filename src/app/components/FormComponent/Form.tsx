@@ -87,7 +87,6 @@ export const Form = () => {
                 isDisabled={isSubmitting}
                 errors={errors}
               />
-              {errors.email ? <p>dupa</p> : null}
             </div>
             <div className="form__input-elem">
               <Input
