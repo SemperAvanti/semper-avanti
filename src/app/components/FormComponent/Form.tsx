@@ -86,20 +86,10 @@ export const Form = () => {
                 type="text"
                 value={fullname}
                 placeholder="John Doe"
-                onChange={handlerFullNameValue}
-                error={errors.length}
+                onChange={handlerInput}
+                isDisabled={isSubmitting}
+                errors={errors}
               />
-
-              {errors.map((error, index): string | null => {
-                if (error.path.includes('fullname')) {
-                  return (
-                    <p key={index} className="form__error">
-                      {error.message}
-                    </p>
-                  );
-                }
-                return null;
-              })}
             </div>
             <div className="form__input-elem">
               <Input
