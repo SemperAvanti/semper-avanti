@@ -18,7 +18,11 @@ const formDataSchema: ZodType<FormData> = z.object({
   email: z.string().email('Error email format').trim(),
 });
 
-export const Form = () => {
+interface Props {
+  onClose: () => void;
+}
+
+export const Form: React.FC<Props> = ({ onClose }) => {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
   const [errors, setErrors] = useState<ZodErrorMessage | []>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,9 +62,11 @@ export const Form = () => {
       setTimeout((): void => {
         setIsSubmitting(false);
         setBtnColor('primary');
+        onClose(formData.email, true);
       }, 2000);
     } catch (error) {
       setErrors(error.errors);
+      onClose(formData.email, false);
     }
   };
 
