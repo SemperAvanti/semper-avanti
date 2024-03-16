@@ -1,5 +1,7 @@
 'use client';
+
 import './Input.scss';
+import { ZodErrorMessage } from '@/app/types/zodErrorMessage';
 
 interface Props {
   label: string;
@@ -7,9 +9,10 @@ interface Props {
   value: string;
   type: string;
   placeholder: string;
-  error: number;
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  isFocused: boolean;
+  isDisabled: boolean;
+  name: string;
+  errors: ZodErrorMessage[];
+  // eslint-disable-next-line no-unused-vars
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -19,9 +22,18 @@ export const Input: React.FC<Props> = ({
   type,
   value,
   placeholder,
-  error,
+  isDisabled,
+  name,
+  errors,
   onChange,
 }) => {
+  const getClassName: string =
+    errors &&
+    errors.length > 0 &&
+    errors.some((error) => error.path.includes(name))
+      ? 'input__item--isError'
+      : 'input__item';
+
   return (
     <div className="input">
       <div className="input__container">
@@ -30,14 +42,27 @@ export const Input: React.FC<Props> = ({
         </div>
         <div className="input__wrapper-item">
           <input
-            className={error === 0 ? 'input__item' : 'input__item--isError'}
+            className={`input__item ${getClassName}`}
             type={type}
             id={htmlFor}
-            name={htmlFor}
+            name={name}
             value={value}
             onChange={onChange}
             placeholder={placeholder}
+            disabled={isDisabled}
           />
+          {errors &&
+            errors.length > 0 &&
+            errors.map((error, index) => {
+              if (error.path.includes(name)) {
+                return (
+                  <p key={index} className="input__error">
+                    {error.message}
+                  </p>
+                );
+              }
+              return null;
+            })}
         </div>
       </div>
     </div>
