@@ -4,6 +4,8 @@ interface Props {
   htmlFor: string;
   value: string;
   checked: boolean;
+  name: string;
+  // eslint-disable-next-line no-unused-vars
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -11,6 +13,7 @@ export const Checkbox: React.FC<Props> = ({
   htmlFor,
   value,
   checked,
+  name,
   onChange,
 }) => {
   return (
@@ -20,7 +23,7 @@ export const Checkbox: React.FC<Props> = ({
           className="checkbox__item"
           type="checkbox"
           id={htmlFor}
-          name={htmlFor}
+          name={name}
           value={value}
           checked={checked}
           onChange={onChange}
