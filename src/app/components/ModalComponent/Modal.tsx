@@ -26,12 +26,12 @@ export const Modal: React.FC<Props> = ({
       <span className="modal__info-sub-text-email">{sendedEmail}</span>
     </p>
   ) : (
-    <p className="modal__info">
+    <div className="modal__info">
       Email with the training info has been sent to{' '}
       <span className="modal__info-sub-text-email">{sendedEmail}</span>
       <br></br>
       <div className="modal__info-sub-text-success">successfully</div>
-    </p>
+    </div>
   );
 
   const handlerCloseModal = (): void => {
