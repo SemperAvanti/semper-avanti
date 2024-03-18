@@ -30,6 +30,11 @@
       border: 2px solid $color-red;
       color: $color-black-primary;
       text-indent: 16px;
+
+      &:hover {
+        border: 2px solid $color-red !important;
+        background-color: $color-background-primary;
+      }
     }
 
     &:disabled {
@@ -38,7 +43,7 @@
 
       padding: 12.5px 0;
       border-radius: 12px;
-      border: 2px solid $color-border-disabled;
+      border: 2px solid $color-border-primary;
       background-color: $color-background-disabled;
 
       &::placeholder {
@@ -54,6 +59,11 @@
       line-height: normal;
     }
 
+    &:hover {
+      border: 2px solid $color-grey;
+      background: $color-background-primary;
+    }
+
     &:focus {
       max-width: 548px;
       width: 100%;
@@ -65,11 +75,6 @@
       font-weight: 500;
       text-indent: 16px;
       outline: none;
-    }
-
-    &:hover {
-      border: 2px solid $color-grey;
-      background: $color-background-primary;
     }
   }
 }
