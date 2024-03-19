@@ -1,0 +1,31 @@
+.section {
+  color: black;
+  width: 100%;
+  margin: auto;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 80%;
+    margin: auto;
+
+    & > h2 {
+      font-size: 60px;
+      text-align: center;
+    }
+
+    & .buttons {
+      display: flex;
+      gap: 40px;
+      @media (max-width: 1100px) {
+        display: none;
+      }
+      & button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
