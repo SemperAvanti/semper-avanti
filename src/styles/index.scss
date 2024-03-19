@@ -7,8 +7,6 @@ section {
   width: 100%;
   box-sizing: border-box;
   height: auto;
-
- 
 }
 
 .section-title {
@@ -20,7 +18,7 @@ section {
   margin: 80px 0 43px;
 
   @include device(tablet) {
-    margin: 64px 0 48px
+    margin: 64px 0 48px;
   }
 
   @include device(mobile) {
@@ -28,9 +26,8 @@ section {
     font-weight: $accented-body-font-weight;
     line-height: $accented-body-line-height;
     letter-spacing: $accented-body-letter-spacing;
-    margin: 48px 0 32px
+    margin: 48px 0 32px;
   }
-
 }
 
 .container {
@@ -48,13 +45,10 @@ section {
   }
 }
 
-
 .description {
-
   &-container {
     width: 100%;
     height: auto;
-    
   }
 
   &-title {
@@ -63,7 +57,6 @@ section {
     line-height: $h5-line-height;
     letter-spacing: $h5-letter-spacing;
     margin-bottom: 16px;
-
 
     @include device(mobile) {
       font-size: $body-text-font-size;
@@ -79,15 +72,9 @@ section {
     font-weight: $description-text-font-weight;
     line-height: $body-text-line-height;
     letter-spacing: $description-text-letter-spacing;
-    
 
     &--accented {
       color: $color-primary;
     }
   }
 }
-
-
-
-
-
