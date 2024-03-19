@@ -1,6 +1,6 @@
 export interface FormInitialData {
-    fullname: string;
-    email: string;
-    country: string;
-    check: boolean;
-  }
+  fullname: string;
+  email: string;
+  country: string;
+  check: boolean;
+}
