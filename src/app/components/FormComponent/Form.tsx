@@ -1,18 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { FormData } from '@/app/types/zod';
-import Button from '@/app/components/Button/Button';
-
 import './Form.scss';
 
-import { Input } from '@/app/components/InputComponent/Input';
-import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
+import { useState, useEffect } from 'react';
 import { z } from 'zod';
 
+import { FormData } from '@/app/types/zod';
+import Button from '@/app/components/Button/Button';
+import { Input } from '@/app/components/InputComponent/Input';
+import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
+import { FormInitialData } from '@/app/typrs/forminitialData';
+import { initialData } from '@/app/components/FormComponent/helper';
+import { ZodErrorMessage } from '@/app/types/zodErrorMessage';
+
 const formDataSchema: ZodType<FormData> = z.object({
-  fullname: z.string().min(5, 'Error name'),
-  email: z.string().email('Error email format'),
+  fullname: z.string().min(5, 'Error name').trim(),
+  email: z.string().email('Error email format').trim(),
 });
 
 interface Props {
@@ -25,41 +28,27 @@ export const Form: React.FC<Props> = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [btnColor, setBtnColor] = useState('primary');
 
-  useEffect(() => {
+  useEffect((): void => {
     setErrors([]);
-  }, [fullname, email]);
+  }, [formData.fullname, formData.email]);
 
-  const handlerFullNameValue = (value: string): void => {
-    setFullname(value.target.value);
-  };
-  const handlerEmailValue = (value: string): void => {
-    setemail(value.target.value);
-  };
-  const handlerCountryValue = (value: string): void => {
-    setCountry(value.target.value);
-  };
-  const handlerCheckboxValue = (value: boolean): void => {
-    setCheck(value.target.checked);
-  };
+  const handlerInput = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ): void => {
+    const { name, value, type } = event.target;
 
-  const reset = (): void => {
-    setFullname('');
-    setemail('');
-    setCountry('');
-    setCheck(false);
+    setFormData(
+      (prev): FormInitialData => ({
+        ...prev,
+        [name]: type === 'checkbox' ? !prev.checkbox : value,
+      }),
+    );
   };
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
   ): void => {
     event.preventDefault();
-
-    const formData = {
-      fullname,
-      email,
-      country,
-      check,
-    };
 
     try {
       formDataSchema.parse(formData);
@@ -93,14 +82,15 @@ export const Form: React.FC<Props> = ({ onClose }) => {
         </p>
       </header>
       <div className="form__container">
-        <form className="form__form-elem" onSubmit={handleSubmit}>
+        <form className="form__form-elem" onSubmit={handleSubmit} method="post">
           <div className="form__form-elem-container">
             <div className="form__input-elem">
               <Input
                 htmlFor="full Name"
                 label="Full Name *"
                 type="text"
-                value={fullname}
+                name="fullname"
+                value={formData.fullname}
                 placeholder="John Doe"
                 onChange={handlerInput}
                 isDisabled={isSubmitting}
@@ -112,36 +102,33 @@ export const Form: React.FC<Props> = ({ onClose }) => {
                 htmlFor="email"
                 label="Email *"
                 type="text"
-                value={email}
+                name="email"
+                value={formData.email}
                 placeholder="aqe@email.com"
-                onChange={handlerEmailValue}
-                error={errors.length}
+                onChange={handlerInput}
+                isDisabled={isSubmitting}
+                errors={errors}
               />
-
-              {errors.map((error, index): string | null => {
-                if (error.path.includes('email')) {
-                  return (
-                    <p key={index} className="form__error">
-                      {error.message}
-                    </p>
-                  );
-                }
-                return null;
-              })}
             </div>
             <div className="form__input-elem">
               <Input
                 htmlFor="country"
                 label="Country"
                 type="text"
-                value={country}
+                name="country"
+                value={formData.country}
                 placeholder="Poland"
-                onChange={handlerCountryValue}
-                error={0}
+                onChange={handlerInput}
+                errors={0}
+                isDisabled={isSubmitting}
               />
             </div>
             <div className="form__input-elem">
-              <Checkbox onChange={handlerCheckboxValue} checked={check} />
+              <Checkbox
+                onChange={handlerInput}
+                checked={formData.checkbox}
+                name="checkbox"
+              />
 
               <p className="form__checkbox-text">
                 I agree to receive the information about the further courses
@@ -149,7 +136,7 @@ export const Form: React.FC<Props> = ({ onClose }) => {
               </p>
             </div>
             <div className="form__input-elem">
-              <Button variant="primary" name="Get info package" />
+              <Button variant={btnColor} name="Get info package" />
             </div>
           </div>
         </form>
