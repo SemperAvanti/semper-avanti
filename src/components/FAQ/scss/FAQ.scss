@@ -1,0 +1,54 @@
+@use '../../../styles/index.scss';
+
+.container {
+  & > .H2 {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  &__accordion {
+    padding: 15px 32px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    border: 1px solid #d9d9d9;
+    overflow: hidden;
+    box-shadow: unset;
+    &--summary {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    &--details {
+      padding: 0;
+    }
+  }
+}
+
+.description-text {
+  color: index.$color-description;
+  margin-bottom: 9px;
+}
+
+.css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
+  margin: 0;
+}
+
+.css-o4b71y-MuiAccordionSummary-content {
+  margin: 0;
+}
+
+.css-1c35hjw-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+  margin: unset;
+  margin-bottom: 16px;
+}
+
+.css-1c35hjw-MuiPaper-root-MuiAccordion-root:first-of-type {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.css-1c35hjw-MuiPaper-root-MuiAccordion-root:last-of-type {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
