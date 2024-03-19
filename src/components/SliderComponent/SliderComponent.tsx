@@ -14,27 +14,32 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({ title }) => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
   const slidesAmount = {
-    desktopL: 5,
-    desktopS: 4,
-    tablet: 3,
-    tablets: 2,
+    desktopBig: 6,
+    desktopSmall: 4,
+    tabletBig: 3,
+    tabletSmall: 2,
     mobile: 1,
   };
 
   const updateSlidesPerView = () => {
+    const width = window.innerWidth;
     if (swiper && swiper.params) {
-      const width = window.innerWidth;
-
-      if (width >= 1300) {
-        swiper.params.slidesPerView = slidesAmount.desktopL;
-      } else if (width >= 1000) {
-        swiper.params.slidesPerView = slidesAmount.desktopS;
-      } else if (width >= 750) {
-        swiper.params.slidesPerView = slidesAmount.tablet;
-      } else if (width >= 550) {
-        swiper.params.slidesPerView = slidesAmount.tablets;
-      } else {
-        swiper.params.slidesPerView = slidesAmount.mobile;
+      switch (true) {
+        case width >= 1600:
+          swiper.params.slidesPerView = slidesAmount.desktopBig;
+          break;
+        case width >= 1050 && width < 1600:
+          swiper.params.slidesPerView = slidesAmount.desktopSmall;
+          break;
+        case width >= 750 && width < 1050:
+          swiper.params.slidesPerView = slidesAmount.tabletBig;
+          break;
+        case width >= 500 && width < 750:
+          swiper.params.slidesPerView = slidesAmount.tabletSmall;
+          break;
+        default:
+          swiper.params.slidesPerView = slidesAmount.mobile;
+          swiper.params.slidesOffsetBefore = 0;
       }
 
       swiper.update();
