@@ -1,9 +1,9 @@
-import { FAQ } from '@/components/FAQ/FAQ';
+import Home from './components/Home/Home';
 
-export default function Home() {
+export default function page() {
   return (
     <main>
-      <FAQ />
+      <Home />
     </main>
   );
 }
