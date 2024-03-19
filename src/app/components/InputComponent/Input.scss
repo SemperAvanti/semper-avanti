@@ -21,22 +21,6 @@
     color: $color-black-primary;
     text-indent: 16px;
 
-    &--isError {
-      max-width: 548px;
-      width: 100%;
-
-      padding: 12.5px 0;
-      border-radius: 12px;
-      border: 2px solid $color-red;
-      color: $color-black-primary;
-      text-indent: 16px;
-
-      &:hover {
-        border: 2px solid $color-red !important;
-        background-color: $color-background-primary;
-      }
-    }
-
     &:disabled {
       max-width: 548px;
       width: 100%;
@@ -75,6 +59,22 @@
       font-weight: 500;
       text-indent: 16px;
       outline: none;
+    }
+
+    &--isError {
+      max-width: 548px;
+      width: 100%;
+
+      padding: 12.5px 0;
+      border-radius: 12px;
+      border: 2px solid $color-red;
+      color: $color-black-primary;
+      text-indent: 16px;
+
+      &:hover {
+        border: 2px solid $color-red;
+        background-color: $color-background-primary;
+      }
     }
   }
 }
