@@ -8,9 +8,13 @@ import { Slider } from '../Slider/Slider';
 
 type SliderComponentProps = {
   title: string;
+  partners: boolean;
 };
 
-export const SliderComponent: React.FC<SliderComponentProps> = ({ title }) => {
+export const SliderComponent: React.FC<SliderComponentProps> = ({
+  title,
+  partners,
+}) => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
   const slidesAmount = {
@@ -102,6 +106,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({ title }) => {
         slidesPerView={5}
         slidesOffset={170}
         initialSlide={1}
+        partners={partners}
       />
     </section>
   );

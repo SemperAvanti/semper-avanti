@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Form } from '@/app/components/FormComponent/Form';
 import { Modal } from '@/app/components/ModalComponent/Modal';
+import { SliderComponent } from './components/SliderComponent/SliderComponent';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,14 +21,18 @@ export default function Home() {
   };
 
   return (
-    <main>
-      <Form onClose={handleCloseModal} />
-      <Modal
-        sendedEmail={emailAddress}
-        isOpen={isModalOpen}
-        closeModal={closeModal}
-        isEmailSentSuccessfully={isEmailSentSuccessfully}
-      />
-    </main>
+    <>
+      <main>
+        <Form onClose={handleCloseModal} />
+        <Modal
+          sendedEmail={emailAddress}
+          isOpen={isModalOpen}
+          closeModal={closeModal}
+          isEmailSentSuccessfully={isEmailSentSuccessfully}
+        />
+      </main>
+      <SliderComponent partners={false} title="Success stories" />
+      <SliderComponent partners={true} title="Our partners" />
+    </>
   );
 }
