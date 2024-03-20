@@ -1,4 +1,3 @@
-'use client';
 
 import { Form } from '@/app/components/FormComponent/Form';
 
