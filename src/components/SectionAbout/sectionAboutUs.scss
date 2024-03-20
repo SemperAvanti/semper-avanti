@@ -1,7 +1,7 @@
 @import '../../styles/index.scss';
 
 .sectionAboutUs {
-  &-title {
+  &--title {
     order: 1;
   }
 
@@ -35,7 +35,7 @@
     width: 100%;
     height: auto;
 
-    &-title {
+    &--title {
       font-size: $h5-font-size;
       font-weight: $h5-font-weight;
       line-height: $h5-line-height;
@@ -52,7 +52,7 @@
     }
   }
 
-  &-image {
+  &--image {
     height: auto;
     min-width: 100%;
     max-width: 100%;

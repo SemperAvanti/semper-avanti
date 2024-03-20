@@ -5,17 +5,17 @@ export const SectionAboutUs: React.FC = () => {
   return (
     <section>
       <div className="sectionAboutUs__container container">
-        <h2 className="section-title sectionAboutUs-title">About us</h2>
+        <h2 className="section-title sectionAboutUs--title">About us</h2>
 
         <div className="sectionAboutUs__gridWrapper">
           <div className="sectionAboutUs__descriptionContainer">
-            <h3 className="sectionAboutUs__descriptionContainer-title">
+            <h3 className="sectionAboutUs__descriptionContainer--title">
               Our mission
             </h3>
-            <p className="description-text">
+            <p className="descriptionText">
               Through innovative training initiatives and personalized support,
               we aim to equip educators with the{' '}
-              <span className="description-text--accented">
+              <span className="descriptionText--accented">
                 knowledge, skills, and confidence needed
               </span>{' '}
               to inspire lifelong learning and academic success in their
@@ -24,14 +24,14 @@ export const SectionAboutUs: React.FC = () => {
           </div>
 
           <div className="sectionAboutUs__descriptionContainer">
-            <h5 className="sectionAboutUs__descriptionContainer-title">
+            <h5 className="sectionAboutUs__descriptionContainer--title">
               Our vision
             </h5>
-            <p className="description-text ">
+            <p className="descriptionText ">
               Our vision at AQE is to create a world where every educator has
               access to high-quality training and resources, empowering them to
               foster a{' '}
-              <span className="description-text--accented">
+              <span className="descriptionText--accented">
                 dynamic and enriching learning environment
               </span>{' '}
               for all students.
@@ -40,7 +40,7 @@ export const SectionAboutUs: React.FC = () => {
         </div>
 
         <img
-          className="sectionAboutUs-image"
+          className="sectionAboutUs--image"
           alt="meeting-event"
           srcSet="
   images/meetingEvent-mobile.jpg 640w,
