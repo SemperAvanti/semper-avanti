@@ -59,12 +59,11 @@ export const Form: React.FC<Props> = () => {
       setIsSubmitting(true);
       setBtnColor('deactivated');
 
-        setIsSubmitting(false);
-        setBtnColor('primary');
-        setEmailAddress(formData.email);
-        setIsModalOpen(true);
-        setIsEmailSentSuccessfully(true);
-
+      setIsSubmitting(false);
+      setBtnColor('primary');
+      setEmailAddress(formData.email);
+      setIsModalOpen(true);
+      setIsEmailSentSuccessfully(true);
     } catch (error) {
       setErrors(error.errors);
 

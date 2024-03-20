@@ -43,7 +43,12 @@ export const Aqu = () => {
         {data.length ? (
           data.map((elem) => (
             <div key={elem.id} className="aqu-section__item">
-              <Image src={elem.icon} alt={`icon of ${elem.title}`} width={24} height={24} />
+              <Image
+                src={elem.icon}
+                alt={`icon of ${elem.title}`}
+                width={24}
+                height={24}
+              />
               <h3 className="aqu-section__title">{elem.title}</h3>
               <div className="aqu-section__text">{elem.text}</div>
             </div>
