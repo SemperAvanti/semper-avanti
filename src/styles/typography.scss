@@ -1,4 +1,5 @@
 @import './mixins.scss';
+@import './variables.scss';
 
 $font-family: 'Poppins', sans-serif;
 
@@ -126,6 +127,10 @@ $description-text-letter-spacing: 0em;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
+
+  &--accented {
+    color: $color-primary;
+  }
 }
 
 .section-title {

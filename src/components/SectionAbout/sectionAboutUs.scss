@@ -1,53 +1,72 @@
-@import '../../styles/mixins.scss';
+@import '../../styles/index.scss';
 
-.sectionAboutUs__container {
-  display: flex;
-  flex-direction: column;
-}
-
-.sectionAboutUs__gridContainer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  order: 2;
-  margin-bottom: 45px;
-  column-gap: 214px;
-
-  @include device(tablet) {
-    grid-template-columns: repeat(1, 1fr);
-    margin-bottom: 64px;
-    gap: 32px;
+.sectionAboutUs {
+  &-title {
+    order: 1;
   }
 
-  @include device(mobile) {
-    grid-template-columns: repeat(1, 1fr);
-    margin-bottom: 48px;
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__gridWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-  }
-}
+    order: 2;
+    margin-bottom: 45px;
+    column-gap: 214px;
 
-.sectionAboutUs-title {
-  order: 1;
-}
+    @include device(tablet) {
+      grid-template-columns: repeat(1, 1fr);
+      margin-bottom: 64px;
+      gap: 32px;
+    }
 
-.sectionAboutUs-image {
-  height: auto;
-  min-width: 100%;
-  max-width: 100%;
-  margin-bottom: 64px;
-   // content: url('../../../public/images/meetingEvent.png');
-  order: 3;
-
-  @include device(tablet) {
-   //  content: url('../../../public/images/meetingEvent.png');
-    margin-bottom: 32px;
-    order: 1;
+    @include device(mobile) {
+      grid-template-columns: repeat(1, 1fr);
+      margin-bottom: 48px;
+      gap: 24px;
+    }
   }
 
-  @include device(mobile) {
-   //  content: url('../../../public/images/meetingEvent.png');
-    margin-bottom: 24px;
-    order: 1;
+  &__descriptionContainer {
+    width: 100%;
+    height: auto;
+
+    &-title {
+      font-size: $h5-font-size;
+      font-weight: $h5-font-weight;
+      line-height: $h5-line-height;
+      letter-spacing: $h5-letter-spacing;
+      margin-bottom: 16px;
+
+      @include device(mobile) {
+        font-size: $body-text-font-size;
+        font-weight: $body-text-font-weight;
+        line-height: $body-text-line-height;
+        letter-spacing: $body-text-letter-spacing;
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  &-image {
+    height: auto;
+    min-width: 100%;
+    max-width: 100%;
+    margin-bottom: 64px;
+    order: 3;
+
+    @include device(tablet) {
+      margin-bottom: 32px;
+      order: 1;
+    }
+
+    @include device(mobile) {
+      margin-bottom: 24px;
+      order: 1;
+    }
   }
 }
-
