@@ -35,7 +35,7 @@ export const Modal: React.FC<Props> = ({
   );
 
   const handlerCloseModal = (): void => {
-    closeModal(true);
+    closeModal(false);
   };
 
   return (
