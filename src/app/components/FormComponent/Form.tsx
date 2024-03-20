@@ -79,29 +79,7 @@ export const Form: React.FC<Props> = () => {
 
   const closeModal = (value: boolean): void => {
     setIsModalOpen(value);
-    setIsOverflowHidden(false);
   };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.documentElement.style.overflow = 'hidden';
-      document.documentElement.style.width = '100vw';
-      document.documentElement.style.height = '100vh';
-      document.documentElement.style.position = 'relative';
-    } else {
-      document.documentElement.style.overflow = '';
-      document.documentElement.style.width = '';
-      document.documentElement.style.height = '';
-      document.documentElement.style.position = '';
-    }
-
-    return () => {
-      document.documentElement.style.overflow = '';
-      document.documentElement.style.width = '';
-      document.documentElement.style.height = '';
-      document.documentElement.style.position = '';
-    };
-  }, [isModalOpen]);
 
   return (
     <section className="form">
