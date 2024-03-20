@@ -12,21 +12,21 @@ import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
 import { FormInitialData } from '@/app/typrs/forminitialData';
 import { initialData } from '@/app/components/FormComponent/helper';
 import { ZodErrorMessage } from '@/app/types/zodErrorMessage';
+import { Modal } from '@/app/components/ModalComponent/Modal';
 
 const formDataSchema: ZodType<FormData> = z.object({
   fullname: z.string().min(5, 'Error name').trim(),
   email: z.string().email('Error email format').trim(),
 });
 
-interface Props {
-  onClose: () => void;
-}
-
-export const Form: React.FC<Props> = ({ onClose }) => {
+export const Form: React.FC<Props> = () => {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
   const [errors, setErrors] = useState<ZodErrorMessage | []>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [btnColor, setBtnColor] = useState('primary');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [emailAddress, setEmailAddress] = useState('');
+  const [isEmailSentSuccessfully, setIsEmailSentSuccessfully] = useState(true);
 
   useEffect((): void => {
     setErrors([]);
@@ -62,16 +62,46 @@ export const Form: React.FC<Props> = ({ onClose }) => {
       setTimeout((): void => {
         setIsSubmitting(false);
         setBtnColor('primary');
-        onClose(formData.email, true);
+        setEmailAddress(formData.email);
+        setIsModalOpen(true);
+        setIsEmailSentSuccessfully(true);
       }, 2000);
     } catch (error) {
       setErrors(error.errors);
 
       if (formData.email > 0 && btnColor === 'primary') {
-        onClose(formData.email, false);
+        setIsModalOpen(false);
+        setIsEmailSentSuccessfully(false);
+        setEmailAddress(formData.email);
       }
     }
   };
+
+  const closeModal = (value: boolean): void => {
+    setIsModalOpen(value);
+    setIsOverflowHidden(false);
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.width = '100vw';
+      document.documentElement.style.height = '100vh';
+      document.documentElement.style.position = 'relative';
+    } else {
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.width = '';
+      document.documentElement.style.height = '';
+      document.documentElement.style.position = '';
+    }
+
+    return () => {
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.width = '';
+      document.documentElement.style.height = '';
+      document.documentElement.style.position = '';
+    };
+  }, [isModalOpen]);
 
   return (
     <section className="form">
@@ -129,7 +159,6 @@ export const Form: React.FC<Props> = ({ onClose }) => {
                 checked={formData.checkbox}
                 name="checkbox"
               />
-
               <p className="form__checkbox-text">
                 I agree to receive the information about the further courses
                 from AQE
@@ -141,6 +170,13 @@ export const Form: React.FC<Props> = ({ onClose }) => {
           </div>
         </form>
       </div>
+
+      <Modal
+        sendedEmail={emailAddress}
+        isOpen={isModalOpen}
+        isEmailSentSuccessfully={isEmailSentSuccessfully}
+        closeModal={closeModal}
+      />
     </section>
   );
 };
