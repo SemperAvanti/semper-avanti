@@ -20,7 +20,6 @@ const formDataSchema: ZodType<FormData> = z.object({
 });
 
 export const Form: React.FC<Props> = () => {
-
   const [formData, setFormData] = useState<FormInitialData>(initialData);
   const [errors, setErrors] = useState<ZodErrorMessage | []>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
