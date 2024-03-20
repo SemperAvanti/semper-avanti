@@ -29,7 +29,7 @@ export const Modal: React.FC<Props> = ({
     }
 
     return () => {
-      document.documentElement.classList.remove('overflow-hidden'); 
+      document.documentElement.classList.remove('overflow-hidden');
     };
   }, [isOpen]);
 
