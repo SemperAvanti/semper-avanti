@@ -1,0 +1,142 @@
+@import '@/styles/index.scss';
+
+.home {
+    display: grid;
+    grid-template-columns: 453px 1fr;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+    padding-left: 160px;
+    background-color: $color-background-primary;
+
+    @include device(tablet) {
+        display: block;
+        padding: $padding-tablet;
+    }
+
+    @include device(mobile) {
+        display: block;
+        padding: $padding-mobile;
+
+    }
+
+    &__left {
+        margin-top: 105px;
+        grid-column: 1/2;
+        position: relative; 
+        overflow: hidden;
+        height: auto;
+
+        @include device(tablet) {
+            margin-top: 40px;
+        }
+
+        @include device(mobile) {
+            margin-top: 32px;
+        }
+    }
+    
+
+    &__links {
+        display: flex;
+        justify-content: space-between;
+        max-width: 262px;
+        gap: 5px;
+        padding-bottom: 64px;
+
+        @include device(mobile) {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__item {
+        overflow: hidden;
+        color: $color-black;
+    }
+
+    &__worldMap {
+        height: auto;
+        max-height: 621px;
+        margin-top: 45px;
+
+        @include device(tablet) {
+           display: block;
+           width: auto;
+           max-width: min-content;
+        }
+
+        @include device(mobile) {
+            display: block;
+            max-width: fit-content;
+            margin-bottom: 24px;
+         }
+    }
+}
+
+
+.blueLine {
+    background: rgba(94, 160, 248, 0.50);
+    height: 43px;
+    width: 90%;
+    top: 144px;
+    position: absolute; /* Position the blue line */
+    transform: translateY(-50%); 
+
+    @include device(tablet) {
+        max-width: 379px;
+    }
+
+    @include device(mobile) {
+        height: 24px;
+        top: 60px;
+        max-width: 203px;
+    }
+
+}
+
+.H1 {
+    margin-bottom: 17px;
+
+    @include device(tablet) {
+        max-width: 453px;
+        margin-bottom: 16px;
+    }
+
+    @include device(mobile) {
+        font-size: 32px;
+font-weight: 500;
+line-height: normal;
+max-width: 253px;
+margin-bottom: 12px;
+    }
+}
+
+.description-text {
+    margin-bottom: 63px;
+    max-width: 350px;
+    color: $color-description;
+
+    @include device(tablet) {
+        margin-bottom: 24px;
+    }
+
+    @include device(mobile) {
+        margin-bottom: 24px;
+    }
+}
+
+.button-mobile {
+    @include device(tablet) {
+        display: none;
+    }
+
+    @include device(desktop) {
+        display: none;
+    }
+}
+
+.button-desktop {
+    @include device(mobile) {
+        display: none;
+    }
+}

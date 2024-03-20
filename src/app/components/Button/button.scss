@@ -6,7 +6,7 @@
   border-radius: 12px;
   border: none;
   height: 56px;
-  padding: 10px;
+  padding: 10px 55px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-size: 20px;
@@ -34,14 +34,6 @@
   }
 
   @include device(mobile) {
-    width: 100%;
-  }
-
-  @include device(tablet) {
-    width: 100%;
-  }
-
-  @include device(desktop) {
     width: 100%;
   }
 }
