@@ -1,4 +1,3 @@
-
 import { Form } from '@/app/components/FormComponent/Form';
 
 export default function Home() {
@@ -8,6 +7,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-
