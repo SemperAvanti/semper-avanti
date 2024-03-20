@@ -2,6 +2,8 @@
 
 import './Modal.scss';
 
+import { useEffect } from 'react';
+
 import Image from 'next/image';
 
 interface Props {
@@ -18,6 +20,18 @@ export const Modal: React.FC<Props> = ({
   closeModal,
 }) => {
   const isError = !isEmailSentSuccessfully ? 'Error' : 'Success';
+
+  useEffect(() => {
+    if (isOpen) {
+      document.documentElement.classList.add('overflow-hidden');
+    } else {
+      document.documentElement.classList.remove('overflow-hidden');
+    }
+
+    return () => {
+      document.documentElement.classList.remove('overflow-hidden'); 
+    };
+  }, [isOpen]);
 
   const modalInfo = !isEmailSentSuccessfully ? (
     <p className="modal__info">
