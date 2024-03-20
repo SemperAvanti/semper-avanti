@@ -1,0 +1,160 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.form {
+  width: 100%;
+  max-width: 1440px;
+
+  margin: 0 auto;
+  padding: 72px 0;
+  background-color: $color-black-primary;
+
+  @include device(mobile) {
+    padding: 48px 16px;
+  }
+
+  @include device(tablet) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  &__header {
+    max-width: 500px;
+    width: 100%;
+
+    margin: 0 auto;
+
+    @include device(mobile) {
+      max-width: 260px;
+      width: 100%;
+
+      margin: 0 auto;
+    }
+
+    @include device(tablet) {
+      max-width: 550px;
+    }
+  }
+
+  &__header-text {
+    color: $color-white;
+    text-align: center;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -1.2px;
+
+    @include device(mobile) {
+      font-size: 24px;
+    }
+  }
+
+  &__header-sub-text {
+    padding-top: 16px;
+
+    color: $color-background-primary;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+  }
+
+  &__container {
+    max-width: 548px;
+    width: 100%;
+
+    padding-top: 62px;
+    margin: 0 auto;
+
+    @include device(mobile) {
+      padding-top: 24px;
+    }
+
+    @include device(tablet) {
+      padding-top: 48px;
+    }
+  }
+
+  &__input-elem {
+    padding-bottom: 16px;
+
+    @include device(tablet) {
+      max-width: 358px;
+      width: 100%;
+
+      margin: auto;
+    }
+
+    &:nth-child(4) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+
+      color: $color-white;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    &:last-child {
+      max-width: 358px;
+      width: 100%;
+
+      padding-top: 24px;
+      margin: 0 auto;
+    }
+  }
+
+  &__checkbox-text {
+    width: 493px;
+    width: 100%;
+    text-align: justify;
+    letter-spacing: 0.4px;
+
+    @include device(mobile) {
+      font-size: 11px;
+      margin-top: -5px;
+      margin-right: 0;
+    }
+
+    @include device(tablet) {
+      color: $color-white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      margin-right: -30px;
+    }
+  }
+
+  &__checkbox-text {
+    @include device(tablet) {
+      margin-right: -30px;
+    }
+  }
+
+  &__checkbox-text {
+    @include device(tablet) {
+      margin-right: -30px;
+    }
+  }
+
+  &__checkbox-text {
+    @include device(tablet) {
+      margin-right: -30px;
+    }
+  }
+
+  &__error {
+    color: $color-red;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 3px 0;
+  }
+}
