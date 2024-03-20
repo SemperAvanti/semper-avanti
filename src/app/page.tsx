@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { Footer } from './components/Footer/Footer';
 import './page.scss';
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
           </div>
           <img className="sectionAboutUs-image" alt="meeting-event" />
         </div>
+        <Footer />
       </section>
     </main>
   );
