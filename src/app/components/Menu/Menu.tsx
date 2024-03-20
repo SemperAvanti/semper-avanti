@@ -100,7 +100,8 @@ const Menu = () => {
               <Image
                 src={'/iconamoon_close-bold.svg'}
                 alt="close menu"
-                width={40}
+                className="buttonContainerMob__x"
+                width={48}
                 height={40}
               />
             ) : (
