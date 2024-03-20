@@ -4,12 +4,9 @@
 @import './mixins.scss';
 
 html {
-  height: 100vh;
+  position: relative;
 }
 
-body {
-  height: 100%;
-}
 
 section {
   width: 100%;
@@ -50,39 +47,5 @@ section {
 
   @include device(tablet) {
     max-width: calc(100% - ($padding-tablet * 2));
-  }
-}
-
-.description {
-  &-container {
-    width: 100%;
-    height: auto;
-  }
-
-  &-title {
-    font-size: $h5-font-size;
-    font-weight: $h5-font-weight;
-    line-height: $h5-line-height;
-    letter-spacing: $h5-letter-spacing;
-    margin-bottom: 16px;
-
-    @include device(mobile) {
-      font-size: $body-text-font-size;
-      font-weight: $body-text-font-weight;
-      line-height: $body-text-line-height;
-      letter-spacing: $body-text-letter-spacing;
-      margin-bottom: 12px;
-    }
-  }
-
-  &-text {
-    font-size: $description-text-font-size;
-    font-weight: $description-text-font-weight;
-    line-height: $body-text-line-height;
-    letter-spacing: $description-text-letter-spacing;
-
-    &--accented {
-      color: $color-primary;
-    }
   }
 }
