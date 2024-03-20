@@ -1,8 +1,8 @@
 'use client';
-
 import React, { useState } from 'react';
 import { Form } from '@/app/components/FormComponent/Form';
 import { Modal } from '@/app/components/ModalComponent/Modal';
+import { SectionAboutUs } from '@/components/SectionAbout/SectionAboutUs';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +21,7 @@ export default function Home() {
 
   return (
     <main>
+      <SectionAboutUs />
       <Form onClose={handleCloseModal} />
       <Modal
         sendedEmail={emailAddress}
@@ -31,3 +32,6 @@ export default function Home() {
     </main>
   );
 }
+
+
+
