@@ -3,6 +3,10 @@
 @import './typography.scss';
 @import './mixins.scss';
 
+html {
+  position: relative;
+}
+
 section {
   width: 100%;
   box-sizing: border-box;
@@ -43,8 +47,4 @@ section {
   @include device(tablet) {
     max-width: calc(100% - ($padding-tablet * 2));
   }
-}
-
-html {
-  position: relative;
 }

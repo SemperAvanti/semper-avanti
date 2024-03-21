@@ -71,11 +71,9 @@
 
   &__x {
     object-fit: cover;
-
   }
 
   &__open {
-
     @include device(tablet) {
       width: 40px;
       height: 40px;
@@ -110,7 +108,7 @@
     align-items: center;
     right: 0; /* Float from the right side */
     transform: translateX(0); /* Keep the menu in its original position */
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
   }
 
   @include device(desktop) {
@@ -126,8 +124,8 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center; 
-      justify-content: center; 
+      align-items: center;
+      justify-content: center;
     }
   }
 }
