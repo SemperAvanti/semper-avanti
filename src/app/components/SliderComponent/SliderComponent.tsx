@@ -40,6 +40,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
           break;
         case width >= 500 && width < 750:
           swiper.params.slidesPerView = slidesAmount.tabletSmall;
+          swiper.params.slidesOffsetBefore = 170;
           break;
         default:
           swiper.params.slidesPerView = slidesAmount.mobile;
