@@ -5,7 +5,10 @@ import React, { useState } from 'react';
 import Menu from './components/Menu/Menu';
 import { Form } from '@/app/components/FormComponent/Form';
 import { Modal } from '@/app/components/ModalComponent/Modal';
+
+import { SliderComponent } from './components/SliderComponent/SliderComponent';
 import { SectionAboutUs } from '@/components/SectionAbout/SectionAboutUs';
+
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,17 +26,17 @@ export default function Home() {
   };
 
   return (
-    <main>
-      <Menu />
-      <SectionAboutUs />
-      <Form onClose={handleCloseModal} />
-      <Modal
-        sendedEmail={emailAddress}
-        isOpen={isModalOpen}
-        closeModal={closeModal}
-        isEmailSentSuccessfully={isEmailSentSuccessfully}
-      />
-    </main>
+      <main>
+        <Form onClose={handleCloseModal} />
+        <Modal
+          sendedEmail={emailAddress}
+          isOpen={isModalOpen}
+          closeModal={closeModal}
+          isEmailSentSuccessfully={isEmailSentSuccessfully}
+        />
+        <SliderComponent partners={false} title="Success stories" />
+        <SliderComponent partners={true} title="Our partners" />
+      </main>
   );
 }
 
