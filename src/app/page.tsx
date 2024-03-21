@@ -8,7 +8,7 @@ import { Footer } from './components/Footer/Footer';
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Menu />
       <main>
         <Aqu />
@@ -19,6 +19,6 @@ export default function Home() {
         <FAQ />
         <Footer />
       </main>
-    </div>
+    </>
   );
 }
