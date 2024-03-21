@@ -1,3 +1,53 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+$font-family: 'Poppins', sans-serif;
+
+$h1-font-size: 64px;
+$h1-weight: 600;
+$h1-line-height: 83px;
+$h1-letter-spacing: -0.02em;
+
+$h2-font-size: 60px;
+$h2-font-weight: 600;
+$h2-line-height: 72px;
+$h2-letter-spacing: -0.02em;
+
+$h3-font-size: 48px;
+$h3-font-weight: 600;
+$h3-line-height: 72px;
+$h3-letter-spacing: -0.01em;
+
+$h4-font-size: 40px;
+$h4-font-weight: 500;
+$h4-line-height: 60px;
+$h4-letter-spacing: 0em;
+
+$h5-font-size: 32px;
+$h5-font-weight: 500;
+$h5-line-height: 48px;
+$h5-letter-spacing: 0em;
+
+$big-body-text-font-size: 24px;
+$big-body-text-font-weight: 400;
+$big-body-text-line-height: 36px;
+$big-body-text-letter-spacing: 0em;
+
+$accented-body-font-size: 24px;
+$accented-body-font-weight: 500;
+$accented-body-line-height: 36px;
+$accented-body-letter-spacing: 0em;
+
+$body-text-font-size: 20px;
+$body-text-font-weight: 500;
+$body-text-line-height: 30px;
+$body-text-letter-spacing: 0em;
+
+$description-text-font-size: 16px;
+$description-text-font-weight: 400;
+$description-text-line-height: 24px;
+$description-text-letter-spacing: 0em;
+
 .H1 {
   font-family: 'Poppins', sans-serif;
   font-size: 64px;
@@ -70,11 +120,33 @@
   text-align: left;
 }
 
-.description-text {
+.descriptionText {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
+
+  &--accented {
+    color: $color-primary;
+  }
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 72px;
+  letter-spacing: -0.02em;
+  text-align: left;
+
+  @include device(mobile) {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 }

@@ -1,0 +1,167 @@
+@import '@/styles/index.scss';
+
+.header {
+  height: 111px;
+  padding: 16px 160px;
+
+  &__logo {
+    height: 79px;
+    width: 70px;
+  }
+
+  @include device(tablet) {
+    display: none;
+  }
+
+  @include device(mobile) {
+    display: none;
+  }
+}
+
+.navigation {
+  &__list {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+
+    @include device(tablet) {
+      display: none;
+    }
+
+    @include device(mobile) {
+      display: none;
+    }
+  }
+
+  &__item {
+    text-decoration: none;
+    color: $color-black;
+  }
+
+  &__lang {
+    display: flex;
+  }
+
+  &__toggleLangs {
+    background-color: transparent;
+    border: none;
+    margin-left: 5px;
+  }
+}
+
+.buttonContainer {
+  width: 111px;
+
+  @include device(tablet) {
+    display: none;
+  }
+
+  @include device(mobile) {
+    display: none;
+  }
+}
+
+.buttonContainerMob {
+  transition: transform 0.3s ease;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  &__x {
+    object-fit: cover;
+  }
+
+  &__open {
+    @include device(tablet) {
+      width: 40px;
+      height: 40px;
+    }
+
+    @include device(mobile) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.buttonClicked .buttonContainerMob__open::before {
+  display: none;
+}
+
+.buttonClicked .buttonContainerMob__open::after {
+  display: inline-block;
+}
+
+.mobileMenu {
+  transition: transform 0.5s ease-in-out;
+
+  &__list {
+    list-style-type: none;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+    right: 0; /* Float from the right side */
+    transform: translateX(0); /* Keep the menu in its original position */
+    transition: transform 0.3s ease;
+  }
+
+  @include device(desktop) {
+    display: none;
+  }
+
+  @include device(tablet) {
+    .mobileMenu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+@include device(mobile) {
+  .mobileMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.headerMobile {
+  display: none;
+
+  @include device(tablet) {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    height: 45px;
+    padding-top: 20px;
+  }
+
+  @include device(mobile) {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    height: 45px;
+    padding-top: 18.5px;
+  }
+}

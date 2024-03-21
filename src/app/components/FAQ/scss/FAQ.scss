@@ -1,12 +1,18 @@
-@use '../../../styles/index.scss';
+@use '../../../../styles/index.scss';
+@import '../../../../styles/mixins.scss';
 
 .container {
-  & > .H2 {
+  & > h2 {
     text-align: center;
     margin-bottom: 64px;
+    @include device(mobile) {
+      font-size: 24px;
+    }
   }
 
   &__accordion {
+    max-width: 866px;
+    margin: 0 auto;
     padding: 15px 32px;
     margin-bottom: 8px;
     border-radius: 12px;
@@ -23,6 +29,20 @@
       padding: 0;
     }
   }
+
+  & > p {
+    margin-top: 24px;
+    text-align: center;
+    color: index.$color-black;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    & > a {
+      color: index.$color-primary;
+    }
+  }
 }
 
 .description-text {
@@ -31,15 +51,15 @@
 }
 
 .css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
-  margin: 0;
+  margin: 0 auto;
 }
 
 .css-o4b71y-MuiAccordionSummary-content {
-  margin: 0;
+  margin: 0 auto;
 }
 
 .css-1c35hjw-MuiPaper-root-MuiAccordion-root.Mui-expanded {
-  margin: unset;
+  margin: 0 auto;
   margin-bottom: 16px;
 }
 

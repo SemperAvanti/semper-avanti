@@ -4,7 +4,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import iconDown from './fluent_ios-arrow-24-filled.svg';
+import arrow from '../../../img/arrow.svg';
 import Image from 'next/image';
 
 export const FAQ: React.FC = () => {
@@ -22,7 +22,7 @@ export const FAQ: React.FC = () => {
         {faq.map((el, i) => (
           <Accordion key={el.someTitle + i} className="container__accordion">
             <AccordionSummary
-              expandIcon={<Image src={iconDown} alt="expand" />}
+              expandIcon={<Image src={arrow} alt="expand" />}
               aria-controls={el.someTitle + i}
               id={el.someTitle + i}
               className="container__accordion--summary"
@@ -38,6 +38,9 @@ export const FAQ: React.FC = () => {
             </AccordionDetails>
           </Accordion>
         ))}
+        <p className="description-text">
+          Didn`t find the answer? <a className="body-text">Contact us</a>
+        </p>
       </div>
     </section>
   );
