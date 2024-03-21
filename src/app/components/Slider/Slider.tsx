@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react';
 import './scss/Slider.scss';
 import 'swiper/scss';
@@ -25,7 +26,7 @@ export const Slider: React.FC<SliderProps> = ({
   partners,
 }) => {
   return (
-    <section className="container">
+    <section className="Slider__container">
       <div className="slider">
         {
           <>

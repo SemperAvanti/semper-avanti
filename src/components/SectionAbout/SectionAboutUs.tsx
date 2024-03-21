@@ -22,7 +22,6 @@ export const SectionAboutUs: React.FC = () => {
               students.
             </p>
           </div>
-
           <div className="sectionAboutUs__descriptionContainer">
             <h5 className="sectionAboutUs__descriptionContainer--title">
               Our vision
