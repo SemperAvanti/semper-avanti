@@ -6,7 +6,7 @@ import { Modal } from '@/app/components/ModalComponent/Modal';
 
 import { SliderComponent } from './components/SliderComponent/SliderComponent';
 import { SectionAboutUs } from '@/components/SectionAbout/SectionAboutUs';
-import { Footer } from './components/Footer/Footer';
+
 
 import { FAQ } from './components/FAQ/FAQ';
 import { Footer } from './components/Footer/Footer';
