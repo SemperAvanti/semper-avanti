@@ -1,9 +1,11 @@
 'use client';
-
 import React, { useState } from 'react';
 import { Form } from '@/app/components/FormComponent/Form';
 import { Modal } from '@/app/components/ModalComponent/Modal';
+
 import { SliderComponent } from './components/SliderComponent/SliderComponent';
+import { SectionAboutUs } from '@/components/SectionAbout/SectionAboutUs';
+
 import { FAQ } from './components/FAQ/FAQ';
 
 export default function Home() {
@@ -22,19 +24,18 @@ export default function Home() {
   };
 
   return (
-    <>
-      <main>
-        <Form onClose={handleCloseModal} />
-        <Modal
-          sendedEmail={emailAddress}
-          isOpen={isModalOpen}
-          closeModal={closeModal}
-          isEmailSentSuccessfully={isEmailSentSuccessfully}
-        />
-        <SliderComponent partners={false} title="Success stories" />
-        <SliderComponent partners={true} title="Our partners" />
-        <FAQ />
-      </main>
-    </>
+    <main>
+      <SectionAboutUs />
+      <Form onClose={handleCloseModal} />
+      <Modal
+        sendedEmail={emailAddress}
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        isEmailSentSuccessfully={isEmailSentSuccessfully}
+      />
+      <SliderComponent partners={false} title="Success stories" />
+      <SliderComponent partners={true} title="Our partners" />
+      <FAQ />
+    </main>
   );
 }
