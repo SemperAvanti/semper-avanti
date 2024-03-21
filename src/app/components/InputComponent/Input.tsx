@@ -1,7 +1,7 @@
 'use client';
 
 import './Input.scss';
-import { ZodErrorMessage } from '@/app/types/zodErrorMessage';
+import { ZodErrorMessage } from '@/app/types/ZodErrorMessage';
 
 interface Props {
   label: string;
@@ -11,7 +11,7 @@ interface Props {
   placeholder: string;
   isDisabled: boolean;
   name: string;
-  errors: ZodErrorMessage[];
+  errors?: ZodErrorMessage[];
   // eslint-disable-next-line no-unused-vars
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

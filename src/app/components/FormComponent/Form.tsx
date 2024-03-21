@@ -3,15 +3,15 @@
 import './Form.scss';
 
 import { useState, useEffect } from 'react';
-import { z } from 'zod';
+import { ZodType, z } from 'zod';
 
 import { FormData } from '@/app/types/zod';
 import Button from '@/app/components/Button/Button';
 import { Input } from '@/app/components/InputComponent/Input';
 import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
-import { FormInitialData } from '@/app/typrs/forminitialData';
+import { FormInitialData } from '@/app/types/formInitialData';
 import { initialData } from '@/app/components/FormComponent/helper';
-import { ZodErrorMessage } from '@/app/types/zodErrorMessage';
+import { ZodErrorMessage } from '@/app/types/ZodErrorMessage';
 
 const formDataSchema: ZodType<FormData> = z.object({
   fullname: z.string().min(5, 'Error name').trim(),
@@ -19,14 +19,16 @@ const formDataSchema: ZodType<FormData> = z.object({
 });
 
 interface Props {
-  onClose: () => void;
+  onClose: (email: string, success: boolean) => void;
 }
 
 export const Form: React.FC<Props> = ({ onClose }) => {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
-  const [errors, setErrors] = useState<ZodErrorMessage | []>([]);
+  const [errors, setErrors] = useState<ZodErrorMessage[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [btnColor, setBtnColor] = useState('primary');
+  const [btnColor, setBtnColor] = useState<
+    'primary' | 'secondary' | 'deactivated'
+  >('primary');
 
   useEffect((): void => {
     setErrors([]);
@@ -47,7 +49,7 @@ export const Form: React.FC<Props> = ({ onClose }) => {
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
-  ): void => {
+  ): Promise<void> => {
     event.preventDefault();
 
     try {
@@ -67,9 +69,26 @@ export const Form: React.FC<Props> = ({ onClose }) => {
     } catch (error) {
       setErrors(error.errors);
 
-      if (formData.email > 0 && btnColor === 'primary') {
+      if (formData.email.length > 0 && btnColor === 'primary') {
         onClose(formData.email, false);
       }
+    }
+
+    try {
+      const response = await fetch('/api/mail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        console.log('Email sent successfully');
+      } else {
+        console.error(`Failed to send email Status code: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
     }
   };
 
@@ -119,7 +138,6 @@ export const Form: React.FC<Props> = ({ onClose }) => {
                 value={formData.country}
                 placeholder="Poland"
                 onChange={handlerInput}
-                errors={0}
                 isDisabled={isSubmitting}
               />
             </div>
@@ -128,6 +146,8 @@ export const Form: React.FC<Props> = ({ onClose }) => {
                 onChange={handlerInput}
                 checked={formData.checkbox}
                 name="checkbox"
+                htmlFor={''}
+                value={''}
               />
 
               <p className="form__checkbox-text">
