@@ -3,6 +3,10 @@
 @import './typography.scss';
 @import './mixins.scss';
 
+html {
+  position: relative;
+}
+
 section {
   width: 100%;
   box-sizing: border-box;
