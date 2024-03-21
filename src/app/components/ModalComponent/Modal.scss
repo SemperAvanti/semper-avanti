@@ -7,8 +7,7 @@
 
   width: 100vw;
   height: 100vh;
-
-  background-color: $color-background-thirds;
+  z-index: 2;
 
   display: flex;
   justify-content: center;
@@ -114,4 +113,5 @@
   width: 100vw;
   height: 100vh;
   position: relative;
+  background-color: $color-background-thirds;
 }
