@@ -30,9 +30,9 @@ export default function Home() {
           closeModal={closeModal}
           isEmailSentSuccessfully={isEmailSentSuccessfully}
         />
+        <SliderComponent partners={false} title="Success stories" />
+        <SliderComponent partners={true} title="Our partners" />
       </main>
-      <SliderComponent partners={false} title="Success stories" />
-      <SliderComponent partners={true} title="Our partners" />
     </>
   );
 }
