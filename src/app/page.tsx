@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 import Menu from './components/Menu/Menu';
 import { Form } from '@/app/components/FormComponent/Form';
 import { Modal } from '@/app/components/ModalComponent/Modal';
+
+import { SliderComponent } from './components/SliderComponent/SliderComponent';
 import { SectionAboutUs } from '@/components/SectionAbout/SectionAboutUs';
+import { Footer } from './components/Footer/Footer';
+
+import { FAQ } from './components/FAQ/FAQ';
 import { Footer } from './components/Footer/Footer';
 
 export default function Home() {
@@ -23,7 +28,6 @@ export default function Home() {
 
   return (
     <main>
-      <Menu />
       <SectionAboutUs />
       <Form onClose={handleCloseModal} />
       <Modal
@@ -32,6 +36,12 @@ export default function Home() {
         closeModal={closeModal}
         isEmailSentSuccessfully={isEmailSentSuccessfully}
       />
+
+     
+
+      <SliderComponent partners={false} title="Success stories" />
+      <SliderComponent partners={true} title="Our partners" />
+      <FAQ />
       <Footer />
     </main>
   );

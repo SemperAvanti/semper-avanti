@@ -1,4 +1,5 @@
-@import '../../../styles/mixins.scss';
+@import '../../../../styles/mixins.scss';
+
 
 .section {
   color: black;
@@ -15,6 +16,9 @@
     & > h2 {
       font-size: 60px;
       text-align: center;
+      @include device(mobile) {
+        font-size: 24px;
+      }
     }
 
     & .buttons {
