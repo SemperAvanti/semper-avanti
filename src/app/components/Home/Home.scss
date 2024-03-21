@@ -20,7 +20,7 @@
 
     }
 
-    &__left {
+    &__title {
         margin-top: 105px;
         grid-column: 1/2;
         position: relative; 
@@ -33,6 +33,23 @@
 
         @include device(mobile) {
             margin-top: 32px;
+        }
+    }
+
+    &__text {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        margin-bottom: 63px;
+        max-width: 350px;
+        color: $color-description;
+    
+        @include device(tablet) {
+            margin-bottom: 24px;
+        }
+    
+        @include device(mobile) {
+            margin-bottom: 24px;
         }
     }
     
@@ -71,6 +88,43 @@
             margin-bottom: 24px;
          }
     }
+
+    &__button--mobile {
+        @include device(tablet) {
+            display: none;
+        }
+    
+        @include device(desktop) {
+            display: none;
+        }
+    }
+    
+    &__button--desktop {
+        @include device(mobile) {
+            display: none;
+        }
+    }
+
+    &__h1 {
+        margin-bottom: 17px;
+        font-size: 64px;
+        font-weight: 600;
+        line-height: 83px;
+        letter-spacing: -0.02em;
+
+        @include device(tablet) {
+            max-width: 453px;
+            margin-bottom: 16px;
+        }
+    
+        @include device(mobile) {
+            font-size: 32px;
+    font-weight: 500;
+    line-height: normal;
+    max-width: 253px;
+    margin-bottom: 12px;
+        }
+    }
 }
 
 
@@ -79,7 +133,7 @@
     height: 43px;
     width: 90%;
     top: 144px;
-    position: absolute; /* Position the blue line */
+    position: absolute;
     transform: translateY(-50%); 
 
     @include device(tablet) {
@@ -92,51 +146,4 @@
         max-width: 203px;
     }
 
-}
-
-.H1 {
-    margin-bottom: 17px;
-
-    @include device(tablet) {
-        max-width: 453px;
-        margin-bottom: 16px;
-    }
-
-    @include device(mobile) {
-        font-size: 32px;
-font-weight: 500;
-line-height: normal;
-max-width: 253px;
-margin-bottom: 12px;
-    }
-}
-
-.description-text {
-    margin-bottom: 63px;
-    max-width: 350px;
-    color: $color-description;
-
-    @include device(tablet) {
-        margin-bottom: 24px;
-    }
-
-    @include device(mobile) {
-        margin-bottom: 24px;
-    }
-}
-
-.button-mobile {
-    @include device(tablet) {
-        display: none;
-    }
-
-    @include device(desktop) {
-        display: none;
-    }
-}
-
-.button-desktop {
-    @include device(mobile) {
-        display: none;
-    }
 }
