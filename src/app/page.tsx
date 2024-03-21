@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Form } from '@/app/components/FormComponent/Form';
 import { Modal } from '@/app/components/ModalComponent/Modal';
 import { SliderComponent } from './components/SliderComponent/SliderComponent';
+import { FAQ } from './components/FAQ/FAQ';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,6 +33,7 @@ export default function Home() {
         />
         <SliderComponent partners={false} title="Success stories" />
         <SliderComponent partners={true} title="Our partners" />
+        <FAQ />
       </main>
     </>
   );
