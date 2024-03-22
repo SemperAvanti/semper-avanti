@@ -3,6 +3,9 @@
 .header {
   height: 111px;
   padding: 16px 0;
+  background-color: $color-background-secondary;
+
+
 
   &__logo {
     height: 79px;
@@ -148,11 +151,12 @@
 
 .headerMobile {
   display: none;
+  background-color: $color-background-secondary;
 
   @include device(tablet) {
     display: flex;
     justify-content: space-between;
-    padding: 16px;
+    padding: 16px 24px;
     height: 45px;
     padding-top: 20px;
   }

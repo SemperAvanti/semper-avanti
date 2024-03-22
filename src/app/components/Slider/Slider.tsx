@@ -47,35 +47,35 @@ export const Slider: React.FC<SliderProps> = ({
               {/* poglądowe, zamienić na dynamiczne  */}
               {partners ? (
                 <>
-                  <SwiperSlide className="swiper__slide">
+                  <SwiperSlide className="swiper__slide swiper-partners">
                     <Image src={cocaCola} alt="cocaCola" />
                     <h6 className="accented-body">Coca Cola</h6>
                   </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
+                  <SwiperSlide className="swiper__slide swiper-partners">
                     <Image src={cocaCola} alt="cocaCola" />
                     <h6 className="accented-body">Coca Cola</h6>
                   </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
+                  <SwiperSlide className="swiper__slide swiper-partners">
                     <Image src={cocaCola} alt="cocaCola" />
                     <h6 className="accented-body">Coca Cola</h6>
                   </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
+                  <SwiperSlide className="swiper__slide swiper-partners">
                     <Image src={cocaCola} alt="cocaCola" />
                     <h6 className="accented-body">Coca Cola</h6>
                   </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
+                  <SwiperSlide className="swiper__slide swiper-partners">
                     <Image src={cocaCola} alt="cocaCola" />
                     <h6 className="accented-body">Coca Cola</h6>
                   </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
+                  <SwiperSlide className="swiper__slide swiper-partners">
                     <Image src={cocaCola} alt="cocaCola" />
                     <h6 className="accented-body">Coca Cola</h6>
                   </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
+                  <SwiperSlide className="swiper__slide swiper-partners">
                     <Image src={cocaCola} alt="cocaCola" />
                     <h6 className="accented-body">Coca Cola</h6>
                   </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
+                  <SwiperSlide className="swiper__slide swiper-partners">
                     <Image src={cocaCola} alt="cocaCola" />
                     <h6 className="accented-body">Coca Cola</h6>
                   </SwiperSlide>

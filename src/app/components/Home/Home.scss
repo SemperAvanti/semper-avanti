@@ -7,7 +7,7 @@
   position: relative;
   overflow: hidden;
   padding-left: 160px;
-  background-color: $color-background-primary;
+  margin-bottom:0;
 
   @include device(tablet) {
     display: block;
@@ -17,6 +17,8 @@
   @include device(mobile) {
     display: block;
     padding: $padding-mobile;
+    padding-bottom: 48px;
+    
   }
 
   &__title {
