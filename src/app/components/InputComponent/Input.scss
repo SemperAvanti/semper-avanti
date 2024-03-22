@@ -91,4 +91,13 @@
       }
     }
   }
+
+  &__error {
+    color: $color-red;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 3px 0;
+  }
 }
