@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <>
       <Menu />
+      <ContactUs />
       <main>
         <Aqu />
         <SectionAboutUs />
@@ -19,7 +20,7 @@ export default function Home() {
         <SliderComponent partners={false} title="Success stories" />
         <SliderComponent partners={true} title="Our partners" />
         <FAQ />
-        <ContactUs />
+        
         <Footer />
       </main>
     </>
