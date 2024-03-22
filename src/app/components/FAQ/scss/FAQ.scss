@@ -1,7 +1,7 @@
 @use '../../../../styles/index.scss';
 @import '../../../../styles/mixins.scss';
 
-.container {
+.FAQ__container {
   & > h2 {
     text-align: center;
     margin-bottom: 64px;
@@ -10,6 +10,22 @@
     }
   }
 
+  & > p {
+    margin-top: 24px;
+    text-align: center;
+    color: index.$color-black;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    & > a {
+      color: index.$color-primary;
+    }
+  }
+}
+
+.container {
   &__accordion {
     max-width: 866px;
     margin: 0 auto;
@@ -27,20 +43,6 @@
 
     &--details {
       padding: 0;
-    }
-  }
-
-  & > p {
-    margin-top: 24px;
-    text-align: center;
-    color: index.$color-black;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-
-    & > a {
-      color: index.$color-primary;
     }
   }
 }

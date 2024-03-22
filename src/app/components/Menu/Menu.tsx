@@ -18,68 +18,70 @@ const Menu = () => {
   return (
     <>
       <header className="header">
-        <nav className="navigation">
-          <ul className="navigation__list" id="menu">
-            <Image
-              src={'/Logo.svg'}
-              alt="logo"
-              className="header__logo"
-              width={70}
-              height={79}
-            />
-            <li>
-              <a href="#Home" className="navigation__item">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#AboutUs" className="navigation__item">
-                About us
-              </a>
-            </li>
-            <li>
-              <a href="#Trainings" className="navigation__item">
-                Trainings
-              </a>
-            </li>
-            <li>
-              <a href="#Gallery" className="navigation__item">
-                Gallery
-              </a>
-            </li>
-            <li>
-              <a href="#Stories" className="navigation__item">
-                Stories
-              </a>
-            </li>
-            <li>
-              <a href="#Partners" className="navigation__item">
-                Partners
-              </a>
-            </li>
-            <li>
-              <a href="#FAQ" className="navigation__item">
-                FAQ
-              </a>
-            </li>
-            <li>
-              <div className="navigation__lang">
-                <p>English</p>
-                <button className="navigation__toggleLangs">
-                  <Image
-                    src={'/Vector.svg'}
-                    alt="choose language"
-                    width={16}
-                    height={16}
-                  />
-                </button>
+        <div className="container">
+          <nav className="navigation">
+            <ul className="navigation__list" id="menu">
+              <Image
+                src={'/Logo.svg'}
+                alt="logo"
+                className="header__logo"
+                width={70}
+                height={79}
+              />
+              <li>
+                <a href="#Home" className="navigation__item">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#AboutUs" className="navigation__item">
+                  About us
+                </a>
+              </li>
+              <li>
+                <a href="#Trainings" className="navigation__item">
+                  Trainings
+                </a>
+              </li>
+              <li>
+                <a href="#Gallery" className="navigation__item">
+                  Gallery
+                </a>
+              </li>
+              <li>
+                <a href="#Stories" className="navigation__item">
+                  Stories
+                </a>
+              </li>
+              <li>
+                <a href="#Partners" className="navigation__item">
+                  Partners
+                </a>
+              </li>
+              <li>
+                <a href="#FAQ" className="navigation__item">
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <div className="navigation__lang">
+                  <p>English</p>
+                  <button className="navigation__toggleLangs">
+                    <Image
+                      src={'/Vector.svg'}
+                      alt="choose language"
+                      width={16}
+                      height={16}
+                    />
+                  </button>
+                </div>
+              </li>
+              <div className="buttonContainer">
+                <Button name="Get info" variant="secondary" />
               </div>
-            </li>
-            <div className="buttonContainer">
-              <Button name="Get info" variant="secondary" />
-            </div>
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        </div>
       </header>
       <div className="headerMobile">
         <Image
