@@ -1,149 +1,145 @@
 @import '@/styles/index.scss';
 
 .home {
-    display: grid;
-    grid-template-columns: 453px 1fr;
-    gap: 40px;
+  display: grid;
+  grid-template-columns: 453px 1fr;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+  padding-left: 160px;
+  background-color: $color-background-primary;
+
+  @include device(tablet) {
+    display: block;
+    padding: $padding-tablet;
+  }
+
+  @include device(mobile) {
+    display: block;
+    padding: $padding-mobile;
+  }
+
+  &__title {
+    margin-top: 105px;
+    grid-column: 1/2;
     position: relative;
     overflow: hidden;
-    padding-left: 160px;
-    background-color: $color-background-primary;
+    height: auto;
 
     @include device(tablet) {
-        display: block;
-        padding: $padding-tablet;
+      margin-top: 40px;
     }
 
     @include device(mobile) {
-        display: block;
-        padding: $padding-mobile;
+      margin-top: 32px;
+    }
+  }
 
+  &__text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 63px;
+    max-width: 350px;
+    color: $color-description;
+
+    @include device(tablet) {
+      margin-bottom: 24px;
     }
 
-    &__title {
-        margin-top: 105px;
-        grid-column: 1/2;
-        position: relative; 
-        overflow: hidden;
-        height: auto;
+    @include device(mobile) {
+      margin-bottom: 24px;
+    }
+  }
 
-        @include device(tablet) {
-            margin-top: 40px;
-        }
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    max-width: 262px;
+    gap: 5px;
+    padding-bottom: 64px;
 
-        @include device(mobile) {
-            margin-top: 32px;
-        }
+    @include device(mobile) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__item {
+    overflow: hidden;
+    color: $color-black;
+  }
+
+  &__worldMap {
+    height: auto;
+    max-height: 621px;
+    margin-top: 45px;
+
+    @include device(tablet) {
+      display: block;
+      width: auto;
+      max-width: min-content;
     }
 
-    &__text {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        margin-bottom: 63px;
-        max-width: 350px;
-        color: $color-description;
-    
-        @include device(tablet) {
-            margin-bottom: 24px;
-        }
-    
-        @include device(mobile) {
-            margin-bottom: 24px;
-        }
+    @include device(mobile) {
+      display: block;
+      max-width: fit-content;
+      margin-bottom: 24px;
     }
-    
+  }
 
-    &__links {
-        display: flex;
-        justify-content: space-between;
-        max-width: 262px;
-        gap: 5px;
-        padding-bottom: 64px;
-
-        @include device(mobile) {
-            margin-bottom: 40px;
-        }
+  &__button--mobile {
+    @include device(tablet) {
+      display: none;
     }
 
-    &__item {
-        overflow: hidden;
-        color: $color-black;
+    @include device(desktop) {
+      display: none;
+    }
+  }
+
+  &__button--desktop {
+    @include device(mobile) {
+      display: none;
+    }
+  }
+
+  &__h1 {
+    margin-bottom: 17px;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 83px;
+    letter-spacing: -0.02em;
+    position: relative;
+
+    @include device(tablet) {
+      max-width: 453px;
+      margin-bottom: 16px;
     }
 
-    &__worldMap {
-        height: auto;
-        max-height: 621px;
-        margin-top: 45px;
-
-        @include device(tablet) {
-           display: block;
-           width: auto;
-           max-width: min-content;
-        }
-
-        @include device(mobile) {
-            display: block;
-            max-width: fit-content;
-            margin-bottom: 24px;
-         }
+    @include device(mobile) {
+      font-size: 32px;
+      font-weight: 500;
+      line-height: normal;
+      max-width: 253px;
+      margin-bottom: 12px;
     }
-
-    &__button--mobile {
-        @include device(tablet) {
-            display: none;
-        }
-    
-        @include device(desktop) {
-            display: none;
-        }
-    }
-    
-    &__button--desktop {
-        @include device(mobile) {
-            display: none;
-        }
-    }
-
-    &__h1 {
-        margin-bottom: 17px;
-        font-size: 64px;
-        font-weight: 600;
-        line-height: 83px;
-        letter-spacing: -0.02em;
-        position: relative;
-
-        @include device(tablet) {
-            max-width: 453px;
-            margin-bottom: 16px;
-        }
-    
-        @include device(mobile) {
-            font-size: 32px;
-    font-weight: 500;
-    line-height: normal;
-    max-width: 253px;
-    margin-bottom: 12px;
-        }
-    }
+  }
 }
 
-
 .blueLine {
-    background: rgba(94, 160, 248, 0.50);
-    height: 25%;
-    width: 90%;
-    position: absolute;
-    top: 75%;
+  background: rgba(94, 160, 248, 0.5);
+  height: 25%;
+  width: 90%;
+  position: absolute;
+  top: 75%;
 
-    @include device(tablet) {
-        max-width: 379px;
-    }
+  @include device(tablet) {
+    max-width: 379px;
+  }
 
-    @include device(mobile) {
-        height: 24px;
-        top: 60px;
-        max-width: 203px;
-    }
-
+  @include device(mobile) {
+    height: 24px;
+    top: 60px;
+    max-width: 203px;
+  }
 }
