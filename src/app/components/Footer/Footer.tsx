@@ -14,7 +14,7 @@ const links = [
 
 export const Footer = () => {
   return (
-    <section className="Footer">
+    <footer className="Footer">
       <div className="container">
         <div className="Footer__gridContainer">
           {links.map((link, index) => {
@@ -49,6 +49,6 @@ export const Footer = () => {
           </div>
         </a>
       </div>
-    </section>
+    </footer>
   );
 };

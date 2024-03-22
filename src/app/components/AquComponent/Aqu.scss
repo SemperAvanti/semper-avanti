@@ -6,14 +6,14 @@
   width: 100%;
 
   margin: 0 auto;
-  padding: 80px 160px;
+  padding-bottom: 70px;
 
   @include device(tablet) {
-    padding: 72px 24px;
+    padding-bottom: 70px;
   }
 
   @include device(mobile) {
-    padding: 48px 16px;
+    padding-bottom: 48px;
   }
 
   &__header-text {

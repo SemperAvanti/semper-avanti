@@ -17,7 +17,7 @@ export const FAQ: React.FC = () => {
   ];
   return (
     <section className="section">
-      <div className="container">
+      <div className="FAQ__container container">
         <h2 className="H2">Frequently asked questions</h2>
         {faq.map((el, i) => (
           <Accordion key={el.someTitle + i} className="container__accordion">

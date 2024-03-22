@@ -25,7 +25,7 @@ export const Slider: React.FC<SliderProps> = ({
   partners,
 }) => {
   return (
-    <section className="container">
+    <section className="Slider__container">
       <div className="slider">
         {
           <>
