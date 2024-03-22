@@ -1,4 +1,3 @@
-'use client';
 import React, { useState } from 'react';
 import Menu from './components/Menu/Menu';
 import { Form } from '@/app/components/FormComponent/Form';
