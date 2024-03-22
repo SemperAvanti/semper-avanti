@@ -24,6 +24,13 @@ const HomePage = () => {
         width={921}
         alt={'world map'}
       />
+      <Image
+        src={'/World Map (1).svg'}
+        className="home__worldMap--mobile"
+        height={254}
+        width={389}
+        alt={'world map'}
+      />
       <div className="home__links">
         <a href="#Malta" className="home__item body-text">
           Malta

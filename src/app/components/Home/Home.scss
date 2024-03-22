@@ -45,6 +45,7 @@
 
     @include device(tablet) {
       margin-bottom: 24px;
+      max-width: 500px;
     }
 
     @include device(mobile) {
@@ -60,7 +61,8 @@
     padding-bottom: 64px;
 
     @include device(mobile) {
-      margin-bottom: 40px;
+      padding-bottom: 40px;
+      max-width: none;
     }
   }
 
@@ -81,9 +83,16 @@
     }
 
     @include device(mobile) {
-      display: block;
-      max-width: fit-content;
-      margin-bottom: 24px;
+      display: none;
+    }
+
+    &--mobile {
+      display: none;
+
+      @include device(mobile) {
+        display: block;
+        width: 100%;
+      }
     }
   }
 
@@ -133,13 +142,9 @@
   position: absolute;
   top: 75%;
 
-  @include device(tablet) {
-    max-width: 379px;
-  }
-
   @include device(mobile) {
     height: 24px;
-    top: 60px;
-    max-width: 203px;
+    top: 70%;
+    width: 77%;
   }
 }
