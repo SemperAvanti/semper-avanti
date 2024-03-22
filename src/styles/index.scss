@@ -7,6 +7,10 @@ html {
   position: relative;
 }
 
+main {
+  background-color: $color-background-secondary;
+}
+
 section {
   width: 100%;
   box-sizing: border-box;

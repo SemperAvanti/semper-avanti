@@ -1,38 +1,33 @@
 @import '../../../styles/mixins.scss';
 
-// .ContactUs__flexContainer {
-//     display:flex;
-//     // gap: 101px;
-//     border-radius: 1px solid red;
-//     // justify-content: space-between;
-//     flex-wrap: wrap;
 
-//     @include device(tablet) {
-//        // flex-direction: column;
-//     }
+.ContactUs {
+    margin-bottom: 45px;
 
-//     @include device(mobile) {
-//         flex-direction: column;
-//     }
-// }
+    @include device(tablet) {
+        margin-bottom: 58px;
+    }
+
+    @include device(tablet) {
+        margin-bottom: 93px;
+    }
+}
 
 .ContactUs__descriptionWrapper {
     display: flex;
     flex-direction: column;
     
-    border: 1px solid green;
-   // margin: 0 auto;
 }
 
 
 .ContactUs__flexContainer {
-    // width: 100%;
+    
     display: flex;
-     //gap: 80px;
-    border: 1px solid red;
+    
+    
     justify-content: space-between;
     grid-template-columns: repeat(4, 1fr);
-    // justify-content: space-around;
+   
     
     
 
@@ -54,5 +49,6 @@
 
 .ContactUs__descriptionWrapper-title {
     margin-bottom: 16px;
-    font-weight: bold;
+
 }
+
