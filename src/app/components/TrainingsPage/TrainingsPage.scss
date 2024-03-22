@@ -2,7 +2,7 @@
 
 .trainings {
   &__title {
-    color: var(--Black, #191919);
+    color: $color-black;
     text-align: center;
     font-size: 60px;
     font-weight: 600;
@@ -16,7 +16,7 @@
   }
 
   &__text {
-    color: var(--Gray-60, #6c6c6c);
+    color: $color-description;
     text-align: center;
     font-size: 16px;
     font-style: normal;

@@ -8,7 +8,7 @@ interface TrainingCardProps {
   term1: string;
   term2: string;
   duration: string;
-  learningModule: 'yes' | 'no';
+  learningModule: string;
   requiredLevel: string;
 }
 

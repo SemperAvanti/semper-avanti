@@ -100,7 +100,7 @@
 
     @include device(mobile) {
       font-size: 24px;
-      margin-bottom: 16px;
+      margin-bottom: $padding-mobile;
     }
   }
 
