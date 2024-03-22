@@ -3,30 +3,32 @@
 import './Form.scss';
 
 import { useState, useEffect } from 'react';
-import { z } from 'zod';
+import { ZodType, z } from 'zod';
 
 import { FormData } from '@/app/types/zod';
 import Button from '@/app/components/Button/Button';
 import { Input } from '@/app/components/InputComponent/Input';
 import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
-import { FormInitialData } from '@/app/typrs/forminitialData';
+import { FormInitialData } from '@/app/types/formInitialData';
 import { initialData } from '@/app/components/FormComponent/helper';
 import { ZodErrorMessage } from '@/app/types/zodErrorMessage';
+import { Modal } from '@/app/components/ModalComponent/Modal';
 
 const formDataSchema: ZodType<FormData> = z.object({
   fullname: z.string().min(5, 'Error name').trim(),
   email: z.string().email('Error email format').trim(),
 });
 
-interface Props {
-  onClose: () => void;
-}
-
-export const Form: React.FC<Props> = ({ onClose }) => {
+export const Form: React.FC<Props> = () => {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
-  const [errors, setErrors] = useState<ZodErrorMessage | []>([]);
+  const [errors, setErrors] = useState<ZodErrorMessage[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [btnColor, setBtnColor] = useState('primary');
+  const [btnColor, setBtnColor] = useState<
+    'primary' | 'secondary' | 'deactivated'
+  >('primary');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [emailAddress, setEmailAddress] = useState('');
+  const [isEmailSentSuccessfully, setIsEmailSentSuccessfully] = useState(true);
 
   useEffect((): void => {
     setErrors([]);
@@ -47,7 +49,7 @@ export const Form: React.FC<Props> = ({ onClose }) => {
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
-  ): void => {
+  ): Promise<void> => {
     event.preventDefault();
 
     try {
@@ -59,18 +61,41 @@ export const Form: React.FC<Props> = ({ onClose }) => {
       setIsSubmitting(true);
       setBtnColor('deactivated');
 
-      setTimeout((): void => {
-        setIsSubmitting(false);
-        setBtnColor('primary');
-        onClose(formData.email, true);
-      }, 2000);
+      setIsSubmitting(false);
+      setBtnColor('primary');
+      setEmailAddress(formData.email);
+      setIsModalOpen(true);
+      setIsEmailSentSuccessfully(true);
     } catch (error) {
       setErrors(error.errors);
 
-      if (formData.email > 0 && btnColor === 'primary') {
-        onClose(formData.email, false);
+      if (formData.email.length > 0 && btnColor === 'primary') {
+        setIsModalOpen(false);
+        setIsEmailSentSuccessfully(false);
+        setEmailAddress(formData.email);
       }
     }
+
+    try {
+      const response = await fetch('/api/mail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        console.log('Email sent successfully');
+      } else {
+        console.error(`Failed to send email Status code: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  };
+
+  const closeModal = (value: boolean): void => {
+    setIsModalOpen(value);
   };
 
   return (
@@ -119,7 +144,6 @@ export const Form: React.FC<Props> = ({ onClose }) => {
                 value={formData.country}
                 placeholder="Poland"
                 onChange={handlerInput}
-                errors={0}
                 isDisabled={isSubmitting}
               />
             </div>
@@ -128,8 +152,9 @@ export const Form: React.FC<Props> = ({ onClose }) => {
                 onChange={handlerInput}
                 checked={formData.checkbox}
                 name="checkbox"
+                htmlFor={''}
+                value={''}
               />
-
               <p className="form__checkbox-text">
                 I agree to receive the information about the further courses
                 from AQE
@@ -141,6 +166,13 @@ export const Form: React.FC<Props> = ({ onClose }) => {
           </div>
         </form>
       </div>
+
+      <Modal
+        sendedEmail={emailAddress}
+        isOpen={isModalOpen}
+        isEmailSentSuccessfully={isEmailSentSuccessfully}
+        closeModal={closeModal}
+      />
     </section>
   );
 };

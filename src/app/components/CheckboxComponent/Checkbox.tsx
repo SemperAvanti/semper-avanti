@@ -22,6 +22,7 @@ export const Checkbox: React.FC<Props> = ({
         <input
           className="checkbox__item"
           type="checkbox"
+          title="checkbox"
           id={htmlFor}
           name={name}
           value={value}

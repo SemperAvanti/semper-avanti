@@ -20,13 +20,13 @@
 
     @include device(tablet) {
       grid-template-columns: repeat(1, 1fr);
-      margin-bottom: 64px;
+      margin-bottom: 0;
       gap: 32px;
     }
 
     @include device(mobile) {
       grid-template-columns: repeat(1, 1fr);
-      margin-bottom: 48px;
+      margin-bottom: 0;
       gap: 24px;
     }
   }
@@ -56,7 +56,7 @@
     height: auto;
     min-width: 100%;
     max-width: 100%;
-    margin-bottom: 64px;
+
     order: 3;
 
     @include device(tablet) {

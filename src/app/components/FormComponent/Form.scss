@@ -3,11 +3,8 @@
 
 .form {
   width: 100%;
-  max-width: 1440px;
-
-  margin: 0 auto;
   padding: 72px 0;
-  background-color: $color-black-primary;
+  background-color: #191919;
 
   @include device(mobile) {
     padding: 48px 16px;
@@ -147,14 +144,5 @@
     @include device(tablet) {
       margin-right: -30px;
     }
-  }
-
-  &__error {
-    color: $color-red;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding: 3px 0;
   }
 }

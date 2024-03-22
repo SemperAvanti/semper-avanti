@@ -1,9 +1,7 @@
-'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Menu from './components/Menu/Menu';
 import { Form } from '@/app/components/FormComponent/Form';
-import { Modal } from '@/app/components/ModalComponent/Modal';
-
+import { Aqu } from '@/app/components/AquComponent/Aqu';
 import { SliderComponent } from './components/SliderComponent/SliderComponent';
 import { SectionAboutUs } from '@/components/SectionAbout/SectionAboutUs';
 
@@ -12,20 +10,6 @@ import { Footer } from './components/Footer/Footer';
 import HomePage from './components/Home/Home';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [emailAddress, setEmailAddress] = useState('');
-  const [isEmailSentSuccessfully, setIsEmailSentSuccessfully] = useState(true);
-
-  const handleCloseModal = (value: string, error: boolean): void => {
-    setIsModalOpen(!isModalOpen);
-    setEmailAddress(value);
-    setIsEmailSentSuccessfully(error);
-  };
-
-  const closeModal = (value: boolean): void => {
-    setIsModalOpen(!value);
-  };
-
   return (
     <main>
       <Menu />

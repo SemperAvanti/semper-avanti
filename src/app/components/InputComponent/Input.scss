@@ -11,6 +11,11 @@
     width: 100%;
   }
 
+  &__error {
+    color: red;
+    padding-top: 4px;
+  }
+
   &__item {
     max-width: 548px;
     width: 100%;
@@ -90,5 +95,14 @@
         background-color: $color-background-primary;
       }
     }
+  }
+
+  &__error {
+    color: $color-red;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 3px 0;
   }
 }
