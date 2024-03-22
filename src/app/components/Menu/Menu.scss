@@ -106,8 +106,8 @@
     justify-content: center;
     gap: 32px;
     align-items: center;
-    right: 0; /* Float from the right side */
-    transform: translateX(0); /* Keep the menu in its original position */
+    right: 0;
+    transform: translateX(0);
     transition: transform 0.3s ease;
   }
 
