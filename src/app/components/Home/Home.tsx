@@ -2,12 +2,14 @@ import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <section className="home">
       <div className="home__title">
-        <h1 className="home__h1">Empower with AQE Educate.</h1>
-        <div className="blueLine"></div>
+        <h1 className="home__h1">
+          Empower with AQE Educate.
+          <div className="blueLine"></div>
+        </h1>
         <p className="home__text ">
           Your trusted partner in professional development for educators.{' '}
         </p>
@@ -40,4 +42,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

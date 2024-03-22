@@ -6,13 +6,16 @@
   border-radius: 12px;
   border: none;
   height: 56px;
-  padding: 10px 55px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
+
+  &--primary {
+    padding: 10px 55px;
+  }
 
   &--secondary {
     width: 100%;

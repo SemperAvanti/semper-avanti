@@ -1,4 +1,3 @@
-
 'use client';
 import React, { useState } from 'react';
 import Menu from './components/Menu/Menu';
@@ -7,11 +6,10 @@ import { Modal } from '@/app/components/ModalComponent/Modal';
 
 import { SliderComponent } from './components/SliderComponent/SliderComponent';
 import { SectionAboutUs } from '@/components/SectionAbout/SectionAboutUs';
-import Home from './components/Home/Home';
-
 
 import { FAQ } from './components/FAQ/FAQ';
 import { Footer } from './components/Footer/Footer';
+import HomePage from './components/Home/Home';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +28,8 @@ export default function Home() {
 
   return (
     <main>
-      <Home />
+      <Menu />
+      <HomePage />
       <SectionAboutUs />
       <Form onClose={handleCloseModal} />
       <Modal
@@ -39,8 +38,6 @@ export default function Home() {
         closeModal={closeModal}
         isEmailSentSuccessfully={isEmailSentSuccessfully}
       />
-
-     
 
       <SliderComponent partners={false} title="Success stories" />
       <SliderComponent partners={true} title="Our partners" />
