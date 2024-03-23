@@ -1,54 +1,42 @@
 @import '../../../styles/mixins.scss';
 
-
 .ContactUs {
-    margin-bottom: 45px;
+  margin-bottom: 45px;
 
-    @include device(tablet) {
-        margin-bottom: 58px;
-    }
+  @include device(tablet) {
+    margin-bottom: 58px;
+  }
 
-    @include device(tablet) {
-        margin-bottom: 93px;
-    }
+  @include device(tablet) {
+    margin-bottom: 93px;
+  }
 }
 
 .ContactUs__descriptionWrapper {
-    display: flex;
-    flex-direction: column;
-    
+  display: flex;
+  flex-direction: column;
 }
-
 
 .ContactUs__flexContainer {
-    
-    display: flex;
-    
-    
-    justify-content: space-between;
-    grid-template-columns: repeat(4, 1fr);
-   
-    
-    
+  display: flex;
 
-    @include device(tablet) {
-         display: grid;
-         grid-template-columns: repeat(2, 1fr);
-         column-gap: 25px;
-         row-gap: 64px
+  justify-content: space-between;
+  grid-template-columns: repeat(4, 1fr);
 
-    }
+  @include device(tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 25px;
+    row-gap: 64px;
+  }
 
-    @include device(mobile) {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 32px;
-    }
+  @include device(mobile) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 32px;
+  }
 }
-
 
 .ContactUs__descriptionWrapper-title {
-    margin-bottom: 16px;
-
+  margin-bottom: 16px;
 }
-

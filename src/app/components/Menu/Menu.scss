@@ -5,8 +5,6 @@
   padding: 16px 0;
   background-color: $color-background-secondary;
 
-
-
   &__logo {
     height: 79px;
     width: 70px;
@@ -55,7 +53,7 @@
   &__lang {
     display: flex;
     align-items: center; // Aligns language text and button vertically
-    position: relative; 
+    position: relative;
   }
 
   &__toggleLangs {
@@ -190,26 +188,26 @@
     border: none;
 
     font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 150%;
-text-align: left;
-padding: 0;
-cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
 
-&:hover {
-  text-decoration: underline;
-}
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
 .languagesListContainer {
   position: absolute;
-    top: 70px;
-    width: 7%;
+  top: 70px;
+  width: 7%;
 
-    &--mob {
-      position: absolute;
-      top: 76%;
-    }
+  &--mob {
+    position: absolute;
+    top: 76%;
+  }
 }
