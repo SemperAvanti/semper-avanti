@@ -27,37 +27,37 @@ const TrainingPage = () => {
             <div className="cards__card__imageContainer">
               <Image
                 src={'/Rectangle 24 (1).jpg'}
-                width={548}
-                height={556}
+                fill={true}
                 alt="Malta"
                 className="cards__card__image"
               />
             </div>
-            <Image
-              src={'/Rectangle 24 (2).jpg'}
-              width={343}
-              height={257}
-              alt="Malta"
-              className="cards__card__image mobile-image"
-            />
+            <div className="cards__card__imageContainer--mob">
+              <Image
+                src={'/Rectangle 24 (2).jpg'}
+                fill={true}
+                alt="Malta"
+                className="cards__card__image mobile-image"
+              />
+            </div>
           </div>
           <div className="cards__card">
             <div className="cards__card__imageContainer">
               <Image
                 src={'/Rectangle 24 (1).jpg'}
-                width={548}
-                height={556}
+                fill={true}
                 alt="Malta"
                 className="cards__card__image"
               />
             </div>
-            <Image
-              src={'/Rectangle 24 (2).jpg'}
-              width={343}
-              height={257}
-              alt="Malta"
-              className="cards__card__image mobile-image"
-            />
+            <div className="cards__card__imageContainer--mob">
+              <Image
+                src={'/Rectangle 24 (2).jpg'}
+                fill={true}
+                alt="Malta"
+                className="cards__card__image mobile-image"
+              />
+            </div>
             <div className="cards__card__info">
               <TrainingCard
                 name="Malta"
@@ -83,19 +83,19 @@ const TrainingPage = () => {
             <div className="cards__card__imageContainer">
               <Image
                 src={'/Rectangle 24 (1).jpg'}
-                width={548}
-                height={556}
+                fill={true}
                 alt="Malta"
                 className="cards__card__image"
               />
             </div>
-            <Image
-              src={'/Rectangle 24 (2).jpg'}
-              width={343}
-              height={257}
-              alt="Malta"
-              className="cards__card__image mobile-image"
-            />
+            <div className="cards__card__imageContainer--mob">
+              <Image
+                src={'/Rectangle 24 (2).jpg'}
+                fill={true}
+                alt="Malta"
+                className="cards__card__image mobile-image"
+              />
+            </div>
           </div>
         </div>
       </section>
