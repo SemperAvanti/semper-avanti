@@ -3,7 +3,7 @@ import './sectionAboutUs.scss';
 
 export const SectionAboutUs: React.FC = () => {
   return (
-    <section className="sectionAboutUs">
+    <section className="sectionAboutUs" id="AboutUs">
       <div className="sectionAboutUs__container container">
         <h2 className="section-title sectionAboutUs--title">About us</h2>
 

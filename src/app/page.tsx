@@ -23,8 +23,12 @@ export default function Home() {
         <Aqu />
         <Gallery />
         <Form />
-        <SliderComponent partners={false} title="Success stories" />
-        <SliderComponent partners={true} title="Our partners" />
+        <SliderComponent
+          partners={false}
+          title="Success stories"
+          id="Stories"
+        />
+        <SliderComponent partners={true} title="Our partners" id="Partners" />
         <FAQ />
         <ContactUs />
         <Footer />
