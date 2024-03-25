@@ -3,6 +3,7 @@
 .header {
   height: 111px;
   padding: 16px 0;
+  background-color: $color-background-secondary;
 
   &__logo {
     height: 79px;
@@ -38,10 +39,21 @@
   &__item {
     text-decoration: none;
     color: $color-black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__langList {
+    display: flex;
+    flex-direction: column;
   }
 
   &__lang {
     display: flex;
+    align-items: center; // Aligns language text and button vertically
+    position: relative;
   }
 
   &__toggleLangs {
@@ -106,8 +118,8 @@
     justify-content: center;
     gap: 32px;
     align-items: center;
-    right: 0; /* Float from the right side */
-    transform: translateX(0); /* Keep the menu in its original position */
+    right: 0;
+    transform: translateX(0);
     transition: transform 0.3s ease;
   }
 
@@ -128,31 +140,32 @@
       justify-content: center;
     }
   }
-}
 
-@include device(mobile) {
-  .mobileMenu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    transform: translateX(0%);
-    transition: transform 0.5s ease-in-out;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  @include device(mobile) {
+    .mobileMenu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      transform: translateX(0%);
+      transition: transform 0.5s ease-in-out;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
 .headerMobile {
   display: none;
+  background-color: $color-background-secondary;
 
   @include device(tablet) {
     display: flex;
     justify-content: space-between;
-    padding: 16px;
+    padding: 16px 24px;
     height: 45px;
     padding-top: 20px;
   }
@@ -163,5 +176,38 @@
     padding: 16px;
     height: 45px;
     padding-top: 18.5px;
+  }
+}
+
+.languagesList {
+  display: flex;
+  flex-direction: column;
+
+  &__button {
+    background: transparent;
+    border: none;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.languagesListContainer {
+  position: absolute;
+  top: 70px;
+  width: 7%;
+
+  &--mob {
+    position: absolute;
+    top: 76%;
   }
 }

@@ -131,6 +131,10 @@ $description-text-letter-spacing: 0em;
   &--accented {
     color: $color-primary;
   }
+
+  &--gray {
+    color: #6c6c6c;
+  }
 }
 
 .section-title {
