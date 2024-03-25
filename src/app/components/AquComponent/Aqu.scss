@@ -47,6 +47,7 @@
     padding: 24px 32px;
     border-radius: 16px;
     border: 1px solid $color-form-placeholder;
+    background-color: $color-background-primary;
 
     @include device(mobile) {
       padding: 16px 24px;

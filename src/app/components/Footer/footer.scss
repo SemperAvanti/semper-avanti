@@ -84,6 +84,7 @@
 
   &__logoWrapper {
     display: flex;
+    
 
     &--text {
       font-family: 'Poppins', 'sans-serif';
@@ -93,6 +94,10 @@
       letter-spacing: 0em;
       text-align: left;
       color: #6c6c6c;
+
+      
+      
+      
     }
 
     &--logo {
@@ -123,4 +128,9 @@
       margin: 0 auto;
     }
   }
+}
+
+
+.Footer__logoMA-link {
+  text-decoration: none;
 }

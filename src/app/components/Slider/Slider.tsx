@@ -34,11 +34,13 @@ export const Slider: React.FC<SliderProps> = ({
               onSwiper={(swiperInstance: SwiperClass) =>
                 setSwiper(swiperInstance)
               }
-              // loop={true}
-              // autoplay={{
-              //   delay: 2500,
-              //   disableOnInteraction: false,
-              // }}
+
+              autoplay={{
+                delay: 1000,
+                disableOnInteraction: false,
+              }}
+              loop
+
               //Parametry mogą być różne w zależności od slidera
               spaceBetween={spaceBetween}
               slidesPerView={slidesPerView}
@@ -47,6 +49,7 @@ export const Slider: React.FC<SliderProps> = ({
               modules={[Autoplay]}
             >
               {/* poglądowe, zamienić na dynamiczne  */}
+
               {partners
                 ? Array.from({ length: 8 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
@@ -58,6 +61,7 @@ export const Slider: React.FC<SliderProps> = ({
                       <StoriesCard />
                     </SwiperSlide>
                   ))}
+
             </Swiper>
           </>
           // Gotowy loader

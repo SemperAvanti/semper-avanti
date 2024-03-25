@@ -1,6 +1,12 @@
 @import '../../styles/index.scss';
 
 .sectionAboutUs {
+  background-color: $color-background-primary;
+  padding-bottom: 64px;
+
+  @include device(mobile) {
+    padding-bottom: 48px;
+  }
   &--title {
     order: 1;
   }

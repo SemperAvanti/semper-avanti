@@ -161,7 +161,7 @@ export const Form: React.FC<Props> = () => {
               </p>
             </div>
             <div className="form__input-elem">
-              <Button variant={btnColor} name="Get info package" />
+              <Button variant={'secondary'} name="Get info package" />
             </div>
           </div>
         </form>
