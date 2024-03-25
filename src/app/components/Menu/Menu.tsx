@@ -120,7 +120,7 @@ const Menu = () => {
         <div className="buttonContainerMob">
           <Button name="Get info" variant="secondary" />
           <a
-            href="#menu"
+            href="#mobMenu"
             onClick={handleClick}
             className="buttonContainerMob__open"
           >
@@ -143,8 +143,8 @@ const Menu = () => {
           </a>
         </div>
       </div>
-      {isOpen && (
-        <div className="mobileMenu" id="Menu">
+      
+        <div className="mobileMenu" id="mobMenu">
           <ul className="mobileMenu__list">
             <li className="mobileMenu__item">
               <a href="#Home" className="navigation__item">
@@ -216,7 +216,7 @@ const Menu = () => {
             </li>
           </ul>
         </div>
-      )}
+     
     </>
   );
 };

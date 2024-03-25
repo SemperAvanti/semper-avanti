@@ -113,8 +113,26 @@
   display: inline-block;
 }
 
+#mobMenu {
+  position:fixed;
+  top:70px;
+  left:0;
+  right:0;
+  opacity:1;
+  z-index: 2;
+    transform: translateX(-100%);
+
+    transition: 0.1s ease-in-out;
+
+   &:target {
+    transform: translateX(0);
+   }
+}
+
 .mobileMenu {
-  transition: transform 0.5s ease-in-out;
+  // transition: transform 0.5s ease-in-out;
+  background-color: red;
+  
 
   &__list {
     list-style-type: none;
@@ -175,6 +193,12 @@
     padding: 16px 24px;
     height: 45px;
     padding-top: 20px;
+
+    // position:fixed;
+    // top:0;
+    // left:0;
+    // right:0;
+    // z-index: 2;
   }
 
   @include device(mobile) {
@@ -183,6 +207,12 @@
     padding: 16px;
     height: 45px;
     padding-top: 18.5px;
+
+    // position:fixed;
+    // top:0;
+    // left:0;
+    // right:0;
+    // z-index: 2;
   }
 }
 
