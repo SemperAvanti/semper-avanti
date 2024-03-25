@@ -15,6 +15,12 @@ const Menu = () => {
     }
   };
 
+  const [showLanguages, setShowLanguages] = useState(false);
+
+  const toggleLanguages = () => {
+    setShowLanguages(!showLanguages);
+  };
+
   return (
     <>
       <header className="header">
@@ -64,16 +70,36 @@ const Menu = () => {
                 </a>
               </li>
               <li>
-                <div className="navigation__lang">
-                  <p>English</p>
-                  <button className="navigation__toggleLangs">
-                    <Image
-                      src={'/Vector.svg'}
-                      alt="choose language"
-                      width={16}
-                      height={16}
-                    />
-                  </button>
+                <div className="navigation__langList">
+                  <div className="navigation__lang">
+                    <p>English</p>
+                    <button
+                      className="navigation__toggleLangs"
+                      onClick={toggleLanguages}
+                    >
+                      <Image
+                        src={'/Vector.svg'}
+                        alt="choose language"
+                        width={16}
+                        height={16}
+                      />
+                    </button>
+                  </div>
+                  {showLanguages && (
+                    <div className="languagesListContainer">
+                      <ul className="languagesList">
+                        <button type="button" className="languagesList__button">
+                          Polish
+                        </button>
+                        <button type="button" className="languagesList__button">
+                          Spanish
+                        </button>
+                        <button type="button" className="languagesList__button">
+                          French
+                        </button>
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </li>
               <div className="buttonContainer">
@@ -156,16 +182,36 @@ const Menu = () => {
               </a>
             </li>
             <li>
-              <div className="navigation__lang">
-                <p>English</p>
-                <button className="navigation__toggleLangs">
-                  <Image
-                    src={'/Vector.svg'}
-                    alt="choose language"
-                    width={16}
-                    height={16}
-                  />
-                </button>
+              <div className="navigation__langList">
+                <div className="navigation__lang">
+                  <p>English</p>
+                  <button
+                    className="navigation__toggleLangs"
+                    onClick={toggleLanguages}
+                  >
+                    <Image
+                      src={'/Vector.svg'}
+                      alt="choose language"
+                      width={12}
+                      height={9}
+                    />
+                  </button>
+                </div>
+                {showLanguages && (
+                  <div className="languagesListContainer--mob">
+                    <ul className="languagesList">
+                      <button type="button" className="languagesList__button">
+                        Polish
+                      </button>
+                      <button type="button" className="languagesList__button">
+                        Spanish
+                      </button>
+                      <button type="button" className="languagesList__button">
+                        French
+                      </button>
+                    </ul>
+                  </div>
+                )}
               </div>
             </li>
           </ul>

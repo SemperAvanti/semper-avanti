@@ -15,7 +15,7 @@ export default function Home() {
       <Menu />
       <main>
         <HomePage />
-        
+
         <SectionAboutUs />
         <Aqu />
         <Form />
@@ -28,4 +28,3 @@ export default function Home() {
     </>
   );
 }
-
