@@ -5,7 +5,20 @@ import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
 const Gallery = () => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
-  const width = window.innerWidth;
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const slidesAmount = {
     tabletSmall: 2,
     mobile: 1,
@@ -114,7 +127,7 @@ const Gallery = () => {
               teachers.
             </p>
           </div>
-          {width > 1000 && (
+          {width > 1200 && (
             <div className="gallery__pictures">
               <div className="gallery__picture">
                 <img
@@ -143,7 +156,7 @@ const Gallery = () => {
             </div>
           )}
 
-          {width < 1000 && (
+          {width < 1200 && (
             <>
               <div className="gallery__pictures--mobile">
                 {width < 750 && <Buttons />}
