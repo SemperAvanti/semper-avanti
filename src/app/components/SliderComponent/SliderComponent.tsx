@@ -9,11 +9,13 @@ import { Slider } from '../Slider/Slider';
 type SliderComponentProps = {
   title: string;
   partners: boolean;
+  id: string;
 };
 
 export const SliderComponent: React.FC<SliderComponentProps> = ({
   title,
   partners,
+  id,
 }) => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
@@ -62,7 +64,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   }, [swiper]);
 
   return (
-    <section className="section">
+    <section className="section" id={id}>
       <div className="container">
         <div className="section__header">
           <h2 className="H2">{title}</h2>

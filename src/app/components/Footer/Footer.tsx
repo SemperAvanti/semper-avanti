@@ -34,19 +34,25 @@ export const Footer = () => {
           <p className="Footer__bottomLabel--description">
             Alliance for Quality Education. All right reserved
           </p>
-          <div className="Footer__logoWrapper">
-            <p className="Footer__logoWrapper--text">By</p>
-            <img
-              src="logoMateAcademy.svg"
-              alt="logoMateAcademy"
-              className="Footer__logoWrapper--logo"
-            />
-          </div>
+
+          <a
+            className="Footer__logoMA-link"
+            target="blank"
+            href="https://mate.academy/pl?utm_source=google&utm_medium=cpc&utm_campaign=GEO-PL_BRAND_MXD_SEA_-_MCL_-_-_GOA&utm_content=KW_Mate-academy_-_PCorTAB&utm_term=kwd-490518305899_e_mate%20academy&gad_source=1&gclid=Cj0KCQjwwYSwBhDcARIsAOyL0fjur8wSE7BzISo7Z4Bq7vCnQwov7JklMc7HhkbgKxQTtRKLNwaALvkaAioKEALw_wcB"
+          >
+            <div className="Footer__logoWrapper">
+              <p className="Footer__logoWrapper--text">By</p>
+              <img
+                src="logoMateAcademy.svg"
+                alt="logoMateAcademy"
+                className="Footer__logoWrapper--logo"
+              />
+            </div>
+          </a>
         </div>
-        <a href="#">
-          <div className="Footer__homeindicator">
-            <div className="Footer__homeindicator--label" />
-          </div>
+
+        <a className="Footer__homeindicator" href='#Home'>
+          <div className="Footer__homeindicator--label" />
         </a>
       </div>
     </footer>

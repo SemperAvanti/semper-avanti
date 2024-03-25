@@ -16,7 +16,7 @@ export const FAQ: React.FC = () => {
     { someTitle: 'some desc' },
   ];
   return (
-    <section className="section">
+    <section className="section" id="FAQ">
       <div className="FAQ__container container">
         <h2 className="H2">Frequently asked questions</h2>
         {faq.map((el, i) => (

@@ -6,12 +6,15 @@ import './TrainingsPage.scss';
 const TrainingPage = () => {
   return (
     <>
-      <section className="container" id="Trainings">
-        <h2 className="trainings__title">Trainings</h2>
-        <p className="trainings__text">
-          Our programs at AQE are designed to cater to the diverse needs of
-          educators at every stage of their career.
-        </p>
+      <section className="container" id='Trainings'>
+        <div className="trainings__name">
+          <h2 className="trainings__title">Trainings</h2>
+          <p className="trainings__text">
+            Our programs at AQE are designed to cater to the diverse needs of
+            educators at every stage of their career.
+          </p>
+        </div>
+
         <div className="cards">
           <div className="cards__card cards__card--reverse">
             <div className="cards__card__info">
