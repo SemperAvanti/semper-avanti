@@ -2,13 +2,13 @@
 import './footer.scss';
 
 const links = [
-  { text: 'Home', href: '#' },
-  { text: 'About us', href: '#' },
-  { text: 'Trainings', href: '#' },
-  { text: 'Gallery', href: '#' },
-  { text: 'Stories', href: '#' },
-  { text: 'Partners', href: '#' },
-  { text: 'FAQ', href: '#' },
+  { text: 'Home', href: '#Home' },
+  { text: 'About us', href: '#AboutUs' },
+  { text: 'Trainings', href: '#Trainings' },
+  { text: 'Gallery', href: '#Gallery' },
+  { text: 'Stories', href: '#Stories' },
+  { text: 'Partners', href: '#Partners' },
+  { text: 'FAQ', href: '#FAQ' },
   { text: '+1 (555) 123-4567', href: 'tel:+15551234567' },
 ];
 

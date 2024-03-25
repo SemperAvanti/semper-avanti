@@ -4,7 +4,7 @@ import './Home.scss';
 
 const HomePage = () => {
   return (
-    <section className="home">
+    <section className="home" id="Home">
       <div className="home__title">
         <h1 className="home__h1">
           Empower with AQE Educate.

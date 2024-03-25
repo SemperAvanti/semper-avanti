@@ -6,7 +6,7 @@ import './TrainingsPage.scss';
 const TrainingPage = () => {
   return (
     <>
-      <section className="container">
+      <section className="container" id="Trainings">
         <h2 className="trainings__title">Trainings</h2>
         <p className="trainings__text">
           Our programs at AQE are designed to cater to the diverse needs of

@@ -1,6 +1,10 @@
 @import '/src/styles/mixins.scss';
 @import 'src/styles/variables.scss';
 
+#Trainings {
+  scroll-behavior : smooth;
+}
+
 .trainings {
   &__title {
     color: $color-black;
