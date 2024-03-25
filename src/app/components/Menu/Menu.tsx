@@ -5,7 +5,7 @@ import './Menu.scss';
 import Button from '../Button/Button';
 
 const Menu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -35,7 +35,7 @@ const Menu = () => {
                 height={79}
               />
               <li>
-                <a href="#Home" className="navigation__item">
+                <a href="#Home" className="navigation__item" >
                   Home
                 </a>
               </li>
@@ -120,7 +120,8 @@ const Menu = () => {
         <div className="buttonContainerMob">
           <Button name="Get info" variant="secondary" />
           <a
-            href="#mobMenu"
+             href={isOpen? '#mobMenu' : '#main'}
+            // href='#mobMenu'
             onClick={handleClick}
             className="buttonContainerMob__open"
           >
@@ -147,37 +148,37 @@ const Menu = () => {
         <div className="mobileMenu" id="mobMenu">
           <ul className="mobileMenu__list">
             <li className="mobileMenu__item">
-              <a href="#Home" className="navigation__item">
+              <a href="#Home" className="navigation__item" onClick={handleClick}>
                 Home
               </a>
             </li>
             <li>
-              <a href="#AboutUs" className="navigation__item">
+              <a href="#AboutUs" className="navigation__item" onClick={handleClick}>
                 About us
               </a>
             </li>
             <li>
-              <a href="#Trainings" className="navigation__item">
+              <a href="#Trainings" className="navigation__item" onClick={handleClick}>
                 Trainings
               </a>
             </li>
             <li>
-              <a href="#Gallery" className="navigation__item">
+              <a href="#Gallery" className="navigation__item" onClick={handleClick}>
                 Gallery
               </a>
             </li>
             <li>
-              <a href="#Stories" className="navigation__item">
+              <a href="#Stories" className="navigation__item" onClick={handleClick}>
                 Stories
               </a>
             </li>
             <li>
-              <a href="#Partners" className="navigation__item">
+              <a href="#Partners" className="navigation__item" onClick={handleClick}>
                 Partners
               </a>
             </li>
             <li>
-              <a href="#FAQ" className="navigation__item">
+              <a href="#FAQ" className="navigation__item" onClick={handleClick}>
                 FAQ
               </a>
             </li>

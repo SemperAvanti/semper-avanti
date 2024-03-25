@@ -7,17 +7,21 @@
   position: relative;
   overflow: hidden;
   padding-left: calc((100% - 1120px) / 2);
+  padding-top: 111px;
 
   @include device(tablet) {
     display: block;
     padding-right: 0;
     padding-left: 24px;
+    padding-top: 81px;
   }
 
   @include device(mobile) {
     display: block;
     padding: $padding-mobile;
     padding-bottom: 48px;
+    padding-top: 80px;
+    
   }
 
   &__title {
