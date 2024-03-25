@@ -71,7 +71,7 @@
 
   &:first-child {
     margin-top: 65px;
-  
+
     @include device(mobile) {
       margin-top: 0;
     }
@@ -100,7 +100,6 @@
     }
   }
 }
-
 
 .swiper {
   width: 100%;
