@@ -6,10 +6,11 @@ const HomePage = () => {
   return (
     <section className="home">
       <div className="home__title">
-        <h1 className="home__h1">
-          Empower with AQE Educate.
+        <div className="home__title__container">
           <div className="blueLine"></div>
-        </h1>
+          <h1 className="home__h1">Empower with AQE Educate.</h1>
+        </div>
+
         <p className="home__text ">
           Your trusted partner in professional development for educators.{' '}
         </p>

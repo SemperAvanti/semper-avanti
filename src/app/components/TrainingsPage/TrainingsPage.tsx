@@ -7,11 +7,14 @@ const TrainingPage = () => {
   return (
     <>
       <section className="container">
-        <h2 className="trainings__title">Trainings</h2>
-        <p className="trainings__text">
-          Our programs at AQE are designed to cater to the diverse needs of
-          educators at every stage of their career.
-        </p>
+        <div className="trainings__name">
+          <h2 className="trainings__title">Trainings</h2>
+          <p className="trainings__text">
+            Our programs at AQE are designed to cater to the diverse needs of
+            educators at every stage of their career.
+          </p>
+        </div>
+
         <div className="cards">
           <div className="cards__card cards__card--reverse">
             <div className="cards__card__info">
