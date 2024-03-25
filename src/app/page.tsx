@@ -11,7 +11,6 @@ import Gallery from './components/GalleryComponent/Gallery';
 import HomePage from './components/Home/Home';
 import { ContactUs } from './components/ContactUs/ContactUs';
 
-
 export default function Home() {
   return (
     <>

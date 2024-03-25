@@ -6,12 +6,12 @@
   gap: 40px;
   position: relative;
   overflow: hidden;
-  padding-left: 160px;
-  margin-bottom: 0;
+  padding-left: calc((100% - 1120px) / 2);
 
   @include device(tablet) {
     display: block;
-    padding: $padding-tablet;
+    padding-right: 0;
+    padding-left: 24px;
   }
 
   @include device(mobile) {
@@ -26,6 +26,13 @@
     position: relative;
     overflow: hidden;
     height: auto;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+
+    &__container {
+      position: relative;
+    }
 
     @include device(tablet) {
       margin-top: 40px;
@@ -141,7 +148,9 @@
   height: 25%;
   width: 90%;
   position: absolute;
-  top: 75%;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
 
   @include device(mobile) {
     height: 24px;
