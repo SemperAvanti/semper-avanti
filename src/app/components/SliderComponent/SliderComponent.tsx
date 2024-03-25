@@ -19,6 +19,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
 
   const slidesAmount = {
     desktopBig: 6,
+    desktopMid: 5,
     desktopSmall: 4,
     tabletBig: 3,
     tabletSmall: 2,
@@ -32,15 +33,18 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
         case width >= 1600:
           swiper.params.slidesPerView = slidesAmount.desktopBig;
           break;
-        case width >= 1050 && width < 1600:
+        case width < 1600 && width > 1400:
+          swiper.params.slidesPerView = slidesAmount.desktopMid;
+          break;
+        case width >= 1050 && width <= 1400:
           swiper.params.slidesPerView = slidesAmount.desktopSmall;
           break;
-        case width >= 750 && width < 1050:
+        case width >= 700 && width < 1050:
           swiper.params.slidesPerView = slidesAmount.tabletBig;
           break;
-        case width >= 500 && width < 750:
+        case width >= 500 && width < 700:
           swiper.params.slidesPerView = slidesAmount.tabletSmall;
-          swiper.params.slidesOffsetBefore = 170;
+          swiper.params.slidesOffsetBefore = 0;
           break;
         default:
           swiper.params.slidesPerView = slidesAmount.mobile;
@@ -106,7 +110,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
       <Slider
         setSwiper={setSwiper}
         spaceBetween={25}
-        slidesPerView={5}
+        slidesPerView={8}
         slidesOffset={170}
         initialSlide={1}
         partners={partners}

@@ -6,7 +6,7 @@ import './scss/StoriesCard.scss';
 
 export const StoriesCard: React.FC = () => {
   return (
-    <div className="card">
+    <div className="stories__card">
       <Image src={img} alt="img" />
       <p className="description-text">
         &quot;Joining the community forum has been a game-changer for me as an

@@ -3,9 +3,10 @@ import './scss/Slider.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import React from 'react';
-import cocaCola from '../../../img/cocacola.svg';
+import { Autoplay } from 'swiper/modules';
 import { StoriesCard } from '../StoriesCard/StoriesCard';
-import Image from 'next/image';
+
+import { PartnersCard } from '../PartnersCard/PartnersCard';
 
 type SliderProps = {
   setSwiper: (swiperInstance: SwiperClass) => void;
@@ -20,7 +21,6 @@ export const Slider: React.FC<SliderProps> = ({
   setSwiper,
   spaceBetween,
   slidesPerView,
-  slidesOffset,
   initialSlide,
   partners,
 }) => {
@@ -34,92 +34,30 @@ export const Slider: React.FC<SliderProps> = ({
               onSwiper={(swiperInstance: SwiperClass) =>
                 setSwiper(swiperInstance)
               }
-              autoplay={{
-                delay: 1000,
-                disableOnInteraction: false,
-              }}
+              // loop={true}
+              // autoplay={{
+              //   delay: 2500,
+              //   disableOnInteraction: false,
+              // }}
               //Parametry mogą być różne w zależności od slidera
               spaceBetween={spaceBetween}
               slidesPerView={slidesPerView}
-              slidesOffsetBefore={slidesOffset}
+              slidesOffsetBefore={170}
               initialSlide={initialSlide}
+              modules={[Autoplay]}
             >
               {/* poglądowe, zamienić na dynamiczne  */}
-              {partners ? (
-                <>
-                  <SwiperSlide className="swiper__slide">
-                    <Image src={cocaCola} alt="cocaCola" />
-                    <h6 className="accented-body">Coca Cola</h6>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <Image src={cocaCola} alt="cocaCola" />
-                    <h6 className="accented-body">Coca Cola</h6>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <Image src={cocaCola} alt="cocaCola" />
-                    <h6 className="accented-body">Coca Cola</h6>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <Image src={cocaCola} alt="cocaCola" />
-                    <h6 className="accented-body">Coca Cola</h6>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <Image src={cocaCola} alt="cocaCola" />
-                    <h6 className="accented-body">Coca Cola</h6>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <Image src={cocaCola} alt="cocaCola" />
-                    <h6 className="accented-body">Coca Cola</h6>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <Image src={cocaCola} alt="cocaCola" />
-                    <h6 className="accented-body">Coca Cola</h6>
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <Image src={cocaCola} alt="cocaCola" />
-                    <h6 className="accented-body">Coca Cola</h6>
-                  </SwiperSlide>
-                </>
-              ) : (
-                <>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper__slide">
-                    <StoriesCard />
-                  </SwiperSlide>
-                </>
-              )}
+              {partners
+                ? Array.from({ length: 8 }).map((_, index) => (
+                    <SwiperSlide key={index} className="swiper__slide">
+                      <PartnersCard />
+                    </SwiperSlide>
+                  ))
+                : Array.from({ length: 12 }).map((_, index) => (
+                    <SwiperSlide key={index} className="swiper__slide">
+                      <StoriesCard />
+                    </SwiperSlide>
+                  ))}
             </Swiper>
           </>
           // Gotowy loader
