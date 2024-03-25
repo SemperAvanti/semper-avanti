@@ -38,6 +38,7 @@ export const Slider: React.FC<SliderProps> = ({
                 delay: 1000,
                 disableOnInteraction: false,
               }}
+              loop
               //Parametry mogą być różne w zależności od slidera
               spaceBetween={spaceBetween}
               slidesPerView={slidesPerView}
