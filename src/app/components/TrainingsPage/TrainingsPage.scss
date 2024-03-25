@@ -1,0 +1,125 @@
+@import '/src/styles/mixins.scss';
+@import 'src/styles/variables.scss';
+
+.trainings {
+  &__title {
+    color: $color-black;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -1.2px;
+
+    @include device(mobile) {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  &__text {
+    color: $color-description;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 18px;
+    left: 22%;
+
+    @include device(mobile) {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.cards {
+  display: grid;
+
+  @include device(tablet) {
+    grid-template-rows: 436px 436px 436px;
+  }
+
+  @include device(mobile) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 119px;
+    margin-bottom: 124px;
+    grid-row: span 1;
+
+    @include device(mobile) {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 72px;
+      margin-top: 0;
+    }
+
+    @include device(tablet) {
+      gap: 24px;
+    }
+
+    &--reverse {
+      @include device(mobile) {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+    }
+
+    &__info {
+      grid-column: 1;
+      position: relative;
+    }
+
+    &__image {
+      @include device(mobile) {
+        display: none;
+      }
+    }
+
+    &__imageContainer {
+      grid-column: 1;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      align-self: start;
+
+      @include device(mobile) {
+        display: none;
+      }
+
+      &--mob {
+        display: none;
+        @include device(mobile) {
+          display: block;
+          position: relative;
+          width: 100%;
+          height: 257px;
+        }
+      }
+    }
+
+    &:nth-child(even) .cards__card__info,
+    &:nth-child(odd) .cards__card__imageContainer {
+      grid-column: 2;
+    }
+  }
+}
+
+.mobile-image {
+  display: none;
+
+  @include device(mobile) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
