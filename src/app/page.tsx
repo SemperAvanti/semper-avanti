@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <Menu />
       <main>
-      
+      <Menu />
         <HomePage />
 
         <SectionAboutUs />
