@@ -6,7 +6,7 @@ import './TrainingsPage.scss';
 const TrainingPage = () => {
   return (
     <>
-      <section className="container" id='Trainings'>
+      <section className="container" id="Trainings">
         <div className="trainings__name">
           <h2 className="trainings__title">Trainings</h2>
           <p className="trainings__text">
