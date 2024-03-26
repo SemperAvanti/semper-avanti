@@ -10,10 +10,8 @@
   right: 0;
   z-index: 99;
   box-sizing: border-box;
-   border-bottom: 1px solid #cfcfcf;
-  background: #f7f7f7
-
-  &__logo {
+  border-bottom: 1px solid #cfcfcf;
+  background: #f7f7f7 &__logo {
     height: 79px;
     width: 70px;
   }
@@ -122,36 +120,33 @@
 }
 
 #mobMenu {
-  position:fixed;
-  top:81px;
-  left:0;
-  right:0;
-  opacity:1;
+  position: fixed;
+  top: 81px;
+  left: 0;
+  right: 0;
+  opacity: 1;
   z-index: 99;
-   // transform: translateX(-100%);
-   transform: translateY(-100%);
-   z-index: 0;
-display:block;
-    transition: 0.1s ease-in-out;
+  // transform: translateX(-100%);
+  transform: translateY(-100%);
+  z-index: 0;
+  display: block;
+  transition: 0.1s ease-in-out;
 
-    @include device(tablet) {
+  @include device(tablet) {
+  }
 
-    }
+  @include device(tablet) {
+  }
 
-    @include device(tablet) {
-      
-    }
-
-   &:target {
+  &:target {
     transform: translateX(0);
     z-index: 99;
-   }
+  }
 }
 
 .mobileMenu {
   // transition: transform 0.5s ease-in-out;
   background-color: red;
-  
 
   &__list {
     list-style-type: none;
@@ -211,8 +206,8 @@ display:block;
   left: 0;
   right: 0;
   z-index: 99;
-  
-   border-bottom: 1px solid #cfcfcf;
+
+  border-bottom: 1px solid #cfcfcf;
   background: #f7f7f7;
 
   @include device(tablet) {
