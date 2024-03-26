@@ -10,7 +10,7 @@ interface Props {
   isEmailSentSuccessfully: boolean;
   sendedEmail: string;
   isOpen: boolean;
-  closeModal: () => void;
+  closeModal: (value: boolean) => void;
 }
 
 export const Modal: React.FC<Props> = ({

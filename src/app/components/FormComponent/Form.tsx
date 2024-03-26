@@ -11,7 +11,7 @@ import { Input } from '@/app/components/InputComponent/Input';
 import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
 import { FormInitialData } from '@/app/types/formInitialData';
 import { initialData } from '@/app/components/FormComponent/helper';
-import { ZodErrorMessage } from '@/app/types/zodErrorMessage';
+import { ZodErrorMessage } from '@/app/types/ZodErrorMessage';
 import { Modal } from '@/app/components/ModalComponent/Modal';
 
 const formDataSchema: ZodType<FormData> = z.object({
@@ -19,7 +19,7 @@ const formDataSchema: ZodType<FormData> = z.object({
   email: z.string().email('Error email format').trim(),
 });
 
-export const Form: React.FC<Props> = () => {
+export const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
   const [errors, setErrors] = useState<ZodErrorMessage[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,7 +67,8 @@ export const Form: React.FC<Props> = () => {
       setIsModalOpen(true);
       setIsEmailSentSuccessfully(true);
     } catch (error) {
-      setErrors(error.errors);
+      //TODO poprawić to
+      // setErrors(error.errors);
 
       if (formData.email.length > 0 && btnColor === 'primary') {
         setIsModalOpen(false);
