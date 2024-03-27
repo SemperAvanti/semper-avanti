@@ -1,4 +1,5 @@
-@import '@/styles/index.scss';
+@import '@/styles/variables';
+@import '@/styles/mixins';
 
 .header {
   height: 111px;
@@ -176,13 +177,13 @@
     padding: 16px 24px;
     height: 45px;
     padding-top: 20px;
-    z-index: 99999;
+    z-index: 99;
 
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 99999;
+    z-index: 99;
   }
 
   @include device(mobile) {
