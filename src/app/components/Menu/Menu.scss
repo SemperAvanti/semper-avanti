@@ -10,7 +10,6 @@
   right: 0;
   z-index: 99;
   box-sizing: border-box;
-  border-bottom: 1px solid #cfcfcf;
   background: #f7f7f7 &__logo {
     height: 79px;
     width: 70px;
@@ -119,34 +118,32 @@
   display: inline-block;
 }
 
-#mobMenu {
+.mobileMenu {
+  background-color: $color-background-secondary;
+  transition: 0.25s ease-in-out;
+  transform: translateY(-100%);
   position: fixed;
-  top: 81px;
+  top: 111px;
   left: 0;
   right: 0;
-  opacity: 1;
-  z-index: 99;
-  // transform: translateX(-100%);
-  transform: translateY(-100%);
-  z-index: 0;
-  display: block;
-  transition: 0.1s ease-in-out;
+  z-index: 3;
+  box-sizing: border-box;
 
-  @include device(tablet) {
+  @include device(desktop) {
+    display: none;
   }
 
   @include device(tablet) {
+    top: 81px;
+  }
+
+  @include device(mobile) {
+    top: 79.3px;
   }
 
   &:target {
     transform: translateX(0);
-    z-index: 99;
   }
-}
-
-.mobileMenu {
-  // transition: transform 0.5s ease-in-out;
-  background-color: red;
 
   &__list {
     list-style-type: none;
@@ -161,54 +158,17 @@
     transform: translateX(0);
     transition: transform 0.3s ease;
   }
-
-  @include device(desktop) {
-    display: none;
-  }
-
-  @include device(tablet) {
-    .mobileMenu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
-  @include device(mobile) {
-    .mobileMenu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      transform: translateX(0%);
-      transition: transform 0.5s ease-in-out;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-  }
 }
 
 .headerMobile {
   display: none;
   background-color: $color-background-secondary;
-
+  z-index: 99;
+  background: #f7f7f7;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 99;
-
-  border-bottom: 1px solid #cfcfcf;
-  background: #f7f7f7;
 
   @include device(tablet) {
     display: flex;
@@ -216,12 +176,13 @@
     padding: 16px 24px;
     height: 45px;
     padding-top: 20px;
+    z-index: 99999;
 
-    // position:fixed;
-    // top:0;
-    // left:0;
-    // right:0;
-    // z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
   }
 
   @include device(mobile) {
@@ -230,12 +191,7 @@
     padding: 16px;
     height: 45px;
     padding-top: 18.5px;
-
-    // position:fixed;
-    // top:0;
-    // left:0;
-    // right:0;
-    // z-index: 2;
+    z-index: 99;
   }
 }
 

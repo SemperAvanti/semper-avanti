@@ -10,7 +10,7 @@ import TrainingPage from './components/TrainingsPage/TrainingsPage';
 // import Gallery from './components/GalleryComponent/Gallery';
 import HomePage from './components/Home/Home';
 import { ContactUs } from './components/ContactUs/ContactUs';
-import Gallery from './components/GalleryComponent/Gallery';
+// import Gallery from './components/GalleryComponent/Gallery';
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
         <TrainingPage />
         <Aqu />
         {/* TODO fix ReferenceError: window is not defined */}
-        <Gallery />
+        {/* <Gallery /> */}
         <Form />
         <SliderComponent
           partners={false}
