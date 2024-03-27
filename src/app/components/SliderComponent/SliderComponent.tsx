@@ -27,7 +27,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     tabletSmall: 2,
     mobile: 1,
   };
-
+  console.log(true);
   const updateSlidesPerView = () => {
     const width = window.innerWidth;
     if (swiper && swiper.params) {
