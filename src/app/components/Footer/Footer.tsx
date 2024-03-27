@@ -51,7 +51,7 @@ export const Footer = () => {
           </a>
         </div>
 
-        <a className="Footer__homeindicator" href='#Home'>
+        <a className="Footer__homeindicator" href="#Home">
           <div className="Footer__homeindicator--label" />
         </a>
       </div>

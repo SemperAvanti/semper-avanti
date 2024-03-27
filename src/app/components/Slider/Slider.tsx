@@ -34,13 +34,11 @@ export const Slider: React.FC<SliderProps> = ({
               onSwiper={(swiperInstance: SwiperClass) =>
                 setSwiper(swiperInstance)
               }
-
               autoplay={{
                 delay: 1000,
                 disableOnInteraction: false,
               }}
               loop
-
               //Parametry mogą być różne w zależności od slidera
               spaceBetween={spaceBetween}
               slidesPerView={slidesPerView}
@@ -61,7 +59,6 @@ export const Slider: React.FC<SliderProps> = ({
                       <StoriesCard />
                     </SwiperSlide>
                   ))}
-
             </Swiper>
           </>
           // Gotowy loader
