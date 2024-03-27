@@ -1,9 +1,6 @@
-'use client';
-
 import './Modal.scss';
 
 import { useEffect } from 'react';
-
 import Image from 'next/image';
 
 interface Props {
@@ -55,40 +52,43 @@ export const Modal: React.FC<Props> = ({
   return (
     <>
       {isOpen && (
-        <div className="modal">
-          <div className="modal__container">
-            <div className="modal__icons-wrapper">
-              {isEmailSentSuccessfully ? (
-                <Image
-                  src="/mdi_tick.svg"
-                  alt="icon success"
-                  width={64}
-                  height={64}
-                />
-              ) : (
-                <Image
-                  src="/error-icon-close.svg"
-                  alt="icon error"
-                  width={64}
-                  height={64}
-                />
-              )}
+        <>
+          <div className="modal-overlay"></div>
+          <div className="modal">
+            <div className="modal__container">
+              <div className="modal__icons-wrapper">
+                {isEmailSentSuccessfully ? (
+                  <Image
+                    src="/mdi_tick.svg"
+                    alt="icon success"
+                    width={64}
+                    height={64}
+                  />
+                ) : (
+                  <Image
+                    src="/error-icon-close.svg"
+                    alt="icon error"
+                    width={64}
+                    height={64}
+                  />
+                )}
 
-              <Image
-                src="/close-bold.svg"
-                alt="close icon"
-                width={32}
-                height={32}
-                onClick={handlerCloseModal}
-              />
-            </div>
+                <Image
+                  src="/close-bold.svg"
+                  alt="close icon"
+                  width={32}
+                  height={32}
+                  onClick={handlerCloseModal}
+                />
+              </div>
 
-            <div className="modal__text-container">
-              <h2 className="modal__header">{isError}</h2>
-              {modalInfo}
+              <div className="modal__text-container">
+                <h2 className="modal__header">{isError}</h2>
+                {modalInfo}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );
