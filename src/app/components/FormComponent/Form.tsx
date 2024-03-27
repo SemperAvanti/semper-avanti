@@ -3,7 +3,7 @@
 import './Form.scss';
 
 import { useState, useEffect } from 'react';
-import { ZodType, z } from 'zod';
+import { ZodType, z, ZodIssue, ZodError } from 'zod';
 
 import { FormData } from '@/app/types/zod';
 import Button from '@/app/components/Button/Button';
@@ -11,7 +11,6 @@ import { Input } from '@/app/components/InputComponent/Input';
 import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
 import { FormInitialData } from '@/app/types/formInitialData';
 import { initialData } from '@/app/components/FormComponent/helper';
-import { ZodErrorMessage } from '@/app/types/ZodErrorMessage';
 import { Modal } from '@/app/components/ModalComponent/Modal';
 
 const formDataSchema: ZodType<FormData> = z.object({
@@ -21,11 +20,11 @@ const formDataSchema: ZodType<FormData> = z.object({
 
 export const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
-  const [errors, setErrors] = useState<ZodErrorMessage[]>([]);
+  const [errors, setErrors] = useState<ZodIssue[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [btnColor, setBtnColor] = useState<
     'primary' | 'secondary' | 'deactivated'
-  >('primary');
+  >('secondary');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [emailAddress, setEmailAddress] = useState('');
   const [isEmailSentSuccessfully, setIsEmailSentSuccessfully] = useState(true);
@@ -33,6 +32,22 @@ export const Form: React.FC = () => {
   useEffect((): void => {
     setErrors([]);
   }, [formData.fullname, formData.email]);
+
+  useEffect(() => {
+    const handleClick = (): void => {
+      setIsModalOpen(false);
+    };
+
+    if (isModalOpen) {
+      document.addEventListener('click', handleClick);
+      setIsSubmitting(false);
+      setBtnColor('secondary');
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [isModalOpen]);
 
   const handlerInput = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -54,30 +69,10 @@ export const Form: React.FC = () => {
 
     try {
       formDataSchema.parse(formData);
-      console.log(formData);
-
       setFormData(initialData);
-
       setIsSubmitting(true);
       setBtnColor('deactivated');
 
-      setIsSubmitting(false);
-      setBtnColor('primary');
-      setEmailAddress(formData.email);
-      setIsModalOpen(true);
-      setIsEmailSentSuccessfully(true);
-    } catch (error) {
-      //TODO poprawić to
-      // setErrors(error.errors);
-
-      if (formData.email.length > 0 && btnColor === 'primary') {
-        setIsModalOpen(false);
-        setIsEmailSentSuccessfully(false);
-        setEmailAddress(formData.email);
-      }
-    }
-
-    try {
       const response = await fetch('/api/mail', {
         method: 'POST',
         headers: {
@@ -85,18 +80,31 @@ export const Form: React.FC = () => {
         },
         body: JSON.stringify(formData),
       });
+
       if (response.ok) {
         console.log('Email sent successfully');
+        setEmailAddress(formData.email);
+        setIsModalOpen(true);
+        setIsEmailSentSuccessfully(true);
       } else {
-        console.error(`Failed to send email Status code: ${response.status}`);
+        setEmailAddress(formData.email);
+        setIsModalOpen(true);
+        setIsEmailSentSuccessfully(false);
       }
     } catch (error) {
-      console.error('Error sending email:', error);
+      if (error instanceof ZodError) {
+        setErrors(error.errors);
+      }
+      setIsModalOpen(false);
+      setIsEmailSentSuccessfully(false);
+      setEmailAddress(formData.email);
     }
   };
 
   const closeModal = (value: boolean): void => {
     setIsModalOpen(value);
+    setIsSubmitting(false);
+    setBtnColor('secondary');
   };
 
   return (
@@ -162,7 +170,7 @@ export const Form: React.FC = () => {
               </p>
             </div>
             <div className="form__input-elem">
-              <Button variant={'secondary'} name="Get info package" />
+              <Button variant={btnColor} name="Get info package" />
             </div>
           </div>
         </form>
