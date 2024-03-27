@@ -7,7 +7,7 @@
 
   width: 100vw;
   height: 100vh;
-  z-index: 2;
+  z-index: 1000;
 
   display: flex;
   justify-content: center;
@@ -108,10 +108,16 @@
   }
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-background-thirds;
+  z-index: 1000;
+}
+
 .overflow-hidden {
   overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  background-color: $color-background-thirds;
 }
