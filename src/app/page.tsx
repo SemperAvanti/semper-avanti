@@ -18,6 +18,7 @@ export default function Home() {
       <main>
         <HomePage />
         <SectionAboutUs />
+        <SectionAboutUs />
         <TrainingPage />
         <Aqu />
         {/* TODO fix ReferenceError: window is not defined */}
