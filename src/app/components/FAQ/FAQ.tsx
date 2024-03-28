@@ -40,7 +40,7 @@ export const FAQ: React.FC = () => {
         ))}
         <p className="description-text">
           Didn`t find the answer?{' '}
-          <a className="body-text" href="#">
+          <a className="body-text" href="#ContactUs">
             Contact us
           </a>
         </p>

@@ -20,7 +20,8 @@
     line-height: normal;
 
     & > a {
-      color: $color-primary;
+      color: index.$color-primary;
+      text-decoration: none;
     }
   }
 }
