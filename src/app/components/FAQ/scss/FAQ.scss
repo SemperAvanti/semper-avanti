@@ -1,5 +1,5 @@
-@use '../../../../styles/index.scss';
-@import '../../../../styles/mixins.scss';
+@import '@/styles/variables';
+@import '@/styles/mixins';
 
 .FAQ__container {
   & > h2 {
@@ -13,7 +13,7 @@
   & > p {
     margin-top: 24px;
     text-align: center;
-    color: index.$color-black;
+    color: $color-black;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -49,7 +49,7 @@
 }
 
 .description-text {
-  color: index.$color-description;
+  color: $color-description;
   margin-bottom: 9px;
 }
 

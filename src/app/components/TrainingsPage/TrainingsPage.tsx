@@ -17,7 +17,7 @@ const TrainingPage = () => {
 
         <div className="cards">
           <div className="cards__card cards__card--reverse">
-            <div className="cards__card__info">
+            <div className="cards__card__info" id="Trainings-malta">
               <TrainingCard
                 name="Malta"
                 term1="28.07.2024 - 03.08.2024 "
@@ -61,7 +61,7 @@ const TrainingPage = () => {
                 className="cards__card__image mobile-image"
               />
             </div>
-            <div className="cards__card__info">
+            <div className="cards__card__info" id="Trainings-canary">
               <TrainingCard
                 name="Malta"
                 term1="28.07.2024 - 03.08.2024 "
@@ -72,7 +72,10 @@ const TrainingPage = () => {
               />
             </div>
           </div>
-          <div className="cards__card cards__card--reverse">
+          <div
+            className="cards__card cards__card--reverse"
+            id="Trainings-ireland"
+          >
             <div className="cards__card__info">
               <TrainingCard
                 name="Malta"
