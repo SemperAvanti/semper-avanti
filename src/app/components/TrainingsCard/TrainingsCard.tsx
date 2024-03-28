@@ -27,8 +27,10 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
       <div className="training-card">
         <div className="training-card__nameContainer">
           <div className="training-card__name__container">
+          
+            <div className="training-card__blueLine">
             <h3 className="training-card__name">{name}</h3>
-            <div className="training-card__blueLine"></div>
+            </div>
           </div>
         </div>
 
