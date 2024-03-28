@@ -15,7 +15,10 @@ const HomePage = () => {
           Your trusted partner in professional development for educators.{' '}
         </p>
         <div className="home__button--desktop">
+          <a href="#Home-form">
           <Button name="Get info package" variant="primary" />
+          </a>
+          
         </div>
       </div>
       <Image
@@ -44,7 +47,10 @@ const HomePage = () => {
         </a>
       </div>
       <div className="home__button--mobile">
+        <a href="#Home-form">
         <Button name="Get info package" variant="secondary" />
+        </a>
+        
       </div>
     </section>
   );

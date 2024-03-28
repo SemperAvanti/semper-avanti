@@ -25,6 +25,7 @@ const TrainingPage = () => {
                 duration="7 days"
                 learningModule="yes"
                 requiredLevel="Basic"
+                link='#Home-form'
               />
             </div>
             <div className="cards__card__imageContainer">
@@ -69,6 +70,7 @@ const TrainingPage = () => {
                 duration="7 days"
                 learningModule="yes"
                 requiredLevel="Basic"
+                link='#Home-form'
               />
             </div>
           </div>
@@ -84,6 +86,7 @@ const TrainingPage = () => {
                 duration="7 days"
                 learningModule="yes"
                 requiredLevel="Basic"
+                link='#Home-form'
               />
             </div>
             <div className="cards__card__imageContainer">

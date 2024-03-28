@@ -103,7 +103,10 @@ const Menu = () => {
                 </div>
               </li>
               <div className="buttonContainer">
+                <a href="#Home-form">
                 <Button name="Get info" variant="secondary" />
+                </a>
+                
               </div>
             </ul>
           </nav>
@@ -118,7 +121,10 @@ const Menu = () => {
           height={45}
         />
         <div className="buttonContainerMob">
+          <a href="#Home-form">
           <Button name="Get info" variant="secondary" />
+          </a>
+          
           <a
             href={isOpen ? '#mobMenu' : '#main'}
             // href='#mobMenu'

@@ -1,5 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
+
 import './sectionAboutUs.scss';
+
 
 export const SectionAboutUs: React.FC = () => {
   return (
@@ -39,20 +40,21 @@ export const SectionAboutUs: React.FC = () => {
           </div>
         </div>
 
-        <img
-          className="sectionAboutUs--image"
-          alt="meeting-event"
-          srcSet="
-  images/meetingEvent-mobile.jpg 640w,
-  images/meetingEvent-tablet.jpg 1200w,
-    images/meetingEvent-desktop.jpg 1600w
-  "
-          sizes="
-    (max-width: 640px) 640px,
-    (min-width: 641px) and (max-width: 1200px) 1200px,
-    (min-width: 1201px) 1600px
-  "
-        />
+        <picture className="sectionAboutUs--image">
+          <source
+            media="(max-width:640px)"
+            srcSet="images/meetingEvent-mobile.jpg"
+          />
+          <source
+            media="(max-width:1200px)"
+            srcSet="images/meetingEvent-tablet.jpg"
+          />
+          <img
+            className="sectionAboutUs--image"
+            src="images/meetingEvent-desktop.jpg"
+            alt="meeting-event"
+          />
+        </picture>
       </div>
     </section>
   );

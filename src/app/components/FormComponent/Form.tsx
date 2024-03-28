@@ -100,7 +100,7 @@ export const Form: React.FC = () => {
   };
 
   return (
-    <section className="form">
+    <section className="form" id='Home-form'>
       <header className="form__header">
         <h2 className="form__header-text">Get more in our info package</h2>
         <p className="form__header-sub-text">
