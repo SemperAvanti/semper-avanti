@@ -104,9 +104,8 @@ const Menu = () => {
               </li>
               <div className="buttonContainer">
                 <a href="#Home-form">
-                <Button name="Get info" variant="secondary" />
+                  <Button name="Get info" variant="secondary" />
                 </a>
-                
               </div>
             </ul>
           </nav>
@@ -122,9 +121,9 @@ const Menu = () => {
         />
         <div className="buttonContainerMob">
           <a href="#Home-form">
-          <Button name="Get info" variant="secondary" />
+            <Button name="Get info" variant="secondary" />
           </a>
-          
+
           <a
             href={isOpen ? '#mobMenu' : '#main'}
             // href='#mobMenu'

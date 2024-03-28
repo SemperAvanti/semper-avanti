@@ -2,7 +2,6 @@
 @import '@/styles/mixins';
 @import '@/styles/typography';
 
-
 .sectionAboutUs {
   background-color: $color-background-primary;
   padding-bottom: 64px;
@@ -68,12 +67,9 @@
 
     order: 3;
 
-
     @include device(tablet) {
       margin-bottom: 32px;
       order: 1;
-
-      
     }
 
     @include device(mobile) {

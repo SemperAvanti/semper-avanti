@@ -96,16 +96,47 @@
       }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     &__imageContainer {
       grid-column: 1;
       position: relative;
       width: 100%;
       height: 100%;
       align-self: start;
+      background-color: red;
+      max-height: 542px;
+      max-width: 548px;
+
+      @include device(tablet) {
+        max-height: 436px;
+      }
 
       @include device(mobile) {
-        display: none;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 257px;
       }
+
+      // @include device(mobile) {
+      //   display: none;
+      // }
 
       &--mob {
         display: none;
@@ -133,4 +164,14 @@
     width: 100%;
     height: 100%;
   }
+}
+
+
+
+
+.cards__card__imageContainer-item {
+  height:100%;
+  width: 100%;
+
+  
 }

@@ -10,7 +10,7 @@ interface TrainingCardProps {
   duration: string;
   learningModule: string;
   requiredLevel: string;
-  link: string
+  link: string;
 }
 
 const TrainingCard: React.FC<TrainingCardProps> = ({
@@ -77,9 +77,8 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
         <div className="training-card__cont">
           <p className="training-card__info">Want more info?</p>
           <a href={`${link}`}>
-          <Button name="Get info package" variant="primary" />
+            <Button name="Get info package" variant="primary" />
           </a>
-          
         </div>
       </div>
     </>

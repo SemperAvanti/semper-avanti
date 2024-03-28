@@ -1,6 +1,4 @@
-
 import './sectionAboutUs.scss';
-
 
 export const SectionAboutUs: React.FC = () => {
   return (

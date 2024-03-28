@@ -25,10 +25,26 @@ const TrainingPage = () => {
                 duration="7 days"
                 learningModule="yes"
                 requiredLevel="Basic"
-                link='#Home-form'
+                link="#Home-form"
               />
             </div>
-            <div className="cards__card__imageContainer">
+
+            <picture className="cards__card__imageContainer">
+              <source
+                media="(max-width:640px)"
+                srcSet="images/ireland-mobile.jpg"
+              />
+              <source
+                media="(max-width:1200px)"
+                srcSet="images/ireland-tablet.jpg"
+              />
+              <img
+                className="cards__card__imageContainer-item"
+                src="images/ireland-desktop.jpg"
+                alt="meeting-event"
+              />
+            </picture>
+            {/* <div className="cards__card__imageContainer">
               <Image
                 src={'/Rectangle 24 (1).jpg'}
                 fill={true}
@@ -43,10 +59,10 @@ const TrainingPage = () => {
                 alt="Malta"
                 className="cards__card__image mobile-image"
               />
-            </div>
+            </div> */}
           </div>
           <div className="cards__card">
-            <div className="cards__card__imageContainer">
+            {/* <div className="cards__card__imageContainer">
               <Image
                 src={'/Rectangle 24 (1).jpg'}
                 fill={true}
@@ -61,7 +77,23 @@ const TrainingPage = () => {
                 alt="Malta"
                 className="cards__card__image mobile-image"
               />
-            </div>
+            </div> */}
+<picture className="cards__card__imageContainer">
+              <source
+                media="(max-width:640px)"
+                srcSet="images/ireland-mobile.jpg"
+              />
+              <source
+                media="(max-width:1200px)"
+                srcSet="images/ireland-tablet.jpg"
+              />
+              <img
+                className="cards__card__imageContainer-item"
+                src="images/ireland-desktop.jpg"
+                alt="meeting-event"
+              />
+            </picture>
+
             <div className="cards__card__info" id="Trainings-canary">
               <TrainingCard
                 name="Malta"
@@ -70,7 +102,7 @@ const TrainingPage = () => {
                 duration="7 days"
                 learningModule="yes"
                 requiredLevel="Basic"
-                link='#Home-form'
+                link="#Home-form"
               />
             </div>
           </div>
@@ -86,10 +118,10 @@ const TrainingPage = () => {
                 duration="7 days"
                 learningModule="yes"
                 requiredLevel="Basic"
-                link='#Home-form'
+                link="#Home-form"
               />
             </div>
-            <div className="cards__card__imageContainer">
+            {/* <div className="cards__card__imageContainer">
               <Image
                 src={'/Rectangle 24 (1).jpg'}
                 fill={true}
@@ -104,7 +136,22 @@ const TrainingPage = () => {
                 alt="Malta"
                 className="cards__card__image mobile-image"
               />
-            </div>
+            </div> */}
+            <picture className="cards__card__imageContainer">
+              <source
+                media="(max-width:640px)"
+                srcSet="images/ireland-mobile.jpg"
+              />
+              <source
+                media="(max-width:1200px)"
+                srcSet="images/ireland-tablet.jpg"
+              />
+              <img
+                className="cards__card__imageContainer-item"
+                src="images/ireland-desktop.jpg"
+                alt="meeting-event"
+              />
+            </picture>
           </div>
         </div>
       </section>

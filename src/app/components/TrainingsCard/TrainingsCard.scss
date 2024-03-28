@@ -2,6 +2,12 @@
 @import 'src/styles/variables.scss';
 
 .training-card {
+height: 100%;
+// background-color: red;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
   &__nameContainer {
     position: relative;
     width: min-content;

@@ -16,9 +16,8 @@ const HomePage = () => {
         </p>
         <div className="home__button--desktop">
           <a href="#Home-form">
-          <Button name="Get info package" variant="primary" />
+            <Button name="Get info package" variant="primary" />
           </a>
-          
         </div>
       </div>
       <Image
@@ -48,9 +47,8 @@ const HomePage = () => {
       </div>
       <div className="home__button--mobile">
         <a href="#Home-form">
-        <Button name="Get info package" variant="secondary" />
+          <Button name="Get info package" variant="secondary" />
         </a>
-        
       </div>
     </section>
   );

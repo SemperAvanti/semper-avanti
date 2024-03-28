@@ -11,7 +11,6 @@ import TrainingPage from './components/TrainingsPage/TrainingsPage';
 import HomePage from './components/Home/Home';
 import { ContactUs } from './components/ContactUs/ContactUs';
 
-
 export default function Home() {
   return (
     <>
