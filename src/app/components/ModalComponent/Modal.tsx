@@ -53,7 +53,7 @@ export const Modal: React.FC<Props> = ({
     <>
       {isOpen && (
         <>
-          <div className="modal-overlay"></div>
+          <div className="modal-overlay" onClick={handlerCloseModal}></div>
           <div className="modal">
             <div className="modal__container">
               <div className="modal__icons-wrapper">
