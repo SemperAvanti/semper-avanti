@@ -33,22 +33,6 @@ export const Form: React.FC = () => {
     setErrors([]);
   }, [formData.fullname, formData.email]);
 
-  useEffect(() => {
-    const handleClick = (): void => {
-      setIsModalOpen(false);
-    };
-
-    if (isModalOpen) {
-      document.addEventListener('click', handleClick);
-      setIsSubmitting(false);
-      setBtnColor('secondary');
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClick);
-    };
-  }, [isModalOpen]);
-
   const handlerInput = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ): void => {
