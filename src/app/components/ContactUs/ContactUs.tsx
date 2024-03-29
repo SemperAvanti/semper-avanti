@@ -3,7 +3,7 @@ import '../../../styles/typography.scss';
 
 export const ContactUs = () => {
   return (
-    <section className="ContactUs">
+    <section className="ContactUs" id="ContactUs">
       <div className="container">
         <h2 className="section-title">Contact Us</h2>
         <div className="ContactUs__flexContainer">

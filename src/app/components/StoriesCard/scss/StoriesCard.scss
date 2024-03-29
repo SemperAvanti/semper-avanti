@@ -1,9 +1,11 @@
+@use '@/styles/index';
+
 .stories__card {
   max-width: 262px;
   min-width: 262px;
   box-sizing: unset;
   background-color: white;
-  border: 1px solid grey;
+  border: 1px solid index.$color-grey-border;
   border-radius: 20px;
   overflow: hidden;
   color: black;

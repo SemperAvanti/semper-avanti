@@ -1,4 +1,6 @@
-@import '../../styles/index.scss';
+@import '@/styles/variables';
+@import '@/styles/mixins';
+@import '@/styles/typography';
 
 .sectionAboutUs {
   background-color: $color-background-primary;

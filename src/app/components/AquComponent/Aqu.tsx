@@ -47,8 +47,8 @@ export const Aqu = () => {
                 <Image
                   src={elem.icon}
                   alt={`icon of ${elem.title}`}
-                  width={24}
-                  height={24}
+                  width={40}
+                  height={40}
                 />
                 <h3 className="aqu-section__title">{elem.title}</h3>
                 <div className="aqu-section__text">{elem.text}</div>

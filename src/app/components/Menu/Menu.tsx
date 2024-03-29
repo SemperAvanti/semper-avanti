@@ -120,7 +120,8 @@ const Menu = () => {
         <div className="buttonContainerMob">
           <Button name="Get info" variant="secondary" />
           <a
-            href="#menu"
+            href={isOpen ? '#mobMenu' : '#main'}
+            // href='#mobMenu'
             onClick={handleClick}
             className="buttonContainerMob__open"
           >
@@ -143,80 +144,99 @@ const Menu = () => {
           </a>
         </div>
       </div>
-      {isOpen && (
-        <div className="mobileMenu" id="Menu">
-          <ul className="mobileMenu__list">
-            <li className="mobileMenu__item">
-              <a href="#Home" className="navigation__item">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#AboutUs" className="navigation__item">
-                About us
-              </a>
-            </li>
-            <li>
-              <a href="#Trainings" className="navigation__item">
-                Trainings
-              </a>
-            </li>
-            <li>
-              <a href="#Gallery" className="navigation__item">
-                Gallery
-              </a>
-            </li>
-            <li>
-              <a href="#Stories" className="navigation__item">
-                Stories
-              </a>
-            </li>
-            <li>
-              <a href="#Partners" className="navigation__item">
-                Partners
-              </a>
-            </li>
-            <li>
-              <a href="#FAQ" className="navigation__item">
-                FAQ
-              </a>
-            </li>
-            <li>
-              <div className="navigation__langList">
-                <div className="navigation__lang">
-                  <p>English</p>
-                  <button
-                    className="navigation__toggleLangs"
-                    onClick={toggleLanguages}
-                  >
-                    <Image
-                      src={'/Vector.svg'}
-                      alt="choose language"
-                      width={12}
-                      height={9}
-                    />
-                  </button>
-                </div>
-                {showLanguages && (
-                  <div className="languagesListContainer--mob">
-                    <ul className="languagesList">
-                      <button type="button" className="languagesList__button">
-                        Polish
-                      </button>
-                      <button type="button" className="languagesList__button">
-                        Spanish
-                      </button>
-                      <button type="button" className="languagesList__button">
-                        French
-                      </button>
-                    </ul>
-                  </div>
-                )}
+
+      <div className="mobileMenu" id="mobMenu">
+        <ul className="mobileMenu__list">
+          <li className="mobileMenu__item">
+            <a href="#Home" className="navigation__item" onClick={handleClick}>
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#AboutUs"
+              className="navigation__item"
+              onClick={handleClick}
+            >
+              About us
+            </a>
+          </li>
+          <li>
+            <a
+              href="#Trainings"
+              className="navigation__item"
+              onClick={handleClick}
+            >
+              Trainings
+            </a>
+          </li>
+          <li>
+            <a
+              href="#Gallery"
+              className="navigation__item"
+              onClick={handleClick}
+            >
+              Gallery
+            </a>
+          </li>
+          <li>
+            <a
+              href="#Stories"
+              className="navigation__item"
+              onClick={handleClick}
+            >
+              Stories
+            </a>
+          </li>
+          <li>
+            <a
+              href="#Partners"
+              className="navigation__item"
+              onClick={handleClick}
+            >
+              Partners
+            </a>
+          </li>
+          <li>
+            <a href="#FAQ" className="navigation__item" onClick={handleClick}>
+              FAQ
+            </a>
+          </li>
+          <li>
+            <div className="navigation__langList">
+              <div className="navigation__lang">
+                <p>English</p>
+                <button
+                  className="navigation__toggleLangs"
+                  onClick={toggleLanguages}
+                >
+                  <Image
+                    src={'/Vector.svg'}
+                    alt="choose language"
+                    width={12}
+                    height={9}
+                  />
+                </button>
               </div>
-            </li>
-          </ul>
-        </div>
-      )}
+              {showLanguages && (
+                <div className="languagesListContainer--mob">
+                  <ul className="languagesList">
+                    <button type="button" className="languagesList__button">
+                      Polish
+                    </button>
+                    <button type="button" className="languagesList__button">
+                      Spanish
+                    </button>
+                    <button type="button" className="languagesList__button">
+                      French
+                    </button>
+                  </ul>
+                </div>
+              )}
+            </div>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

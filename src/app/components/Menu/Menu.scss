@@ -1,11 +1,17 @@
-@import '@/styles/index.scss';
+@import '@/styles/variables';
+@import '@/styles/mixins';
 
 .header {
   height: 111px;
-  padding: 16px 0;
+  padding: 16px 0 0;
   background-color: $color-background-secondary;
-
-  &__logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  box-sizing: border-box;
+  background: #f7f7f7 &__logo {
     height: 79px;
     width: 70px;
   }
@@ -114,7 +120,31 @@
 }
 
 .mobileMenu {
-  transition: transform 0.5s ease-in-out;
+  background-color: $color-background-secondary;
+  transition: 0.25s ease-in-out;
+  transform: translateY(-100%);
+  position: fixed;
+  top: 111px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  box-sizing: border-box;
+
+  @include device(desktop) {
+    display: none;
+  }
+
+  @include device(tablet) {
+    top: 81px;
+  }
+
+  @include device(mobile) {
+    top: 79.3px;
+  }
+
+  &:target {
+    transform: translateX(0);
+  }
 
   &__list {
     list-style-type: none;
@@ -129,45 +159,17 @@
     transform: translateX(0);
     transition: transform 0.3s ease;
   }
-
-  @include device(desktop) {
-    display: none;
-  }
-
-  @include device(tablet) {
-    .mobileMenu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
-  @include device(mobile) {
-    .mobileMenu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      transform: translateX(0%);
-      transition: transform 0.5s ease-in-out;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-  }
 }
 
 .headerMobile {
   display: none;
   background-color: $color-background-secondary;
+  z-index: 99;
+  background: #f7f7f7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
   @include device(tablet) {
     display: flex;
@@ -175,6 +177,13 @@
     padding: 16px 24px;
     height: 45px;
     padding-top: 20px;
+    z-index: 99;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
   }
 
   @include device(mobile) {
@@ -183,6 +192,7 @@
     padding: 16px;
     height: 45px;
     padding-top: 18.5px;
+    z-index: 99;
   }
 }
 

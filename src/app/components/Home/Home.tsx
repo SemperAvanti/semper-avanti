@@ -33,13 +33,13 @@ const HomePage = () => {
         alt={'world map'}
       />
       <div className="home__links">
-        <a href="#Malta" className="home__item body-text">
+        <a href="#Trainings-malta" className="home__item body-text">
           Malta
         </a>
-        <a href="#Canary" className="home__item body-text">
+        <a href="#Trainings-canary" className="home__item body-text">
           Canary
         </a>
-        <a href="#Ireland" className="home__item body-text">
+        <a href="#Trainings-ireland" className="home__item body-text">
           Ireland
         </a>
       </div>

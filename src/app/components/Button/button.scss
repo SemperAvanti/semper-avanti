@@ -1,5 +1,5 @@
-@import '@/styles/index.scss';
-
+@import '@/styles/variables';
+@import '@/styles/mixins';
 .button {
   background-color: $color-primary;
   color: #fff;
@@ -26,6 +26,7 @@
     color: #aaa;
     cursor: not-allowed;
     pointer-events: none;
+    width: 100%;
   }
 
   &:hover {

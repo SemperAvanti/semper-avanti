@@ -1,5 +1,5 @@
-@use '../../../../styles/index.scss';
-@import '../../../../styles/mixins.scss';
+@use '@/styles/index';
+@import '@/styles/mixins';
 
 .FAQ__container {
   & > h2 {
@@ -21,6 +21,7 @@
 
     & > a {
       color: index.$color-primary;
+      text-decoration: none;
     }
   }
 }
@@ -28,11 +29,10 @@
 .container {
   &__accordion {
     max-width: 866px;
-    margin: 0 auto;
+    margin: 8px auto !important;
     padding: 15px 32px;
-    margin-bottom: 8px;
-    border-radius: 12px;
-    border: 1px solid #d9d9d9;
+    border-radius: 12px !important;
+    border: 1px solid index.$color-grey-border;
     overflow: hidden;
     box-shadow: unset;
     &--summary {
@@ -50,27 +50,4 @@
 .description-text {
   color: index.$color-description;
   margin-bottom: 9px;
-}
-
-.css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
-  margin: 0 auto;
-}
-
-.css-o4b71y-MuiAccordionSummary-content {
-  margin: 0 auto;
-}
-
-.css-1c35hjw-MuiPaper-root-MuiAccordion-root.Mui-expanded {
-  margin: 0 auto;
-  margin-bottom: 16px;
-}
-
-.css-1c35hjw-MuiPaper-root-MuiAccordion-root:first-of-type {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.css-1c35hjw-MuiPaper-root-MuiAccordion-root:last-of-type {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
 }

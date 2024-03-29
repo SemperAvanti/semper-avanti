@@ -25,7 +25,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     desktopSmall: 4,
     tabletBig: 3,
     tabletSmall: 2,
-    mobile: 1,
+    mobile: 1.5,
   };
 
   const updateSlidesPerView = () => {
