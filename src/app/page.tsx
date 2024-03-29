@@ -7,7 +7,7 @@ import { SectionAboutUs } from '@/components/SectionAbout/SectionAboutUs';
 import { FAQ } from './components/FAQ/FAQ';
 import { Footer } from './components/Footer/Footer';
 import TrainingPage from './components/TrainingsPage/TrainingsPage';
-// import Gallery from './components/GalleryComponent/Gallery';
+import Gallery from './components/GalleryComponent/Gallery';
 import HomePage from './components/Home/Home';
 import { ContactUs } from './components/ContactUs/ContactUs';
 
@@ -21,8 +21,7 @@ export default function Home() {
         <SectionAboutUs />
         <TrainingPage />
         <Aqu />
-        {/* TODO fix ReferenceError: window is not defined */}
-        {/* <Gallery /> */}
+        <Gallery />
         <Form />
         <SliderComponent
           partners={false}

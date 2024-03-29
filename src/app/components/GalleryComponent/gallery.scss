@@ -63,8 +63,6 @@
   }
 
   @include device(mobile) {
-    width: 343px;
-    height: 427px;
     width: 100% !important;
     height: auto;
   }

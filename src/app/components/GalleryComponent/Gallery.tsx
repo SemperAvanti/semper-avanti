@@ -2,21 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import './gallery.scss';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
 
 const Gallery = () => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };
 
-    window.addEventListener('resize', handleResize);
+    if (typeof window !== 'undefined') {
+      setWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
   }, []);
 
   const slidesAmount = {
@@ -25,7 +29,7 @@ const Gallery = () => {
   };
 
   const updateSlidesPerView = () => {
-    const width = window.innerWidth;
+    const width = window.screen.width;
     if (swiper && swiper.params) {
       switch (true) {
         case width > 750:
@@ -41,13 +45,7 @@ const Gallery = () => {
 
   useEffect(() => {
     updateSlidesPerView();
-
-    window.addEventListener('resize', updateSlidesPerView);
-
-    return () => {
-      window.removeEventListener('resize', updateSlidesPerView);
-    };
-  }, [swiper]);
+  }, [width]);
 
   const Buttons = () => {
     return (
@@ -130,27 +128,33 @@ const Gallery = () => {
           {width > 1200 && (
             <div className="gallery__pictures">
               <div className="gallery__picture">
-                <img
+                <Image
                   className="gallery__picture--image"
                   alt="Malta"
-                  srcSet="images/gallery1.jpg 640w"
+                  src="images/gallery1.jpg"
                   sizes="(max-width: 640px) 640px"
+                  width={357}
+                  height={444}
                 />
               </div>
               <div className="gallery__picture">
-                <img
+                <Image
                   className="gallery__picture--image"
                   alt="Ireland"
-                  srcSet="images/gallery2.jpg 640w"
+                  src="images/gallery2.jpg"
                   sizes="(max-width: 640px) 640px"
+                  width={357}
+                  height={444}
                 />
               </div>
               <div className="gallery__picture">
-                <img
+                <Image
                   className="gallery__picture--image"
                   alt="Canary Isl"
-                  srcSet="images/gallery3.jpg 640w"
+                  src="images/gallery3.jpg"
                   sizes="(max-width: 640px) 640px"
+                  width={357}
+                  height={444}
                 />
               </div>
             </div>
@@ -178,28 +182,34 @@ const Gallery = () => {
                   <>
                     <SwiperSlide className="swiper__slide">
                       <div className="gallery__picture">
-                        <img
+                        <Image
                           className="gallery__picture--image"
                           alt="malta"
-                          srcSet="images/gallery1.jpg"
+                          src="images/gallery1.jpg"
+                          width={357}
+                          height={444}
                         />
                       </div>
                     </SwiperSlide>
                     <SwiperSlide className="swiper__slide">
                       <div className="gallery__picture">
-                        <img
+                        <Image
                           className="gallery__picture--image"
                           alt="malta"
-                          srcSet="images/gallery2.jpg"
+                          src="images/gallery2.jpg"
+                          width={357}
+                          height={444}
                         />
                       </div>
                     </SwiperSlide>
                     <SwiperSlide className="swiper__slide">
                       <div className="gallery__picture">
-                        <img
+                        <Image
                           className="gallery__picture--image"
                           alt="malta"
-                          srcSet="images/gallery3.jpg"
+                          src="images/gallery3.jpg"
+                          width={357}
+                          height={444}
                         />
                       </div>
                     </SwiperSlide>
