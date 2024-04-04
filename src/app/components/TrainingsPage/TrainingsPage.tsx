@@ -114,10 +114,3 @@ const TrainingPage = () => {
 };
 
 export default TrainingPage;
-
-<h1>
-<span>
-  <div></div>
-</span>
-</h1>
-
