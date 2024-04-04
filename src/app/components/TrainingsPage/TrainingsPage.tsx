@@ -65,7 +65,7 @@ const TrainingPage = () => {
 
               <div className="cards__card__info" id="Trainings-canary">
                 <TrainingCard
-                  name="Canary island"
+                  name="Canary island ddddddddddddd"
                   term1="13-19.07.2024 "
                   term2="20.07-26.07.2024"
                   duration="7 days"
@@ -114,3 +114,10 @@ const TrainingPage = () => {
 };
 
 export default TrainingPage;
+
+<h1>
+<span>
+  <div></div>
+</span>
+</h1>
+

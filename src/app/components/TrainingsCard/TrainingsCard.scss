@@ -19,7 +19,7 @@
     letter-spacing: -0.48px;
     text-transform: uppercase;
     z-index: 1;
-  
+
     &__container {
       position: relative;
     }
@@ -72,21 +72,21 @@
   &__blueLine {
     background: $blue-line;
     height: 36px;
-     width: 100%;
+    width: 100%;
     position: absolute;
-     bottom: 0; 
-     left: 0;
-     z-index: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
 
-     background: rgba(94, 160, 248, 0.5);
+    background: rgba(94, 160, 248, 0.5);
 
-     @include device(tablet) {
+    @include device(tablet) {
       height: 30.4px;
-     }
+    }
 
-     @include device(mobile) {
+    @include device(mobile) {
       height: 30.4px;
-     }
+    }
   }
 
   &__left {
@@ -138,12 +138,19 @@
   }
 }
 
-
 .training-card__name {
-display: block;
+  display: block;
 }
 
 .training-card__titleWrapper {
   position: relative;
+
+  &--top {
+    position:absolute;
+    top:0;
+    left: 0;
+    right: 0;
+  }
 }
+
 
