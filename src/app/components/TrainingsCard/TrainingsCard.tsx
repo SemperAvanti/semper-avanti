@@ -26,12 +26,13 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
     <>
       <div className="training-card">
         <div className="training-card__nameContainer">
+          <h3 className="training-card__name">
+            <span className="training-card__titleWrapper">
+              <div className="training-card__blueLine"></div>
+              {name}
+            </span>
 
-        <h3 className="training-card__name">
-          <span className='training-card__titleWrapper'>
-          {name}
-          <div className='training-card__blueLine'></div>
-          </span>
+            <span className="training-card__titleWrapper--top"> {name}</span>
           </h3>
         </div>
 
