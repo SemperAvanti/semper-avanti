@@ -32,7 +32,7 @@ export const Footer = () => {
 
         <div className="Footer__bottomLabel">
           <p className="Footer__bottomLabel--description">
-            Alliance for Quality Education. All right reserved
+            Alliance for Quality Education. All rights reserved.
           </p>
 
           <a

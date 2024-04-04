@@ -54,7 +54,7 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
             <p className="training-card__right">{duration}</p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">Learning Module:</p>
+            <p className="training-card__left">LEARNING ENGLISH MODULE</p>
             <p className="training-card__right">
               {learningModule === 'yes' ? (
                 <Image
@@ -74,7 +74,7 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
             </p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">Required English Level:</p>
+            <p className="training-card__left">REQUIRED ENGLISH LEVEL</p>
             <p className="training-card__right">{requiredLevel}</p>
           </div>
         </div>
