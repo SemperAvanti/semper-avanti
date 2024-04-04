@@ -39,7 +39,7 @@ export const FAQ: React.FC = () => {
           </Accordion>
         ))}
         <p className="description-text">
-          Didn`t find the answer?{' '}
+          Didn&apos;t find the answer?{' '}
           <a className="body-text" href="#ContactUs">
             Contact us
           </a>

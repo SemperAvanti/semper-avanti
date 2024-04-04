@@ -39,6 +39,7 @@ export const Slider: React.FC<SliderProps> = ({
                 disableOnInteraction: false,
               }}
               loop
+              centeredSlides
               //Parametry mogą być różne w zależności od slidera
               spaceBetween={spaceBetween}
               slidesPerView={slidesPerView}
