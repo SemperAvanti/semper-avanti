@@ -52,6 +52,7 @@
 
   @include device(tablet) {
     grid-template-rows: 436px 436px 436px;
+    row-gap: 88px;
   }
 
   @include device(mobile) {
@@ -102,20 +103,21 @@
       width: 100%;
       height: 100%;
       align-self: start;
+      max-height: 542px;
+      max-width: 548px;
+      margin: 0 auto;
+
+      @include device(tablet) {
+        max-height: 436px;
+      }
 
       @include device(mobile) {
-        display: none;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 257px;
       }
 
-      &--mob {
-        display: none;
-        @include device(mobile) {
-          display: block;
-          position: relative;
-          width: 100%;
-          height: 257px;
-        }
-      }
     }
 
     &:nth-child(even) .cards__card__info,
@@ -133,4 +135,9 @@
     width: 100%;
     height: 100%;
   }
+}
+
+.cards__card__imageContainer-item {
+  height: 100%;
+  width: 100%;
 }

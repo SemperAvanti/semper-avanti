@@ -2,9 +2,13 @@
 @import 'src/styles/variables.scss';
 
 .training-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   &__nameContainer {
-    position: relative;
-    width: min-content;
+    width: fit-content;
   }
 
   &__name {
@@ -15,9 +19,7 @@
     letter-spacing: -0.48px;
     text-transform: uppercase;
     z-index: 1;
-    display: inline-block;
-    position: relative;
-
+  
     &__container {
       position: relative;
     }
@@ -49,10 +51,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 453px;
     font-size: 24px;
     font-style: normal;
     margin: 12px 0;
+    width: 100%;
 
     @include device(tablet) {
       font-size: 16px;
@@ -69,13 +71,22 @@
 
   &__blueLine {
     background: $blue-line;
-    height: 50%;
-    width: 100%;
+    height: 36px;
+     width: 100%;
     position: absolute;
-    position: absolute;
-    bottom: 0; // Align with the bottom of the title
-    left: 0;
-    z-index: 0;
+     bottom: 0; 
+     left: 0;
+     z-index: 0;
+
+     background: rgba(94, 160, 248, 0.5);
+
+     @include device(tablet) {
+      height: 30.4px;
+     }
+
+     @include device(mobile) {
+      height: 30.4px;
+     }
   }
 
   &__left {
@@ -126,3 +137,13 @@
     }
   }
 }
+
+
+.training-card__name {
+display: block;
+}
+
+.training-card__titleWrapper {
+  position: relative;
+}
+

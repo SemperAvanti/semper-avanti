@@ -10,6 +10,7 @@ interface TrainingCardProps {
   duration: string;
   learningModule: string;
   requiredLevel: string;
+  link: string;
 }
 
 const TrainingCard: React.FC<TrainingCardProps> = ({
@@ -19,15 +20,19 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
   duration,
   learningModule,
   requiredLevel,
+  link,
 }) => {
   return (
     <>
       <div className="training-card">
         <div className="training-card__nameContainer">
-          <div className="training-card__name__container">
-            <h3 className="training-card__name">{name}</h3>
-            <div className="training-card__blueLine"></div>
-          </div>
+
+        <h3 className="training-card__name">
+          <span className='training-card__titleWrapper'>
+          {name}
+          <div className='training-card__blueLine'></div>
+          </span>
+          </h3>
         </div>
 
         <div className="training-card__terms">
@@ -74,7 +79,9 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
         </div>
         <div className="training-card__cont">
           <p className="training-card__info">Want more info?</p>
-          <Button name="Get info package" variant="primary" />
+          <a href={`${link}`}>
+            <Button name="Get info package" variant="primary" />
+          </a>
         </div>
       </div>
     </>
