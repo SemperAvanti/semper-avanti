@@ -1,5 +1,6 @@
-@use '@/styles/index';
+//@use '@/styles/typography';
 @import '@/styles/mixins';
+@import '@/styles/variables';
 
 .FAQ__container {
   & > h2 {
@@ -13,14 +14,14 @@
   & > p {
     margin-top: 24px;
     text-align: center;
-    color: index.$color-black;
+    color: $color-black;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 
     & > a {
-      color: index.$color-primary;
+      color: $color-primary;
       text-decoration: none;
     }
   }
@@ -32,9 +33,10 @@
     margin: 8px auto !important;
     padding: 15px 32px;
     border-radius: 12px !important;
-    border: 1px solid index.$color-grey-border;
+    border: 1px solid $color-grey-border;
     overflow: hidden;
     box-shadow: unset;
+
     &--summary {
       padding: 0;
       margin: 0;
@@ -43,11 +45,15 @@
 
     &--details {
       padding: 0;
+
+      & > p {
+        font-family: '__Poppins_10da0e', '__Poppins_Fallback_10da0e';
+      }
     }
   }
 }
 
 .description-text {
-  color: index.$color-description;
+  color: $color-description;
   margin-bottom: 9px;
 }
