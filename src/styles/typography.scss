@@ -1,7 +1,7 @@
 @import './mixins.scss';
 @import './variables.scss';
 
-$font-family: 'Poppins', sans-serif;
+$font-family: '__Poppins_10da0e', '__Poppins_Fallback_10da0e';
 
 $h1-font-size: 64px;
 $h1-weight: 600;
@@ -49,7 +49,6 @@ $description-text-line-height: 24px;
 $description-text-letter-spacing: 0em;
 
 .H1 {
-  font-family: 'Poppins', sans-serif;
   font-size: 64px;
   font-weight: 600;
   line-height: 83px;
@@ -58,7 +57,6 @@ $description-text-letter-spacing: 0em;
 }
 
 .H2 {
-  font-family: 'Poppins', sans-serif;
   font-size: 60px;
   font-weight: 600;
   line-height: 72px;
@@ -67,7 +65,7 @@ $description-text-letter-spacing: 0em;
 }
 
 .H3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-family;
   font-size: 48px;
   font-weight: 600;
   line-height: 72px;
@@ -76,7 +74,7 @@ $description-text-letter-spacing: 0em;
 }
 
 .H4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-family;
   font-size: 40px;
   font-weight: 500;
   line-height: 60px;
@@ -85,7 +83,7 @@ $description-text-letter-spacing: 0em;
 }
 
 .H5 {
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-family;
   font-size: 32px;
   font-weight: 500;
   line-height: 48px;
@@ -94,7 +92,7 @@ $description-text-letter-spacing: 0em;
 }
 
 .big-body-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-family;
   font-size: 24px;
   font-weight: 400;
   line-height: 36px;
@@ -103,7 +101,7 @@ $description-text-letter-spacing: 0em;
 }
 
 .accented-body {
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-family;
   font-size: 24px;
   font-weight: 500;
   line-height: 36px;
@@ -112,7 +110,7 @@ $description-text-letter-spacing: 0em;
 }
 
 .body-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-family;
   font-size: 20px;
   font-weight: 500;
   line-height: 30px;
@@ -121,7 +119,7 @@ $description-text-letter-spacing: 0em;
 }
 
 .descriptionText {
-  font-family: 'Poppins', sans-serif;
+  font-family: $font-family;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -134,23 +132,5 @@ $description-text-letter-spacing: 0em;
 
   &--gray {
     color: #6c6c6c;
-  }
-}
-
-.section-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 60px;
-  font-weight: 600;
-  line-height: 72px;
-  letter-spacing: -0.02em;
-  text-align: left;
-
-  @include device(mobile) {
-    font-family: 'Poppins', sans-serif;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 36px;
-    letter-spacing: 0em;
-    text-align: left;
   }
 }

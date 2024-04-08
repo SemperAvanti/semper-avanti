@@ -19,8 +19,8 @@ export default function Home() {
         <HomePage />
 
         <SectionAboutUs />
-        <TrainingPage />
         <Aqu />
+        <TrainingPage />
         <Gallery />
         <Form />
         <SliderComponent

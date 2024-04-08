@@ -3,6 +3,9 @@
 @import './typography.scss';
 @import './mixins.scss';
 
+:root {
+}
+
 html {
   position: relative;
   background-color: #f7f7f7;
@@ -12,6 +15,7 @@ html {
 
 main {
   background-color: $color-background-secondary;
+  font-family: '__Poppins_10da0e', '__Poppins_Fallback_10da0e';
 }
 
 section {

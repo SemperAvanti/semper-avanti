@@ -35,7 +35,7 @@ export const Slider: React.FC<SliderProps> = ({
                 setSwiper(swiperInstance)
               }
               autoplay={{
-                delay: 1000,
+                delay: 3000,
                 disableOnInteraction: false,
               }}
               loop
