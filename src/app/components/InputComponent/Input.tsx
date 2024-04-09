@@ -50,7 +50,8 @@ export const Input: React.FC<Props> = ({
             onChange={onChange}
             placeholder={placeholder}
             disabled={isDisabled}
-          />
+            maxLength={255}
+          /> 
           {errors &&
             errors.length > 0 &&
             errors.map((error, index) => {
@@ -65,6 +66,7 @@ export const Input: React.FC<Props> = ({
             })}
         </div>
       </div>
-    </div>
+      </div>
+    
   );
 };
