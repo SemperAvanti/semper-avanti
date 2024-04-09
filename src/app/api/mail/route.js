@@ -14,7 +14,7 @@ export async function POST(req) {
       from: 'onboarding@resend.dev',
       to: email,
       subject: `Congrats ${fullname}!!`,
-      html: `<p>Congrats ${fullname} you just recived an email!</p>
+      html: `<p>Congrats ${fullname} you just received an email!</p>
                 <a href="https://drive.google.com/file/d/1tpTqAmvVl0XNamKNzJEvs6dqTrPJQdkG/view?usp=sharing">LINK</a>`,
     });
 
