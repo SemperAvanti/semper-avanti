@@ -1,11 +1,12 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showLanguages, setShowLanguages] = useState(false);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -15,10 +16,30 @@ const Menu = () => {
     }
   };
 
-  const [showLanguages, setShowLanguages] = useState(false);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        showLanguages &&
+        event.target &&
+        !(event.target as HTMLElement).closest('.navigation__langList')
+      ) {
+        setShowLanguages(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [showLanguages]);
 
   const toggleLanguages = () => {
     setShowLanguages(!showLanguages);
+  };
+
+  const handleLanguageSelection = () => {
+    setShowLanguages(false);
   };
 
   return (
@@ -88,13 +109,25 @@ const Menu = () => {
                   {showLanguages && (
                     <div className="languagesListContainer">
                       <ul className="languagesList">
-                        <button type="button" className="languagesList__button">
+                        <button
+                          type="button"
+                          className="languagesList__button"
+                          onClick={handleLanguageSelection}
+                        >
                           Polish
                         </button>
-                        <button type="button" className="languagesList__button">
+                        <button
+                          type="button"
+                          className="languagesList__button"
+                          onClick={handleLanguageSelection}
+                        >
                           Spanish
                         </button>
-                        <button type="button" className="languagesList__button">
+                        <button
+                          type="button"
+                          className="languagesList__button"
+                          onClick={handleLanguageSelection}
+                        >
                           French
                         </button>
                       </ul>
@@ -226,13 +259,25 @@ const Menu = () => {
               {showLanguages && (
                 <div className="languagesListContainer--mob">
                   <ul className="languagesList">
-                    <button type="button" className="languagesList__button">
+                    <button
+                      type="button"
+                      className="languagesList__button"
+                      onClick={handleLanguageSelection}
+                    >
                       Polish
                     </button>
-                    <button type="button" className="languagesList__button">
+                    <button
+                      type="button"
+                      className="languagesList__button"
+                      onClick={handleLanguageSelection}
+                    >
                       Spanish
                     </button>
-                    <button type="button" className="languagesList__button">
+                    <button
+                      type="button"
+                      className="languagesList__button"
+                      onClick={handleLanguageSelection}
+                    >
                       French
                     </button>
                   </ul>
