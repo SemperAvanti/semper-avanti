@@ -36,14 +36,47 @@ export const Form: React.FC = () => {
   const handlerInput = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ): void => {
-    const { name, value, type } = event.target;
+    const { name, value } = event.target;
 
-    setFormData(
-      (prev): FormInitialData => ({
-        ...prev,
-        [name]: type === 'checkbox' ? !prev.checkbox : value,
-      }),
-    );
+    
+    const onlyLettersRegex = /^[A-Za-z\u00C0-\u024F\s]*$/;
+    
+    const emailRegex = /^[a-zA-Z0-9.@_-]*$/;
+
+    
+    
+
+
+    switch (name) {
+      case 'fullname':
+      case 'country':
+        if (onlyLettersRegex.test(value)) {
+          setFormData(prev => ({
+            ...prev,
+            [name]: value,
+          }));
+        }
+        break;
+    
+      case 'email':
+        if (emailRegex.test(value)) {
+          setFormData(prev => ({
+            ...prev,
+            [name]: value,
+          }));
+        }
+        break;
+    
+      case 'checkbox':
+        setFormData(prev => ({
+          ...prev,
+          [name]: !prev.checkbox,
+        }));
+        break;
+    
+      default:
+        break;
+      }
   };
 
   const handleSubmit = async (
@@ -154,7 +187,10 @@ export const Form: React.FC = () => {
               </p>
             </div>
             <div className="form__input-elem">
-              <Button variant={btnColor} name="Get info package" />
+              <Button
+                variant={formData.checkbox ? btnColor : 'deactivated'}
+                name="Get info package"
+              />
             </div>
           </div>
         </form>

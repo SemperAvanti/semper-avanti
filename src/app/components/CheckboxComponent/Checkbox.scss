@@ -17,15 +17,17 @@
 
     input[type='checkbox']::before {
       content: '';
-      position: absolute;
+     
 
       width: 18px;
       height: 18px;
       background-color: $color-green;
       border-radius: 4px;
       opacity: 0;
-      margin-left: 2px;
-      margin-top: 2px;
+      
+       margin: auto;
+       
+      
     }
 
     input[type='checkbox']:checked::before {
@@ -33,3 +35,10 @@
     }
   }
 }
+
+.checkbox__item {
+  position: relative;
+  margin: auto;
+  display: flex;
+}
+

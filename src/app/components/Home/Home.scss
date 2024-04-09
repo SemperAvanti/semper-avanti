@@ -67,6 +67,7 @@
     max-width: 262px;
     gap: 5px;
     padding-bottom: 64px;
+    text-decoration-skip-ink: none;
 
     @include device(mobile) {
       padding-bottom: 40px;
