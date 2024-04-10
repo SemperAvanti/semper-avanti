@@ -37,46 +37,39 @@ export const Form: React.FC = () => {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ): void => {
     const { name, value } = event.target;
-
-    
     const onlyLettersRegex = /^[A-Za-z\u00C0-\u024F\s]*$/;
-    
     const emailRegex = /^[a-zA-Z0-9.@_-]*$/;
-
-    
-    
-
 
     switch (name) {
       case 'fullname':
       case 'country':
         if (onlyLettersRegex.test(value)) {
-          setFormData(prev => ({
+          setFormData((prev) => ({
             ...prev,
             [name]: value,
           }));
         }
         break;
-    
+
       case 'email':
         if (emailRegex.test(value)) {
-          setFormData(prev => ({
+          setFormData((prev) => ({
             ...prev,
             [name]: value,
           }));
         }
         break;
-    
+
       case 'checkbox':
-        setFormData(prev => ({
+        setFormData((prev) => ({
           ...prev,
           [name]: !prev.checkbox,
         }));
         break;
-    
+
       default:
         break;
-      }
+    }
   };
 
   const handleSubmit = async (
