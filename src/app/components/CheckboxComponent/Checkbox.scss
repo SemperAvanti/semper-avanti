@@ -1,7 +1,15 @@
 @import '@/styles/variables';
 
 .checkbox {
+  &__item {
+    margin: 0;
+  }
+
   &__wrapper-item {
+    width: 24px;
+    height: 24px;
+    position: relative;
+
     input[type='checkbox'] {
       appearance: none;
       -webkit-appearance: none;
@@ -13,21 +21,21 @@
       background-color: transparent;
       outline: none;
       cursor: pointer;
+      box-sizing: border-box;
     }
 
     input[type='checkbox']::before {
       content: '';
-     
 
       width: 18px;
       height: 18px;
       background-color: $color-green;
       border-radius: 4px;
       opacity: 0;
-      
-       margin: auto;
-       
-      
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     input[type='checkbox']:checked::before {
@@ -35,10 +43,3 @@
     }
   }
 }
-
-.checkbox__item {
-  position: relative;
-  margin: auto;
-  display: flex;
-}
-

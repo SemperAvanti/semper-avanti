@@ -125,13 +125,13 @@ const Gallery = () => {
               teachers.
             </p>
           </div>
-          {width > 1200 && (
+          {width >= 1200 && (
             <div className="gallery__pictures">
               <div className="gallery__picture">
                 <Image
                   className="gallery__picture--image"
                   alt="Malta"
-                  src="images/gallery1.jpg"
+                  src="/images/gallery1.jpg"
                   sizes="(max-width: 640px) 640px"
                   width={357}
                   height={444}
@@ -141,7 +141,7 @@ const Gallery = () => {
                 <Image
                   className="gallery__picture--image"
                   alt="Ireland"
-                  src="images/gallery2.jpg"
+                  src="/images/gallery2.jpg"
                   sizes="(max-width: 640px) 640px"
                   width={357}
                   height={444}
@@ -151,7 +151,7 @@ const Gallery = () => {
                 <Image
                   className="gallery__picture--image"
                   alt="Canary Isl"
-                  src="images/gallery3.jpg"
+                  src="/images/gallery3.jpg"
                   sizes="(max-width: 640px) 640px"
                   width={357}
                   height={444}
@@ -185,7 +185,7 @@ const Gallery = () => {
                         <Image
                           className="gallery__picture--image"
                           alt="malta"
-                          src="images/gallery1.jpg"
+                          src="/images/gallery1.jpg"
                           width={357}
                           height={444}
                         />
@@ -196,7 +196,7 @@ const Gallery = () => {
                         <Image
                           className="gallery__picture--image"
                           alt="malta"
-                          src="images/gallery2.jpg"
+                          src="/images/gallery2.jpg"
                           width={357}
                           height={444}
                         />
@@ -207,7 +207,7 @@ const Gallery = () => {
                         <Image
                           className="gallery__picture--image"
                           alt="malta"
-                          src="images/gallery3.jpg"
+                          src="/images/gallery3.jpg"
                           width={357}
                           height={444}
                         />

@@ -35,7 +35,7 @@ export const Slider: React.FC<SliderProps> = ({
                 setSwiper(swiperInstance)
               }
               autoplay={{
-                delay: 3000,
+                delay: 2300,
                 disableOnInteraction: false,
               }}
               loop
@@ -50,12 +50,13 @@ export const Slider: React.FC<SliderProps> = ({
               {/* poglądowe, zamienić na dynamiczne  */}
 
               {partners
-                ? Array.from({ length: 8 }).map((_, index) => (
+                ? Array.from({ length: 82 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
                       <PartnersCard />
+                      
                     </SwiperSlide>
                   ))
-                : Array.from({ length: 12 }).map((_, index) => (
+                : Array.from({ length: 122 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
                       <StoriesCard />
                     </SwiperSlide>

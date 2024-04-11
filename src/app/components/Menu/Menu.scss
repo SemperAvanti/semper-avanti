@@ -61,12 +61,37 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+
+
+    position: relative;  
+
+   
+    
   }
 
   &__lang {
     display: flex;
     align-items: center;
     position: relative;
+
+    &:hover {
+      cursor: pointer; 
+    }
+
+    &--text {
+      user-select: none;
+      &:hover::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background-color: #191919;
+        height: 3px;
+    }
+    }
   }
 
   &__toggleLangs {
@@ -237,12 +262,20 @@
 
 .languagesListContainer {
   position: absolute;
-  top: 70px;
+  
+  top: 24px;
   width: 7%;
   z-index: 9999;
 
   &--mob {
     position: absolute;
-    top: 76%;
+    top: 20px;
   }
 }
+
+
+
+
+
+
+
