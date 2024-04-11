@@ -7,8 +7,21 @@ const HomePage = () => {
     <section className="home" id="Home">
       <div className="home__title">
         <div className="home__title__container">
+        <h1 className="home__h1">
+          <span className='home--titleWrapper'>
+          Empower with AQE Educate.
           <div className="blueLine"></div>
-          <h1 className="home__h1">Empower with AQE Educate.</h1>
+          </span>
+
+          <span className='home--titleWrapper--top'>
+          Empower with AQE Educate.
+          
+          </span>
+        </h1>
+          
+          
+          
+          
         </div>
 
         <p className="home__text ">

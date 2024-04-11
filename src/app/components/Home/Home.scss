@@ -147,15 +147,35 @@
 .blueLine {
   background: rgba(94, 160, 248, 0.5);
   height: 25%;
-  width: 90%;
+  width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
+  
   z-index: 0;
+
+  transform: translateY(-10%);
 
   @include device(mobile) {
     height: 24px;
-    top: 70%;
-    width: 77%;
+    //top: 70%;
+    
+  }
+}
+
+
+
+.home__title__container {
+
+}
+
+.home--titleWrapper {
+  position: relative;
+
+  &--top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 }

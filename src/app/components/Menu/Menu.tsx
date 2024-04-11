@@ -92,11 +92,12 @@ const Menu = () => {
               </li>
               <li>
                 <div className="navigation__langList">
-                  <div className="navigation__lang">
-                    <p>English</p>
+                  <label htmlFor='langButtonDesktop' className="navigation__lang">
+                    <p className='navigation__lang--text'>English</p>
                     <button
                       className="navigation__toggleLangs"
                       onClick={toggleLanguages}
+                      id='langButtonDesktop'
                     >
                       <Image
                         src={'/Vector.svg'}
@@ -105,7 +106,7 @@ const Menu = () => {
                         height={16}
                       />
                     </button>
-                  </div>
+                  </label>
                   {showLanguages && (
                     <div className="languagesListContainer">
                       <ul className="languagesList">
@@ -242,11 +243,13 @@ const Menu = () => {
           </li>
           <li>
             <div className="navigation__langList">
-              <div className="navigation__lang">
-                <p>English</p>
+              
+                <label className='navigation__lang' htmlFor="languageButton">
+                <p className='navigation__lang--text'>English</p>
                 <button
                   className="navigation__toggleLangs"
                   onClick={toggleLanguages}
+                  id='languageButton'
                 >
                   <Image
                     src={'/Vector.svg'}
@@ -255,7 +258,9 @@ const Menu = () => {
                     height={9}
                   />
                 </button>
-              </div>
+                </label>
+                
+              
               {showLanguages && (
                 <div className="languagesListContainer--mob">
                   <ul className="languagesList">
@@ -283,6 +288,7 @@ const Menu = () => {
                   </ul>
                 </div>
               )}
+              <div className='test'></div>
             </div>
           </li>
         </ul>
