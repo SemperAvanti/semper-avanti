@@ -35,7 +35,7 @@ const HomePage = () => {
       </div>
       <Image
         src={'/World Map (1).png'}
-        className="home__worldMap"
+        className="home__worldMap home__worldMap--animate-on-scroll"
         height={602}
         width={921}
         alt={'world map'}

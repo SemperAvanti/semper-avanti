@@ -84,6 +84,20 @@
     height: auto;
     max-height: 621px;
     margin-top: 45px;
+    transform: scale(1);
+
+    @keyframes scaleUp {
+      from {
+        transform: scale(0.5);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    &--animate-on-scroll {
+      animation: scaleUp 0.7s forwards;
+    }
 
     @include device(tablet) {
       display: block;
