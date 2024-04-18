@@ -136,6 +136,7 @@ const Gallery = () => {
                   width={357}
                   height={444}
                 />
+                <div className='gallery__picture--description'>Malta, 2020</div>
               </div>
               <div className="gallery__picture">
                 <Image
@@ -146,6 +147,7 @@ const Gallery = () => {
                   width={357}
                   height={444}
                 />
+                <div className='gallery__picture--description'>Ireland, 2022</div>
               </div>
               <div className="gallery__picture">
                 <Image
@@ -156,6 +158,7 @@ const Gallery = () => {
                   width={357}
                   height={444}
                 />
+                <div className='gallery__picture--description'>Canary Isl, 2023</div>
               </div>
             </div>
           )}
@@ -182,14 +185,19 @@ const Gallery = () => {
                   <>
                     <SwiperSlide className="swiper__slide">
                       <div className="gallery__picture">
+                        <div className="gallery__picture--image">
                         <Image
-                          className="gallery__picture--image"
+                          
                           alt="malta"
                           src="/images/gallery1.jpg"
                           width={357}
                           height={444}
                         />
+                        <div className='gallery__picture--description'>Malta, 2020</div>
+                        </div>
+                        
                       </div>
+                      
                     </SwiperSlide>
                     <SwiperSlide className="swiper__slide">
                       <div className="gallery__picture">
