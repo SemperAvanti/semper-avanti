@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Menu from './components/Menu/Menu';
 import { Form } from '@/app/components/FormComponent/Form';
@@ -10,16 +12,13 @@ import TrainingPage from './components/TrainingsPage/TrainingsPage';
 import Gallery from './components/GalleryComponent/Gallery';
 import HomePage from './components/Home/Home';
 import { ContactUs } from './components/ContactUs/ContactUs';
-import { SwiperTest } from './components/SwiperTest/SwiperTest';
 
 export default function Home() {
   return (
     <>
       <Menu />
       <main>
-        <SwiperTest />
         <HomePage />
-
         <SectionAboutUs />
         <Aqu />
         <TrainingPage />

@@ -151,7 +151,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  
+
   z-index: 0;
 
   transform: translateY(-10%);
@@ -159,14 +159,10 @@
   @include device(mobile) {
     height: 24px;
     //top: 70%;
-    
   }
 }
 
-
-
 .home__title__container {
-
 }
 
 .home--titleWrapper {

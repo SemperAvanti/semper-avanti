@@ -7,8 +7,8 @@ import './scss/StoriesCard.scss';
 export const StoriesCard: React.FC = () => {
   return (
     <div className="stories__card">
-      <Image src={img} alt="img" />
-      <p className="description-text">
+      <Image className="stories__card--image" src={img} alt="img" />
+      <p className="description-text stories__card--text">
         &quot;Joining the community forum has been a game-changer for me as an
         educator. The support, collaboration, and wealth of resources available
         here have truly enriched my teaching practice.”

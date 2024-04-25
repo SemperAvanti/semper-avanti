@@ -19,37 +19,66 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
 }) => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
-  const slidesAmount = {
-    desktopBig: 6,
-    desktopMid: 5,
-    desktopSmall: 4,
-    tabletBig: 3,
-    tabletSmall: 2,
-    mobile: 1.5,
-  };
-
   const updateSlidesPerView = () => {
     const width = window.innerWidth;
     if (swiper && swiper.params) {
       switch (true) {
         case width >= 1600:
-          swiper.params.slidesPerView = slidesAmount.desktopBig;
+          swiper.params.slidesPerView = 6;
           break;
         case width < 1600 && width > 1400:
-          swiper.params.slidesPerView = slidesAmount.desktopMid;
+          swiper.params.slidesPerView = 5;
           break;
-        case width >= 1050 && width <= 1400:
-          swiper.params.slidesPerView = slidesAmount.desktopSmall;
+        case width >= 1100 && width <= 1400:
+          swiper.params.slidesPerView = 4;
           break;
-        case width >= 700 && width < 1050:
-          swiper.params.slidesPerView = slidesAmount.tabletBig;
+        case width >= 960 && width <= 1099:
+          swiper.params.slidesPerView = 3.5;
           break;
-        case width >= 500 && width < 700:
-          swiper.params.slidesPerView = slidesAmount.tabletSmall;
+        case width >= 800 && width <= 959:
+          swiper.params.slidesPerView = 3;
+          break;
+        case width >= 750 && width <= 799:
+          swiper.params.slidesPerView = 2.8;
+          break;
+        case width >= 700 && width <= 749:
+          swiper.params.slidesPerView = 2.7;
+          break;
+        case width >= 650 && width <= 699:
+          swiper.params.slidesPerView = 2.4;
+          break;
+        case width >= 600 && width <= 649:
+          swiper.params.slidesPerView = 2.3;
           swiper.params.slidesOffsetBefore = 0;
           break;
+        case width >= 550 && width <= 599:
+          swiper.params.slidesPerView = 2.1;
+          swiper.params.slidesOffsetBefore = 0;
+          break;
+        case width >= 500 && width <= 549:
+          swiper.params.slidesPerView = 1.9;
+          swiper.params.slidesOffsetBefore = 0;
+          break;
+
+        case width >= 450 && width <= 499:
+          swiper.params.slidesPerView = 1.7;
+          swiper.params.slidesOffsetBefore = 0;
+          break;
+        case width >= 400 && width <= 449:
+          swiper.params.slidesPerView = 1.5;
+          swiper.params.slidesOffsetBefore = 0;
+          break;
+        case width >= 350 && width <= 399:
+          swiper.params.slidesPerView = 1.2;
+          swiper.params.slidesOffsetBefore = 0;
+          break;
+        case width >= 300 && width <= 349:
+          swiper.params.slidesPerView = 1.2;
+          swiper.params.slidesOffsetBefore = 0;
+          break;
+
         default:
-          swiper.params.slidesPerView = slidesAmount.mobile;
+          swiper.params.slidesPerView = 1.5;
           swiper.params.slidesOffsetBefore = 0;
       }
 

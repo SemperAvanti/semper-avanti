@@ -10,6 +10,7 @@ const Menu = () => {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
+    console.log('clicked', isOpen);
     const buttonIcon = document.querySelector('.buttonContainerMob__open');
     if (buttonIcon) {
       buttonIcon.classList.toggle('buttonClicked');
@@ -28,6 +29,11 @@ const Menu = () => {
     };
 
     document.addEventListener('click', handleClickOutside);
+
+    const urlFragment = window.location.hash;
+    if (urlFragment === '#mobMenu') {
+      setIsOpen(true);
+    }
 
     return () => {
       document.removeEventListener('click', handleClickOutside);
@@ -92,12 +98,15 @@ const Menu = () => {
               </li>
               <li>
                 <div className="navigation__langList">
-                  <label htmlFor='langButtonDesktop' className="navigation__lang">
-                    <p className='navigation__lang--text'>English</p>
+                  <label
+                    htmlFor="langButtonDesktop"
+                    className="navigation__lang"
+                  >
+                    <p className="navigation__lang--text">English</p>
                     <button
                       className="navigation__toggleLangs"
                       onClick={toggleLanguages}
-                      id='langButtonDesktop'
+                      id="langButtonDesktop"
                     >
                       <Image
                         src={'/Vector.svg'}
@@ -160,7 +169,6 @@ const Menu = () => {
 
           <a
             href={isOpen ? '#mobMenu' : '#main'}
-            // href='#mobMenu'
             onClick={handleClick}
             className="buttonContainerMob__open"
           >
@@ -243,13 +251,12 @@ const Menu = () => {
           </li>
           <li>
             <div className="navigation__langList">
-              
-                <label className='navigation__lang' htmlFor="languageButton">
-                <p className='navigation__lang--text'>English</p>
+              <label className="navigation__lang" htmlFor="languageButton">
+                <p className="navigation__lang--text">English</p>
                 <button
                   className="navigation__toggleLangs"
                   onClick={toggleLanguages}
-                  id='languageButton'
+                  id="languageButton"
                 >
                   <Image
                     src={'/Vector.svg'}
@@ -258,9 +265,8 @@ const Menu = () => {
                     height={9}
                   />
                 </button>
-                </label>
-                
-              
+              </label>
+
               {showLanguages && (
                 <div className="languagesListContainer--mob">
                   <ul className="languagesList">
@@ -288,7 +294,7 @@ const Menu = () => {
                   </ul>
                 </div>
               )}
-              <div className='test'></div>
+              <div className="test"></div>
             </div>
           </li>
         </ul>

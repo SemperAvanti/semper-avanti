@@ -7,3 +7,10 @@
   border-radius: 12px;
   background-color: white;
 }
+
+.partners__card--image,
+.partners__card--text {
+  user-select: none;
+
+  pointer-events: none;
+}
