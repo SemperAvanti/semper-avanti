@@ -1,11 +1,12 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import './gallery.scss';
-import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 
 const Gallery = () => {
-  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [swiper, setSwiper] = useState<any | null>(null);
   const [width, setWidth] = useState(0);
 
   const updateSlidesPerView = () => {
@@ -220,7 +221,8 @@ const Gallery = () => {
 
             <Swiper
               className="swiper"
-              onSwiper={(swiperInstance: SwiperClass) =>
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              onSwiper={(swiperInstance: any) =>
                 setSwiper(swiperInstance)
               }
               autoplay={{

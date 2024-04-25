@@ -1,5 +1,4 @@
 'use client';
-import { SwiperClass } from 'swiper/react';
 import './scss/SliderComponent.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -17,7 +16,8 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   partners,
   id,
 }) => {
-  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [swiper, setSwiper] = useState<any | null>(null);
 
   const updateSlidesPerView = () => {
     const width = window.innerWidth;

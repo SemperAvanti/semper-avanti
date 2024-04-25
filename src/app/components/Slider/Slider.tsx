@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import './scss/Slider.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -13,7 +13,8 @@ import SwiperCore, { Autoplay } from 'swiper';
 SwiperCore.use([Autoplay]);
 
 type SliderProps = {
-  setSwiper: (swiperInstance: SwiperClass) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setSwiper: (swiperInstance: any) => void;
   spaceBetween: number;
   slidesPerView: number;
   slidesOffset: number;
@@ -35,7 +36,8 @@ export const Slider: React.FC<SliderProps> = ({
           <>
             <Swiper
               className="swiper"
-              onSwiper={(swiperInstance: SwiperClass) =>
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              onSwiper={(swiperInstance: any) =>
                 setSwiper(swiperInstance)
               }
               autoplay={{
