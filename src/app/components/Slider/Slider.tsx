@@ -1,20 +1,19 @@
 /* eslint-disable */
 // @ts-nocheck
 
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './scss/Slider.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import React from 'react';
- 
+
 import { StoriesCard } from '../StoriesCard/StoriesCard';
 
 import { PartnersCard } from '../PartnersCard/PartnersCard';
 
- import SwiperCore, { Autoplay }   from 'swiper';
+import SwiperCore, { Autoplay } from 'swiper';
 
- SwiperCore.use([Autoplay]);
+SwiperCore.use([Autoplay]);
 
 type SliderProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,7 +32,6 @@ export const Slider: React.FC<SliderProps> = ({
   initialSlide,
   partners,
 }) => {
-  
   return (
     <section className="Slider__container">
       <div className="slider">
