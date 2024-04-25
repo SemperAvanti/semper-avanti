@@ -122,7 +122,7 @@ export const Form: React.FC = () => {
       <header className="form__header">
         <h2 className="form__header-text">Get more in our info package</h2>
         <p className="form__header-sub-text">
-          Fill the form and we`ll send you a file with actual information
+          Fill the form and we&apos;ll send you a file with actual information
         </p>
       </header>
       <div className="form__container">

@@ -3,10 +3,14 @@ import './scss/Slider.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import React from 'react';
-import { Autoplay } from 'swiper/modules';
+// import { Autoplay } from 'swiper';
 import { StoriesCard } from '../StoriesCard/StoriesCard';
 
 import { PartnersCard } from '../PartnersCard/PartnersCard';
+
+import SwiperCore, { Autoplay } from 'swiper';
+
+SwiperCore.use([Autoplay]);
 
 type SliderProps = {
   setSwiper: (swiperInstance: SwiperClass) => void;
@@ -39,24 +43,24 @@ export const Slider: React.FC<SliderProps> = ({
                 disableOnInteraction: false,
               }}
               loop
-              centeredSlides
+              centeredSlides={true}
               //Parametry mogą być różne w zależności od slidera
               spaceBetween={spaceBetween}
               slidesPerView={slidesPerView}
               slidesOffsetBefore={170}
               initialSlide={initialSlide}
-              modules={[Autoplay]}
+              centeredSlidesBounds={true}
+              allowTouchMove
             >
               {/* poglądowe, zamienić na dynamiczne  */}
 
               {partners
-                ? Array.from({ length: 82 }).map((_, index) => (
+                ? Array.from({ length: 8 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
                       <PartnersCard />
-                      
                     </SwiperSlide>
                   ))
-                : Array.from({ length: 122 }).map((_, index) => (
+                : Array.from({ length: 12 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
                       <StoriesCard />
                     </SwiperSlide>

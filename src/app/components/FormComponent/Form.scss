@@ -89,7 +89,6 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      
 
       color: $color-white;
       font-size: 20px;
@@ -98,7 +97,7 @@
       line-height: normal;
 
       @include device(mobile) {
-        padding-top:5px;
+        padding-top: 5px;
       }
     }
 
@@ -116,7 +115,6 @@
     width: 100%;
     text-align: justify;
     letter-spacing: 0.4px;
-    
 
     @include device(mobile) {
       font-size: 11px;

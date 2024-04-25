@@ -62,12 +62,7 @@
     flex-direction: column;
     gap: 12px;
 
-
-
-    position: relative;  
-
-   
-    
+    position: relative;
   }
 
   &__lang {
@@ -76,13 +71,13 @@
     position: relative;
 
     &:hover {
-      cursor: pointer; 
+      cursor: pointer;
     }
 
     &--text {
       user-select: none;
       &:hover::after {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         bottom: -5px;
@@ -90,7 +85,7 @@
         height: 2px;
         background-color: #191919;
         height: 3px;
-    }
+      }
     }
   }
 
@@ -150,22 +145,16 @@
   transition: 0.25s ease-in-out;
   transform: translateY(-100%);
   position: fixed;
-  top: 111px;
+
+  top: 0;
   left: 0;
   right: 0;
   z-index: 3;
   box-sizing: border-box;
+  background-color: red;
 
   @include device(desktop) {
     display: none;
-  }
-
-  @include device(tablet) {
-    top: 81px;
-  }
-
-  @include device(mobile) {
-    top: 79.3px;
   }
 
   &:target {
@@ -210,6 +199,7 @@
     left: 0;
     right: 0;
     z-index: 99;
+    display: none;
   }
 
   @include device(mobile) {
@@ -262,7 +252,7 @@
 
 .languagesListContainer {
   position: absolute;
-  
+
   top: 24px;
   width: 7%;
   z-index: 9999;
@@ -272,10 +262,3 @@
     top: 20px;
   }
 }
-
-
-
-
-
-
-

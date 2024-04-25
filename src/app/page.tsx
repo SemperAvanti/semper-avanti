@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Menu from './components/Menu/Menu';
 import { Form } from '@/app/components/FormComponent/Form';
@@ -17,7 +19,6 @@ export default function Home() {
       <Menu />
       <main>
         <HomePage />
-
         <SectionAboutUs />
         <Aqu />
         <TrainingPage />

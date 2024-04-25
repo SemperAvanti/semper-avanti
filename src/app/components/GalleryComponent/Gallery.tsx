@@ -8,6 +8,75 @@ const Gallery = () => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
   const [width, setWidth] = useState(0);
 
+  const updateSlidesPerView = () => {
+    if (swiper && swiper.params) {
+      switch (true) {
+        case width < 385:
+          swiper.params.slidesPerView = 1;
+          swiper.params.spaceBetween = 0;
+
+          break;
+
+        case width < 600:
+          swiper.params.slidesPerView = 1;
+
+          break;
+
+        case width < 700:
+          swiper.params.slidesPerView = 1.6;
+
+          break;
+
+        case width < 750:
+          swiper.params.slidesPerView = 1.8;
+
+          break;
+
+        case width < 815:
+          swiper.params.slidesPerView = 1.9;
+
+          break;
+
+        case width < 850:
+          swiper.params.slidesPerView = 2.1;
+
+          break;
+
+        case width < 920:
+          swiper.params.slidesPerView = 2.2;
+
+          break;
+
+        case width < 950:
+          swiper.params.slidesPerView = 2.3;
+
+          break;
+
+        case width < 985:
+          swiper.params.slidesPerView = 2.4;
+
+          break;
+
+        case width < 1035:
+          swiper.params.slidesPerView = 2.6;
+
+          break;
+
+        case width < 1039:
+          swiper.params.slidesPerView = 2.7;
+
+          break;
+
+        default:
+          swiper.update();
+      }
+    }
+  };
+
+  useEffect(() => {
+    updateSlidesPerView();
+  }, [width]);
+
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -21,30 +90,6 @@ const Gallery = () => {
         window.removeEventListener('resize', handleResize);
       };
     }
-  }, []);
-
-  const slidesAmount = {
-    tabletSmall: 2,
-    mobile: 1,
-  };
-
-  const updateSlidesPerView = () => {
-    const width = window.screen.width;
-    if (swiper && swiper.params) {
-      switch (true) {
-        case width > 750:
-          swiper.params.slidesPerView = slidesAmount.tabletSmall;
-          break;
-        default:
-          swiper.params.slidesPerView = slidesAmount.mobile;
-      }
-
-      swiper.update();
-    }
-  };
-
-  useEffect(() => {
-    updateSlidesPerView();
   }, [width]);
 
   const Buttons = () => {
@@ -116,110 +161,128 @@ const Gallery = () => {
       <div className="gallery__container container" id="Gallery">
         <h2 className="section-title gallery__title">Gallery</h2>
 
-        <div className="gallery__content">
-          <div className="description-container">
-            <p className="description-text">
-              Step into a world where learning comes to life and inspiration
-              knows no bounds. In this vibrant space, we invite you to explore
-              captivating moments captured during our educational camps for
-              teachers.
-            </p>
-          </div>
-          {width >= 1200 && (
+        <div className="description-container">
+          <p className="description-text">
+            Step into a world where learning comes to life and inspiration knows
+            no bounds. In this vibrant space, we invite you to explore
+            captivating moments captured during our educational camps for
+            teachers.
+          </p>
+        </div>
+        {width >= 1040 && (
+          <div className="container">
             <div className="gallery__pictures">
               <div className="gallery__picture">
                 <Image
                   className="gallery__picture--image"
                   alt="Malta"
-                  src="/images/gallery1.jpg"
+                  src="/images/gallery-malta.jpg"
                   sizes="(max-width: 640px) 640px"
                   width={357}
                   height={444}
                 />
+                <div className="gallery__picture--description">Malta, 2020</div>
               </div>
               <div className="gallery__picture">
                 <Image
                   className="gallery__picture--image"
                   alt="Ireland"
-                  src="/images/gallery2.jpg"
+                  src="/images/gallery-ireland.jpg"
                   sizes="(max-width: 640px) 640px"
                   width={357}
                   height={444}
                 />
+                <div className="gallery__picture--description">
+                  Ireland, 2022
+                </div>
               </div>
               <div className="gallery__picture">
                 <Image
                   className="gallery__picture--image"
                   alt="Canary Isl"
-                  src="/images/gallery3.jpg"
+                  src="/images/gallery-canary.jpg"
                   sizes="(max-width: 640px) 640px"
                   width={357}
                   height={444}
                 />
+                <div className="gallery__picture--description">
+                  Canary Isl, 2023
+                </div>
               </div>
             </div>
-          )}
-
-          {width < 1200 && (
-            <>
-              <div className="gallery__pictures--mobile">
-                {width < 750 && <Buttons />}
-                <Swiper
-                  className="swiper"
-                  onSwiper={(swiperInstance: SwiperClass) =>
-                    setSwiper(swiperInstance)
-                  }
-                  autoplay={{
-                    delay: 1000,
-                    disableOnInteraction: false,
-                  }}
-                  loop
-                  spaceBetween={50}
-                  slidesPerView={2}
-                  initialSlide={0}
-                  centeredSlides={true}
-                >
-                  <>
-                    <SwiperSlide className="swiper__slide">
-                      <div className="gallery__picture">
-                        <Image
-                          className="gallery__picture--image"
-                          alt="malta"
-                          src="/images/gallery1.jpg"
-                          width={357}
-                          height={444}
-                        />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper__slide">
-                      <div className="gallery__picture">
-                        <Image
-                          className="gallery__picture--image"
-                          alt="malta"
-                          src="/images/gallery2.jpg"
-                          width={357}
-                          height={444}
-                        />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className="swiper__slide">
-                      <div className="gallery__picture">
-                        <Image
-                          className="gallery__picture--image"
-                          alt="malta"
-                          src="/images/gallery3.jpg"
-                          width={357}
-                          height={444}
-                        />
-                      </div>
-                    </SwiperSlide>
-                  </>
-                </Swiper>
-              </div>
-            </>
-          )}
-        </div>
+          </div>
+        )}
       </div>
+      {width < 1040 && (
+        <>
+          <div className="gallery__pictures--mobile">
+            {width < 700 && <Buttons />}
+
+            <Swiper
+              className="swiper"
+              onSwiper={(swiperInstance: SwiperClass) =>
+                setSwiper(swiperInstance)
+              }
+              autoplay={{
+                delay: 2300,
+                disableOnInteraction: true,
+              }}
+              loop
+              spaceBetween={10}
+              slidesPerView={2}
+              initialSlide={1}
+              centeredSlides={true}
+              centeredSlidesBounds={true}
+            >
+              <>
+                <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--1">
+                  <div className="gallery__picture gallery__picture-1">
+                    <Image
+                      className="gallery__picture--image "
+                      alt="malta"
+                      src="/images/gallery-malta.jpg"
+                      width={357}
+                      height={444}
+                    />
+                    <div className="gallery__picture--description">
+                      Malta, 2020
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--2">
+                  <div className="gallery__picture ">
+                    <Image
+                      className="gallery__picture--image"
+                      alt="malta"
+                      src="/images/gallery-ireland.jpg"
+                      width={357}
+                      height={444}
+                    />
+                    <div className="gallery__picture--description">
+                      Ireland, 2022
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--3">
+                  <div className="gallery__picture">
+                    <Image
+                      className="gallery__picture--image"
+                      alt="malta"
+                      src="/images/gallery-canary.jpg"
+                      width={357}
+                      height={444}
+                    />
+
+                    <div className="gallery__picture--description">
+                      Canary Isl, 2023
+                    </div>
+                  </div>
+                </SwiperSlide>
+              </>
+            </Swiper>
+          </div>
+        </>
+      )}
     </section>
   );
 };
