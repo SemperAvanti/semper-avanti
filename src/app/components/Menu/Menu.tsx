@@ -3,10 +3,20 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
+// import { usePathname } from 'next/navigation';
+import { useLanguage } from '../LanguageContext';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
+  // const pathname = usePathname();
+  const { setLanguage } = useLanguage();
+
+  // function switchLocale(locale: string) {
+  //   setLanguage(locale);
+  //   const newPath = `/${locale}${pathname}`;
+  //   window.history.replaceState(null, '', newPath);
+  // }
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -104,8 +114,12 @@ const Menu = () => {
                   >
                     <p className="navigation__lang--text">English</p>
                     <button
+                      title="navigation__toggleLangs"
                       className="navigation__toggleLangs"
-                      onClick={toggleLanguages}
+                      onClick={() => {
+                        toggleLanguages();
+                        setLanguage('en-US');
+                      }}
                       id="langButtonDesktop"
                     >
                       <Image
@@ -120,23 +134,36 @@ const Menu = () => {
                     <div className="languagesListContainer">
                       <ul className="languagesList">
                         <button
+                          value={'pl-PL'}
                           type="button"
                           className="languagesList__button"
-                          onClick={handleLanguageSelection}
+                          onClick={() => {
+                            handleLanguageSelection();
+                            setLanguage('pl-PL');
+                            // switchLocale('pl');
+                          }}
                         >
                           Polish
                         </button>
                         <button
                           type="button"
                           className="languagesList__button"
-                          onClick={handleLanguageSelection}
+                          onClick={() => {
+                            handleLanguageSelection();
+                            setLanguage('es-ES');
+                            // switchLocale('es');
+                          }}
                         >
                           Spanish
                         </button>
                         <button
                           type="button"
                           className="languagesList__button"
-                          onClick={handleLanguageSelection}
+                          onClick={() => {
+                            handleLanguageSelection();
+                            setLanguage('fr-FR');
+                            // switchLocale('fr');
+                          }}
                         >
                           French
                         </button>
@@ -254,6 +281,7 @@ const Menu = () => {
               <label className="navigation__lang" htmlFor="languageButton">
                 <p className="navigation__lang--text">English</p>
                 <button
+                  title="navigation__toggleLangs"
                   className="navigation__toggleLangs"
                   onClick={toggleLanguages}
                   id="languageButton"

@@ -12,28 +12,31 @@ import TrainingPage from './components/TrainingsPage/TrainingsPage';
 import Gallery from './components/GalleryComponent/Gallery';
 import HomePage from './components/Home/Home';
 import { ContactUs } from './components/ContactUs/ContactUs';
+import { LanguageProvider } from './components/LanguageContext';
 
 export default function Home() {
   return (
     <>
-      <Menu />
-      <main>
-        <HomePage />
-        <SectionAboutUs />
-        <Aqu />
-        <TrainingPage />
-        <Gallery />
-        <Form />
-        <SliderComponent
-          partners={false}
-          title="Success stories"
-          id="Stories"
-        />
-        <SliderComponent partners={true} title="Our partners" id="Partners" />
-        <FAQ />
-        <ContactUs />
-        <Footer />
-      </main>
+      <LanguageProvider>
+        <Menu />
+        <main>
+          <HomePage />
+          <SectionAboutUs />
+          <Aqu />
+          <TrainingPage />
+          <Gallery />
+          <Form />
+          <SliderComponent
+            partners={false}
+            title="Success stories"
+            id="Stories"
+          />
+          <SliderComponent partners={true} title="Our partners" id="Partners" />
+          <FAQ />
+          <ContactUs />
+          <Footer />
+        </main>
+      </LanguageProvider>
     </>
   );
 }

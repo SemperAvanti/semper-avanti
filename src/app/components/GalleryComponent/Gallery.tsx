@@ -76,7 +76,7 @@ const Gallery = () => {
 
   useEffect(() => {
     updateSlidesPerView();
-  }, [width]);
+  }, [width, updateSlidesPerView]);
 
   useEffect(() => {
     const handleResize = () => {

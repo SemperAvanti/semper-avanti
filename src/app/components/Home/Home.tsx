@@ -1,26 +1,77 @@
 import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
+import { createClient } from 'contentful';
+import { useEffect, useState } from 'react';
+import { Entry, EntrySkeletonType } from 'contentful';
+import { useLanguage } from '../LanguageContext';
+
+// Object below is only for country codes
+// {
+//   English = 'en-US',
+//   Spanisch = 'es-ES',
+//   Polish = 'pl-PL',
+//   French = 'fr-FR',
+// }
+
+const client = createClient({
+  space: process.env.CONTENTFUL_SPACE_ID as string,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+});
+
+const getBlogPosts = async (locale = 'en-US') => {
+  const response = await client.getEntries({
+    content_type: 'sectionHome',
+    locale,
+  });
+
+  return response.items;
+};
 
 const HomePage = () => {
+  const [posts, setPosts] = useState<
+    Entry<EntrySkeletonType, undefined, string>[]
+  >([]);
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const postsData: Entry<EntrySkeletonType, undefined, string>[] =
+        await getBlogPosts(language);
+      setPosts(postsData);
+      console.log(postsData);
+    };
+    fetchData();
+  }, [language]);
+
   return (
     <section className="home" id="Home">
       <div className="home__title">
         <div className="home__title__container">
           <h1 className="home__h1">
             <span className="home--titleWrapper">
-              Empower with AQE Educate.
+              {posts.map((post) => (
+                <div key={post.sys.id}>
+                  {typeof post.fields.sectionHomeTitle === 'string' &&
+                    post.fields.sectionHomeTitle}
+                </div>
+              ))}
               <div className="blueLine"></div>
             </span>
 
-            <span className="home--titleWrapper--top">
+            {/* <span className="home--titleWrapper--top">
               Empower with AQE Educate.
-            </span>
+            </span> */}
           </h1>
         </div>
 
         <p className="home__text ">
-          Your trusted partner in professional development for educators.{' '}
+          {posts.map((post) => (
+            <div key={post.sys.id}>
+              {typeof post.fields.sectionHomeDescription === 'string' &&
+                post.fields.sectionHomeDescription}
+            </div>
+          ))}{' '}
         </p>
         <div className="home__button--desktop">
           <a href="#Home-form">
