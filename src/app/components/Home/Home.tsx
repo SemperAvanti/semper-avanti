@@ -14,12 +14,18 @@ import { useLanguage } from '../LanguageContext';
 //   French = 'fr-FR',
 // }
 
-const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID as string,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-});
+const client =
+  process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN
+    ? createClient({
+        space: process.env.CONTENTFUL_SPACE_ID as string,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+      })
+    : null;
 
 const getBlogPosts = async (locale = 'en-US') => {
+  if (!client) {
+    return [];
+  }
   const response = await client.getEntries({
     content_type: 'sectionHome',
     locale,
