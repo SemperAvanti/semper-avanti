@@ -1,6 +1,8 @@
 'use server';
 import { createClient } from 'contentful';
 
+console.log('sprawdzanie czy deploy na vercelu to widzi: ', process.env.TEST);
+
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
 const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID;
 
