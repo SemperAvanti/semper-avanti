@@ -1,10 +1,7 @@
 import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
-import { createClient } from 'contentful';
-import { useEffect, useState } from 'react';
-import { Entry, EntrySkeletonType } from 'contentful';
-import { useLanguage } from '../LanguageContext';
+import { getContent } from '@/lib/api';
 
 // Object below is only for country codes
 // {
@@ -14,41 +11,11 @@ import { useLanguage } from '../LanguageContext';
 //   French = 'fr-FR',
 // }
 
-const client =
-  process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN
-    ? createClient({
-        space: process.env.CONTENTFUL_SPACE_ID as string,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-      })
-    : null;
-
-const getBlogPosts = async (locale = 'en-US') => {
-  if (!client) {
-    return [];
-  }
-  const response = await client.getEntries({
-    content_type: 'sectionHome',
+export default async function HomePage({ locale }: { locale: string }) {
+  const { sectionHomeTitle, sectionHomeDescription } = await getContent(
+    'sectionHome',
     locale,
-  });
-
-  return response.items;
-};
-
-const HomePage = () => {
-  const [posts, setPosts] = useState<
-    Entry<EntrySkeletonType, undefined, string>[]
-  >([]);
-  const { language } = useLanguage();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const postsData: Entry<EntrySkeletonType, undefined, string>[] =
-        await getBlogPosts(language);
-      setPosts(postsData);
-      console.log(postsData);
-    };
-    fetchData();
-  }, [language]);
+  );
 
   return (
     <section className="home" id="Home">
@@ -56,12 +23,7 @@ const HomePage = () => {
         <div className="home__title__container">
           <h1 className="home__h1">
             <span className="home--titleWrapper">
-              {posts.map((post) => (
-                <div key={post.sys.id}>
-                  {typeof post.fields.sectionHomeTitle === 'string' &&
-                    post.fields.sectionHomeTitle}
-                </div>
-              ))}
+              {sectionHomeTitle as string}
               <div className="blueLine"></div>
             </span>
 
@@ -71,14 +33,7 @@ const HomePage = () => {
           </h1>
         </div>
 
-        <p className="home__text ">
-          {posts.map((post) => (
-            <div key={post.sys.id}>
-              {typeof post.fields.sectionHomeDescription === 'string' &&
-                post.fields.sectionHomeDescription}
-            </div>
-          ))}{' '}
-        </p>
+        <p className="home__text ">{sectionHomeDescription as string}</p>
         <div className="home__button--desktop">
           <a href="#Home-form">
             <Button name="Get info package" variant="primary" />
@@ -117,6 +72,4 @@ const HomePage = () => {
       </div>
     </section>
   );
-};
-
-export default HomePage;
+}

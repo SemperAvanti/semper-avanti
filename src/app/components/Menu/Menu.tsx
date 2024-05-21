@@ -3,20 +3,16 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
-// import { usePathname } from 'next/navigation';
-import { useLanguage } from '../LanguageContext';
+import { useRouter } from 'next/navigation';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
-  // const pathname = usePathname();
-  const { setLanguage } = useLanguage();
+  const route = useRouter();
 
-  // function switchLocale(locale: string) {
-  //   setLanguage(locale);
-  //   const newPath = `/${locale}${pathname}`;
-  //   window.history.replaceState(null, '', newPath);
-  // }
+  function setLanguage(lang: string) {
+    route.push(lang);
+  }
 
   const handleClick = () => {
     setIsOpen(!isOpen);
