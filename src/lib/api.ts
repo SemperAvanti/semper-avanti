@@ -1,6 +1,8 @@
 'use server';
 import { createClient } from 'contentful';
+import { unstable_noStore as noStore } from 'next/cache';
 
+noStore();
 console.log('sprawdzanie czy deploy na vercelu to widzi: ', process.env.TEST);
 
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
