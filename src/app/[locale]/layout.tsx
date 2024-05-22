@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import '../styles/index.scss';
+import '@/styles/index.scss';
 import { Poppins } from 'next/font/google';
 
 const poppins = Poppins({

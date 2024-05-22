@@ -1,27 +1,39 @@
 import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
+import { getContent } from '@/lib/api';
 
-const HomePage = () => {
+// Object below is only for country codes
+// {
+//   English = 'en-US',
+//   Spanisch = 'es-ES',
+//   Polish = 'pl-PL',
+//   French = 'fr-FR',
+// }
+
+export default async function HomePage({ locale }: { locale: string }) {
+  const { sectionHomeTitle, sectionHomeDescription } = await getContent(
+    'sectionHome',
+    locale,
+  );
+
   return (
     <section className="home" id="Home">
       <div className="home__title">
         <div className="home__title__container">
           <h1 className="home__h1">
             <span className="home--titleWrapper">
-              Empower with AQE Educate.
+              {sectionHomeTitle as string}
               <div className="blueLine"></div>
             </span>
 
-            <span className="home--titleWrapper--top">
+            {/* <span className="home--titleWrapper--top">
               Empower with AQE Educate.
-            </span>
+            </span> */}
           </h1>
         </div>
 
-        <p className="home__text ">
-          Your trusted partner in professional development for educators.{' '}
-        </p>
+        <p className="home__text ">{sectionHomeDescription as string}</p>
         <div className="home__button--desktop">
           <a href="#Home-form">
             <Button name="Get info package" variant="primary" />
@@ -60,6 +72,4 @@ const HomePage = () => {
       </div>
     </section>
   );
-};
-
-export default HomePage;
+}
