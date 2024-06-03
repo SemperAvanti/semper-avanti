@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
@@ -9,6 +9,33 @@ const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
   const route = useRouter();
+  const headerRef = useRef<HTMLDivElement>(null);
+  const headerMobileRef = useRef<HTMLDivElement>(null);
+
+  let prevScrollpos = window.scrollY;
+
+  const handleScroll = () => {
+    const currentScrollPos = window.scrollY;
+    if (headerRef.current) {
+      if (prevScrollpos > currentScrollPos) {
+        headerRef.current.style.top = '0';
+      } else {
+        headerRef.current.style.top = '-111px';
+      }
+    }
+
+    if (headerMobileRef.current) {
+      if (prevScrollpos > currentScrollPos) {
+        headerMobileRef.current.style.top = '0';
+      } else {
+        headerMobileRef.current.style.top = '-111px';
+      }
+    }
+
+    prevScrollpos = currentScrollPos;
+  };
+
+  window.addEventListener('scroll', handleScroll);
 
   function setLanguage(lang: string) {
     route.push(lang);
@@ -56,7 +83,7 @@ const Menu = () => {
 
   return (
     <>
-      <header className="header">
+      <header ref={headerRef} className="header">
         <div className="container">
           <nav className="navigation">
             <ul className="navigation__list" id="menu">
@@ -177,7 +204,7 @@ const Menu = () => {
           </nav>
         </div>
       </header>
-      <div className="headerMobile">
+      <div ref={headerMobileRef} className="headerMobile">
         <Image
           src={'/Logo.svg'}
           alt="logo"
