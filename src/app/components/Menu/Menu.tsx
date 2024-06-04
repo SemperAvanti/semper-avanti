@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
@@ -11,13 +11,12 @@ const Menu = () => {
   const route = useRouter();
   const headerRef = useRef<HTMLDivElement>(null);
   const headerMobileRef = useRef<HTMLDivElement>(null);
+  const prevScrollpos = useRef<number>(window.scrollY);
 
-  let prevScrollpos = window.scrollY;
-
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const currentScrollPos = window.scrollY;
     if (headerRef.current) {
-      if (prevScrollpos > currentScrollPos) {
+      if (prevScrollpos.current > currentScrollPos) {
         headerRef.current.style.top = '0';
       } else {
         headerRef.current.style.top = '-111px';
@@ -25,17 +24,19 @@ const Menu = () => {
     }
 
     if (headerMobileRef.current) {
-      if (prevScrollpos > currentScrollPos) {
+      if (prevScrollpos.current > currentScrollPos) {
         headerMobileRef.current.style.top = '0';
       } else {
         headerMobileRef.current.style.top = '-111px';
       }
     }
+    prevScrollpos.current = currentScrollPos;
+  }, []);
 
-    prevScrollpos = currentScrollPos;
-  };
-
-  window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   function setLanguage(lang: string) {
     route.push(lang);
