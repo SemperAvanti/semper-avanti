@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-async-client-component */
 'use client';
 
 import './Form.scss';
@@ -12,13 +13,14 @@ import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
 import { FormInitialData } from '@/app/types/formInitialData';
 import { initialData } from '@/app/components/FormComponent/helper';
 import { Modal } from '@/app/components/ModalComponent/Modal';
+import { getContent } from '@/lib/api';
 
 const formDataSchema: ZodType<FormData> = z.object({
   fullname: z.string().min(5, 'Error name').trim(),
   email: z.string().email('Error email format').trim(),
 });
 
-export const Form: React.FC = () => {
+export default async function Form({ locale }: { locale: string }) {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
   const [errors, setErrors] = useState<ZodIssue[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,6 +30,14 @@ export const Form: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [emailAddress, setEmailAddress] = useState('');
   const [isEmailSentSuccessfully, setIsEmailSentSuccessfully] = useState(true);
+
+  const {
+    getMoreInOurInfoPackage,
+    fillTheForm,
+    iAgreeToReceive,
+    fullName,
+    country,
+  } = await getContent('sectionHome', locale);
 
   useEffect((): void => {
     setErrors([]);
@@ -120,10 +130,10 @@ export const Form: React.FC = () => {
   return (
     <section className="form" id="Home-form">
       <header className="form__header">
-        <h2 className="form__header-text">Get more in our info package</h2>
-        <p className="form__header-sub-text">
-          Fill the form and we&apos;ll send you a file with actual information
-        </p>
+        <h2 className="form__header-text">
+          {getMoreInOurInfoPackage as string}
+        </h2>
+        <p className="form__header-sub-text">{fillTheForm as string}</p>
       </header>
       <div className="form__container">
         <form className="form__form-elem" onSubmit={handleSubmit} method="post">
@@ -131,7 +141,7 @@ export const Form: React.FC = () => {
             <div className="form__input-elem">
               <Input
                 htmlFor="full Name"
-                label="Full Name *"
+                label={`${fullName as string} *`}
                 type="text"
                 name="fullname"
                 value={formData.fullname}
@@ -157,7 +167,7 @@ export const Form: React.FC = () => {
             <div className="form__input-elem">
               <Input
                 htmlFor="country"
-                label="Country"
+                label={country as string}
                 type="text"
                 name="country"
                 value={formData.country}
@@ -174,10 +184,7 @@ export const Form: React.FC = () => {
                 htmlFor={''}
                 value={''}
               />
-              <p className="form__checkbox-text">
-                I agree to receive the information about the further courses
-                from AQE
-              </p>
+              <p className="form__checkbox-text">{iAgreeToReceive as string}</p>
             </div>
             <div className="form__input-elem">
               <Button
@@ -197,4 +204,4 @@ export const Form: React.FC = () => {
       />
     </section>
   );
-};
+}
