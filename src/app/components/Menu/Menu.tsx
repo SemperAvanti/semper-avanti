@@ -5,7 +5,12 @@ import './Menu.scss';
 import Button from '../Button/Button';
 import { useRouter } from 'next/navigation';
 
-const locale = {
+interface Locale {
+  language: string;
+  tag: string;
+}
+
+const locale: Record<string, Locale> = {
   english: {
     language: 'English',
     tag: 'en-US',
@@ -38,7 +43,7 @@ const Menu = () => {
     }
   }, [route]);
 
-  function setLanguage(lang: object) {
+  function setLanguage(lang: Locale) {
     route.push(lang.tag);
     setActualLanguage(lang.language);
   }
@@ -159,7 +164,6 @@ const Menu = () => {
                             onClick={() => {
                               handleLanguageSelection();
                               setLanguage(locale.english);
-                              // switchLocale('pl');
                             }}
                           >
                             English
@@ -174,7 +178,6 @@ const Menu = () => {
                             onClick={() => {
                               handleLanguageSelection();
                               setLanguage(locale.polish);
-                              // switchLocale('pl');
                             }}
                           >
                             Polish
@@ -188,7 +191,6 @@ const Menu = () => {
                             onClick={() => {
                               handleLanguageSelection();
                               setLanguage(locale.spanish);
-                              // switchLocale('es');
                             }}
                           >
                             Spanish
@@ -202,7 +204,6 @@ const Menu = () => {
                             onClick={() => {
                               handleLanguageSelection();
                               setLanguage(locale.french);
-                              // switchLocale('fr');
                             }}
                           >
                             French
@@ -349,7 +350,6 @@ const Menu = () => {
                         onClick={() => {
                           handleLanguageSelection();
                           setLanguage(locale.english);
-                          // switchLocale('pl');
                         }}
                       >
                         English
@@ -362,7 +362,6 @@ const Menu = () => {
                         onClick={() => {
                           handleLanguageSelection();
                           setLanguage(locale.polish);
-                          // switchLocale('pl');
                         }}
                       >
                         Polish
@@ -375,7 +374,6 @@ const Menu = () => {
                         onClick={() => {
                           handleLanguageSelection();
                           setLanguage(locale.spanish);
-                          // switchLocale('pl');
                         }}
                       >
                         Spanish
@@ -388,7 +386,6 @@ const Menu = () => {
                         onClick={() => {
                           handleLanguageSelection();
                           setLanguage(locale.french);
-                          // switchLocale('pl');
                         }}
                       >
                         French
