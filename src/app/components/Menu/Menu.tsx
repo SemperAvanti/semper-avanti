@@ -64,7 +64,6 @@ const Menu = () => {
 
     document.addEventListener('click', handleClickOutside);
 
-
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
