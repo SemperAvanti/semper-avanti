@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from '../components/Menu/Menu';
-import { Form } from '@/app/components/FormComponent/Form';
+import Form from '@/app/components/FormComponent/Form';
 import { Aqu } from '@/app/components/AquComponent/Aqu';
 import { SliderComponent } from '../components/SliderComponent/SliderComponent';
 import { SectionAboutUs } from '@/app/components/SectionAboutUs/SectionAboutUs';
@@ -25,7 +25,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
         <Aqu />
         <TrainingPage />
         <Gallery />
-        <Form />
+        <Form locale={locale} />
         <SliderComponent
           partners={false}
           title="Success stories"

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-async-client-component */
 'use client';
 
@@ -15,12 +16,28 @@ import { initialData } from '@/app/components/FormComponent/helper';
 import { Modal } from '@/app/components/ModalComponent/Modal';
 import { getContent } from '@/lib/api';
 
+type ContentState = {
+  getMoreInOurInfoPackage: string | null;
+  fillTheForm: string | null;
+  iAgreeToReceive: string | null;
+  fullName: string | null;
+  country: string | null;
+};
+
+const toStringOrNull = (value: any, fallback: string = ''): string | null => {
+  if (value === null || value === undefined) return null;
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number' || typeof value === 'boolean')
+    return value.toString();
+  return fallback;
+};
+
 const formDataSchema: ZodType<FormData> = z.object({
   fullname: z.string().min(5, 'Error name').trim(),
   email: z.string().email('Error email format').trim(),
 });
 
-export default async function Form({ locale }: { locale: string }) {
+export default function Form({ locale }: { locale: string }) {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
   const [errors, setErrors] = useState<ZodIssue[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,14 +47,34 @@ export default async function Form({ locale }: { locale: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [emailAddress, setEmailAddress] = useState('');
   const [isEmailSentSuccessfully, setIsEmailSentSuccessfully] = useState(true);
+  const [content, setContent] = useState<ContentState>({
+    getMoreInOurInfoPackage: null,
+    fillTheForm: null,
+    iAgreeToReceive: null,
+    fullName: null,
+    country: null,
+  });
 
-  const {
-    getMoreInOurInfoPackage,
-    fillTheForm,
-    iAgreeToReceive,
-    fullName,
-    country,
-  } = await getContent('sectionHome', locale);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getContent('sectionForm', locale);
+        setContent({
+          getMoreInOurInfoPackage: toStringOrNull(
+            result.getMoreInOurInfoPackage,
+          ),
+          fillTheForm: toStringOrNull(result.fillTheForm),
+          iAgreeToReceive: toStringOrNull(result.iAgreeToReceive),
+          fullName: toStringOrNull(result.fullName),
+          country: toStringOrNull(result.country),
+        });
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    };
+
+    fetchData();
+  }, [locale]);
 
   useEffect((): void => {
     setErrors([]);
@@ -131,9 +168,9 @@ export default async function Form({ locale }: { locale: string }) {
     <section className="form" id="Home-form">
       <header className="form__header">
         <h2 className="form__header-text">
-          {getMoreInOurInfoPackage as string}
+          {content.getMoreInOurInfoPackage as string}
         </h2>
-        <p className="form__header-sub-text">{fillTheForm as string}</p>
+        <p className="form__header-sub-text">{content.fillTheForm as string}</p>
       </header>
       <div className="form__container">
         <form className="form__form-elem" onSubmit={handleSubmit} method="post">
@@ -141,7 +178,7 @@ export default async function Form({ locale }: { locale: string }) {
             <div className="form__input-elem">
               <Input
                 htmlFor="full Name"
-                label={`${fullName as string} *`}
+                label={`${content.fullName as string} *`}
                 type="text"
                 name="fullname"
                 value={formData.fullname}
@@ -167,7 +204,7 @@ export default async function Form({ locale }: { locale: string }) {
             <div className="form__input-elem">
               <Input
                 htmlFor="country"
-                label={country as string}
+                label={content.country as string}
                 type="text"
                 name="country"
                 value={formData.country}
@@ -184,7 +221,9 @@ export default async function Form({ locale }: { locale: string }) {
                 htmlFor={''}
                 value={''}
               />
-              <p className="form__checkbox-text">{iAgreeToReceive as string}</p>
+              <p className="form__checkbox-text">
+                {content.iAgreeToReceive as string}
+              </p>
             </div>
             <div className="form__input-elem">
               <Button
