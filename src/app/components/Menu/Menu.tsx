@@ -11,30 +11,24 @@ const Menu = () => {
   const [showLanguages, setShowLanguages] = useState(false);
   const route = useRouter();
   const headerRef = useRef<HTMLDivElement>(null);
-  const headerMobileRef = useRef<HTMLDivElement>(null);
-  const prevScrollpos = useRef<number>(window.scrollY);
+  const prevScrollpos = useRef<number>(0);
 
   const handleScroll = useCallback(() => {
     const currentScrollPos = window.scrollY;
+    const isScrollingUp = prevScrollpos.current > currentScrollPos;
+
     if (headerRef.current) {
-      if (prevScrollpos.current > currentScrollPos) {
-        headerRef.current.style.top = '0';
-      } else {
-        headerRef.current.style.top = '-111px';
-      }
+      headerRef.current.style.top = isScrollingUp ? '0' : '-111px';
     }
 
-    if (headerMobileRef.current) {
-      if (prevScrollpos.current > currentScrollPos) {
-        headerMobileRef.current.style.top = '0';
-      } else {
-        headerMobileRef.current.style.top = '-111px';
-      }
-    }
     prevScrollpos.current = currentScrollPos;
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    prevScrollpos.current = window.scrollY;
+
     const throttledHandleScroll = throttle(handleScroll, 100);
     window.addEventListener('scroll', throttledHandleScroll);
     return () => {
@@ -88,8 +82,8 @@ const Menu = () => {
   };
 
   return (
-    <>
-      <header ref={headerRef} className="header">
+    <div ref={headerRef} className="menu-container">
+      <header className="header">
         <div className="container">
           <nav className="navigation">
             <ul className="navigation__list" id="menu">
@@ -210,7 +204,7 @@ const Menu = () => {
           </nav>
         </div>
       </header>
-      <div ref={headerMobileRef} className="headerMobile">
+      <div className="headerMobile">
         <Image
           src={'/Logo.svg'}
           alt="logo"
@@ -356,7 +350,7 @@ const Menu = () => {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 
