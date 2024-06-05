@@ -4,6 +4,7 @@ import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
 import { useRouter } from 'next/navigation';
+import throttle from 'lodash.throttle';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,8 +35,12 @@ const Menu = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const throttledHandleScroll = throttle(handleScroll, 100);
+    window.addEventListener('scroll', throttledHandleScroll);
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+      throttledHandleScroll.cancel();
+    };
   }, [handleScroll]);
 
   function setLanguage(lang: string) {
