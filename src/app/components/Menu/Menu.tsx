@@ -5,18 +5,46 @@ import './Menu.scss';
 import Button from '../Button/Button';
 import { useRouter } from 'next/navigation';
 
+const locale = {
+  english: {
+    language: 'English',
+    tag: 'en-US',
+  },
+  polish: {
+    language: 'Polish',
+    tag: 'pl-PL',
+  },
+  spanish: {
+    language: 'Spanish',
+    tag: 'es-ES',
+  },
+  french: {
+    language: 'French',
+    tag: 'fr-FR',
+  },
+};
+
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
+  const [actualLanguage, setActualLanguage] = useState('English');
   const route = useRouter();
 
-  function setLanguage(lang: string) {
-    route.push(lang);
+  useEffect(() => {
+    for (const key in locale) {
+      if (window.location.href.includes(locale[key].tag)) {
+        setActualLanguage(locale[key].language);
+      }
+    }
+  }, [route]);
+
+  function setLanguage(lang: object) {
+    route.push(lang.tag);
+    setActualLanguage(lang.language);
   }
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-    console.log('clicked', isOpen);
     const buttonIcon = document.querySelector('.buttonContainerMob__open');
     if (buttonIcon) {
       buttonIcon.classList.toggle('buttonClicked');
@@ -36,10 +64,6 @@ const Menu = () => {
 
     document.addEventListener('click', handleClickOutside);
 
-    const urlFragment = window.location.hash;
-    if (urlFragment === '#mobMenu') {
-      setIsOpen(true);
-    }
 
     return () => {
       document.removeEventListener('click', handleClickOutside);
@@ -108,13 +132,12 @@ const Menu = () => {
                     htmlFor="langButtonDesktop"
                     className="navigation__lang"
                   >
-                    <p className="navigation__lang--text">English</p>
+                    <p className="navigation__lang--text">{actualLanguage}</p>
                     <button
                       title="navigation__toggleLangs"
                       className="navigation__toggleLangs"
                       onClick={() => {
                         toggleLanguages();
-                        setLanguage('en-US');
                       }}
                       id="langButtonDesktop"
                     >
@@ -129,40 +152,63 @@ const Menu = () => {
                   {showLanguages && (
                     <div className="languagesListContainer">
                       <ul className="languagesList">
-                        <button
-                          value={'pl-PL'}
-                          type="button"
-                          className="languagesList__button"
-                          onClick={() => {
-                            handleLanguageSelection();
-                            setLanguage('pl-PL');
-                            // switchLocale('pl');
-                          }}
-                        >
-                          Polish
-                        </button>
-                        <button
-                          type="button"
-                          className="languagesList__button"
-                          onClick={() => {
-                            handleLanguageSelection();
-                            setLanguage('es-ES');
-                            // switchLocale('es');
-                          }}
-                        >
-                          Spanish
-                        </button>
-                        <button
-                          type="button"
-                          className="languagesList__button"
-                          onClick={() => {
-                            handleLanguageSelection();
-                            setLanguage('fr-FR');
-                            // switchLocale('fr');
-                          }}
-                        >
-                          French
-                        </button>
+                        {actualLanguage !== 'English' && (
+                          <button
+                            value={'pl-PL'}
+                            type="button"
+                            className="languagesList__button"
+                            onClick={() => {
+                              handleLanguageSelection();
+                              setLanguage(locale.english);
+                              // switchLocale('pl');
+                            }}
+                          >
+                            English
+                          </button>
+                        )}
+
+                        {actualLanguage !== 'Polish' && (
+                          <button
+                            value={'pl-PL'}
+                            type="button"
+                            className="languagesList__button"
+                            onClick={() => {
+                              handleLanguageSelection();
+                              setLanguage(locale.polish);
+                              // switchLocale('pl');
+                            }}
+                          >
+                            Polish
+                          </button>
+                        )}
+
+                        {actualLanguage !== 'Spanish' && (
+                          <button
+                            type="button"
+                            className="languagesList__button"
+                            onClick={() => {
+                              handleLanguageSelection();
+                              setLanguage(locale.spanish);
+                              // switchLocale('es');
+                            }}
+                          >
+                            Spanish
+                          </button>
+                        )}
+
+                        {actualLanguage !== 'French' && (
+                          <button
+                            type="button"
+                            className="languagesList__button"
+                            onClick={() => {
+                              handleLanguageSelection();
+                              setLanguage(locale.french);
+                              // switchLocale('fr');
+                            }}
+                          >
+                            French
+                          </button>
+                        )}
                       </ul>
                     </div>
                   )}
@@ -215,7 +261,10 @@ const Menu = () => {
         </div>
       </div>
 
-      <div className="mobileMenu" id="mobMenu">
+      <div
+        className={`mobileMenu ${isOpen ? 'mobileMenu--open' : ''}`}
+        id="mobMenu"
+      >
         <ul className="mobileMenu__list">
           <li className="mobileMenu__item">
             <a href="#Home" className="navigation__item" onClick={handleClick}>
@@ -275,7 +324,7 @@ const Menu = () => {
           <li>
             <div className="navigation__langList">
               <label className="navigation__lang" htmlFor="languageButton">
-                <p className="navigation__lang--text">English</p>
+                <p className="navigation__lang--text">{actualLanguage}</p>
                 <button
                   title="navigation__toggleLangs"
                   className="navigation__toggleLangs"
@@ -294,27 +343,58 @@ const Menu = () => {
               {showLanguages && (
                 <div className="languagesListContainer--mob">
                   <ul className="languagesList">
-                    <button
-                      type="button"
-                      className="languagesList__button"
-                      onClick={handleLanguageSelection}
-                    >
-                      Polish
-                    </button>
-                    <button
-                      type="button"
-                      className="languagesList__button"
-                      onClick={handleLanguageSelection}
-                    >
-                      Spanish
-                    </button>
-                    <button
-                      type="button"
-                      className="languagesList__button"
-                      onClick={handleLanguageSelection}
-                    >
-                      French
-                    </button>
+                    {actualLanguage !== 'English' && (
+                      <button
+                        type="button"
+                        className="languagesList__button"
+                        onClick={() => {
+                          handleLanguageSelection();
+                          setLanguage(locale.english);
+                          // switchLocale('pl');
+                        }}
+                      >
+                        English
+                      </button>
+                    )}
+                    {actualLanguage !== 'Polish' && (
+                      <button
+                        type="button"
+                        className="languagesList__button"
+                        onClick={() => {
+                          handleLanguageSelection();
+                          setLanguage(locale.polish);
+                          // switchLocale('pl');
+                        }}
+                      >
+                        Polish
+                      </button>
+                    )}
+                    {actualLanguage !== 'Spanish' && (
+                      <button
+                        type="button"
+                        className="languagesList__button"
+                        onClick={() => {
+                          handleLanguageSelection();
+                          setLanguage(locale.spanish);
+                          // switchLocale('pl');
+                        }}
+                      >
+                        Spanish
+                      </button>
+                    )}
+                    {actualLanguage !== 'French' && (
+                      <button
+                        type="button"
+                        className="languagesList__button"
+                        onClick={() => {
+                          handleLanguageSelection();
+                          setLanguage(locale.french);
+                          // switchLocale('pl');
+                        }}
+                      >
+                        French
+                      </button>
+                    )}
                   </ul>
                 </div>
               )}
