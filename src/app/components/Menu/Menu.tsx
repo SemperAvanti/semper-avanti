@@ -1,14 +1,41 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
 import { useRouter } from 'next/navigation';
+import throttle from 'lodash.throttle';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
   const route = useRouter();
+  const headerRef = useRef<HTMLDivElement>(null);
+  const prevScrollpos = useRef<number>(0);
+
+  const handleScroll = useCallback(() => {
+    const currentScrollPos = window.scrollY;
+    const isScrollingUp = prevScrollpos.current > currentScrollPos;
+
+    if (headerRef.current) {
+      headerRef.current.style.top = isScrollingUp ? '0' : '-111px';
+    }
+
+    prevScrollpos.current = currentScrollPos;
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    prevScrollpos.current = window.scrollY;
+
+    const throttledHandleScroll = throttle(handleScroll, 100);
+    window.addEventListener('scroll', throttledHandleScroll);
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+      throttledHandleScroll.cancel();
+    };
+  }, [handleScroll]);
 
   function setLanguage(lang: string) {
     route.push(lang);
@@ -55,7 +82,7 @@ const Menu = () => {
   };
 
   return (
-    <>
+    <div ref={headerRef} className="menu-container">
       <header className="header">
         <div className="container">
           <nav className="navigation">
@@ -323,7 +350,7 @@ const Menu = () => {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 
