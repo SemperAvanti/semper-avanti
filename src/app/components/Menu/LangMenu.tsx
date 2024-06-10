@@ -71,9 +71,9 @@ const LangMenu = () => {
       {showLanguages && (
         <div className="languagesListContainer--mob">
           <ul className="languagesList">
-            {Object.entries(locale).map(([key, { language, tag }]) => (
+            {Object.entries(locale).map(([, { language, tag }]) => (
               <button
-                key={key}
+                key={tag}
                 type="button"
                 className="languagesList__button"
                 onClick={() => handleLanguageSelection(tag)}
