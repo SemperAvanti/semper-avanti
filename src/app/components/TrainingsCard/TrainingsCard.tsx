@@ -33,8 +33,6 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
   value4,
   value5,
   buttonLabel,
-
-
 }) => {
   return (
     <>

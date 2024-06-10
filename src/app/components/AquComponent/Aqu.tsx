@@ -18,7 +18,7 @@ export default async function Aqu({ locale }: { locale: string }) {
         <div className="aqu-section__container">
           {cards.length ? (
             cards.map((elem, id) => (
-              <div key={id} className="aqu-section__item">
+              <div key={`aquCard-${id}`} className="aqu-section__item">
                 <Image
                   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-ignore
@@ -43,11 +43,11 @@ export default async function Aqu({ locale }: { locale: string }) {
         </div>
       </div>
 
-       <script
-          dangerouslySetInnerHTML={{
-            __html: `console.log(${JSON.stringify(cards)})`,
-          }}
-        />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `console.log(${JSON.stringify(cards)})`,
+        }}
+      />
     </section>
   );
 }

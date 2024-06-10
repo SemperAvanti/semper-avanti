@@ -22,7 +22,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
       <main>
         <HomePage locale={locale} />
         <SectionAboutUs locale={locale} />
-        <Aqu locale={locale}/>
+        <Aqu locale={locale} />
         <TrainingPage locale={locale} />
         <Gallery />
         <Form />

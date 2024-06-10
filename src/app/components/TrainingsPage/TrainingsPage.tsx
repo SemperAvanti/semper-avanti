@@ -61,7 +61,7 @@ export default async function TrainingPage({ locale }: { locale: string }) {
                   className="cards__card cards__card--reverse"
                 >
                   <div className="cards__card__info" id="Trainings-1">
-                  <TrainingCard
+                    <TrainingCard
                       value1={item.fields.field1Name as string}
                       value2={item.fields.field2Name as string}
                       value3={item.fields.field3Name as string}
