@@ -11,6 +11,12 @@ interface TrainingCardProps {
   learningModule: string;
   requiredLevel: string;
   link: string;
+  value1: string;
+  value2: string;
+  value3: string;
+  value4: string;
+  value5: string;
+  buttonLabel: string;
 }
 
 const TrainingCard: React.FC<TrainingCardProps> = ({
@@ -21,6 +27,14 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
   learningModule,
   requiredLevel,
   link,
+  value1,
+  value2,
+  value3,
+  value4,
+  value5,
+  buttonLabel,
+
+
 }) => {
   return (
     <>
@@ -39,24 +53,24 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
         <div className="training-card__terms">
           <div className="training-card__term">
             <p className="training-card__left training-card__left--pad">
-              I Term:
+              {value1}
             </p>
             <p className="training-card__right training-card__right--pad">
               {term1}
             </p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">II Term:</p>
+            <p className="training-card__left">{value2}</p>
             <p className="training-card__right">{term2}</p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">Duration:</p>
+            <p className="training-card__left">{value3}</p>
             <p className="training-card__right">{duration}</p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">LEARNING ENGLISH MODULE</p>
+            <p className="training-card__left">{value4}</p>
             <p className="training-card__right">
-              {learningModule === 'yes' ? (
+              {learningModule ? (
                 <Image
                   width={32}
                   height={32}
@@ -74,12 +88,12 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
             </p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">REQUIRED ENGLISH LEVEL</p>
+            <p className="training-card__left">{value5}</p>
             <p className="training-card__right">{requiredLevel}</p>
           </div>
         </div>
         <div className="training-card__cont">
-          <p className="training-card__info">Want more info?</p>
+          <p className="training-card__info">{buttonLabel}</p>
           <a href={`${link}`}>
             <Button name="Get info package" variant="primary" />
           </a>

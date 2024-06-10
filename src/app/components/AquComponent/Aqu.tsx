@@ -1,64 +1,53 @@
 import Image from 'next/image';
-
+import { getContent, getMultipleContent } from '@/lib/api';
 import './Aqu.scss';
 
-export const Aqu = () => {
-  // temporary mockup data
-  const data = [
-    {
-      id: 1,
-      title: 'Inspiring Environment',
-      text: 'Picture this: passionate educators coming together in a vibrant setting, fueled by cutting-edge pedagogy, interactive workshops, and collaborative learning. Our camps are more than just sessions',
-      icon: '/light.svg',
-    },
-    {
-      id: 2,
-      title: 'Refreshing Experience',
-      text: 'Picture this: passionate educators coming together in a vibrant setting, fueled by cutting-edge pedagogy, interactive workshops, and collaborative learning. Our camps are more than just sessions',
-      icon: '/battery.svg',
-    },
-    {
-      id: 3,
-      title: 'Practical Application',
-      text: 'Picture this: passionate educators coming together in a vibrant setting, fueled by cutting-edge pedagogy, interactive workshops, and collaborative learning. Our camps are more than just sessions',
-      icon: '/work-outline.svg',
-    },
-    {
-      id: 4,
-      title: 'Professional Growth',
-      text: 'Picture this: passionate educators coming together in a vibrant setting, fueled by cutting-edge pedagogy, interactive workshops, and collaborative learning. Our camps are more than just sessions',
-      icon: '/chart.svg',
-    },
-  ];
-
-  const header = 'Why AQE?';
+export default async function Aqu({ locale }: { locale: string }) {
+  const { sectionAquTitle } = await getContent('sectionAquTitle', locale);
+  const cards = await getMultipleContent('sectionAquCard', locale);
 
   return (
     <section className="aqu-section">
       <div className="container">
         <header className="aqu-section__header">
-          <h2 className="aqu-section__header-text">{header}</h2>
+          <h2 className="aqu-section__header-text">
+            {sectionAquTitle as string}
+          </h2>
         </header>
 
         <div className="aqu-section__container">
-          {data.length ? (
-            data.map((elem) => (
-              <div key={elem.id} className="aqu-section__item">
+          {cards.length ? (
+            cards.map((elem, id) => (
+              <div key={id} className="aqu-section__item">
                 <Image
-                  src={elem.icon}
-                  alt={`icon of ${elem.title}`}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  src={elem.fields.cardImage.fields.file.url}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  alt={`icon of ${elem.fields.cardImage.fields.title}`}
                   width={40}
                   height={40}
                 />
-                <h3 className="aqu-section__title">{elem.title}</h3>
-                <div className="aqu-section__text">{elem.text}</div>
+                <h3 className="aqu-section__title">
+                  {elem.fields.cardTitle as string}
+                </h3>
+                <div className="aqu-section__text">
+                  {elem.fields.cardDescription as string}
+                </div>
               </div>
             ))
           ) : (
-            <div>loading...</div>
+            <div></div>
           )}
         </div>
       </div>
+
+       <script
+          dangerouslySetInnerHTML={{
+            __html: `console.log(${JSON.stringify(cards)})`,
+          }}
+        />
     </section>
   );
-};
+}

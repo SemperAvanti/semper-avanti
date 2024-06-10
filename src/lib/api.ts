@@ -19,3 +19,14 @@ export async function getContent(contentType: string, locale: string) {
 
   return response.items[0].fields;
 }
+
+export async function getMultipleContent(contentType: string, locale: string) {
+  const response = await client.getEntries({
+    content_type: contentType,
+    locale,
+  });
+
+  console.log(response.items);
+
+  return response.items;
+}
