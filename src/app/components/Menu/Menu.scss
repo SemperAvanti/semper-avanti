@@ -23,7 +23,7 @@
     height: 79px;
     width: 70px;
   }
-  
+
   @include device(tablet) {
     display: none;
   }
@@ -31,7 +31,6 @@
   @include device(mobile) {
     display: none;
   }
-  
 }
 
 .navigation {
@@ -276,7 +275,7 @@
 
 .df {
   background-color: red;
-  widht: 500px;
+  width: 500px;
   height: 500px;
 }
 
