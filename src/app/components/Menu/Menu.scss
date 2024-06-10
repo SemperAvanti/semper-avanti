@@ -1,11 +1,19 @@
 @import '@/styles/variables';
 @import '@/styles/mixins';
 
+.menu-container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  transition: top 0.3s;
+  z-index: 1000;
+}
+
 .header {
   height: 111px;
   padding: 16px 0 0;
   background-color: $color-background-secondary;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -15,7 +23,7 @@
     height: 79px;
     width: 70px;
   }
-
+  
   @include device(tablet) {
     display: none;
   }
@@ -23,6 +31,7 @@
   @include device(mobile) {
     display: none;
   }
+  
 }
 
 .navigation {
@@ -184,7 +193,7 @@
   background-color: $color-background-secondary;
   z-index: 99;
   background: #f7f7f7;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
