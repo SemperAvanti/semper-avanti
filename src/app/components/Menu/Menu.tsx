@@ -3,13 +3,11 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
-import { LangMenu } from './LangMenu';
 import throttle from 'lodash.throttle';
+import LangMenu from './LangMenu';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
-  
   const headerRef = useRef<HTMLDivElement>(null);
   const prevScrollpos = useRef<number>(0);
 
@@ -37,14 +35,37 @@ const Menu = () => {
     };
   }, [handleScroll]);
 
-
   const handleClick = () => {
     setIsOpen(!isOpen);
+    console.log('clicked', isOpen);
     const buttonIcon = document.querySelector('.buttonContainerMob__open');
     if (buttonIcon) {
       buttonIcon.classList.toggle('buttonClicked');
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        event.target &&
+        !(event.target as HTMLElement).closest('.navigation__langList')
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    const urlFragment = window.location.hash;
+    if (urlFragment === '#mobMenu') {
+      setIsOpen(true);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <div ref={headerRef} className="menu-container">
@@ -144,10 +165,7 @@ const Menu = () => {
         </div>
       </div>
 
-      <div
-        className={`mobileMenu ${isOpen ? 'mobileMenu--open' : ''}`}
-        id="mobMenu"
-      >
+      <div className="mobileMenu" id="mobMenu">
         <ul className="mobileMenu__list">
           <li className="mobileMenu__item">
             <a href="#Home" className="navigation__item" onClick={handleClick}>

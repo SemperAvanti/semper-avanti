@@ -3,49 +3,33 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import './Menu.scss';
+import { locale } from '@/i18nConfig';
 
-interface Locale {
-  language: string;
-  tag: string;
-}
-
-const locale: Record<string, Locale> = {
-  english: {
-    language: 'English',
-    tag: 'en-US',
-  },
-  polish: {
-    language: 'Polish',
-    tag: 'pl-PL',
-  },
-  spanish: {
-    language: 'Spanish',
-    tag: 'es-ES',
-  },
-  french: {
-    language: 'French',
-    tag: 'fr-FR',
-  },
-};
-
-export const LangMenu = () => {
+const LangMenu = () => {
   const [showLanguages, setShowLanguages] = useState(false);
-  const [actualLanguage, setActualLanguage] = useState('English');
+  const [activeLanguage, setActiveLanguage] = useState('English');
   const route = useRouter();
 
-  const setLanguage = (lang: Locale) => {
-    route.push(lang.tag);
-    setActualLanguage(lang.language);
-    setShowLanguages(false);
+  const setLanguage = (lang: string) => {
+    route.push(lang);
   };
 
   useEffect(() => {
     for (const key in locale) {
       if (window.location.href.includes(locale[key].tag)) {
-        setActualLanguage(locale[key].language);
+        setActiveLanguage(locale[key].language);
       }
     }
   }, [route]);
+
+  const toggleLanguages = () => {
+    setShowLanguages(!showLanguages);
+  };
+
+  const handleLanguageSelection = (lang: string) => {
+    setShowLanguages(false);
+    setLanguage(lang);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -65,93 +49,43 @@ export const LangMenu = () => {
     };
   }, [showLanguages]);
 
-  const toggleLanguages = () => {
-    setShowLanguages(!showLanguages);
-  };
-
-  const handleLanguageSelection = () => {
-    setShowLanguages(false);
-  };
-
   return (
     <div className="navigation__langList">
-      <label htmlFor="langButtonDesktop" className="navigation__lang">
-        <p className="navigation__lang--text">{actualLanguage}</p>
+      <label className="navigation__lang" htmlFor="languageButton">
+        <p className="navigation__lang--text">{activeLanguage}</p>
         <button
           title="navigation__toggleLangs"
           className="navigation__toggleLangs"
-          id="langButtonDesktop"
-          onClick={() => {
-            toggleLanguages();
-          }}
+          onClick={toggleLanguages}
+          id="languageButton"
         >
           <Image
             src={'/Vector.svg'}
             alt="choose language"
-            width={16}
-            height={16}
+            width={12}
+            height={9}
           />
         </button>
       </label>
+
       {showLanguages && (
-        <div className="languagesListContainer">
+        <div className="languagesListContainer--mob">
           <ul className="languagesList">
-            {actualLanguage !== 'English' && (
+            {Object.entries(locale).map(([key, { language, tag }]) => (
               <button
-                value={'pl-PL'}
+                key={key}
                 type="button"
                 className="languagesList__button"
-                onClick={() => {
-                  handleLanguageSelection();
-                  setLanguage(locale.english);
-                }}
+                onClick={() => handleLanguageSelection(tag)}
               >
-                English
+                {language}
               </button>
-            )}
-
-            {actualLanguage !== 'Polish' && (
-              <button
-                value={'pl-PL'}
-                type="button"
-                className="languagesList__button"
-                onClick={() => {
-                  handleLanguageSelection();
-                  setLanguage(locale.polish);
-                }}
-              >
-                Polish
-              </button>
-            )}
-
-            {actualLanguage !== 'Spanish' && (
-              <button
-                type="button"
-                className="languagesList__button"
-                onClick={() => {
-                  handleLanguageSelection();
-                  setLanguage(locale.spanish);
-                }}
-              >
-                Spanish
-              </button>
-            )}
-
-            {actualLanguage !== 'French' && (
-              <button
-                type="button"
-                className="languagesList__button"
-                onClick={() => {
-                  handleLanguageSelection();
-                  setLanguage(locale.french);
-                }}
-              >
-                French
-              </button>
-            )}
+            ))}
           </ul>
         </div>
       )}
     </div>
   );
 };
+
+export default LangMenu;
