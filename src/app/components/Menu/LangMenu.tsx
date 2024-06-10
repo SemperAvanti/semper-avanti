@@ -4,23 +4,16 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import './Menu.scss';
 import { locale } from '@/i18nConfig';
+import { useParams } from 'next/navigation';
 
 const LangMenu = () => {
   const [showLanguages, setShowLanguages] = useState(false);
-  const [activeLanguage, setActiveLanguage] = useState('English');
   const route = useRouter();
+  const params = useParams<{ locale: string }>();
 
   const setLanguage = (lang: string) => {
-    route.push(lang);
+    route.replace(lang);
   };
-
-  useEffect(() => {
-    for (const key in locale) {
-      if (window.location.href.includes(locale[key].tag)) {
-        setActiveLanguage(locale[key].language);
-      }
-    }
-  }, [route]);
 
   const toggleLanguages = () => {
     setShowLanguages(!showLanguages);
@@ -49,10 +42,19 @@ const LangMenu = () => {
     };
   }, [showLanguages]);
 
+  const getLanguageFromLocale = (localeParams: string) => {
+    const foundLocale = Object.values(locale).find(
+      (loc) => loc.tag === localeParams,
+    );
+    return foundLocale ? foundLocale.language : localeParams;
+  };
+
   return (
     <div className="navigation__langList">
       <label className="navigation__lang" htmlFor="languageButton">
-        <p className="navigation__lang--text">{activeLanguage}</p>
+        <p className="navigation__lang--text">
+          {getLanguageFromLocale(params.locale)}
+        </p>
         <button
           title="navigation__toggleLangs"
           className="navigation__toggleLangs"
