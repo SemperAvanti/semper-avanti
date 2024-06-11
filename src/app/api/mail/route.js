@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 // tymczasowo api key jest 'na sztywno'
 const resend = new Resend('re_fwDZFKuW_PrHLRii7SEQAH4UzCmZf3NNG');
+
 // const resend = new Resend(process.env.EMAIL_API_KEY);
 export async function POST(req) {
   try {
