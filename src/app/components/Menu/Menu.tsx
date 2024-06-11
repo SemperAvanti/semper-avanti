@@ -8,6 +8,7 @@ import LangMenu from './LangMenu';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showLanguages, setShowLanguages] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const prevScrollpos = useRef<number>(0);
 
@@ -47,25 +48,20 @@ const Menu = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        isOpen &&
+        showLanguages &&
         event.target &&
         !(event.target as HTMLElement).closest('.navigation__langList')
       ) {
-        setIsOpen(false);
+        setShowLanguages(false);
       }
     };
 
     document.addEventListener('click', handleClickOutside);
 
-    const urlFragment = window.location.hash;
-    if (urlFragment === '#mobMenu') {
-      setIsOpen(true);
-    }
-
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [isOpen]);
+  }, [showLanguages]);
 
   return (
     <div ref={headerRef} className="menu-container">
@@ -116,7 +112,10 @@ const Menu = () => {
                 </a>
               </li>
               <li>
-                <LangMenu />
+                <LangMenu
+                  showLanguages={showLanguages}
+                  setShowLanguages={setShowLanguages}
+                />
               </li>
               <div className="buttonContainer">
                 <a href="#Home-form">
@@ -223,7 +222,10 @@ const Menu = () => {
             </a>
           </li>
           <li>
-            <LangMenu />
+            <LangMenu
+              showLanguages={showLanguages}
+              setShowLanguages={setShowLanguages}
+            />
           </li>
         </ul>
       </div>

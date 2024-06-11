@@ -1,13 +1,16 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import './Menu.scss';
 import { locale } from '@/i18nConfig';
 import { useParams } from 'next/navigation';
 
-const LangMenu = () => {
-  const [showLanguages, setShowLanguages] = useState(false);
+type Props = {
+  showLanguages: boolean;
+  setShowLanguages: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const LangMenu: React.FC<Props> = ({ showLanguages, setShowLanguages }) => {
   const route = useRouter();
   const params = useParams<{ locale: string }>();
 
@@ -23,24 +26,6 @@ const LangMenu = () => {
     setShowLanguages(false);
     setLanguage(lang);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        showLanguages &&
-        event.target &&
-        !(event.target as HTMLElement).closest('.navigation__langList')
-      ) {
-        setShowLanguages(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [showLanguages]);
 
   const getLanguageFromLocale = (localeParams: string) => {
     const foundLocale = Object.values(locale).find(
