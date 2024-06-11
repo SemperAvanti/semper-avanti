@@ -1,18 +1,33 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import './Menu.scss';
 import { locale } from '@/i18nConfig';
 import { useParams } from 'next/navigation';
 
-type Props = {
-  showLanguages: boolean;
-  setShowLanguages: React.Dispatch<React.SetStateAction<boolean>>;
-};
-const LangMenu: React.FC<Props> = ({ showLanguages, setShowLanguages }) => {
+const LangMenu: React.FC = () => {
   const route = useRouter();
   const params = useParams<{ locale: string }>();
+  const [showLanguages, setShowLanguages] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        showLanguages &&
+        event.target &&
+        !(event.target as HTMLElement).closest('.navigation__langList')
+      ) {
+        setShowLanguages(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [showLanguages]);
 
   const setLanguage = (lang: string) => {
     route.replace(lang);
@@ -36,14 +51,13 @@ const LangMenu: React.FC<Props> = ({ showLanguages, setShowLanguages }) => {
 
   return (
     <div className="navigation__langList">
-      <label className="navigation__lang" htmlFor="languageButton">
+      <div className="navigation__lang" onClick={toggleLanguages}>
         <p className="navigation__lang--text">
           {getLanguageFromLocale(params.locale)}
         </p>
         <button
           title="navigation__toggleLangs"
           className="navigation__toggleLangs"
-          onClick={toggleLanguages}
           id="languageButton"
         >
           <Image
@@ -53,7 +67,7 @@ const LangMenu: React.FC<Props> = ({ showLanguages, setShowLanguages }) => {
             height={9}
           />
         </button>
-      </label>
+      </div>
 
       {showLanguages && (
         <div className="languagesListContainer--mob">
