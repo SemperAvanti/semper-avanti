@@ -9,9 +9,10 @@ import throttle from 'lodash.throttle';
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
-  const route = useRouter();
+   const route = useRouter();
   const headerRef = useRef<HTMLDivElement>(null);
   const prevScrollpos = useRef<number>(0);
+
 
   const handleScroll = useCallback(() => {
     const currentScrollPos = window.scrollY;

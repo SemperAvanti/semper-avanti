@@ -21,9 +21,9 @@ export default async function Home({ params: { locale } }: { params: Params }) {
       <Menu />
       <main>
         <HomePage locale={locale} />
-        <SectionAboutUs locale={locale} />
-        <Aqu locale={locale} />
-        <TrainingPage locale={locale} />
+        <SectionAboutUs />
+        <Aqu />
+        <TrainingPage />
         <Gallery />
         <Form />
         <SliderComponent

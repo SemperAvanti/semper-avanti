@@ -1,41 +1,69 @@
+'use client';
 import { getContent } from '@/lib/api';
 import './sectionAboutUs.scss';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default async function SectionAboutUs({ locale }: { locale: string }) {
-  const imageData = await getContent('sectionAboutUs', 'en-US');
+interface Content {
+  sectionAboutUsTitle: string;
+  sectionAboutUsSmallTitle1: string;
+  sectionAboutUsDescription1: string;
+  sectionAboutUsSmallTitle2: string;
+  sectionAboutUsDescription2: string;
+}
 
-  const {
-    sectionAboutUsTitle,
-    sectionAboutUsSmallTitle1,
-    sectionAboutUsDescription1,
-    sectionAboutUsSmallTitle2,
-    sectionAboutUsDescription2,
-    // sectionAboutUsImage,
-  } = await getContent('sectionAboutUs', locale);
+export default function SectionAboutUs() {
+  const { locale } = useParams();
+  const [content, setContent] = useState<null | Content>(null);
+  const [imageData, setImageData] = useState<null | string[]>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const imageResult = await getContent('sectionAboutUs', 'en-US');
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setImageData(imageResult);
+
+      const contentResult = await getContent(
+        'sectionAboutUs',
+        locale as string,
+      );
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setContent(contentResult);
+    }
+
+    fetchData();
+  }, [locale]);
+
+  if (!content || !imageData) {
+    return <div></div>;
+  }
 
   return (
     <section className="sectionAboutUs" id="AboutUs">
       <div className="sectionAboutUs__container container">
         <h2 className="section-title sectionAboutUs--title">
-          {sectionAboutUsTitle as string}{' '}
+          {content.sectionAboutUsTitle}
         </h2>
 
         <div className="sectionAboutUs__gridWrapper">
           <div className="sectionAboutUs__descriptionContainer">
             <h3 className="sectionAboutUs__descriptionContainer--title">
-              {sectionAboutUsSmallTitle1 as string}
+              {content.sectionAboutUsSmallTitle1}
             </h3>
             <p className="descriptionText descriptionText--gray">
-              {sectionAboutUsDescription1 as string}
+              {content.sectionAboutUsDescription1}
             </p>
           </div>
 
           <div className="sectionAboutUs__descriptionContainer">
             <h5 className="sectionAboutUs__descriptionContainer--title">
-              {sectionAboutUsSmallTitle2 as string}
+              {content.sectionAboutUsSmallTitle2}
             </h5>
             <p className="descriptionText descriptionText--gray ">
-              {sectionAboutUsDescription2 as string}
+              {content.sectionAboutUsDescription2}
             </p>
           </div>
         </div>
@@ -52,12 +80,6 @@ export default async function SectionAboutUs({ locale }: { locale: string }) {
             alt={imageData.sectionAboutUsImage.fields.title}
           />
         </picture>
-
-        {/* <script
-          dangerouslySetInnerHTML={{
-            __html: `console.log(${JSON.stringify(imageData)})`,
-          }}
-        /> */}
       </div>
     </section>
   );

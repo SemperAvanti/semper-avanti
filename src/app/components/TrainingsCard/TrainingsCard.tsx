@@ -3,35 +3,29 @@ import './TrainingsCard.scss';
 import Image from 'next/image';
 import Button from '../Button/Button';
 
+interface Card {
+  countryName: string;
+  field1Value: string;
+  field2Value: string;
+  field3Value: string;
+  field4Value: string;
+  field5Value: string;
+  field1Name: string;
+  field2Name: string;
+  field3Name: string;
+  field4Name: string;
+  field5Name: string;
+}
+
 interface TrainingCardProps {
-  name: string;
-  term1: string;
-  term2: string;
-  duration: string;
-  learningModule: string;
-  requiredLevel: string;
+  card: Card;
   link: string;
-  value1: string;
-  value2: string;
-  value3: string;
-  value4: string;
-  value5: string;
   buttonLabel: string;
 }
 
 const TrainingCard: React.FC<TrainingCardProps> = ({
-  name,
-  term1,
-  term2,
-  duration,
-  learningModule,
-  requiredLevel,
+  card,
   link,
-  value1,
-  value2,
-  value3,
-  value4,
-  value5,
   buttonLabel,
 }) => {
   return (
@@ -41,34 +35,37 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
           <h3 className="training-card__name">
             <span className="training-card__titleWrapper">
               <div className="training-card__blueLine"></div>
-              {name}
+              {card.countryName}
             </span>
 
-            <span className="training-card__titleWrapper--top"> {name}</span>
+            <span className="training-card__titleWrapper--top">
+              {' '}
+              {card.countryName}
+            </span>
           </h3>
         </div>
 
         <div className="training-card__terms">
           <div className="training-card__term">
             <p className="training-card__left training-card__left--pad">
-              {value1}
+              {card.field1Name}
             </p>
             <p className="training-card__right training-card__right--pad">
-              {term1}
+              {card.field1Value}
             </p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">{value2}</p>
-            <p className="training-card__right">{term2}</p>
+            <p className="training-card__left">{card.field2Name}</p>
+            <p className="training-card__right">{card.field2Value}</p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">{value3}</p>
-            <p className="training-card__right">{duration}</p>
+            <p className="training-card__left">{card.field3Name}</p>
+            <p className="training-card__right">{card.field3Value}</p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">{value4}</p>
+            <p className="training-card__left">{card.field4Name}</p>
             <p className="training-card__right">
-              {learningModule ? (
+              {card.field4Value ? (
                 <Image
                   width={32}
                   height={32}
@@ -86,8 +83,8 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
             </p>
           </div>
           <div className="training-card__term">
-            <p className="training-card__left">{value5}</p>
-            <p className="training-card__right">{requiredLevel}</p>
+            <p className="training-card__left">{card.field5Name}</p>
+            <p className="training-card__right">{card.field5Value}</p>
           </div>
         </div>
         <div className="training-card__cont">

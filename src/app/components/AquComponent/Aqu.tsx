@@ -1,53 +1,81 @@
+/* eslint-disable */
+// @ts-nocheck
+'use client';
 import Image from 'next/image';
 import { getContent, getMultipleContent } from '@/lib/api';
 import './Aqu.scss';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default async function Aqu({ locale }: { locale: string }) {
-  const { sectionAquTitle } = await getContent('sectionAquTitle', locale);
-  const cards = await getMultipleContent('sectionAquCard', locale);
+interface Content {
+  sectionAquTitle: string;
+}
+
+
+interface Card {
+  sectionAquTitle: string;
+}
+
+export default function Aqu() {
+  const [content, setContent] = useState<null | Content>(null);
+  const [cards, setCards] = useState<null | []>(null);
+
+  const { locale } = useParams();
+
+  useEffect(() => {
+    async function fetchData() {
+      const cards = await getMultipleContent(
+        'sectionAquCard',
+        locale as string,
+      );     
+      console.log(cards);
+      setCards(cards);
+
+      const contentResult = await getContent(
+        'sectionAquTitle',
+        locale as string,
+      );     
+      setContent(contentResult);
+    }
+
+    fetchData();
+  }, [locale]);
+
+  if (!content) {
+    return <div></div>;
+  }
 
   return (
     <section className="aqu-section">
       <div className="container">
         <header className="aqu-section__header">
           <h2 className="aqu-section__header-text">
-            {sectionAquTitle as string}
+            {content.sectionAquTitle}
           </h2>
         </header>
 
         <div className="aqu-section__container">
-          {cards.length ? (
+          {cards &&
             cards.map((elem, id) => (
               <div key={`aquCard-${id}`} className="aqu-section__item">
                 <Image
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
-                  src={elem.fields.cardImage.fields.file.url}
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
+                  src={elem.fields.cardImage.fields.file.url as string}
                   alt={`icon of ${elem.fields.cardImage.fields.title}`}
                   width={40}
                   height={40}
                 />
+
                 <h3 className="aqu-section__title">
-                  {elem.fields.cardTitle as string}
+                
+                  {elem.fields.cardTitle}
                 </h3>
                 <div className="aqu-section__text">
-                  {elem.fields.cardDescription as string}
+                  {elem.fields.cardDescription as string }
                 </div>
               </div>
-            ))
-          ) : (
-            <div></div>
-          )}
+            ))}
         </div>
       </div>
-
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `console.log(${JSON.stringify(cards)})`,
-        }}
-      />
     </section>
   );
 }

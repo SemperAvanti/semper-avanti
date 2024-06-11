@@ -25,8 +25,5 @@ export async function getMultipleContent(contentType: string, locale: string) {
     content_type: contentType,
     locale,
   });
-
-  console.log(response.items);
-
   return response.items;
 }

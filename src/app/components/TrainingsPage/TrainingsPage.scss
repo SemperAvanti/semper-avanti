@@ -49,23 +49,23 @@
 
 .cards {
   display: grid;
+  display: flex;
+  flex-direction: column;
 
   @include device(tablet) {
-    grid-template-rows: 436px 436px 436px;
     row-gap: 88px;
   }
 
-  @include device(mobile) {
-    display: flex;
-    flex-direction: column;
-  }
+  
 
   &__card {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 119px;
     margin-bottom: 124px;
-    grid-row: span 1;
+    
+
+    
 
     @include device(mobile) {
       display: flex;
@@ -122,6 +122,7 @@
     &:nth-child(even) .cards__card__info,
     &:nth-child(odd) .cards__card__imageContainer {
       grid-column: 2;
+      grid-row: 1;
     }
   }
 }
