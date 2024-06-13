@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import './scss/Slider.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
-import React from 'react';
 
 import { StoriesCard } from '../StoriesCard/StoriesCard';
 
@@ -18,22 +17,27 @@ SwiperCore.use([Autoplay]);
 type SliderProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setSwiper: (swiperInstance: any) => void;
-  spaceBetween: number;
-  slidesPerView: number;
-  slidesOffset: number;
+  slidesPerView: number | string;
   initialSlide: number;
   partners: boolean;
+  offset: string;
+  spaceBetween?: number;
+  slidesOffset?: number;
+
 };
 
 export const Slider: React.FC<SliderProps> = ({
   setSwiper,
-  spaceBetween,
   slidesPerView,
   initialSlide,
   partners,
+  offset,
 }) => {
   return (
-    <section className="Slider__container">
+    <section
+      className="Slider__container"
+      style={{marginLeft: offset}}
+    >
       <div className="slider">
         {
           <>
@@ -47,12 +51,10 @@ export const Slider: React.FC<SliderProps> = ({
               }}
               loop
               centeredSlides={true}
-              //Parametry mogą być różne w zależności od slidera
-              spaceBetween={spaceBetween}
-              slidesPerView={slidesPerView}
-              slidesOffsetBefore={170}
-              initialSlide={initialSlide}
               centeredSlidesBounds={true}
+              //Parametry mogą być różne w zależności od slidera
+              slidesPerView={slidesPerView}
+              initialSlide={initialSlide}
               allowTouchMove
             >
               {/* poglądowe, zamienić na dynamiczne  */}
@@ -60,12 +62,12 @@ export const Slider: React.FC<SliderProps> = ({
               {partners
                 ? Array.from({ length: 8 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
-                      <PartnersCard />
+                      <PartnersCard offset={offset}/>
                     </SwiperSlide>
                   ))
                 : Array.from({ length: 12 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
-                      <StoriesCard />
+                      <StoriesCard offset={offset}/>
                     </SwiperSlide>
                   ))}
             </Swiper>

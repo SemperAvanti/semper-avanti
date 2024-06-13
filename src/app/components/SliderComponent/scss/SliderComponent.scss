@@ -1,7 +1,8 @@
 @import '../../../../styles/mixins.scss';
+@import '@/styles/variables';
 
 .section {
-  color: black;
+  color: $color-black;
   width: 100%;
 
   &__header {
@@ -12,6 +13,9 @@
     & > h2 {
       font-size: 60px;
       text-align: center;
+      user-select: none;
+      pointer-events: none;
+      
       @include device(mobile) {
         font-size: 24px;
       }
