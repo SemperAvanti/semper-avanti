@@ -4,6 +4,7 @@ import 'swiper/scss';
 import 'swiper/scss/navigation';
 import React, { useState } from 'react';
 import { Slider } from '../Slider/Slider';
+import { SectionTitleMotion } from '../MotionTemplates/templates';
 
 const SWIPER_OFFSET = "24px";
 
@@ -25,7 +26,9 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     <section className="section" id={id}>
       <div className="container">
         <div className="section__header">
-          <h2 className="H2">{title}</h2>
+          <SectionTitleMotion>
+            <h2 className="H2">{title}</h2>
+          </SectionTitleMotion>
           <div className="buttons">
             <button onClick={() => swiper && swiper.slidePrev()}>
               <svg

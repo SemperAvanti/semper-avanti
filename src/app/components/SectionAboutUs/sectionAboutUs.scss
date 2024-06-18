@@ -9,13 +9,14 @@
   @include device(mobile) {
     padding-bottom: 48px;
   }
-  &--title {
-    order: 1;
-  }
 
   &__container {
     display: flex;
     flex-direction: column;
+  }
+
+  &__title {
+    order: 1;
   }
 
   &__gridWrapper {
@@ -25,6 +26,8 @@
     order: 2;
     margin-bottom: 45px;
     column-gap: 214px;
+
+    order: 2;
 
     @include device(tablet) {
       grid-template-columns: repeat(1, 1fr);

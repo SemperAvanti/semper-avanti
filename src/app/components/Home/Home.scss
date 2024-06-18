@@ -81,12 +81,12 @@
   }
 
   &__worldMap {
+    display: block;
     height: auto;
     max-height: 621px;
     margin-top: 45px;
 
     @include device(tablet) {
-      display: block;
       width: auto;
       max-width: min-content;
     }
@@ -160,9 +160,6 @@
     height: 24px;
     //top: 70%;
   }
-}
-
-.home__title__container {
 }
 
 .home--titleWrapper {
