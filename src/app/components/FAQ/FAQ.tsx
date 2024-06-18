@@ -6,7 +6,11 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import arrow from '../../../img/arrow.svg';
 import Image from 'next/image';
-import { ItemMotion, ListMotion, SectionTitleMotion } from '../MotionTemplates/templates';
+import {
+  ItemMotion,
+  ListMotion,
+  SectionTitleMotion,
+} from '../MotionTemplates/templates';
 
 export const FAQ: React.FC = () => {
   const faq = [
@@ -21,11 +25,13 @@ export const FAQ: React.FC = () => {
     <section className="section" id="FAQ">
       <div className="FAQ__container container">
         <SectionTitleMotion>
-          <h2 className="H2 FAQ__container--title">Frequently asked questions</h2>
+          <h2 className="H2 FAQ__container--title">
+            Frequently asked questions
+          </h2>
         </SectionTitleMotion>
         <ListMotion>
           {faq.map((el, i) => (
-            <ItemMotion key={el.someTitle}>
+            <ItemMotion key={el.someTitle + i + i}>
               <Accordion
                 key={el.someTitle + i}
                 className="container__accordion"

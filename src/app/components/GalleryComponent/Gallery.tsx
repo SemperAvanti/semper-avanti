@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './gallery.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
@@ -15,7 +15,7 @@ const Gallery = () => {
   const [swiper, setSwiper] = useState<any | null>(null);
   const [width, setWidth] = useState(0);
 
-  const updateSlidesPerView = () => {
+  const updateSlidesPerView = useCallback(() => {
     if (swiper && swiper.params) {
       switch (true) {
         case width < 385:
@@ -78,7 +78,7 @@ const Gallery = () => {
           swiper.update();
       }
     }
-  };
+  }, [swiper, width]);
 
   useEffect(() => {
     updateSlidesPerView();

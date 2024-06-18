@@ -5,7 +5,6 @@ import { getContent } from '@/lib/api';
 import {
   DescriptionsMotion,
   ImageMotion,
-  ItemMotion,
   LinkMotion,
   ListMotion,
   SectionTitleMotion,
