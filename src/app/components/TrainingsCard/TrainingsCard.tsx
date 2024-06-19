@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import './TrainingsCard.scss';
 import Image from 'next/image';

@@ -5,7 +5,7 @@ import 'swiper/scss/navigation';
 import React, { useState } from 'react';
 import { Slider } from '../Slider/Slider';
 
-const SWIPER_OFFSET = "24px";
+const SWIPER_OFFSET = '24px';
 
 type SliderComponentProps = {
   title: string;

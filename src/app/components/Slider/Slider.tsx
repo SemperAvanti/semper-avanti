@@ -23,7 +23,6 @@ type SliderProps = {
   offset: string;
   spaceBetween?: number;
   slidesOffset?: number;
-
 };
 
 export const Slider: React.FC<SliderProps> = ({
@@ -34,10 +33,7 @@ export const Slider: React.FC<SliderProps> = ({
   offset,
 }) => {
   return (
-    <section
-      className="Slider__container"
-      style={{marginLeft: offset}}
-    >
+    <section className="Slider__container" style={{ marginLeft: offset }}>
       <div className="slider">
         {
           <>
@@ -62,12 +58,12 @@ export const Slider: React.FC<SliderProps> = ({
               {partners
                 ? Array.from({ length: 8 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
-                      <PartnersCard offset={offset}/>
+                      <PartnersCard offset={offset} />
                     </SwiperSlide>
                   ))
                 : Array.from({ length: 12 }).map((_, index) => (
                     <SwiperSlide key={index} className="swiper__slide">
-                      <StoriesCard offset={offset}/>
+                      <StoriesCard offset={offset} />
                     </SwiperSlide>
                   ))}
             </Swiper>

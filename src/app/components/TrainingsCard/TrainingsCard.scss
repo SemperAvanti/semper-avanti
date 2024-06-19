@@ -132,6 +132,7 @@
 
   &__cont {
     width: 357px;
+     margin-top: 20px;
 
     @include device(mobile) {
       width: 100%;

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
 import { getContent } from '@/lib/api';
+import { ISectionHomeFields, LOCALE_CODE } from '@/contentfulTypes/contentful';
 
 // Object below is only for country codes
 // {
@@ -11,11 +12,9 @@ import { getContent } from '@/lib/api';
 //   French = 'fr-FR',
 // }
 
-export default async function HomePage({ locale }: { locale: string }) {
-  const { sectionHomeTitle, sectionHomeDescription } = await getContent(
-    'sectionHome',
-    locale,
-  );
+export default async function HomePage({ locale }: { locale: LOCALE_CODE }) {
+  const { sectionHomeTitle, sectionHomeDescription } =
+    await getContent<ISectionHomeFields>('sectionHome', locale);
 
   return (
     <section className="home" id="Home">
@@ -23,17 +22,15 @@ export default async function HomePage({ locale }: { locale: string }) {
         <div className="home__title__container">
           <h1 className="home__h1">
             <span className="home--titleWrapper">
-              {sectionHomeTitle as string}
+              {sectionHomeTitle}
               <div className="blueLine"></div>
             </span>
 
-            {/* <span className="home--titleWrapper--top">
-              Empower with AQE Educate.
-            </span> */}
+            <span className="home--titleWrapper--top">{sectionHomeTitle}</span>
           </h1>
         </div>
 
-        <p className="home__text ">{sectionHomeDescription as string}</p>
+        <p className="home__text ">{sectionHomeDescription}</p>
         <div className="home__button--desktop">
           <a href="#Home-form">
             <Button name="Get info package" variant="primary" />

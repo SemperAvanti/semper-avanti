@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Menu from '../components/Menu/Menu';
 import { Form } from '@/app/components/FormComponent/Form';
@@ -11,9 +10,10 @@ import HomePage from '../components/Home/Home';
 import { ContactUs } from '../components/ContactUs/ContactUs';
 import SectionAboutUs from '../components/SectionAboutUs/SectionAboutUs';
 import Aqu from '../components/AquComponent/Aqu';
+import { LOCALE_CODE } from '@/contentfulTypes/contentful';
 
 type Params = {
-  locale: string;
+  locale: LOCALE_CODE;
 };
 
 export default async function Home({ params: { locale } }: { params: Params }) {
@@ -22,7 +22,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
       <Menu />
       <main>
         <HomePage locale={locale} />
-        <SectionAboutUs locale={locale}/>
+        <SectionAboutUs locale={locale} />
         <Aqu locale={locale} />
         <TrainingPage locale={locale} />
         <Gallery />
