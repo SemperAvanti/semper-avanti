@@ -1,8 +1,15 @@
 import { getContent } from '@/lib/api';
 import './sectionAboutUs.scss';
-import { ISectionAboutUsFields } from '@/contentfulTypes/contentful';
+import {
+  ISectionAboutUsFields,
+  LOCALE_CODE,
+} from '@/contentfulTypes/contentful';
 
-export default async function SectionAboutUs({ locale }: { locale: string }) {
+export default async function SectionAboutUs({
+  locale,
+}: {
+  locale: LOCALE_CODE;
+}) {
   const imageData = await getContent<ISectionAboutUsFields>(
     'sectionAboutUs',
     'en-US',

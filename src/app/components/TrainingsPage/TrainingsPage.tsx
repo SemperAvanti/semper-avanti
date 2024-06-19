@@ -6,9 +6,14 @@ import { getContent, getMultipleContent } from '@/lib/api';
 import {
   ISectionTrainingsFields,
   ISectionTrainingsCardFields,
+  LOCALE_CODE,
 } from '@/contentfulTypes/contentful';
 
-export default async function TrainingPage({ locale }: { locale: string }) {
+export default async function TrainingPage({
+  locale,
+}: {
+  locale: LOCALE_CODE;
+}) {
   const data: ISectionTrainingsFields =
     await getContent<ISectionTrainingsFields>('sectionTrainings', locale);
   const trainingsCards = await getMultipleContent<ISectionTrainingsCardFields>(
