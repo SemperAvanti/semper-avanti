@@ -192,6 +192,21 @@ export interface ISectionTrainingsFields {
 
   /** Want more info */
   wantMoreInfo?: string | undefined;
+
+  /** CardField--1Term */
+  cardField1Term?: string | undefined;
+
+  /** CardFieldName--2Term */
+  cardFieldName2Term?: string | undefined;
+
+  /** CardFieldName--Duration */
+  cardFieldNameDuration?: string | undefined;
+
+  /** CardFieldName--LearningEnglishModule */
+  cardFieldNameLearningEnglishModule?: string | undefined;
+
+  /** CardFieldName--RequiredEnglishLevel */
+  cardFieldNameRequiredEnglishLevel?: string | undefined;
 }
 
 export interface ISectionTrainings extends Entry<ISectionTrainingsFields> {
@@ -215,41 +230,23 @@ export interface ISectionTrainingsCardFields {
   /** CountryName */
   countryName?: string | undefined;
 
-  /** field-1-name */
-  field1Name?: string | undefined;
-
   /** field-1-value */
-  field1Value?: string | undefined;
-
-  /** field-2-name */
-  field2Name?: string | undefined;
+  ITerm?: string | undefined;
 
   /** field-2-value */
-  field2Value?: string | undefined;
-
-  /** field-3-name */
-  field3Name?: string | undefined;
+  IITerm?: string | undefined;
 
   /** field-3-value */
-  field3Value?: string | undefined;
-
-  /** field-4-name */
-  field4Name?: string | undefined;
+  duration?: string | undefined;
 
   /** field-4-value */
-  field4Value?: boolean | undefined;
-
-  /** field-5-name */
-  field5Name?: string | undefined;
+  learningEnglishModule?: boolean | undefined;
 
   /** field-5-value */
-  field5Value?: string | undefined;
+  requiredEnglishLevel?: string | undefined;
 
   /** picture */
   picture?: Asset | undefined;
-
-  /** order */
-  order?: number | undefined;
 }
 
 export interface ISectionTrainingsCard

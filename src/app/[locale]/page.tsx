@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Menu from '../components/Menu/Menu';
 import { Form } from '@/app/components/FormComponent/Form';
@@ -21,9 +22,9 @@ export default async function Home({ params: { locale } }: { params: Params }) {
       <Menu />
       <main>
         <HomePage locale={locale} />
-        <SectionAboutUs />
-        <Aqu />
-        <TrainingPage />
+        <SectionAboutUs locale={locale}/>
+        <Aqu locale={locale} />
+        <TrainingPage locale={locale} />
         <Gallery />
         <Form />
         <SliderComponent

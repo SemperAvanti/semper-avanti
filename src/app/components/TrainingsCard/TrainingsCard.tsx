@@ -1,33 +1,32 @@
+
+
 import React from 'react';
 import './TrainingsCard.scss';
 import Image from 'next/image';
 import Button from '../Button/Button';
-
-interface Card {
-  countryName: string;
-  field1Value: string;
-  field2Value: string;
-  field3Value: string;
-  field4Value: string;
-  field5Value: string;
-  field1Name: string;
-  field2Name: string;
-  field3Name: string;
-  field4Name: string;
-  field5Name: string;
-}
+import { ISectionTrainingsCardFields } from '@/contentfulTypes/contentful';
 
 interface TrainingCardProps {
-  card: Card;
+  card: ISectionTrainingsCardFields;
   link: string;
-  buttonLabel: string;
+  buttonLabel: string | undefined;
+  fieldNames: (string | undefined)[];
 }
 
 const TrainingCard: React.FC<TrainingCardProps> = ({
   card,
   link,
   buttonLabel,
+  fieldNames,
 }) => {
+  const cardValues = [
+    card.ITerm,
+    card.IITerm,
+    card.duration,
+    card.learningEnglishModule,
+    card.requiredEnglishLevel,
+  ];
+
   return (
     <>
       <div className="training-card">
@@ -45,48 +44,39 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
           </h3>
         </div>
 
-        <div className="training-card__terms">
-          <div className="training-card__term">
-            <p className="training-card__left training-card__left--pad">
-              {card.field1Name}
-            </p>
-            <p className="training-card__right training-card__right--pad">
-              {card.field1Value}
-            </p>
-          </div>
-          <div className="training-card__term">
-            <p className="training-card__left">{card.field2Name}</p>
-            <p className="training-card__right">{card.field2Value}</p>
-          </div>
-          <div className="training-card__term">
-            <p className="training-card__left">{card.field3Name}</p>
-            <p className="training-card__right">{card.field3Value}</p>
-          </div>
-          <div className="training-card__term">
-            <p className="training-card__left">{card.field4Name}</p>
-            <p className="training-card__right">
-              {card.field4Value ? (
-                <Image
-                  width={32}
-                  height={32}
-                  src="/mdi_tick (1).svg"
-                  alt="Learning Module Yes"
-                />
-              ) : (
-                <Image
-                  width={32}
-                  height={32}
-                  src="/iconamoon_close-bold (1).svg"
-                  alt="Learning Module No"
-                />
-              )}
-            </p>
-          </div>
-          <div className="training-card__term">
-            <p className="training-card__left">{card.field5Name}</p>
-            <p className="training-card__right">{card.field5Value}</p>
-          </div>
-        </div>
+        {fieldNames.map((fieldName, i) => {
+          return (
+            cardValues[i] !== undefined && (
+              <div className="training-card__term" key={`field-${i}`}>
+                <p className="training-card__left training-card__left--pad">
+                  {fieldName}
+                </p>
+
+                {typeof cardValues[i] === 'boolean' ? (
+                  cardValues[i] ? (
+                    <Image
+                      width={32}
+                      height={32}
+                      src="/mdi_tick (1).svg"
+                      alt="Learning Module Yes"
+                    />
+                  ) : (
+                    <Image
+                      width={32}
+                      height={32}
+                      src="/iconamoon_close-bold (1).svg"
+                      alt="Learning Module No"
+                    />
+                  )
+                ) : (
+                  <p className="training-card__right training-card__right--pad">
+                    {cardValues[i]}
+                  </p>
+                )}
+              </div>
+            )
+          );
+        })}
         <div className="training-card__cont">
           <p className="training-card__info">{buttonLabel}</p>
           <a href={`${link}`}>
