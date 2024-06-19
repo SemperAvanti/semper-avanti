@@ -159,13 +159,16 @@
   right: 0;
   z-index: 3;
   box-sizing: border-box;
-  background-color: red;
 
   @include device(desktop) {
     display: none;
   }
 
   &:target {
+    transform: translateX(0);
+  }
+
+  &--open {
     transform: translateX(0);
   }
 
@@ -202,12 +205,10 @@
     padding-top: 20px;
     z-index: 99;
 
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 99;
-    display: none;
   }
 
   @include device(mobile) {
@@ -269,4 +270,14 @@
     position: absolute;
     top: 20px;
   }
+}
+
+.df {
+  background-color: red;
+  width: 500px;
+  height: 500px;
+}
+
+.test {
+  background-color: red;
 }
