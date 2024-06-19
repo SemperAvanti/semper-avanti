@@ -1,6 +1,6 @@
 'use server';
 
-import { CONTENT_TYPE, LOCALE_CODE } from '@/contentfulTypes/contentful';
+import { CONTENT_TYPE } from '@/contentfulTypes/contentful';
 import { createClient, EntryCollection, EntrySkeletonType } from 'contentful';
 
 console.log('sprawdzanie czy deploy na vercelu to widzi: ', process.env.TEST);
@@ -15,7 +15,7 @@ const client = createClient({
 
 export async function getContent<T>(
   contentType: CONTENT_TYPE,
-  locale: LOCALE_CODE,
+  locale: string,
 ): Promise<T> {
   const response = await client.getEntries({
     content_type: contentType,
@@ -27,7 +27,7 @@ export async function getContent<T>(
 
 export async function getMultipleContent<T>(
   contentType: CONTENT_TYPE,
-  locale: LOCALE_CODE,
+  locale: string,
 ): Promise<T[] | null> {
   try {
     const response: EntryCollection<EntrySkeletonType> =

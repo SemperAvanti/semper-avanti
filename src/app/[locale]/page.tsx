@@ -10,10 +10,9 @@ import HomePage from '../components/Home/Home';
 import { ContactUs } from '../components/ContactUs/ContactUs';
 import SectionAboutUs from '../components/SectionAboutUs/SectionAboutUs';
 import Aqu from '../components/AquComponent/Aqu';
-import { LOCALE_CODE } from '@/contentfulTypes/contentful';
 
 type Params = {
-  locale: LOCALE_CODE;
+  locale: string;
 };
 
 export default async function Home({ params: { locale } }: { params: Params }) {

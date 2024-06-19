@@ -4,10 +4,9 @@ import './Aqu.scss';
 import {
   ISectionAquCardFields,
   ISectionAquTitleFields,
-  LOCALE_CODE,
 } from '@/contentfulTypes/contentful';
 
-export default async function Aqu({ locale }: { locale: LOCALE_CODE }) {
+export default async function Aqu({ locale }: { locale: string }) {
   const { sectionAquTitle } = await getContent<ISectionAquTitleFields>(
     'sectionAquTitle',
     locale,
