@@ -59,7 +59,7 @@
   position: relative;
 
   @media (min-width: 1041px) {
-    &:first-child {
+    &--first {
       margin-top: 65px;
 
       @include device(mobile) {
@@ -67,7 +67,7 @@
       }
     }
 
-    &:last-child {
+    &--last {
       margin-top: 33px;
     }
   }

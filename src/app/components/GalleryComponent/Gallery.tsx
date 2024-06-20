@@ -1,15 +1,21 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './gallery.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
 import Image from 'next/image';
+import {
+  DescriptionsMotion,
+  ItemMotion,
+  ListMotion,
+  SectionTitleMotion,
+} from '../MotionTemplates/templates';
 
 const Gallery = () => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [width, setWidth] = useState(0);
 
-  const updateSlidesPerView = () => {
+  const updateSlidesPerView = useCallback(() => {
     if (swiper && swiper.params) {
       switch (true) {
         case width < 385:
@@ -72,7 +78,7 @@ const Gallery = () => {
           swiper.update();
       }
     }
-  };
+  }, [swiper, width]);
 
   useEffect(() => {
     updateSlidesPerView();
@@ -160,57 +166,72 @@ const Gallery = () => {
   return (
     <section>
       <div className="gallery__container container" id="Gallery">
-        <h2 className="section-title gallery__title">Gallery</h2>
-
+        <SectionTitleMotion>
+          <h2 className="section-title gallery__title">Gallery</h2>
+        </SectionTitleMotion>
         <div className="description-container">
-          <p className="description-text">
-            Step into a world where learning comes to life and inspiration knows
-            no bounds. In this vibrant space, we invite you to explore
-            captivating moments captured during our educational camps for
-            teachers.
-          </p>
+          <DescriptionsMotion>
+            <p className="description-text">
+              Step into a world where learning comes to life and inspiration
+              knows no bounds. In this vibrant space, we invite you to explore
+              captivating moments captured during our educational camps for
+              teachers.
+            </p>
+          </DescriptionsMotion>
         </div>
         {width >= 1040 && (
           <div className="container">
-            <div className="gallery__pictures">
-              <div className="gallery__picture">
-                <Image
-                  className="gallery__picture--image"
-                  alt="Malta"
-                  src="/images/gallery-malta.jpg"
-                  sizes="(max-width: 640px) 640px"
-                  width={357}
-                  height={444}
-                />
-                <div className="gallery__picture--description">Malta, 2020</div>
+            <ListMotion>
+              <div className="gallery__pictures">
+                <ItemMotion>
+                  <div className="gallery__picture gallery__picture--first">
+                    <Image
+                      className="gallery__picture--image"
+                      alt="Malta"
+                      src="/images/gallery-malta.jpg"
+                      sizes="(max-width: 640px) 640px"
+                      width={357}
+                      height={444}
+                    />
+                    <div className="gallery__picture--description">
+                      Malta, 2020
+                    </div>
+                  </div>
+                </ItemMotion>
+                <ItemMotion>
+                  <div className="gallery__picture">
+                    <Image
+                      className="gallery__picture--image"
+                      alt="Ireland"
+                      src="/images/gallery-ireland.jpg"
+                      sizes="(max-width: 640px) 640px"
+                      width={357}
+                      height={444}
+                    />
+
+                    <div className="gallery__picture--description">
+                      Ireland, 2022
+                    </div>
+                  </div>
+                </ItemMotion>
+                <ItemMotion>
+                  <div className="gallery__picture gallery__picture--last">
+                    <Image
+                      className="gallery__picture--image"
+                      alt="Canary Isl"
+                      src="/images/gallery-canary.jpg"
+                      sizes="(max-width: 640px) 640px"
+                      width={357}
+                      height={444}
+                    />
+
+                    <div className="gallery__picture--description">
+                      Canary Isl, 2023
+                    </div>
+                  </div>
+                </ItemMotion>
               </div>
-              <div className="gallery__picture">
-                <Image
-                  className="gallery__picture--image"
-                  alt="Ireland"
-                  src="/images/gallery-ireland.jpg"
-                  sizes="(max-width: 640px) 640px"
-                  width={357}
-                  height={444}
-                />
-                <div className="gallery__picture--description">
-                  Ireland, 2022
-                </div>
-              </div>
-              <div className="gallery__picture">
-                <Image
-                  className="gallery__picture--image"
-                  alt="Canary Isl"
-                  src="/images/gallery-canary.jpg"
-                  sizes="(max-width: 640px) 640px"
-                  width={357}
-                  height={444}
-                />
-                <div className="gallery__picture--description">
-                  Canary Isl, 2023
-                </div>
-              </div>
-            </div>
+            </ListMotion>
           </div>
         )}
       </div>
