@@ -1,26 +1,32 @@
 'use client';
-import img from '../../../img/img.png';
 import React from 'react';
 import Image from 'next/image';
 import './scss/StoriesCard.scss';
+import { ISectionStoriesCardFields } from '@/contentfulTypes/contentful';
 
 type OffsetProps = {
-  offset?: number | undefined;
+  offset?: string | undefined;
 };
 
-export const StoriesCard: React.FC<OffsetProps> = ({offset}) => {
+type StoriesCardProps = OffsetProps & ISectionStoriesCardFields;
+
+export const StoriesCard: React.FC<StoriesCardProps> = ({
+  offset,
+  fullname,
+  photo,
+  quote,
+}) => {
+  const imageUrl =
+    typeof photo?.fields?.file?.url === 'string' ? photo.fields.file.url : '';
+
   return (
-    <div className="stories__card" style={{ marginRight: offset}}>
-      <div className="stories__card--image">
-        <Image  src={img} alt="img" />
-      </div>
+    <div className="stories__card" style={{ marginRight: offset }}>
+      <Image className="stories__card--image" src={imageUrl} alt={fullname} />
       <div className="stories__card--content card__content">
         <p className="card__content--text descriptionText">
-          &quot;Joining the community forum has been a game-changer for me as an
-          educator. The support, collaboration, and wealth of resources available
-          here have truly enriched my teaching practice.”
+          &quot;{quote}&quot;
         </p>
-        <h4 className="body-text card__content--title body-text">Jimmy Jones</h4>
+        <h4 className="body-text card__content--title body-text">{fullname}</h4>
       </div>
     </div>
   );

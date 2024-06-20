@@ -1,18 +1,27 @@
 'use client';
-import img from '../../../img/cocacola.svg';
 import React from 'react';
 import Image from 'next/image';
 import './scss/PartnersCard.scss';
+import { ISectionPartnersCardFields } from '@/contentfulTypes/contentful';
 
 type OffsetProps = {
-  offset?: number | undefined;
+  offset?: string | undefined;
 };
 
-export const PartnersCard: React.FC<OffsetProps> = ({offset}) => {
+type PartnersCardProps = OffsetProps & ISectionPartnersCardFields;
+
+export const PartnersCard: React.FC<PartnersCardProps> = ({
+  offset,
+  partner,
+  image,
+}) => {
+  const imageUrl =
+    typeof image.fields.file?.url === 'string' ? image.fields.file.url : '';
+
   return (
-    <div className="partners__card" style={{ marginRight: offset}}>
-      <Image className="partners__card--image" src={img} alt="cocaCola" />
-      <h6 className="accented-body partners__card--text">Coca Cola</h6>
+    <div className="partners__card" style={{ marginRight: offset }}>
+      <Image className="partners__card--image" src={imageUrl} alt={partner} />
+      <h6 className="accented-body partners__card--text">{partner}</h6>
     </div>
   );
 };

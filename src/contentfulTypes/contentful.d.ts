@@ -183,6 +183,106 @@ export interface ISectionHome extends Entry<ISectionHomeFields> {
   };
 }
 
+export interface ISectionPartnersCardFields {
+  /** partner */
+  partner: string;
+
+  /** image */
+  image: Asset;
+}
+
+export interface ISectionPartnersCard
+  extends Entry<ISectionPartnersCardFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionPartnersCard';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionPartnersTitleFields {
+  /** Section Title */
+  sectionTitle: string;
+}
+
+export interface ISectionPartnersTitle
+  extends Entry<ISectionPartnersTitleFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionPartnersTitle';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionStoriesCardFields {
+  /** fullname */
+  fullname: string;
+
+  /** photo */
+  photo: Asset;
+
+  /** quote */
+  quote?: string | undefined;
+}
+
+export interface ISectionStoriesCard extends Entry<ISectionStoriesCardFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionStoriesCard';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionStoriesTitleFields {
+  /** Section Title */
+  sectionTitle: string;
+}
+
+export interface ISectionStoriesTitle
+  extends Entry<ISectionStoriesTitleFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionStoriesTitle';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface ISectionTrainingsFields {
   /** Section__Trainings--title */
   sectionTrainingsTitle?: string | undefined;
@@ -192,6 +292,21 @@ export interface ISectionTrainingsFields {
 
   /** Want more info */
   wantMoreInfo?: string | undefined;
+
+  /** CardFieldName--1Term */
+  cardField1Term?: string | undefined;
+
+  /** CardFieldName--2Term */
+  cardFieldName2Term?: string | undefined;
+
+  /** CardFieldName--Duration */
+  cardFieldNameDuration?: string | undefined;
+
+  /** CardFieldName--LearningEnglishModule */
+  cardFieldNameLearningEnglishModule?: string | undefined;
+
+  /** CardFieldName--RequiredEnglishLevel */
+  cardFieldNameRequiredEnglishLevel?: string | undefined;
 }
 
 export interface ISectionTrainings extends Entry<ISectionTrainingsFields> {
@@ -215,41 +330,23 @@ export interface ISectionTrainingsCardFields {
   /** CountryName */
   countryName?: string | undefined;
 
-  /** field-1-name */
-  field1Name?: string | undefined;
+  /** I Term */
+  ITerm?: string | undefined;
 
-  /** field-1-value */
-  field1Value?: string | undefined;
+  /** II Term */
+  IITerm?: string | undefined;
 
-  /** field-2-name */
-  field2Name?: string | undefined;
+  /** Duration */
+  duration?: string | undefined;
 
-  /** field-2-value */
-  field2Value?: string | undefined;
+  /** Learning English Module */
+  learningEnglishModule?: boolean | undefined;
 
-  /** field-3-name */
-  field3Name?: string | undefined;
-
-  /** field-3-value */
-  field3Value?: string | undefined;
-
-  /** field-4-name */
-  field4Name?: string | undefined;
-
-  /** field-4-value */
-  field4Value?: boolean | undefined;
-
-  /** field-5-name */
-  field5Name?: string | undefined;
-
-  /** field-5-value */
-  field5Value?: string | undefined;
+  /** Required English Level */
+  requiredEnglishLevel?: string | undefined;
 
   /** picture */
   picture?: Asset | undefined;
-
-  /** order */
-  order?: number | undefined;
 }
 
 export interface ISectionTrainingsCard
@@ -302,6 +399,10 @@ export type CONTENT_TYPE =
   | 'sectionAquTitle'
   | 'sectionForm'
   | 'sectionHome'
+  | 'sectionPartnersCard'
+  | 'sectionPartnersTitle'
+  | 'sectionStoriesCard'
+  | 'sectionStoriesTitle'
   | 'sectionTrainings'
   | 'sectionTrainingsCard'
   | 'whyAqe';
@@ -313,6 +414,10 @@ export type IEntry =
   | ISectionAquTitle
   | ISectionForm
   | ISectionHome
+  | ISectionPartnersCard
+  | ISectionPartnersTitle
+  | ISectionStoriesCard
+  | ISectionStoriesTitle
   | ISectionTrainings
   | ISectionTrainingsCard
   | IWhyAqe;
