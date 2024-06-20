@@ -55,7 +55,7 @@ export const SectionAboutUs: React.FC = () => {
             </DescriptionsMotion>
           </div>
         </div>
-        <div  className="sectionAboutUs--image">
+        <div className="sectionAboutUs--image">
           <ImageMotion>
             <picture>
               <source

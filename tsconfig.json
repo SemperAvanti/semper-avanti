@@ -20,9 +20,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": [
-      "contentful-management"
-    ],
+    "types": ["contentful-management"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

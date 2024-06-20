@@ -51,7 +51,7 @@ export const Footer = ({ locale }: { locale: string }) => {
                 </a>
               );
             })}
-            <p className="Footer__gridContainer--link">Phone Num</p>
+          <p className="Footer__gridContainer--link">Phone Num</p>
         </div>
 
         <div className="Footer__bottomLabel">
