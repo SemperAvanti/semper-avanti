@@ -20,7 +20,15 @@ export const PartnersCard: React.FC<PartnersCardProps> = ({
 
   return (
     <div className="partners__card" style={{ marginRight: offset }}>
-      <Image className="partners__card--image" src={imageUrl} alt={partner} />
+      <div className="partners__card--image">
+        <Image
+          src={`https:${imageUrl}`}
+          alt={partner}
+          width={230}
+          height={160}
+        />
+      </div>
+
       <h6 className="accented-body partners__card--text">{partner}</h6>
     </div>
   );

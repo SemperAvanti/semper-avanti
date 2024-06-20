@@ -21,7 +21,14 @@ export const StoriesCard: React.FC<StoriesCardProps> = ({
 
   return (
     <div className="stories__card" style={{ marginRight: offset }}>
-      <Image className="stories__card--image" src={imageUrl} alt={fullname} />
+      <div className="stories__card--image">
+        <Image
+          src={`https:${imageUrl}`}
+          alt={fullname}
+          width={262}
+          height={173}
+        />
+      </div>
       <div className="stories__card--content card__content">
         <p className="card__content--text descriptionText">
           &quot;{quote}&quot;
