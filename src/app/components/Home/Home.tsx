@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
 import { getContent } from '@/lib/api';
+import { ISectionHomeFields } from '@/contentfulTypes/contentful';
 
 // Object below is only for country codes
 // {
@@ -12,10 +13,8 @@ import { getContent } from '@/lib/api';
 // }
 
 export default async function HomePage({ locale }: { locale: string }) {
-  const { sectionHomeTitle, sectionHomeDescription } = await getContent(
-    'sectionHome',
-    locale,
-  );
+  const { sectionHomeTitle, sectionHomeDescription } =
+    await getContent<ISectionHomeFields>('sectionHome', locale);
 
   return (
     <section className="home" id="Home">
