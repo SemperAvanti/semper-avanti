@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import './gallery.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper';
 import Image from 'next/image';
 
 const Gallery = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [swiper, setSwiper] = useState<any | null>(null);
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [width, setWidth] = useState(0);
 
   const updateSlidesPerView = () => {
@@ -221,8 +221,7 @@ const Gallery = () => {
 
             <Swiper
               className="swiper"
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              onSwiper={(swiperInstance: any) => setSwiper(swiperInstance)}
+              onSwiper={(swiperInstance) => setSwiper(swiperInstance)}
               autoplay={{
                 delay: 2300,
                 disableOnInteraction: true,
