@@ -4,6 +4,7 @@
 .section {
   color: $color-black;
   width: 100%;
+  overflow: hidden;
 
   &__header {
     display: flex;

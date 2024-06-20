@@ -49,6 +49,7 @@
 
 .cards {
   display: grid;
+  overflow: hidden;
 
   @include device(tablet) {
     grid-template-rows: 436px 436px 436px;
