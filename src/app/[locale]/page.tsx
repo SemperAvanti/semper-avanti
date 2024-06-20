@@ -26,12 +26,12 @@ export default async function Home({ params: { locale } }: { params: Params }) {
         <SectionAboutUs />
         <Aqu />
         <TrainingPage
-          // id={
-          //   (ids &&
-          //     ids.navItems[3]?.title.toLowerCase().replace(/\s+/g, '-')) ||
-          //   ''
-          // }
-          />
+        // id={
+        //   (ids &&
+        //     ids.navItems[3]?.title.toLowerCase().replace(/\s+/g, '-')) ||
+        //   ''
+        // }
+        />
         <Gallery />
         <Form />
         <SliderComponent
