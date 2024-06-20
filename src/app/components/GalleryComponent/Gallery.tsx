@@ -5,12 +5,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import { fetchIds } from '@/lib/fetchIds';
 import { MenuData } from '@/app/types/menuData';
+import { useParams } from 'next/navigation';
 
-const Gallery = ({ locale }: { locale: string }) => {
+const Gallery = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [swiper, setSwiper] = useState<any | null>(null);
   const [width, setWidth] = useState(0);
   const [ids, setIds] = useState<MenuData | null>(null);
+
+  const { locale } = useParams<{ locale: string }>();
 
   useEffect(() => {
     const fetchDataAsync = async () => {

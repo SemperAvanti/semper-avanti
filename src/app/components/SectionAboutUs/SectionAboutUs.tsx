@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import './sectionAboutUs.scss';
 import { fetchIds } from '@/lib/fetchIds';
 import { MenuData } from '@/app/types/menuData';
+import { useParams } from 'next/navigation';
 
-export const SectionAboutUs = ({ locale }: { locale: string }) => {
+export const SectionAboutUs = () => {
   const [ids, setIds] = useState<MenuData | null>(null);
+  const { locale } = useParams<{ locale: string }>();
 
   useEffect(() => {
     const fetchDataAsync = async () => {

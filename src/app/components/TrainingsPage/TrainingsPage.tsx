@@ -1,11 +1,25 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import TrainingCard from '../TrainingsCard/TrainingsCard';
 
 import './TrainingsPage.scss';
 import { fetchIds } from '@/lib/fetchIds';
+import { MenuData } from '@/app/types/menuData';
+import { useParams } from 'next/navigation';
 
-const TrainingPage = async ({ locale }: { locale: string }) => {
-  const ids = await fetchIds(locale);
+const TrainingPage = () => {
+  const [ids, setIds] = useState<MenuData | null>(null);
+
+  const { locale } = useParams<{ locale: string }>();
+
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      const result = await fetchIds(locale);
+      setIds(result);
+    };
+
+    fetchDataAsync();
+  }, [locale]);
   return (
     <>
       <section>

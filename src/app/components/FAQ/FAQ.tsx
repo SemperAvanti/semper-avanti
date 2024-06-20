@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import './scss/FAQ.scss';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -7,8 +8,10 @@ import Typography from '@mui/material/Typography';
 import arrow from '../../../img/arrow.svg';
 import Image from 'next/image';
 import { fetchIds } from '@/lib/fetchIds';
+import { MenuData } from '@/app/types/menuData';
+import { useParams } from 'next/navigation';
 
-export const FAQ = async ({ locale }: { locale: string }) => {
+export const FAQ = () => {
   const faq = [
     { someTitle: 'some desc' },
     { someTitle: 'some desc' },
@@ -17,7 +20,18 @@ export const FAQ = async ({ locale }: { locale: string }) => {
     { someTitle: 'some desc' },
   ];
 
-  const ids = await fetchIds(locale);
+  const [ids, setIds] = useState<MenuData | null>(null);
+
+  const { locale } = useParams<{ locale: string }>();
+
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      const result = await fetchIds(locale);
+      setIds(result);
+    };
+
+    fetchDataAsync();
+  }, [locale]);
 
   return (
     <section

@@ -24,7 +24,6 @@ const Menu = ({ locale }: { locale: string }) => {
     const fetchData = async () => {
       try {
         const response = await getContent('navigation', locale);
-        console.log('Response from getContent:', response);
         const navItems =
           response.navItems &&
           response.navItems.map((item: string) => ({
@@ -33,7 +32,6 @@ const Menu = ({ locale }: { locale: string }) => {
         const formattedData = { navItems };
 
         setData(formattedData);
-        console.log('Data after setting state:', formattedData);
       } catch (error) {
         console.error('Error fetching content:', error);
       }

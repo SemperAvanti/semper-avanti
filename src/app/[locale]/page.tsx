@@ -23,10 +23,16 @@ export default async function Home({ params: { locale } }: { params: Params }) {
       <Menu locale={locale} />
       <main>
         <HomePage locale={locale} />
-        <SectionAboutUs locale={locale} />
+        <SectionAboutUs />
         <Aqu />
-        <TrainingPage locale={locale} />
-        <Gallery locale={locale} />
+        <TrainingPage
+          // id={
+          //   (ids &&
+          //     ids.navItems[3]?.title.toLowerCase().replace(/\s+/g, '-')) ||
+          //   ''
+          // }
+          />
+        <Gallery />
         <Form />
         <SliderComponent
           partners={false}
@@ -46,7 +52,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
             ''
           }
         />
-        <FAQ locale={locale} />
+        <FAQ />
         <ContactUs />
         <Footer />
       </main>

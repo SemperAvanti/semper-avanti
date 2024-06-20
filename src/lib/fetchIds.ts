@@ -11,17 +11,14 @@ type MenuData = {
 export const fetchIds = async (locale: string): Promise<MenuData | null> => {
   try {
     const response = await getContent('navigation', locale);
-    console.log('Response from getContent:', response);
     const navItems =
       response.navItems &&
       response.navItems.map((item: string) => ({
         title: item,
       }));
     const formattedData = { navItems };
-    console.log('Data after formatting:', formattedData);
     return formattedData;
   } catch (error) {
-    console.error('Error fetching content:', error);
     return null;
   }
 };

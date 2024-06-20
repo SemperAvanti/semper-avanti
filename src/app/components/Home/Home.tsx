@@ -13,12 +13,12 @@ import { fetchIds } from '@/lib/fetchIds';
 // }
 
 export default async function HomePage({ locale }: { locale: string }) {
+  const ids = await fetchIds(locale);
+
   const { sectionHomeTitle, sectionHomeDescription } = await getContent(
     'sectionHome',
     locale,
   );
-
-  const ids = await fetchIds(locale);
 
   return (
     <section
