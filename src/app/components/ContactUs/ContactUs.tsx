@@ -1,46 +1,69 @@
 import './ContactUs.scss';
 import '../../../styles/typography.scss';
+import {
+  ArticleTitleMotion,
+  DescriptionsMotion,
+  SectionTitleMotion,
+} from '../MotionTemplates/templates';
 
 export const ContactUs = () => {
   return (
     <section className="ContactUs" id="ContactUs">
       <div className="container">
-        <h2 className="section-title">Contact Us</h2>
+        <SectionTitleMotion>
+          <h2 className="section-title">Contact Us</h2>
+        </SectionTitleMotion>
         <div className="ContactUs__flexContainer">
           <div className="ContactUs__descriptionWrapper">
-            <h3 className="body-text ContactUs__descriptionWrapper-title">
-              Email
-            </h3>
-            <p className="descriptionText descriptionText--gray">
-              info@qualityineducation.org
-            </p>
+            <ArticleTitleMotion>
+              <h3 className="body-text ContactUs__descriptionWrapper-title">
+                Email
+              </h3>
+            </ArticleTitleMotion>
+            <DescriptionsMotion>
+              <p className="descriptionText descriptionText--gray">
+                info@qualityineducation.org
+              </p>
+            </DescriptionsMotion>
           </div>
           <div className="ContactUs__descriptionWrapper">
-            <h3 className="body-text ContactUs__descriptionWrapper-title">
-              Office Hours
-            </h3>
-            <p className="descriptionText descriptionText--gray">
-              Monday-Friday, 9:00 AM - 5:00 PM
-            </p>
-            <p className="descriptionText descriptionText--gray">
-              (excluding holidays)
-            </p>
+            <ArticleTitleMotion>
+              <h3 className="body-text ContactUs__descriptionWrapper-title">
+                Office Hours
+              </h3>
+            </ArticleTitleMotion>
+            <DescriptionsMotion>
+              <p className="descriptionText descriptionText--gray">
+                Monday-Friday, 9:00 AM - 5:00 PM
+              </p>
+              <p className="descriptionText descriptionText--gray">
+                (excluding holidays)
+              </p>
+            </DescriptionsMotion>
           </div>
           <div className="ContactUs__descriptionWrapper">
-            <h3 className="body-text ContactUs__descriptionWrapper-title">
-              Address
-            </h3>
-            <p className="descriptionText descriptionText--gray">
-              +1 (555) 123-4567
-            </p>
+            <ArticleTitleMotion>
+              <h3 className="body-text ContactUs__descriptionWrapper-title">
+                Address
+              </h3>
+            </ArticleTitleMotion>
+            <DescriptionsMotion>
+              <p className="descriptionText descriptionText--gray">
+                +1 (555) 123-4567
+              </p>
+            </DescriptionsMotion>
           </div>
           <div className="ContactUs__descriptionWrapper">
-            <h3 className="body-text ContactUs__descriptionWrapper-title">
-              Phone Number
-            </h3>
-            <p className="descriptionText descriptionText--gray">
-              +1 (555) 123-4567
-            </p>
+            <ArticleTitleMotion>
+              <h3 className="body-text ContactUs__descriptionWrapper-title">
+                Phone Number
+              </h3>
+            </ArticleTitleMotion>
+            <DescriptionsMotion>
+              <p className="descriptionText descriptionText--gray">
+                +1 (555) 123-4567
+              </p>
+            </DescriptionsMotion>
           </div>
         </div>
       </div>

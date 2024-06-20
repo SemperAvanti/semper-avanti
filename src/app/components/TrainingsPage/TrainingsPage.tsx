@@ -2,6 +2,12 @@ import React from 'react';
 import TrainingCard from '../TrainingsCard/TrainingsCard';
 
 import './TrainingsPage.scss';
+import {
+  DescriptionsMotion,
+  SectionTitleMotion,
+  TrainingImageMotionLeft,
+  TrainingImageMotionRight,
+} from '../MotionTemplates/templates';
 
 const TrainingPage = () => {
   return (
@@ -9,11 +15,15 @@ const TrainingPage = () => {
       <section>
         <div className="container" id="Trainings">
           <div className="trainings__name">
-            <h2 className="trainings__title">Trainings</h2>
-            <p className="trainings__text">
-              Our programs at AQE are designed to cater to the diverse needs of
-              educators at every stage of their career.
-            </p>
+            <SectionTitleMotion>
+              <h2 className="trainings__title">Trainings</h2>
+            </SectionTitleMotion>
+            <DescriptionsMotion>
+              <p className="trainings__text">
+                Our programs at AQE are designed to cater to the diverse needs
+                of educators at every stage of their career.
+              </p>
+            </DescriptionsMotion>
           </div>
 
           <div className="cards">
@@ -29,40 +39,46 @@ const TrainingPage = () => {
                   link="#Home-form"
                 />
               </div>
-
-              <picture className="cards__card__imageContainer">
-                <source
-                  media="(max-width:640px)"
-                  srcSet="images/malta-mobile.jpg"
-                />
-                <source
-                  media="(max-width:1200px)"
-                  srcSet="images/malta-tablet.jpg"
-                />
-                <img
-                  className="cards__card__imageContainer-item"
-                  src="images/malta-desktop.jpg"
-                  alt="meeting-event"
-                />
-              </picture>
+              <TrainingImageMotionRight>
+                <div className="cards__card__imageContainer">
+                  <picture>
+                    <source
+                      media="(max-width:640px)"
+                      srcSet="images/malta-mobile.jpg"
+                    />
+                    <source
+                      media="(max-width:1200px)"
+                      srcSet="images/malta-tablet.jpg"
+                    />
+                    <img
+                      className="cards__card__imageContainer-item"
+                      src="images/malta-desktop.jpg"
+                      alt="meeting-event"
+                    />
+                  </picture>
+                </div>
+              </TrainingImageMotionRight>
             </div>
             <div className="cards__card">
-              <picture className="cards__card__imageContainer">
-                <source
-                  media="(max-width:640px)"
-                  srcSet="images/canary-mobile.jpg"
-                />
-                <source
-                  media="(max-width:1200px)"
-                  srcSet="images/canary-tablet.jpg"
-                />
-                <img
-                  className="cards__card__imageContainer-item"
-                  src="images/canary-desktop.jpg"
-                  alt="meeting-event"
-                />
-              </picture>
-
+              <TrainingImageMotionLeft>
+                <div className="cards__card__imageContainer">
+                  <picture>
+                    <source
+                      media="(max-width:640px)"
+                      srcSet="images/canary-mobile.jpg"
+                    />
+                    <source
+                      media="(max-width:1200px)"
+                      srcSet="images/canary-tablet.jpg"
+                    />
+                    <img
+                      className="cards__card__imageContainer-item"
+                      src="images/canary-desktop.jpg"
+                      alt="meeting-event"
+                    />
+                  </picture>
+                </div>
+              </TrainingImageMotionLeft>
               <div className="cards__card__info" id="Trainings-canary">
                 <TrainingCard
                   name="Canary islands"
@@ -90,21 +106,25 @@ const TrainingPage = () => {
                   link="#Home-form"
                 />
               </div>
-              <picture className="cards__card__imageContainer">
-                <source
-                  media="(max-width:640px)"
-                  srcSet="images/ireland-mobile.jpg"
-                />
-                <source
-                  media="(max-width:1200px)"
-                  srcSet="images/ireland-tablet.jpg"
-                />
-                <img
-                  className="cards__card__imageContainer-item"
-                  src="images/ireland-desktop.jpg"
-                  alt="meeting-event"
-                />
-              </picture>
+              <TrainingImageMotionRight>
+                <div className="cards__card__imageContainer">
+                  <picture>
+                    <source
+                      media="(max-width:640px)"
+                      srcSet="images/ireland-mobile.jpg"
+                    />
+                    <source
+                      media="(max-width:1200px)"
+                      srcSet="images/ireland-tablet.jpg"
+                    />
+                    <img
+                      className="cards__card__imageContainer-item"
+                      src="images/ireland-desktop.jpg"
+                      alt="meeting-event"
+                    />
+                  </picture>
+                </div>
+              </TrainingImageMotionRight>
             </div>
           </div>
         </div>
