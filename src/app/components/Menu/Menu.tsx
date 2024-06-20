@@ -1,10 +1,12 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
 import { useRouter } from 'next/navigation';
 import { getContent } from '@/lib/api';
+import throttle from 'lodash.throttle';
+import LangMenu from './LangMenu';
 
 type NavItem = {
   title: string;
@@ -17,8 +19,8 @@ type MenuData = {
 const Menu = ({ locale }: { locale: string }) => {
   const [data, setData] = useState<MenuData | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [showLanguages, setShowLanguages] = useState(false);
-  const route = useRouter();
+  const headerRef = useRef<HTMLDivElement>(null);
+  const prevScrollpos = useRef<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +45,30 @@ const Menu = ({ locale }: { locale: string }) => {
   function setLanguage(lang: string) {
     route.push(lang);
   }
+    
+  const handleScroll = useCallback(() => {
+    const currentScrollPos = window.scrollY;
+    const isScrollingUp = prevScrollpos.current > currentScrollPos;
+
+    if (headerRef.current) {
+      headerRef.current.style.top = isScrollingUp ? '0' : '-111px';
+    }
+
+    prevScrollpos.current = currentScrollPos;
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    prevScrollpos.current = window.scrollY;
+
+    const throttledHandleScroll = throttle(handleScroll, 100);
+    window.addEventListener('scroll', throttledHandleScroll);
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+      throttledHandleScroll.cancel();
+    };
+  }, [handleScroll]);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -54,42 +80,11 @@ const Menu = ({ locale }: { locale: string }) => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        showLanguages &&
-        event.target &&
-        !(event.target as HTMLElement).closest('.navigation__langList')
-      ) {
-        setShowLanguages(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    const urlFragment = window.location.hash;
-    if (urlFragment === '#mobMenu') {
-      setIsOpen(true);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [showLanguages]);
-
-  const toggleLanguages = () => {
-    setShowLanguages(!showLanguages);
-  };
-
-  const handleLanguageSelection = () => {
-    setShowLanguages(false);
-  };
-
-  useEffect(() => {
     console.log('State data:', data);
   }, [data]);
 
   return (
-    <>
+    <div ref={headerRef} className="menu-container">
       <header className="header">
         <div className="container">
           <nav className="navigation">
@@ -117,70 +112,7 @@ const Menu = ({ locale }: { locale: string }) => {
               )}
 
               <li>
-                <div className="navigation__langList">
-                  <label
-                    htmlFor="langButtonDesktop"
-                    className="navigation__lang"
-                  >
-                    <p className="navigation__lang--text">English</p>
-                    <button
-                      title="navigation__toggleLangs"
-                      className="navigation__toggleLangs"
-                      onClick={() => {
-                        toggleLanguages();
-                        setLanguage('en-US');
-                      }}
-                      id="langButtonDesktop"
-                    >
-                      <Image
-                        src={'/Vector.svg'}
-                        alt="choose language"
-                        width={16}
-                        height={16}
-                      />
-                    </button>
-                  </label>
-                  {showLanguages && (
-                    <div className="languagesListContainer">
-                      <ul className="languagesList">
-                        <button
-                          value={'pl-PL'}
-                          type="button"
-                          className="languagesList__button"
-                          onClick={() => {
-                            handleLanguageSelection();
-                            setLanguage('pl-PL');
-                            // switchLocale('pl');
-                          }}
-                        >
-                          Polish
-                        </button>
-                        <button
-                          type="button"
-                          className="languagesList__button"
-                          onClick={() => {
-                            handleLanguageSelection();
-                            setLanguage('es-ES');
-                            // switchLocale('es');
-                          }}
-                        >
-                          Spanish
-                        </button>
-                        <button
-                          type="button"
-                          className="languagesList__button"
-                          onClick={() => {
-                            handleLanguageSelection();
-                            setLanguage('fr-FR');
-                            // switchLocale('fr');
-                          }}
-                        >
-                          French
-                        </button>
-                      </ul>
-                    </div>
-                  )}
-                </div>
+                <LangMenu />
               </li>
               <div className="buttonContainer">
                 <a href="#Home-form">
@@ -287,57 +219,11 @@ const Menu = ({ locale }: { locale: string }) => {
             </a>
           </li>
           <li>
-            <div className="navigation__langList">
-              <label className="navigation__lang" htmlFor="languageButton">
-                <p className="navigation__lang--text">English</p>
-                <button
-                  title="navigation__toggleLangs"
-                  className="navigation__toggleLangs"
-                  onClick={toggleLanguages}
-                  id="languageButton"
-                >
-                  <Image
-                    src={'/Vector.svg'}
-                    alt="choose language"
-                    width={12}
-                    height={9}
-                  />
-                </button>
-              </label>
-
-              {showLanguages && (
-                <div className="languagesListContainer--mob">
-                  <ul className="languagesList">
-                    <button
-                      type="button"
-                      className="languagesList__button"
-                      onClick={handleLanguageSelection}
-                    >
-                      Polish
-                    </button>
-                    <button
-                      type="button"
-                      className="languagesList__button"
-                      onClick={handleLanguageSelection}
-                    >
-                      Spanish
-                    </button>
-                    <button
-                      type="button"
-                      className="languagesList__button"
-                      onClick={handleLanguageSelection}
-                    >
-                      French
-                    </button>
-                  </ul>
-                </div>
-              )}
-              <div className="test"></div>
-            </div>
+            <LangMenu />
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 

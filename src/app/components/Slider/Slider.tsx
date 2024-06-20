@@ -1,80 +1,101 @@
-/* eslint-disable */
-// @ts-nocheck
-
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './scss/Slider.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
-import React from 'react';
-
+import SwiperCore from 'swiper';
+import { Autoplay } from 'swiper/modules';
+import { Swiper as SwiperInstance } from 'swiper/types';
+import { useParams } from 'next/navigation';
+import { getMultipleContent } from '@/lib/api';
 import { StoriesCard } from '../StoriesCard/StoriesCard';
-
 import { PartnersCard } from '../PartnersCard/PartnersCard';
-
-import SwiperCore, { Autoplay } from 'swiper';
+import {
+  ISectionStoriesCardFields,
+  ISectionPartnersCardFields,
+} from '@/contentfulTypes/contentful';
 
 SwiperCore.use([Autoplay]);
 
 type SliderProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setSwiper: (swiperInstance: any) => void;
-  spaceBetween: number;
-  slidesPerView: number;
-  slidesOffset: number;
+  setSwiper: (swiperInstance: SwiperInstance) => void;
+  slidesPerView: number | 'auto';
   initialSlide: number;
+  offset: string | undefined;
+  spaceBetween?: number;
+  slidesOffset?: number;
   partners: boolean;
 };
 
 export const Slider: React.FC<SliderProps> = ({
   setSwiper,
-  spaceBetween,
   slidesPerView,
   initialSlide,
+  offset,
   partners,
 }) => {
-  return (
-    <section className="Slider__container">
-      <div className="slider">
-        {
-          <>
-            <Swiper
-              className="swiper"
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              onSwiper={(swiperInstance: any) => setSwiper(swiperInstance)}
-              autoplay={{
-                delay: 2300,
-                disableOnInteraction: false,
-              }}
-              loop
-              centeredSlides={true}
-              //Parametry mogą być różne w zależności od slidera
-              spaceBetween={spaceBetween}
-              slidesPerView={slidesPerView}
-              slidesOffsetBefore={170}
-              initialSlide={initialSlide}
-              centeredSlidesBounds={true}
-              allowTouchMove
-            >
-              {/* poglądowe, zamienić na dynamiczne  */}
+  const { locale } = useParams<{ locale: string }>();
+  const [storiesCards, setStoriesCards] = useState<ISectionStoriesCardFields[]>(
+    [],
+  );
+  const [partnersCards, setPartnersCards] = useState<
+    ISectionPartnersCardFields[]
+  >([]);
 
-              {partners
-                ? Array.from({ length: 8 }).map((_, index) => (
-                    <SwiperSlide key={index} className="swiper__slide">
-                      <PartnersCard />
-                    </SwiperSlide>
-                  ))
-                : Array.from({ length: 12 }).map((_, index) => (
-                    <SwiperSlide key={index} className="swiper__slide">
-                      <StoriesCard />
-                    </SwiperSlide>
-                  ))}
-            </Swiper>
-          </>
-          // Gotowy loader
-          // <div className="loader__container">
-          //   <span className="loader"></span>
-          // </div>
-        }
+  useEffect(() => {
+    getMultipleContent<ISectionStoriesCardFields>('sectionStoriesCard', locale)
+      .then((storiesData) => {
+        setStoriesCards(storiesData || []);
+      })
+      .catch((error) => {
+        console.error('Error fetching stories cards:', error);
+        setStoriesCards([]);
+      });
+
+    getMultipleContent<ISectionPartnersCardFields>(
+      'sectionPartnersCard',
+      locale,
+    )
+      .then((partnersData) => {
+        setPartnersCards(partnersData || []);
+      })
+      .catch((error) => {
+        console.error('Error fetching partners cards:', error);
+        setPartnersCards([]);
+      });
+  }, [locale]);
+
+  return (
+    <section className="Slider__container" style={{ marginLeft: offset }}>
+      <div className="slider">
+        <Swiper
+          className="swiper"
+          onSwiper={(swiperInstance: SwiperInstance) =>
+            setSwiper(swiperInstance)
+          }
+          autoplay={{
+            delay: 2300,
+            disableOnInteraction: false,
+          }}
+          loop
+          centeredSlides={true}
+          centeredSlidesBounds={true}
+          slidesPerView={slidesPerView}
+          initialSlide={initialSlide}
+          allowTouchMove
+        >
+          {partners
+            ? partnersCards.map((card, index) => (
+                <SwiperSlide key={index} className="swiper__slide">
+                  <PartnersCard {...card} offset={offset} />
+                </SwiperSlide>
+              ))
+            : storiesCards.map((card, index) => (
+                <SwiperSlide key={index} className="swiper__slide">
+                  <StoriesCard {...card} offset={offset} />
+                </SwiperSlide>
+              ))}
+        </Swiper>
       </div>
     </section>
   );

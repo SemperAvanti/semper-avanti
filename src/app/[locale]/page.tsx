@@ -11,6 +11,11 @@ import Gallery from '../components/GalleryComponent/Gallery';
 import HomePage from '../components/Home/Home';
 import { ContactUs } from '../components/ContactUs/ContactUs';
 import { fetchIds } from '@/lib/fetchIds';
+import { getContent } from '@/lib/api';
+import {
+  ISectionStoriesTitleFields,
+  ISectionPartnersTitleFields,
+} from '@/contentfulTypes/contentful';
 
 type Params = {
   locale: string;
@@ -18,6 +23,17 @@ type Params = {
 
 export default async function Home({ params: { locale } }: { params: Params }) {
   const ids = await fetchIds(locale);
+  const { sectionTitle } = await getContent<ISectionStoriesTitleFields>(
+    'sectionStoriesTitle',
+    locale,
+  );
+
+  const { sectionTitle: secondSectionTitle } =
+    await getContent<ISectionPartnersTitleFields>(
+      'sectionPartnersTitle',
+      locale,
+    );
+
   return (
     <>
       <Menu locale={locale} />
@@ -25,18 +41,12 @@ export default async function Home({ params: { locale } }: { params: Params }) {
         <HomePage locale={locale} />
         <SectionAboutUs />
         <Aqu />
-        <TrainingPage
-        // id={
-        //   (ids &&
-        //     ids.navItems[3]?.title.toLowerCase().replace(/\s+/g, '-')) ||
-        //   ''
-        // }
-        />
+        <TrainingPage />
         <Gallery />
         <Form />
         <SliderComponent
           partners={false}
-          title="Success stories"
+          title={sectionTitle}
           id={
             (ids &&
               ids.navItems[4]?.title.toLowerCase().replace(/\s+/g, '-')) ||
@@ -45,7 +55,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
         />
         <SliderComponent
           partners={true}
-          title="Our partners"
+          title={secondSectionTitle}
           id={
             (ids &&
               ids.navItems[5]?.title.toLowerCase().replace(/\s+/g, '-')) ||
