@@ -1,5 +1,6 @@
 'use server';
-import { createClient } from 'contentful';
+import { CONTENT_TYPE } from '@/contentfulTypes/contentful';
+import { EntryCollection, EntrySkeletonType, createClient } from 'contentful';
 
 console.log('sprawdzanie czy deploy na vercelu to widzi: ', process.env.TEST);
 
@@ -11,11 +12,36 @@ const client = createClient({
   accessToken: CONTENTFUL_ACCESS_TOKEN as string,
 });
 
-export async function getContent(contentType: string, locale: string) {
+export async function getContent<T>(
+  contentType: CONTENT_TYPE,
+  locale: string,
+): Promise<T> {
   const response = await client.getEntries({
     content_type: contentType,
     locale,
   });
 
-  return response.items[0].fields;
+  return response.items[0].fields as T;
+}
+
+export async function getMultipleContent<T>(
+  contentType: string,
+  locale: string,
+): Promise<T[] | null> {
+  try {
+    const response: EntryCollection<EntrySkeletonType> =
+      await client.getEntries<EntrySkeletonType>({
+        content_type: contentType,
+        locale,
+      });
+
+    const data = response.items.map((x) => {
+      return x.fields;
+    });
+
+    return data as T[];
+  } catch (error) {
+    console.error('Error fetching content:', error);
+    return null;
+  }
 }
