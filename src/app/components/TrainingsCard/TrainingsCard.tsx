@@ -2,6 +2,7 @@ import React from 'react';
 import './TrainingsCard.scss';
 import Image from 'next/image';
 import Button from '../Button/Button';
+import { ArticleTitleMotion } from '../MotionTemplates/templates';
 
 interface TrainingCardProps {
   name: string;
@@ -27,10 +28,12 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
       <div className="training-card">
         <div className="training-card__nameContainer">
           <h3 className="training-card__name">
-            <span className="training-card__titleWrapper">
-              <div className="training-card__blueLine"></div>
-              {name}
-            </span>
+            <ArticleTitleMotion>
+              <span className="training-card__titleWrapper">
+                <div className="training-card__blueLine"></div>
+                {name}
+              </span>
+            </ArticleTitleMotion>
 
             <span className="training-card__titleWrapper--top"> {name}</span>
           </h3>
