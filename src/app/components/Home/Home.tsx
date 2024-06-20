@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
 import { getContent } from '@/lib/api';
+import { fetchIds } from '@/lib/fetchIds';
 
 // Object below is only for country codes
 // {
@@ -17,8 +18,16 @@ export default async function HomePage({ locale }: { locale: string }) {
     locale,
   );
 
+  const ids = await fetchIds(locale);
+
   return (
-    <section className="home" id="Home">
+    <section
+      className="home"
+      id={
+        (ids && ids.navItems[0]?.title.toLowerCase().replace(/\s+/g, '-')) ||
+        undefined
+      }
+    >
       <div className="home__title">
         <div className="home__title__container">
           <h1 className="home__h1">
@@ -42,6 +51,7 @@ export default async function HomePage({ locale }: { locale: string }) {
       </div>
       <Image
         src={'/World Map (1).png'}
+        // src={'https:' + imageUrl}
         className="home__worldMap"
         height={602}
         width={921}

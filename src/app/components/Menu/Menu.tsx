@@ -4,11 +4,43 @@ import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
 import { useRouter } from 'next/navigation';
+import { getContent } from '@/lib/api';
 
-const Menu = () => {
+type NavItem = {
+  title: string;
+};
+
+type MenuData = {
+  navItems: NavItem[];
+};
+
+const Menu = ({ locale }: { locale: string }) => {
+  const [data, setData] = useState<MenuData | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
   const route = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getContent('navigation', locale);
+        console.log('Response from getContent:', response);
+        const navItems =
+          response.navItems &&
+          response.navItems.map((item: string) => ({
+            title: item,
+          }));
+        const formattedData = { navItems };
+
+        setData(formattedData);
+        console.log('Data after setting state:', formattedData);
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    };
+
+    fetchData();
+  }, [locale]);
 
   function setLanguage(lang: string) {
     route.push(lang);
@@ -54,6 +86,10 @@ const Menu = () => {
     setShowLanguages(false);
   };
 
+  useEffect(() => {
+    console.log('State data:', data);
+  }, [data]);
+
   return (
     <>
       <header className="header">
@@ -67,41 +103,21 @@ const Menu = () => {
                 width={70}
                 height={79}
               />
-              <li>
-                <a href="#Home" className="navigation__item">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#AboutUs" className="navigation__item">
-                  About us
-                </a>
-              </li>
-              <li>
-                <a href="#Trainings" className="navigation__item">
-                  Trainings
-                </a>
-              </li>
-              <li>
-                <a href="#Gallery" className="navigation__item">
-                  Gallery
-                </a>
-              </li>
-              <li>
-                <a href="#Stories" className="navigation__item">
-                  Stories
-                </a>
-              </li>
-              <li>
-                <a href="#Partners" className="navigation__item">
-                  Partners
-                </a>
-              </li>
-              <li>
-                <a href="#FAQ" className="navigation__item">
-                  FAQ
-                </a>
-              </li>
+              {data && data.navItems ? (
+                data.navItems.map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href={`#${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="navigation__item"
+                    >
+                      {item.title}
+                    </a>
+                  </li>
+                ))
+              ) : (
+                <div>Loading...</div>
+              )}
+
               <li>
                 <div className="navigation__langList">
                   <label

@@ -1,8 +1,29 @@
+'use client';
+import { useEffect, useState } from 'react';
 import './sectionAboutUs.scss';
+import { fetchIds } from '@/lib/fetchIds';
+import { MenuData } from '@/app/types/menuData';
 
-export const SectionAboutUs: React.FC = () => {
+export const SectionAboutUs = ({ locale }: { locale: string }) => {
+  const [ids, setIds] = useState<MenuData | null>(null);
+
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      const result = await fetchIds(locale);
+      setIds(result);
+    };
+
+    fetchDataAsync();
+  }, [locale]);
+
   return (
-    <section className="sectionAboutUs" id="AboutUs">
+    <section
+      className="sectionAboutUs"
+      id={
+        (ids && ids.navItems[1]?.title.toLowerCase().replace(/\s+/g, '-')) ||
+        undefined
+      }
+    >
       <div className="sectionAboutUs__container container">
         <h2 className="section-title sectionAboutUs--title">About us</h2>
 

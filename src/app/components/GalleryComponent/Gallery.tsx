@@ -3,11 +3,23 @@ import React, { useEffect, useState } from 'react';
 import './gallery.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
+import { fetchIds } from '@/lib/fetchIds';
+import { MenuData } from '@/app/types/menuData';
 
-const Gallery = () => {
+const Gallery = ({ locale }: { locale: string }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [swiper, setSwiper] = useState<any | null>(null);
   const [width, setWidth] = useState(0);
+  const [ids, setIds] = useState<MenuData | null>(null);
+
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      const result = await fetchIds(locale);
+      setIds(result);
+    };
+
+    fetchDataAsync();
+  }, [locale]);
 
   const updateSlidesPerView = () => {
     if (swiper && swiper.params) {
@@ -159,7 +171,13 @@ const Gallery = () => {
 
   return (
     <section>
-      <div className="gallery__container container" id="Gallery">
+      <div
+        className="gallery__container container"
+        id={
+          (ids && ids.navItems[3]?.title.toLowerCase().replace(/\s+/g, '-')) ||
+          undefined
+        }
+      >
         <h2 className="section-title gallery__title">Gallery</h2>
 
         <div className="description-container">

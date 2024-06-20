@@ -102,7 +102,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
         <div className="section__header">
           <h2 className="H2">{title}</h2>
           <div className="buttons">
-            <button onClick={() => swiper && swiper.slidePrev()}>
+            <button title="Prev" onClick={() => swiper && swiper.slidePrev()}>
               <svg
                 width="42"
                 height="30"
@@ -118,7 +118,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
                 />
               </svg>
             </button>
-            <button onClick={() => swiper && swiper.slideNext()}>
+            <button title="Next" onClick={() => swiper && swiper.slideNext()}>
               <svg
                 width="42"
                 height="30"

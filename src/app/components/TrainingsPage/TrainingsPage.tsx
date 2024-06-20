@@ -2,12 +2,21 @@ import React from 'react';
 import TrainingCard from '../TrainingsCard/TrainingsCard';
 
 import './TrainingsPage.scss';
+import { fetchIds } from '@/lib/fetchIds';
 
-const TrainingPage = () => {
+const TrainingPage = async ({ locale }: { locale: string }) => {
+  const ids = await fetchIds(locale);
   return (
     <>
       <section>
-        <div className="container" id="Trainings">
+        <div
+          className="container"
+          id={
+            (ids &&
+              ids.navItems[2]?.title.toLowerCase().replace(/\s+/g, '-')) ||
+            undefined
+          }
+        >
           <div className="trainings__name">
             <h2 className="trainings__title">Trainings</h2>
             <p className="trainings__text">

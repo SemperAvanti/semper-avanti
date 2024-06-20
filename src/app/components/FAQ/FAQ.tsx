@@ -6,8 +6,9 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import arrow from '../../../img/arrow.svg';
 import Image from 'next/image';
+import { fetchIds } from '@/lib/fetchIds';
 
-export const FAQ: React.FC = () => {
+export const FAQ = async ({ locale }: { locale: string }) => {
   const faq = [
     { someTitle: 'some desc' },
     { someTitle: 'some desc' },
@@ -15,8 +16,17 @@ export const FAQ: React.FC = () => {
     { someTitle: 'some desc' },
     { someTitle: 'some desc' },
   ];
+
+  const ids = await fetchIds(locale);
+
   return (
-    <section className="section" id="FAQ">
+    <section
+      className="section"
+      id={
+        (ids && ids.navItems[6]?.title.toLowerCase().replace(/\s+/g, '-')) ||
+        undefined
+      }
+    >
       <div className="FAQ__container container">
         <h2 className="H2">Frequently asked questions</h2>
         {faq.map((el, i) => (
