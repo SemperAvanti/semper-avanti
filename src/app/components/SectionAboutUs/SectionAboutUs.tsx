@@ -3,11 +3,8 @@ import './sectionAboutUs.scss';
 import { ISectionAboutUsFields } from '@/contentfulTypes/contentful';
 
 export default async function SectionAboutUs({ locale }: { locale: string }) {
-  const imageData = await getContent<ISectionAboutUsFields>(
-    'sectionAboutUs',
-    'en-US',
-  );
   const {
+    sectionAboutUsImage,
     sectionAboutUsTitle,
     sectionAboutUsSmallTitle1,
     sectionAboutUsDescription1,
@@ -41,14 +38,15 @@ export default async function SectionAboutUs({ locale }: { locale: string }) {
             </p>
           </div>
         </div>
-
-        <picture className="sectionAboutUs--image">
-          <img
-            className="sectionAboutUs--image"
-            src={imageData.sectionAboutUsImage?.fields?.file?.url as string}
-            alt={imageData.sectionAboutUsImage?.fields.title as string}
-          />
-        </picture>
+        {sectionAboutUsImage?.fields?.file?.url && (
+          <picture className="sectionAboutUs--image">
+            <img
+              className="sectionAboutUs--image"
+              src={sectionAboutUsImage?.fields?.file?.url as string}
+              alt={sectionAboutUsImage?.fields.title as string}
+            />
+          </picture>
+        )}
       </div>
     </section>
   );
