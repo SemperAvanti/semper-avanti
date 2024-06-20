@@ -3,29 +3,34 @@ import './scss/SliderComponent.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import React, { useState } from 'react';
+import { Swiper as SwiperType } from 'swiper';
 import { Slider } from '../Slider/Slider';
 
 const SWIPER_OFFSET = '24px';
 
+import { SectionTitleMotion } from '../MotionTemplates/templates';
+
+
 type SliderComponentProps = {
-  title: string;
   partners: boolean;
   id: string;
+  title: string;
 };
 
 export const SliderComponent: React.FC<SliderComponentProps> = ({
-  title,
   partners,
   id,
+  title,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [swiper, setSwiper] = useState<any | null>(null);
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
   return (
     <section className="section" id={id}>
       <div className="container">
         <div className="section__header">
-          <h2 className="H2">{title}</h2>
+          <SectionTitleMotion>
+            <h2 className="H2">{title}</h2>
+          </SectionTitleMotion>
           <div className="buttons">
             <button onClick={() => swiper && swiper.slidePrev()}>
               <svg

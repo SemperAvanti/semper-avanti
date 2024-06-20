@@ -1,6 +1,8 @@
 .Slider__container {
   min-width: 100%;
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .slider {

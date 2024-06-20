@@ -1,10 +1,16 @@
 import Image from 'next/image';
-import { getContent, getMultipleContent } from '@/lib/api';
+
 import './Aqu.scss';
+import {
+  ItemMotion,
+  ListMotion,
+  SectionTitleMotion,
+} from '../MotionTemplates/templates';
 import {
   ISectionAquCardFields,
   ISectionAquTitleFields,
 } from '@/contentfulTypes/contentful';
+import { getContent, getMultipleContent } from '@/lib/api';
 
 export default async function Aqu({ locale }: { locale: string }) {
   const { sectionAquTitle } = await getContent<ISectionAquTitleFields>(
@@ -20,26 +26,33 @@ export default async function Aqu({ locale }: { locale: string }) {
     <section className="aqu-section">
       <div className="container">
         <header className="aqu-section__header">
-          <h2 className="aqu-section__header-text">{sectionAquTitle}</h2>
+          <SectionTitleMotion>
+            <h2 className="aqu-section__header-text">{sectionAquTitle}</h2>
+          </SectionTitleMotion>
         </header>
-
-        <div className="aqu-section__container">
-          {cards &&
-            cards.map((elem, id) => (
-              <div key={`aquCard-${id}`} className="aqu-section__item">
-                {elem.cardImage?.fields?.file?.url && (
-                  <Image
-                    src={`${elem.cardImage?.fields?.file?.url}` ?? ''}
-                    alt={`icon of ${elem.cardImage?.fields?.title ?? ''}`}
-                    width={40}
-                    height={40}
-                  />
-                )}
-                <h3 className="aqu-section__title">{elem.cardTitle}</h3>
-                <div className="aqu-section__text">{elem.cardDescription}</div>
-              </div>
-            ))}
-        </div>
+        <ListMotion>
+          <div className="aqu-section__container">
+            {cards &&
+              cards.map((elem, id) => (
+                <div key={`aquCard-${id}`} className="aqu-section__item">
+                  {elem.cardImage?.fields?.file?.url && (
+                    <ItemMotion>
+                      <Image
+                        src={`${elem.cardImage?.fields?.file?.url}` ?? ''}
+                        alt={`icon of ${elem.cardImage?.fields?.title ?? ''}`}
+                        width={40}
+                        height={40}
+                      />
+                    </ItemMotion>
+                  )}
+                  <h3 className="aqu-section__title">{elem.cardTitle}</h3>
+                  <div className="aqu-section__text">
+                    {elem.cardDescription}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </ListMotion>
       </div>
     </section>
   );
