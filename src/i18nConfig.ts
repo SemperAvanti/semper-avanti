@@ -1,5 +1,5 @@
 const i18nConfig = {
-  locales: ['en-US', 'pl-PL', 'es-ES'],
+  locales: ['en-US', 'pl-PL'],
   defaultLocale: 'en-US',
 };
 
@@ -16,14 +16,6 @@ const locale: Record<string, Locale> = {
   polish: {
     language: 'Polish',
     tag: 'pl-PL',
-  },
-  spanish: {
-    language: 'Spanish',
-    tag: 'es-ES',
-  },
-  french: {
-    language: 'French',
-    tag: 'fr-FR',
   },
 };
 
