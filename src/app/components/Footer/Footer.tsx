@@ -1,33 +1,57 @@
+'use client';
+import { useEffect, useState } from 'react';
 /* eslint-disable @next/next/no-img-element */
 import './footer.scss';
+import { getContent } from '@/lib/api';
 
-const links = [
-  { text: 'Home', href: '#Home' },
-  { text: 'About us', href: '#AboutUs' },
-  { text: 'Trainings', href: '#Trainings' },
-  { text: 'Gallery', href: '#Gallery' },
-  { text: 'Stories', href: '#Stories' },
-  { text: 'Partners', href: '#Partners' },
-  { text: 'FAQ', href: '#FAQ' },
-  { text: '+1 (555) 123-4567', href: 'tel:+15551234567' },
-];
+type NavItem = {
+  title: string;
+};
 
-export const Footer = () => {
+type MenuData = {
+  navItems: NavItem[];
+};
+
+export const Footer = ({ locale }: { locale: string }) => {
+  const [data, setData] = useState<MenuData | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getContent('navigation', locale);
+        const navItems =
+          response.navItems &&
+          response.navItems.map((item: string) => ({
+            title: item,
+          }));
+        const formattedData = { navItems };
+
+        setData(formattedData);
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    };
+
+    fetchData();
+  }, [locale]);
+
   return (
     <footer className="Footer">
       <div className="container">
         <div className="Footer__gridContainer">
-          {links.map((link, index) => {
-            return (
-              <a
-                key={index}
-                className="Footer__gridContainer--link"
-                href={`${link.href}`}
-              >
-                {link.text}
-              </a>
-            );
-          })}
+          {data &&
+            data.navItems.map((item, index) => {
+              return (
+                <a
+                  key={index}
+                  className="Footer__gridContainer--link"
+                  href={`#${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {item.title}
+                </a>
+              );
+            })}
+            <p className="Footer__gridContainer--link">Phone Num</p>
         </div>
 
         <div className="Footer__bottomLabel">

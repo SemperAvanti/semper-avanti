@@ -50,7 +50,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
         />
         <FAQ />
         <ContactUs />
-        <Footer />
+        <Footer locale={locale}/>
       </main>
     </>
   );
