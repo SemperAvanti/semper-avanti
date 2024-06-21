@@ -16,7 +16,7 @@
       text-align: center;
       user-select: none;
       pointer-events: none;
-      
+
       @include device(mobile) {
         font-size: 24px;
       }

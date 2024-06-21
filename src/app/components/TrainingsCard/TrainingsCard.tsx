@@ -3,26 +3,29 @@ import './TrainingsCard.scss';
 import Image from 'next/image';
 import Button from '../Button/Button';
 import { ArticleTitleMotion } from '../MotionTemplates/templates';
+import { ISectionTrainingsCardFields } from '@/contentfulTypes/contentful';
 
 interface TrainingCardProps {
-  name: string;
-  term1: string;
-  term2: string;
-  duration: string;
-  learningModule: string;
-  requiredLevel: string;
+  card: ISectionTrainingsCardFields;
   link: string;
+  buttonLabel: string | undefined;
+  fieldNames: (string | undefined)[];
 }
 
 const TrainingCard: React.FC<TrainingCardProps> = ({
-  name,
-  term1,
-  term2,
-  duration,
-  learningModule,
-  requiredLevel,
+  card,
   link,
+  buttonLabel,
+  fieldNames,
 }) => {
+  const cardValues = [
+    card.ITerm,
+    card.IITerm,
+    card.duration,
+    card.learningEnglishModule,
+    card.requiredEnglishLevel,
+  ];
+
   return (
     <>
       <div className="training-card">
@@ -31,58 +34,52 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
             <ArticleTitleMotion>
               <span className="training-card__titleWrapper">
                 <div className="training-card__blueLine"></div>
-                {name}
+                {card.countryName}
               </span>
             </ArticleTitleMotion>
 
-            <span className="training-card__titleWrapper--top"> {name}</span>
+            <span className="training-card__titleWrapper--top">
+              {' '}
+              {card.countryName}
+            </span>
           </h3>
         </div>
 
-        <div className="training-card__terms">
-          <div className="training-card__term">
-            <p className="training-card__left training-card__left--pad">
-              I Term:
-            </p>
-            <p className="training-card__right training-card__right--pad">
-              {term1}
-            </p>
-          </div>
-          <div className="training-card__term">
-            <p className="training-card__left">II Term:</p>
-            <p className="training-card__right">{term2}</p>
-          </div>
-          <div className="training-card__term">
-            <p className="training-card__left">Duration:</p>
-            <p className="training-card__right">{duration}</p>
-          </div>
-          <div className="training-card__term">
-            <p className="training-card__left">LEARNING ENGLISH MODULE</p>
-            <p className="training-card__right">
-              {learningModule === 'yes' ? (
-                <Image
-                  width={32}
-                  height={32}
-                  src="/mdi_tick (1).svg"
-                  alt="Learning Module Yes"
-                />
-              ) : (
-                <Image
-                  width={32}
-                  height={32}
-                  src="/iconamoon_close-bold (1).svg"
-                  alt="Learning Module No"
-                />
-              )}
-            </p>
-          </div>
-          <div className="training-card__term">
-            <p className="training-card__left">REQUIRED ENGLISH LEVEL</p>
-            <p className="training-card__right">{requiredLevel}</p>
-          </div>
-        </div>
+        {fieldNames.map((fieldName, i) => {
+          return (
+            cardValues[i] !== undefined && (
+              <div className="training-card__term" key={`field-${i}`}>
+                <p className="training-card__left training-card__left--pad">
+                  {fieldName}
+                </p>
+
+                {typeof cardValues[i] === 'boolean' ? (
+                  cardValues[i] ? (
+                    <Image
+                      width={32}
+                      height={32}
+                      src="/mdi_tick (1).svg"
+                      alt="Learning Module Yes"
+                    />
+                  ) : (
+                    <Image
+                      width={32}
+                      height={32}
+                      src="/iconamoon_close-bold (1).svg"
+                      alt="Learning Module No"
+                    />
+                  )
+                ) : (
+                  <p className="training-card__right training-card__right--pad">
+                    {cardValues[i]}
+                  </p>
+                )}
+              </div>
+            )
+          );
+        })}
         <div className="training-card__cont">
-          <p className="training-card__info">Want more info?</p>
+          <p className="training-card__info">{buttonLabel}</p>
           <a href={`${link}`}>
             <Button name="Get info package" variant="primary" />
           </a>

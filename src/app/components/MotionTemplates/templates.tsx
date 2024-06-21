@@ -87,6 +87,7 @@ export const TrainingImageMotionRight: React.FC<TemplateProps> = ({
 }) => {
   return (
     <motion.div
+      className="cards__card__imageContainer"
       initial={{ x: 20, opacity: 0 }}
       whileInView={{
         x: 0,
@@ -109,6 +110,7 @@ export const TrainingImageMotionLeft: React.FC<TemplateProps> = ({
 }) => {
   return (
     <motion.div
+      className="cards__card__imageContainer"
       initial={{ x: -20, opacity: 0 }}
       whileInView={{
         x: 0,

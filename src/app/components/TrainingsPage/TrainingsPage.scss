@@ -49,16 +49,14 @@
 
 .cards {
   display: grid;
+  display: flex;
+  flex-direction: column;
+
   overflow: hidden;
 
-  @include device(tablet) {
-    grid-template-rows: 436px 436px 436px;
-    row-gap: 88px;
-  }
 
-  @include device(mobile) {
-    display: flex;
-    flex-direction: column;
+  @include device(tablet) {
+    row-gap: 88px;
   }
 
   &__card {
@@ -66,7 +64,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 119px;
     margin-bottom: 124px;
-    grid-row: span 1;
+
+    @include device(desktop) {
+      min-height: 443px;
+    }
 
     @include device(mobile) {
       display: flex;
@@ -104,13 +105,8 @@
       width: 100%;
       height: 100%;
       align-self: start;
-      max-height: 542px;
       max-width: 548px;
       margin: 0 auto;
-
-      @include device(tablet) {
-        max-height: 436px;
-      }
 
       @include device(mobile) {
         display: block;
@@ -123,6 +119,7 @@
     &:nth-child(even) .cards__card__info,
     &:nth-child(odd) .cards__card__imageContainer {
       grid-column: 2;
+      grid-row: 1;
     }
   }
 }

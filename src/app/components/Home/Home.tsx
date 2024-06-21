@@ -30,19 +30,19 @@ export default async function HomePage({ locale }: { locale: string }) {
           <SectionTitleMotion>
             <h1 className="home__h1">
               <span className="home--titleWrapper">
-                {sectionHomeTitle as string}
+                {sectionHomeTitle}
                 <div className="blueLine"></div>
               </span>
 
-              {/* <span className="home--titleWrapper--top">
-                Empower with AQE Educate.
-              </span> */}
+              <span className="home--titleWrapper--top">
+                {sectionHomeTitle}
+              </span>
             </h1>
           </SectionTitleMotion>
         </div>
 
         <DescriptionsMotion>
-          <p className="home__text ">{sectionHomeDescription as string}</p>
+          <p className="home__text ">{sectionHomeDescription}</p>
         </DescriptionsMotion>
         <div className="home__button--desktop">
           <a href="#Home-form">

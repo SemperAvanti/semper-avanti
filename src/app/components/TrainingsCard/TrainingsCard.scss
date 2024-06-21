@@ -9,6 +9,7 @@
 
   &__nameContainer {
     width: fit-content;
+    margin-bottom: 15px;
   }
 
   &__name {
@@ -131,6 +132,7 @@
 
   &__cont {
     width: 357px;
+    margin-top: 20px;
 
     @include device(mobile) {
       width: 100%;

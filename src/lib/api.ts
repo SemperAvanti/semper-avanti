@@ -1,6 +1,7 @@
 'use server';
+
 import { CONTENT_TYPE } from '@/contentfulTypes/contentful';
-import { EntryCollection, EntrySkeletonType, createClient } from 'contentful';
+import { createClient, EntryCollection, EntrySkeletonType } from 'contentful';
 
 console.log('sprawdzanie czy deploy na vercelu to widzi: ', process.env.TEST);
 
@@ -11,6 +12,7 @@ const client = createClient({
   space: CONTENTFUL_SPACE_ID as string,
   accessToken: CONTENTFUL_ACCESS_TOKEN as string,
 });
+
 
 export async function getContent<T>(
   contentType: CONTENT_TYPE,
@@ -25,7 +27,7 @@ export async function getContent<T>(
 }
 
 export async function getMultipleContent<T>(
-  contentType: string,
+  contentType: CONTENT_TYPE,
   locale: string,
 ): Promise<T[] | null> {
   try {
