@@ -52,6 +52,9 @@
   display: flex;
   flex-direction: column;
 
+  overflow: hidden;
+
+
   @include device(tablet) {
     row-gap: 88px;
   }
