@@ -137,21 +137,25 @@
 
 .button__left {
   order: 1;
+  position: absolute;
+  top: 190px;
+  left: 0;
   border: none;
   border-radius: 20%;
-  position: absolute;
-  top: 237px;
-  left: 0;
+  background-color: transparent;
+  padding: 0;
   z-index: 99;
 }
 
 .button__right {
   order: 2;
+  position: absolute;
+  top: 190px;
+  right: 0;
   border: none;
   border-radius: 20%;
-  position: absolute;
-  top: 237px;
-  left: calc(100% - 60px);
+  background-color: transparent;
+  padding: 0;
   z-index: 99;
 }
 
@@ -190,9 +194,6 @@
 
   .gallery__picture {
     width: 357px;
-    min-width: 80% &--image {
-      width: 100%;
-      display: none;
-    }
+    min-width: 80%;
   }
 }
