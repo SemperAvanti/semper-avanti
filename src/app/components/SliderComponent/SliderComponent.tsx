@@ -2,105 +2,35 @@
 import './scss/SliderComponent.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { Swiper as SwiperType } from 'swiper';
 import { Slider } from '../Slider/Slider';
 
+const SWIPER_OFFSET = '24px';
+
+import { SectionTitleMotion } from '../MotionTemplates/templates';
+
+
 type SliderComponentProps = {
-  title: string;
   partners: boolean;
   id: string;
+  title: string;
 };
 
 export const SliderComponent: React.FC<SliderComponentProps> = ({
-  title,
   partners,
   id,
+  title,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [swiper, setSwiper] = useState<any | null>(null);
-
-  const updateSlidesPerView = () => {
-    const width = window.innerWidth;
-    if (swiper && swiper.params) {
-      switch (true) {
-        case width >= 1600:
-          swiper.params.slidesPerView = 6;
-          break;
-        case width < 1600 && width > 1400:
-          swiper.params.slidesPerView = 5;
-          break;
-        case width >= 1100 && width <= 1400:
-          swiper.params.slidesPerView = 4;
-          break;
-        case width >= 960 && width <= 1099:
-          swiper.params.slidesPerView = 3.5;
-          break;
-        case width >= 800 && width <= 959:
-          swiper.params.slidesPerView = 3;
-          break;
-        case width >= 750 && width <= 799:
-          swiper.params.slidesPerView = 2.8;
-          break;
-        case width >= 700 && width <= 749:
-          swiper.params.slidesPerView = 2.7;
-          break;
-        case width >= 650 && width <= 699:
-          swiper.params.slidesPerView = 2.4;
-          break;
-        case width >= 600 && width <= 649:
-          swiper.params.slidesPerView = 2.3;
-          swiper.params.slidesOffsetBefore = 0;
-          break;
-        case width >= 550 && width <= 599:
-          swiper.params.slidesPerView = 2.1;
-          swiper.params.slidesOffsetBefore = 0;
-          break;
-        case width >= 500 && width <= 549:
-          swiper.params.slidesPerView = 1.9;
-          swiper.params.slidesOffsetBefore = 0;
-          break;
-
-        case width >= 450 && width <= 499:
-          swiper.params.slidesPerView = 1.7;
-          swiper.params.slidesOffsetBefore = 0;
-          break;
-        case width >= 400 && width <= 449:
-          swiper.params.slidesPerView = 1.5;
-          swiper.params.slidesOffsetBefore = 0;
-          break;
-        case width >= 350 && width <= 399:
-          swiper.params.slidesPerView = 1.2;
-          swiper.params.slidesOffsetBefore = 0;
-          break;
-        case width >= 300 && width <= 349:
-          swiper.params.slidesPerView = 1.2;
-          swiper.params.slidesOffsetBefore = 0;
-          break;
-
-        default:
-          swiper.params.slidesPerView = 1.5;
-          swiper.params.slidesOffsetBefore = 0;
-      }
-
-      swiper.update();
-    }
-  };
-
-  useEffect(() => {
-    updateSlidesPerView();
-
-    window.addEventListener('resize', updateSlidesPerView);
-
-    return () => {
-      window.removeEventListener('resize', updateSlidesPerView);
-    };
-  }, [swiper]);
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
   return (
     <section className="section" id={id}>
       <div className="container">
         <div className="section__header">
-          <h2 className="H2">{title}</h2>
+          <SectionTitleMotion>
+            <h2 className="H2">{title}</h2>
+          </SectionTitleMotion>
           <div className="buttons">
             <button onClick={() => swiper && swiper.slidePrev()}>
               <svg
@@ -140,11 +70,10 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
 
       <Slider
         setSwiper={setSwiper}
-        spaceBetween={25}
-        slidesPerView={8}
-        slidesOffset={170}
+        slidesPerView="auto"
         initialSlide={1}
         partners={partners}
+        offset={SWIPER_OFFSET}
       />
     </section>
   );

@@ -81,12 +81,12 @@
   }
 
   &__worldMap {
+    display: block;
     height: auto;
     max-height: 621px;
     margin-top: 45px;
 
     @include device(tablet) {
-      display: block;
       width: auto;
       max-width: min-content;
     }
@@ -146,7 +146,7 @@
 
 .blueLine {
   background: rgba(94, 160, 248, 0.5);
-  height: 25%;
+  height: 40px;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -157,12 +157,8 @@
   transform: translateY(-10%);
 
   @include device(mobile) {
-    height: 24px;
-    //top: 70%;
+    height: 20px;
   }
-}
-
-.home__title__container {
 }
 
 .home--titleWrapper {

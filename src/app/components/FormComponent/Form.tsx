@@ -31,6 +31,12 @@ const toStringOrNull = (value: any, fallback: string = ''): string | null => {
     return value.toString();
   return fallback;
 };
+import {
+  DescriptionsMotion,
+  ItemMotion,
+  ListMotion,
+  SectionTitleMotion,
+} from '../MotionTemplates/templates';
 
 const formDataSchema: ZodType<FormData> = z.object({
   fullname: z.string().min(5, 'Error name').trim(),
@@ -167,71 +173,83 @@ export default function Form({ locale }: { locale: string }) {
   return (
     <section className="form" id="Home-form">
       <header className="form__header">
-        <h2 className="form__header-text">
-          {content.getMoreInOurInfoPackage as string}
-        </h2>
-        <p className="form__header-sub-text">{content.fillTheForm as string}</p>
+        <SectionTitleMotion>
+          <h2 className="form__header-text">{content.getMoreInOurInfoPackage as string}</h2>
+        </SectionTitleMotion>
+        <DescriptionsMotion>
+          <p className="form__header-sub-text">
+            {content.fillTheForm as string}
+          </p>
+        </DescriptionsMotion>
       </header>
       <div className="form__container">
         <form className="form__form-elem" onSubmit={handleSubmit} method="post">
-          <div className="form__form-elem-container">
-            <div className="form__input-elem">
-              <Input
-                htmlFor="full Name"
-                label={`${content.fullName as string} *`}
-                type="text"
-                name="fullname"
-                value={formData.fullname}
-                placeholder="John Doe"
-                onChange={handlerInput}
-                isDisabled={isSubmitting}
-                errors={errors}
-              />
+          <ListMotion>
+            <div className="form__form-elem-container">
+              <div className="form__input-elem">
+                <ItemMotion>
+                  <Input
+                    htmlFor="full Name"
+                    label={`${content.fullName as string} *`}
+                    type="text"
+                    name="fullname"
+                    value={formData.fullname}
+                    placeholder="John Doe"
+                    onChange={handlerInput}
+                    isDisabled={isSubmitting}
+                    errors={errors}
+                  />
+                </ItemMotion>
+              </div>
+              <div className="form__input-elem">
+                <ItemMotion>
+                  <Input
+                    htmlFor="email"
+                    label="Email *"
+                    type="text"
+                    name="email"
+                    value={formData.email}
+                    placeholder="aqe@email.com"
+                    onChange={handlerInput}
+                    isDisabled={isSubmitting}
+                    errors={errors}
+                  />
+                </ItemMotion>
+              </div>
+              <div className="form__input-elem">
+                <ItemMotion>
+                  <Input
+                    htmlFor="country"
+                    label={content.country as string}
+                    type="text"
+                    name="country"
+                    value={formData.country}
+                    placeholder="Poland"
+                    onChange={handlerInput}
+                    isDisabled={isSubmitting}
+                  />
+                </ItemMotion>
+              </div>
+              <div className="form__input-elem">
+                <Checkbox
+                  onChange={handlerInput}
+                  checked={formData.checkbox}
+                  name="checkbox"
+                  htmlFor={''}
+                  value={''}
+                />
+                <p className="form__checkbox-text">
+                  {content.iAgreeToReceive as string}
+                </p>
+              </div>
+              <div className="form__input-elem">
+                <Button
+                  variant={formData.checkbox ? btnColor : 'deactivated'}
+                  name="Get info package"
+                />
+              </div>
             </div>
-            <div className="form__input-elem">
-              <Input
-                htmlFor="email"
-                label="Email *"
-                type="text"
-                name="email"
-                value={formData.email}
-                placeholder="aqe@email.com"
-                onChange={handlerInput}
-                isDisabled={isSubmitting}
-                errors={errors}
-              />
-            </div>
-            <div className="form__input-elem">
-              <Input
-                htmlFor="country"
-                label={content.country as string}
-                type="text"
-                name="country"
-                value={formData.country}
-                placeholder="Poland"
-                onChange={handlerInput}
-                isDisabled={isSubmitting}
-              />
-            </div>
-            <div className="form__input-elem">
-              <Checkbox
-                onChange={handlerInput}
-                checked={formData.checkbox}
-                name="checkbox"
-                htmlFor={''}
-                value={''}
-              />
-              <p className="form__checkbox-text">
-                {content.iAgreeToReceive as string}
-              </p>
-            </div>
-            <div className="form__input-elem">
-              <Button
-                variant={formData.checkbox ? btnColor : 'deactivated'}
-                name="Get info package"
-              />
-            </div>
-          </div>
+          </ListMotion>
         </form>
       </div>
 

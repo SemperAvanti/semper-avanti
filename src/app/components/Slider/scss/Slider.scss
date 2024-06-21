@@ -1,6 +1,8 @@
 .Slider__container {
   min-width: 100%;
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .slider {
@@ -17,7 +19,9 @@
     width: 100%;
     margin-bottom: 40px;
     margin-top: 40px;
+
     &__slide {
+      width: fit-content;
       display: flex;
       flex-direction: column;
       align-items: center;

@@ -1,11 +1,19 @@
 @import '@/styles/variables';
 @import '@/styles/mixins';
 
+.menu-container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  transition: top 0.3s;
+  z-index: 1000;
+}
+
 .header {
   height: 111px;
   padding: 16px 0 0;
   background-color: $color-background-secondary;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -151,13 +159,16 @@
   right: 0;
   z-index: 3;
   box-sizing: border-box;
-  background-color: red;
 
   @include device(desktop) {
     display: none;
   }
 
   &:target {
+    transform: translateX(0);
+  }
+
+  &--open {
     transform: translateX(0);
   }
 
@@ -181,7 +192,7 @@
   background-color: $color-background-secondary;
   z-index: 99;
   background: #f7f7f7;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -194,12 +205,10 @@
     padding-top: 20px;
     z-index: 99;
 
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 99;
-    display: none;
   }
 
   @include device(mobile) {
@@ -261,4 +270,14 @@
     position: absolute;
     top: 20px;
   }
+}
+
+.df {
+  background-color: red;
+  width: 500px;
+  height: 500px;
+}
+
+.test {
+  background-color: red;
 }

@@ -1,78 +1,45 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './gallery.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper';
 import Image from 'next/image';
+import {
+  DescriptionsMotion,
+  ItemMotion,
+  ListMotion,
+  SectionTitleMotion,
+} from '../MotionTemplates/templates';
 
 const Gallery = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [swiper, setSwiper] = useState<any | null>(null);
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [width, setWidth] = useState(0);
 
-  const updateSlidesPerView = () => {
+  const updateSlidesPerView = useCallback(() => {
     if (swiper && swiper.params) {
       switch (true) {
         case width < 385:
           swiper.params.slidesPerView = 1;
           swiper.params.spaceBetween = 0;
-
           break;
 
-        case width < 600:
+        case width < 430:
           swiper.params.slidesPerView = 1;
-
           break;
 
-        case width < 700:
-          swiper.params.slidesPerView = 1.6;
-
+        case width < 1119:
+          swiper.params.slidesPerView = (width - 2 * 24) / 357;
           break;
 
-        case width < 750:
-          swiper.params.slidesPerView = 1.8;
-
-          break;
-
-        case width < 815:
-          swiper.params.slidesPerView = 1.9;
-
-          break;
-
-        case width < 850:
-          swiper.params.slidesPerView = 2.1;
-
-          break;
-
-        case width < 920:
-          swiper.params.slidesPerView = 2.2;
-
-          break;
-
-        case width < 950:
-          swiper.params.slidesPerView = 2.3;
-
-          break;
-
-        case width < 985:
-          swiper.params.slidesPerView = 2.4;
-
-          break;
-
-        case width < 1035:
-          swiper.params.slidesPerView = 2.6;
-
-          break;
-
-        case width < 1039:
-          swiper.params.slidesPerView = 2.7;
-
+        case width < 1167:
+          swiper.params.slidesPerView = (width - 3 * 24) / 357;
           break;
 
         default:
           swiper.update();
       }
     }
-  };
+  }, [swiper, width]);
 
   useEffect(() => {
     updateSlidesPerView();
@@ -160,128 +127,139 @@ const Gallery = () => {
   return (
     <section>
       <div className="gallery__container container" id="Gallery">
-        <h2 className="section-title gallery__title">Gallery</h2>
-
+        <SectionTitleMotion>
+          <h2 className="section-title gallery__title">Gallery</h2>
+        </SectionTitleMotion>
         <div className="description-container">
-          <p className="description-text">
-            Step into a world where learning comes to life and inspiration knows
-            no bounds. In this vibrant space, we invite you to explore
-            captivating moments captured during our educational camps for
-            teachers.
-          </p>
+          <DescriptionsMotion>
+            <p className="description-text">
+              Step into a world where learning comes to life and inspiration
+              knows no bounds. In this vibrant space, we invite you to explore
+              captivating moments captured during our educational camps for
+              teachers.
+            </p>
+          </DescriptionsMotion>
         </div>
-        {width >= 1040 && (
-          <div className="container">
+        {width >= 1167 && (
+          <ListMotion>
             <div className="gallery__pictures">
-              <div className="gallery__picture">
-                <Image
-                  className="gallery__picture--image"
-                  alt="Malta"
-                  src="/images/gallery-malta.jpg"
-                  sizes="(max-width: 640px) 640px"
-                  width={357}
-                  height={444}
-                />
-                <div className="gallery__picture--description">Malta, 2020</div>
-              </div>
-              <div className="gallery__picture">
-                <Image
-                  className="gallery__picture--image"
-                  alt="Ireland"
-                  src="/images/gallery-ireland.jpg"
-                  sizes="(max-width: 640px) 640px"
-                  width={357}
-                  height={444}
-                />
-                <div className="gallery__picture--description">
-                  Ireland, 2022
+              <ItemMotion>
+                <div className="gallery__picture gallery__picture--first">
+                  <Image
+                    className="gallery__picture--image"
+                    alt="Malta"
+                    src="/images/gallery-malta.jpg"
+                    sizes="(max-width: 640px) 640px"
+                    width={357}
+                    height={444}
+                  />
+                  <div className="gallery__picture--description">
+                    Malta, 2020
+                  </div>
                 </div>
-              </div>
-              <div className="gallery__picture">
-                <Image
-                  className="gallery__picture--image"
-                  alt="Canary Isl"
-                  src="/images/gallery-canary.jpg"
-                  sizes="(max-width: 640px) 640px"
-                  width={357}
-                  height={444}
-                />
-                <div className="gallery__picture--description">
-                  Canary Isl, 2023
+              </ItemMotion>
+              <ItemMotion>
+                <div className="gallery__picture">
+                  <Image
+                    className="gallery__picture--image"
+                    alt="Ireland"
+                    src="/images/gallery-ireland.jpg"
+                    sizes="(max-width: 640px) 640px"
+                    width={357}
+                    height={444}
+                  />
+
+                  <div className="gallery__picture--description">
+                    Ireland, 2022
+                  </div>
                 </div>
-              </div>
+              </ItemMotion>
+              <ItemMotion>
+                <div className="gallery__picture gallery__picture--last">
+                  <Image
+                    className="gallery__picture--image"
+                    alt="Canary Isl"
+                    src="/images/gallery-canary.jpg"
+                    sizes="(max-width: 640px) 640px"
+                    width={357}
+                    height={444}
+                  />
+
+                  <div className="gallery__picture--description">
+                    Canary Isl, 2023
+                  </div>
+                </div>
+              </ItemMotion>
             </div>
-          </div>
+          </ListMotion>
         )}
       </div>
-      {width < 1040 && (
-        <>
-          <div className="gallery__pictures--mobile">
-            {width < 700 && <Buttons />}
+      {width && width < 1167 && (
+        <div className="gallery__pictures--mobile">
+          <Swiper
+            className="swiper"
+            onSwiper={(swiperInstance) => setSwiper(swiperInstance)}
+            autoplay={{
+              delay: 2300,
+              disableOnInteraction: true,
+            }}
+            loop
+            spaceBetween={12}
+            slidesPerView={2}
+            initialSlide={1}
+            centeredSlides={true}
+            centeredSlidesBounds={true}
+          >
+            <>
+              <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--1">
+                <div className="gallery__picture gallery__picture-1">
+                  {width < 430 && <Buttons />}
+                  <Image
+                    className="gallery__picture--image "
+                    alt="malta"
+                    src="/images/gallery-malta.jpg"
+                    width={357}
+                    height={444}
+                  />
+                  <div className="gallery__picture--description">
+                    Malta, 2020
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--2">
+                <div className="gallery__picture">
+                  {width < 430 && <Buttons />}
+                  <Image
+                    className="gallery__picture--image"
+                    alt="malta"
+                    src="/images/gallery-ireland.jpg"
+                    width={357}
+                    height={444}
+                  />
+                  <div className="gallery__picture--description">
+                    Ireland, 2022
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--3">
+                <div className="gallery__picture">
+                  {width < 430 && <Buttons />}
+                  <Image
+                    className="gallery__picture--image"
+                    alt="malta"
+                    src="/images/gallery-canary.jpg"
+                    width={357}
+                    height={444}
+                  />
 
-            <Swiper
-              className="swiper"
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              onSwiper={(swiperInstance: any) => setSwiper(swiperInstance)}
-              autoplay={{
-                delay: 2300,
-                disableOnInteraction: true,
-              }}
-              loop
-              spaceBetween={10}
-              slidesPerView={2}
-              initialSlide={1}
-              centeredSlides={true}
-              centeredSlidesBounds={true}
-            >
-              <>
-                <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--1">
-                  <div className="gallery__picture gallery__picture-1">
-                    <Image
-                      className="gallery__picture--image "
-                      alt="malta"
-                      src="/images/gallery-malta.jpg"
-                      width={357}
-                      height={444}
-                    />
-                    <div className="gallery__picture--description">
-                      Malta, 2020
-                    </div>
+                  <div className="gallery__picture--description">
+                    Canary Isl, 2023
                   </div>
-                </SwiperSlide>
-                <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--2">
-                  <div className="gallery__picture ">
-                    <Image
-                      className="gallery__picture--image"
-                      alt="malta"
-                      src="/images/gallery-ireland.jpg"
-                      width={357}
-                      height={444}
-                    />
-                    <div className="gallery__picture--description">
-                      Ireland, 2022
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--3">
-                  <div className="gallery__picture">
-                    <Image
-                      className="gallery__picture--image"
-                      alt="malta"
-                      src="/images/gallery-canary.jpg"
-                      width={357}
-                      height={444}
-                    />
-
-                    <div className="gallery__picture--description">
-                      Canary Isl, 2023
-                    </div>
-                  </div>
-                </SwiperSlide>
-              </>
-            </Swiper>
-          </div>
-        </>
+                </div>
+              </SwiperSlide>
+            </>
+          </Swiper>
+        </div>
       )}
     </section>
   );
