@@ -64,16 +64,32 @@ export default function Form({ locale }: { locale: string }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getContent('sectionForm', locale);
-        setContent({
-          getMoreInOurInfoPackage: toStringOrNull(
-            result.getMoreInOurInfoPackage,
-          ),
-          fillTheForm: toStringOrNull(result.fillTheForm),
-          iAgreeToReceive: toStringOrNull(result.iAgreeToReceive),
-          fullName: toStringOrNull(result.fullName),
-          country: toStringOrNull(result.country),
-        });
+        const result: unknown = await getContent('sectionForm', locale);
+
+        // Type guard to check if result is an object and has the expected properties
+        if (
+          typeof result === 'object' &&
+          result !== null &&
+          'getMoreInOurInfoPackage' in result &&
+          'fillTheForm' in result &&
+          'iAgreeToReceive' in result &&
+          'fullName' in result &&
+          'country' in result
+        ) {
+          const data = result as Record<string, any>;
+
+          setContent({
+            getMoreInOurInfoPackage: toStringOrNull(
+              data.getMoreInOurInfoPackage,
+            ),
+            fillTheForm: toStringOrNull(data.fillTheForm),
+            iAgreeToReceive: toStringOrNull(data.iAgreeToReceive),
+            fullName: toStringOrNull(data.fullName),
+            country: toStringOrNull(data.country),
+          });
+        } else {
+          throw new Error('Unexpected result format');
+        }
       } catch (error) {
         console.error('Error fetching content:', error);
       }
@@ -174,7 +190,9 @@ export default function Form({ locale }: { locale: string }) {
     <section className="form" id="Home-form">
       <header className="form__header">
         <SectionTitleMotion>
-          <h2 className="form__header-text">{content.getMoreInOurInfoPackage as string}</h2>
+          <h2 className="form__header-text">
+            {content.getMoreInOurInfoPackage as string}
+          </h2>
         </SectionTitleMotion>
         <DescriptionsMotion>
           <p className="form__header-sub-text">

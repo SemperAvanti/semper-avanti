@@ -1,7 +1,6 @@
 import React from 'react';
 import Menu from '../components/Menu/Menu';
 import Form from '@/app/components/FormComponent/Form';
-import { Aqu } from '@/app/components/AquComponent/Aqu';
 import { SliderComponent } from '../components/SliderComponent/SliderComponent';
 import { FAQ } from '../components/FAQ/FAQ';
 import { Footer } from '../components/Footer/Footer';
