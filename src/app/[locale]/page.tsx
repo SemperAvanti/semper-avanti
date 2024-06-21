@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from '../components/Menu/Menu';
-import { Form } from '@/app/components/FormComponent/Form';
+import Form from '@/app/components/FormComponent/Form';
+import { Aqu } from '@/app/components/AquComponent/Aqu';
 import { SliderComponent } from '../components/SliderComponent/SliderComponent';
 import { FAQ } from '../components/FAQ/FAQ';
 import { Footer } from '../components/Footer/Footer';
@@ -41,7 +42,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
         <Aqu locale={locale} />
         <TrainingPage locale={locale} />
         <Gallery />
-        <Form />
+        <Form locale={locale} />
         <SliderComponent partners={false} title={sectionTitle} id="Stories" />
         <SliderComponent
           partners={true}
