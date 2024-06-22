@@ -33,12 +33,14 @@
       grid-template-columns: repeat(1, 1fr);
       margin-bottom: 0;
       gap: 32px;
+      order: 3;
     }
 
     @include device(mobile) {
       grid-template-columns: repeat(1, 1fr);
       margin-bottom: 0;
       gap: 24px;
+      order: 3;
     }
   }
 
@@ -72,12 +74,12 @@
 
     @include device(tablet) {
       margin-bottom: 32px;
-      order: 1;
+      order: 2;
     }
 
     @include device(mobile) {
       margin-bottom: 24px;
-      order: 1;
+      order: 2;
     }
   }
 }
