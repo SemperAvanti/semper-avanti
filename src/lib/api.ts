@@ -13,7 +13,6 @@ const client = createClient({
   accessToken: CONTENTFUL_ACCESS_TOKEN as string,
 });
 
-
 export async function getContent<T>(
   contentType: CONTENT_TYPE,
   locale: string,

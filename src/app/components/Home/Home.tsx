@@ -2,7 +2,10 @@ import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
 import { getContent } from '@/lib/api';
-import { ISectionHomeFields } from '@/contentfulTypes/contentful';
+import {
+  ISectionHomeFields,
+  ISectionTrainingsCardFields,
+} from '@/contentfulTypes/contentful';
 import {
   DescriptionsMotion,
   ImageMotion,
@@ -19,7 +22,13 @@ import {
 //   French = 'fr-FR',
 // }
 
-export default async function HomePage({ locale }: { locale: string }) {
+export default async function HomePage({
+  locale,
+  trainingCards,
+}: {
+  locale: string;
+  trainingCards: ISectionTrainingsCardFields[] | null;
+}) {
   const { sectionHomeTitle, sectionHomeDescription } =
     await getContent<ISectionHomeFields>('sectionHome', locale);
 
@@ -68,21 +77,20 @@ export default async function HomePage({ locale }: { locale: string }) {
       </ImageMotion>
       <ListMotion>
         <div className="home__links">
-          <LinkMotion>
-            <a href="#Trainings-malta" className="home__item body-text">
-              Malta
-            </a>
-          </LinkMotion>
-          <LinkMotion>
-            <a href="#Trainings-canary" className="home__item body-text">
-              Canary
-            </a>
-          </LinkMotion>
-          <LinkMotion>
-            <a href="#Trainings-ireland" className="home__item body-text">
-              Ireland
-            </a>
-          </LinkMotion>
+          {trainingCards &&
+            trainingCards.map((card) => {
+              return (
+                <LinkMotion key={`HomeLink-${card.countryName}`}>
+                  <a
+                    href={`#${card.countryName}`}
+                    className="home__item body-text"
+                    key={card.countryName}
+                  >
+                    {card.countryName}
+                  </a>
+                </LinkMotion>
+              );
+            })}
         </div>
       </ListMotion>
       <div className="home__button--mobile">

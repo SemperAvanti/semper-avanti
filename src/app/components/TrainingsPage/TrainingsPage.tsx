@@ -8,20 +8,21 @@ import {
   TrainingImageMotionLeft,
   TrainingImageMotionRight,
 } from '../MotionTemplates/templates';
-import { getContent, getMultipleContent } from '@/lib/api';
+import { getContent } from '@/lib/api';
 import {
   ISectionTrainingsFields,
   ISectionTrainingsCardFields,
 } from '@/contentfulTypes/contentful';
 
-export default async function TrainingPage({ locale }: { locale: string }) {
+export default async function TrainingPage({
+  locale,
+  trainingCards,
+}: {
+  locale: string;
+  trainingCards: ISectionTrainingsCardFields[] | null;
+}) {
   const data: ISectionTrainingsFields =
     await getContent<ISectionTrainingsFields>('sectionTrainings', locale);
-  const trainingsCards = await getMultipleContent<ISectionTrainingsCardFields>(
-    'sectionTrainingsCard',
-    locale,
-  );
-
   const cardFieldNames = Object.keys(data)
     .filter((key) => key.includes('cardField'))
     .map((key) => data[key as keyof ISectionTrainingsFields]);
@@ -42,32 +43,32 @@ export default async function TrainingPage({ locale }: { locale: string }) {
           </div>
 
           <div className="cards">
-            {trainingsCards &&
-              trainingsCards.map((card, i) => (
+            {trainingCards &&
+              trainingCards.map((card, i) => (
                 <div key={`trainings-${i}`} className="cards__card ">
-                  {i % 2 !== 0 ? (
-                    <TrainingImageMotionLeft>
-                      <picture>
-                        <img
-                          className="cards__card__imageContainer-item"
-                          src="images/canary-desktop.jpg"
-                          alt="meeting-event"
-                        />
-                      </picture>
-                    </TrainingImageMotionLeft>
-                  ) : (
-                    <TrainingImageMotionRight>
-                      <picture>
-                        <img
-                          className="cards__card__imageContainer-item"
-                          src="images/canary-desktop.jpg"
-                          alt="meeting-event"
-                        />
-                      </picture>
-                    </TrainingImageMotionRight>
-                  )}
-
-                  <div className="cards__card__info" id="Trainings-canary">
+                  {card.picture?.fields.file !== undefined &&
+                    (i % 2 !== 0 ? (
+                      <TrainingImageMotionLeft>
+                        <picture>
+                          <img
+                            className="cards__card__imageContainer-item"
+                            src={`${card.picture?.fields.file.url}`}
+                            alt={`image-${card.countryName}`}
+                          />
+                        </picture>
+                      </TrainingImageMotionLeft>
+                    ) : (
+                      <TrainingImageMotionRight>
+                        <picture>
+                          <img
+                            className="cards__card__imageContainer-item"
+                            src={`${card.picture?.fields.file.url}`}
+                            alt={`image-${card.countryName}`}
+                          />
+                        </picture>
+                      </TrainingImageMotionRight>
+                    ))}
+                  <div className="cards__card__info">
                     <TrainingCard
                       fieldNames={cardFieldNames}
                       card={card}

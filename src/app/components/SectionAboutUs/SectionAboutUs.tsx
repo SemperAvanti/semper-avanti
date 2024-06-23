@@ -21,7 +21,7 @@ export default async function SectionAboutUs({ locale }: { locale: string }) {
   return (
     <section className="sectionAboutUs" id="AboutUs">
       <div className="sectionAboutUs__container container">
-        <div className="sectionAboutUs__title">
+      <div className="sectionAboutUs__title">
           <SectionTitleMotion>
             <h2 className="section-title">{sectionAboutUsTitle}</h2>
           </SectionTitleMotion>
