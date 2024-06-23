@@ -4,56 +4,59 @@
 
 .FAQ__container {
   &--title {
-    text-align: center;
     margin-bottom: 64px;
+    text-align: center !important;
+
+    @include device(tablet) {
+      margin-bottom: 56px;
+    }
+
     @include device(mobile) {
       font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 32px;
     }
   }
 
   &--description {
-    margin-top: 24px;
-    text-align: center;
+    margin-top: 28px;
+    text-align: center !important;
     color: $color-black;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-
-    &--link {
-      color: $color-primary;
-      text-decoration: none;
-    }
+    font-weight: 500 !important;
+  }
+  &--link {
+    display: inline-block;
+    color: $color-primary;
+    text-decoration: none;
+    margin-left: 10px;
   }
 }
 
 .container {
   &__accordion {
+    box-sizing: border-box;
     max-width: 866px;
     margin: 8px auto !important;
-    padding: 15px 32px;
+    padding: 24px 32px;
     border-radius: 12px !important;
     border: 1px solid $color-grey-border;
     overflow: hidden;
     box-shadow: unset;
 
     &--summary {
-      padding: 0;
-      margin: 0;
-      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0 !important;
+      padding: 0 0 !important;
+      gap: 32px;
+
+      @include device(mobile) {
+        gap: 16px;
+      }
     }
 
     &--details {
       padding: 0;
-
-      & > p {
-        font-family: '__Poppins_10da0e', '__Poppins_Fallback_10da0e';
-      }
     }
   }
-}
-
-.description-text {
-  color: $color-description;
-  margin-bottom: 9px;
 }

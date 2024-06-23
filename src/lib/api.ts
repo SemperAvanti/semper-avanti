@@ -47,3 +47,27 @@ export async function getMultipleContent<T>(
     return null;
   }
 }
+
+export async function getMultipleContentWithId<T>(
+  contentType: CONTENT_TYPE,
+  locale: string,
+): Promise<T[] | null> {
+  try {
+    const response: EntryCollection<EntrySkeletonType> =
+      await client.getEntries<EntrySkeletonType>({
+        content_type: contentType,
+        locale,
+      });
+
+    const data = response.items.map((x) => {
+      const { id } = x.sys;
+      const items = x.fields;
+      return { id, ...items };
+    });
+
+    return data as T[];
+  } catch (error) {
+    console.error('Error fetching content:', error);
+    return null;
+  }
+}
