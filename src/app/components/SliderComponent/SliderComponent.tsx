@@ -3,13 +3,10 @@ import './scss/SliderComponent.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import React, { useState } from 'react';
-import { Swiper as SwiperType } from 'swiper';
+import { Swiper as SwiperType } from 'swiper/types';
 import { Slider } from '../Slider/Slider';
 
-const SWIPER_OFFSET = '24px';
-
 import { SectionTitleMotion } from '../MotionTemplates/templates';
-
 
 type SliderComponentProps = {
   partners: boolean;
@@ -22,7 +19,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   id,
   title,
 }) => {
-  const [swiper, setSwiper] = useState<SwiperType | null>(null);
+  const [swiper, setSwiper] = useState<SwiperType | null>();
 
   return (
     <section className="section" id={id}>
@@ -32,7 +29,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
             <h2 className="H2">{title}</h2>
           </SectionTitleMotion>
           <div className="buttons">
-            <button onClick={() => swiper && swiper.slidePrev()}>
+            <button onClick={() => swiper?.slidePrev()}>
               <svg
                 width="42"
                 height="30"
@@ -48,7 +45,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
                 />
               </svg>
             </button>
-            <button onClick={() => swiper && swiper.slideNext()}>
+            <button onClick={() => swiper?.slideNext()}>
               <svg
                 width="42"
                 height="30"
@@ -73,7 +70,6 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
         slidesPerView="auto"
         initialSlide={1}
         partners={partners}
-        offset={SWIPER_OFFSET}
       />
     </section>
   );
