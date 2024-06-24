@@ -8,19 +8,17 @@ import {
   TrainingImageMotionLeft,
   TrainingImageMotionRight,
 } from '../MotionTemplates/templates';
-import { getContent } from '@/lib/api';
+import { getContent, getMultipleContent } from '@/lib/api';
 import {
   ISectionTrainingsFields,
   ISectionTrainingsCardFields,
 } from '@/contentfulTypes/contentful';
 
-export default async function TrainingPage({
-  locale,
-  trainingCards,
-}: {
-  locale: string;
-  trainingCards: ISectionTrainingsCardFields[] | null;
-}) {
+export default async function TrainingPage({ locale }: { locale: string }) {
+  const trainingCards = await getMultipleContent<ISectionTrainingsCardFields>(
+    'sectionTrainingsCard',
+    locale,
+  );
   const data: ISectionTrainingsFields =
     await getContent<ISectionTrainingsFields>('sectionTrainings', locale);
   const cardFieldNames = Object.keys(data)

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
-import { getContent } from '@/lib/api';
+import { getContent, getMultipleContent } from '@/lib/api';
 import {
   ISectionHomeFields,
   ISectionTrainingsCardFields,
@@ -22,15 +22,13 @@ import {
 //   French = 'fr-FR',
 // }
 
-export default async function HomePage({
-  locale,
-  trainingCards,
-}: {
-  locale: string;
-  trainingCards: ISectionTrainingsCardFields[] | null;
-}) {
+export default async function HomePage({ locale }: { locale: string }) {
   const { sectionHomeTitle, sectionHomeDescription } =
     await getContent<ISectionHomeFields>('sectionHome', locale);
+  const trainingCards = await getMultipleContent<ISectionTrainingsCardFields>(
+    'sectionTrainingsCard',
+    locale,
+  );
 
   return (
     <section className="home" id="Home">

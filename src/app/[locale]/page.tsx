@@ -10,11 +10,10 @@ import HomePage from '../components/Home/Home';
 import { ContactUs } from '../components/ContactUs/ContactUs';
 import SectionAboutUs from '../components/SectionAboutUs/SectionAboutUs';
 import Aqu from '../components/AquComponent/Aqu';
-import { getContent, getMultipleContent } from '@/lib/api';
+import { getContent } from '@/lib/api';
 import {
   ISectionStoriesTitleFields,
   ISectionPartnersTitleFields,
-  ISectionTrainingsCardFields,
 } from '@/contentfulTypes/contentful';
 
 type Params = {
@@ -24,11 +23,6 @@ type Params = {
 export default async function Home({ params: { locale } }: { params: Params }) {
   const { sectionTitle } = await getContent<ISectionStoriesTitleFields>(
     'sectionStoriesTitle',
-    locale,
-  );
-
-  const trainingsCards = await getMultipleContent<ISectionTrainingsCardFields>(
-    'sectionTrainingsCard',
     locale,
   );
 
@@ -42,10 +36,10 @@ export default async function Home({ params: { locale } }: { params: Params }) {
     <>
       <Menu />
       <main>
-        <HomePage locale={locale} trainingCards={trainingsCards}/>
+        <HomePage locale={locale} />
         <SectionAboutUs locale={locale} />
         <Aqu locale={locale} />
-        <TrainingPage locale={locale} trainingCards={trainingsCards}/>
+        <TrainingPage locale={locale} />
         <Gallery />
         <Form locale={locale} />
         <SliderComponent partners={false} title={sectionTitle} id="Stories" />
@@ -54,7 +48,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
           title={secondSectionTitle}
           id="Partners"
         />
-        <FAQ locale={locale}/>
+        <FAQ locale={locale} />
         <ContactUs />
         <Footer />
       </main>
