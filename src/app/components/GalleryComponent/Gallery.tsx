@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './gallery.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
@@ -43,7 +43,7 @@ const Gallery = () => {
 
   useEffect(() => {
     updateSlidesPerView();
-  }, [width, updateSlidesPerView]);
+  }, [width]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -123,6 +123,41 @@ const Gallery = () => {
       </div>
     );
   };
+
+  const initialSlidePerView = useMemo(() => {
+    if (width < 430) {
+      return 1;
+    } else if (width < 1119) {
+      return (width - 2 * 24) / 357;
+    } else if (width < 1167) {
+      return (width - 3 * 24) / 357;
+    }
+  }, [width]);
+
+  /*This is a check to see if there is enough data for the slider. When we start receiving data from the server, we need to add this check to the optional rendering for screen width
+
+  const NUMBER_OF_SLIDES = data.length;
+
+  const shouldSwiperAllowed = useCallback(() => {
+    if ( width >= 430 && width <= 762 && NUMBER_OF_SLIDES < 2 ) {
+      return false;
+    } else if (width > 762 && width < 1167 && NUMBER_OF_SLIDES < 3) {
+      return false;
+    } 
+
+    return true;
+  }, [data.length, width]);
+  */
+
+  const SLIDE_OFFSET = useMemo(() => {
+    if (width > 740) { 
+      return 24;
+    } else if (width > 600) { 
+      return 18;
+    } else {
+      return 0;
+    }
+  } , [width]);
 
   return (
     <section>
@@ -204,13 +239,43 @@ const Gallery = () => {
               disableOnInteraction: true,
             }}
             loop
-            spaceBetween={12}
-            slidesPerView={2}
+            spaceBetween={SLIDE_OFFSET}
+            slidesPerView={initialSlidePerView}
             initialSlide={1}
             centeredSlides={true}
             centeredSlidesBounds={true}
           >
             <>
+              <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--1">
+                <div className="gallery__picture gallery__picture-1">
+                  {width < 430 && <Buttons />}
+                  <Image
+                    className="gallery__picture--image "
+                    alt="malta"
+                    src="/images/gallery-malta.jpg"
+                    width={357}
+                    height={444}
+                  />
+                  <div className="gallery__picture--description">
+                    Malta, 2020
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--1">
+                <div className="gallery__picture gallery__picture-1">
+                  {width < 430 && <Buttons />}
+                  <Image
+                    className="gallery__picture--image "
+                    alt="malta"
+                    src="/images/gallery-malta.jpg"
+                    width={357}
+                    height={444}
+                  />
+                  <div className="gallery__picture--description">
+                    Malta, 2020
+                  </div>
+                </div>
+              </SwiperSlide>
               <SwiperSlide className="Gallery--SwiperSlide Gallery--SwiperSlide--1">
                 <div className="gallery__picture gallery__picture-1">
                   {width < 430 && <Buttons />}

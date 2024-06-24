@@ -1,9 +1,18 @@
-import React from 'react';
 import './scss/FAQ.scss';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
+import {
+  ISectionFAQCardFields,
+  ISectionFAQFooterFields,
+  ISectionFAQTitleField,
+} from '@/contentfulTypes/contentful';
+
+import { getContent, getMultipleContent } from '@/lib/api';
+
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+} from '@mui/material';
 import arrow from '../../../img/arrow.svg';
 import Image from 'next/image';
 import {
@@ -12,56 +21,62 @@ import {
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
 
-export const FAQ: React.FC = () => {
-  const faq = [
-    { someTitle: 'some desc' },
-    { someTitle: 'some desc' },
-    { someTitle: 'some desc' },
-    { someTitle: 'some desc' },
-    { someTitle: 'some desc' },
-  ];
+export default async function FAQ({ locale }: { locale: string }) {
+  const { sectionTitle } = await getContent<ISectionFAQTitleField>(
+    'sectionFaqTitle',
+    locale,
+  );
+
+  const questionCards = await getMultipleContent<ISectionFAQCardFields>(
+    'sectionFaqCard',
+    locale,
+  );
+
+  const { sectionExplanation, sectionLink } =
+    await getContent<ISectionFAQFooterFields>('sectionFaqFooter', locale);
 
   return (
     <section className="section" id="FAQ">
       <div className="FAQ__container container">
         <SectionTitleMotion>
-          <h2 className="H2 FAQ__container--title">
-            Frequently asked questions
-          </h2>
+          <h2 className="H2 FAQ__container--title">{sectionTitle}</h2>
         </SectionTitleMotion>
         <ListMotion>
-          {faq.map((el, i) => (
-            <ItemMotion key={el.someTitle + i + i}>
-              <Accordion
-                key={el.someTitle + i}
-                className="container__accordion"
-              >
-                <AccordionSummary
-                  expandIcon={<Image src={arrow} alt="expand" />}
-                  aria-controls={el.someTitle + i}
-                  id={el.someTitle + i}
-                  className="container__accordion--summary"
+          {questionCards?.length &&
+            questionCards.map((el, id) => (
+              <ItemMotion key={`faqCard-motion-${id}`}>
+                <Accordion
+                  key={`faqCard-${id}`}
+                  className="container__accordion"
+                  disableGutters
                 >
-                  <Typography className="body-text">
-                    {Object.keys(el)[0]}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails className="container__accordion--details">
-                  <Typography className="description-text">
-                    {el.someTitle}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            </ItemMotion>
-          ))}
+                  <AccordionSummary
+                    expandIcon={<Image src={arrow} alt="expand" />}
+                    aria-controls={`faqCard-${id}`}
+                    id={`faqCard-${id}`}
+                    className="container__accordion--summary"
+                    sx={{ margin: 0 }}
+                  >
+                    <Typography className="body-text">
+                      {el.sectionQuestion}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails className="container__accordion--details">
+                    <Typography className="descriptionText descriptionText--gray">
+                      {el.sectionAnswer}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </ItemMotion>
+            ))}
         </ListMotion>
-        <p className="description-text FAQ__container--description">
-          Didn&apos;t find the answer?{' '}
+        <p className="descriptionText FAQ__container--description">
+          {sectionExplanation}
           <a className="body-text FAQ__container--link" href="#ContactUs">
-            Contact Us
+            {sectionLink}
           </a>
         </p>
       </div>
     </section>
   );
-};
+}

@@ -62,6 +62,12 @@ $description-text-letter-spacing: 0em;
   line-height: 72px;
   letter-spacing: -0.02em;
   text-align: left;
+
+  @include device(mobile) {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
+  }
 }
 
 .H3 {
@@ -116,6 +122,11 @@ $description-text-letter-spacing: 0em;
   line-height: 30px;
   letter-spacing: 0em;
   text-align: left;
+
+  @include device(mobile) {
+    font-size: 16px;
+    line-height: normal;
+  }
 }
 
 .descriptionText {
