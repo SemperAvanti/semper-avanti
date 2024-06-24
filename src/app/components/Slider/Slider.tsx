@@ -14,6 +14,9 @@ import {
   ISectionPartnersCardFields,
 } from '@/contentfulTypes/contentful';
 
+const STORIES_NUMBER_OF_CARDS = 11;
+const PARTNERS_NUMBER_OF_CARDS = 11;
+
 type SliderProps = {
   setSwiper: (swiperInstance: SwiperInstance) => void;
   slidesPerView: number | 'auto';
@@ -40,7 +43,9 @@ export const Slider: React.FC<SliderProps> = ({
   useEffect(() => {
     getMultipleContent<ISectionStoriesCardFields>('sectionStoriesCard', locale)
       .then((storiesData) => {
-        setStoriesCards(repeatSliderCards(storiesData || [], 11));
+        setStoriesCards(
+          repeatSliderCards(storiesData || [], STORIES_NUMBER_OF_CARDS),
+        );
       })
       .catch((error) => {
         console.error('Error fetching stories cards:', error);
@@ -52,7 +57,9 @@ export const Slider: React.FC<SliderProps> = ({
       locale,
     )
       .then((partnersData) => {
-        setPartnersCards(repeatSliderCards(partnersData || [], 11));
+        setPartnersCards(
+          repeatSliderCards(partnersData || [], PARTNERS_NUMBER_OF_CARDS),
+        );
       })
       .catch((error) => {
         console.error('Error fetching partners cards:', error);
