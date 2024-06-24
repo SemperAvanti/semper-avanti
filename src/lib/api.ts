@@ -47,3 +47,4 @@ export async function getMultipleContent<T>(
     return null;
   }
 }
+

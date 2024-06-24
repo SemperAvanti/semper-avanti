@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from '../components/Menu/Menu';
 import Form from '@/app/components/FormComponent/Form';
 import { SliderComponent } from '../components/SliderComponent/SliderComponent';
-import { FAQ } from '../components/FAQ/FAQ';
+import FAQ from '../components/FAQ/FAQ';
 import { Footer } from '../components/Footer/Footer';
 import TrainingPage from '../components/TrainingsPage/TrainingsPage';
 import Gallery from '../components/GalleryComponent/Gallery';
@@ -48,7 +48,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
           title={secondSectionTitle}
           id="Partners"
         />
-        <FAQ />
+        <FAQ locale={locale}/>
         <ContactUs />
         <Footer />
       </main>

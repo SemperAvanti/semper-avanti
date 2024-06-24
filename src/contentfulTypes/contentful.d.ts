@@ -392,6 +392,80 @@ export interface IWhyAqe extends Entry<IWhyAqeFields> {
   };
 }
 
+export interface ISectionFAQTitleField {
+  /** Section Title */
+  sectionTitle: string;
+}
+
+export interface ISectionFAQTitle
+  extends Entry<ISectionFAQTitleField> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionFaqTitle';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionFAQCardFields {
+  id: string;
+  /** card--question */
+  sectionQuestion: string;
+  /** card--answer */
+  sectionAnswer: string;
+}
+
+export interface ISectionFaqCard extends Entry<ISectionFAQCardFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionFaqCard';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionFAQFooterFields {
+  /** card--question */
+  sectionExplanation: string;
+  /** card--answer */
+  sectionLink: string;
+}
+
+export interface ISectionFaqFooter extends Entry<ISectionFAQFooterFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionFaqFooter';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+sectionFaqFooter
+
 export type CONTENT_TYPE =
   | 'navigation'
   | 'sectionAboutUs'
@@ -405,6 +479,9 @@ export type CONTENT_TYPE =
   | 'sectionStoriesTitle'
   | 'sectionTrainings'
   | 'sectionTrainingsCard'
+  | 'sectionFaqCard'
+  | 'sectionFaqTitle'
+  | 'sectionFaqFooter'
   | 'whyAqe';
 
 export type IEntry =
@@ -420,7 +497,12 @@ export type IEntry =
   | ISectionStoriesTitle
   | ISectionTrainings
   | ISectionTrainingsCard
-  | IWhyAqe;
+  | IWhyAqe
+  | ISectionFaqTitle
+  | ISectionFaqCard
+  | ISectionFaqFooter;
+
+  
 
 export type LOCALE_CODE = 'en-US' | 'pl-PL';
 
