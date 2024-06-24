@@ -55,15 +55,15 @@ export default async function SectionAboutUs({ locale }: { locale: string }) {
           </div>
         </div>
         {sectionAboutUsImage?.fields?.file?.url && (
-          <ImageMotion>
-            <picture className="sectionAboutUs--image">
+          <picture className="sectionAboutUs--image">
+            <ImageMotion>
               <img
                 className="sectionAboutUs--image"
                 src={sectionAboutUsImage?.fields?.file?.url as string}
                 alt={sectionAboutUsImage?.fields.title as string}
               />
-            </picture>
-          </ImageMotion>
+            </ImageMotion>
+          </picture>
         )}
       </div>
     </section>
