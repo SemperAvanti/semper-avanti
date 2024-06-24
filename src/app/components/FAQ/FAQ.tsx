@@ -5,7 +5,7 @@ import {
   ISectionFAQTitleField,
 } from '@/contentfulTypes/contentful';
 
-import { getContent, getMultipleContentWithId } from '@/lib/api';
+import { getContent, getMultipleContent } from '@/lib/api';
 
 import {
   Accordion,
@@ -27,7 +27,7 @@ export default async function FAQ({ locale }: { locale: string }) {
     locale,
   );
 
-  const questionCards = await getMultipleContentWithId<ISectionFAQCardFields>(
+  const questionCards = await getMultipleContent<ISectionFAQCardFields>(
     'sectionFaqCard',
     locale,
   );
@@ -43,17 +43,17 @@ export default async function FAQ({ locale }: { locale: string }) {
         </SectionTitleMotion>
         <ListMotion>
           {questionCards?.length &&
-            questionCards.map((el) => (
-              <ItemMotion key={`${el.id}${el.id}`}>
+            questionCards.map((el, id) => (
+              <ItemMotion key={`faqCard-motion-${id}`}>
                 <Accordion
-                  key={el.id}
+                  key={`faqCard-${id}`}
                   className="container__accordion"
                   disableGutters
                 >
                   <AccordionSummary
                     expandIcon={<Image src={arrow} alt="expand" />}
-                    aria-controls={el.id}
-                    id={el.id}
+                    aria-controls={`faqCard-${id}`}
+                    id={`faqCard-${id}`}
                     className="container__accordion--summary"
                     sx={{ margin: 0 }}
                   >
