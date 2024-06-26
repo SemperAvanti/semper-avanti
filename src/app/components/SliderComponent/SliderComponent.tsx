@@ -10,7 +10,6 @@ const SWIPER_OFFSET = '24px';
 
 import { SectionTitleMotion } from '../MotionTemplates/templates';
 
-
 type SliderComponentProps = {
   partners: boolean;
   id: string;

@@ -5,13 +5,27 @@ import {
   DescriptionsMotion,
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
+import { ISectionContactUs } from '@/contentfulTypes/contentful';
+import { getContent } from '@/lib/api';
 
-export const ContactUs = () => {
+export default async function ContactUs({ locale }: { locale: string }) {
+  const {
+    email,
+    officeHoursName,
+    officeHoursContent,
+    contactUsTitle,
+    addressName,
+    addressContent,
+    phoneName,
+    phoneContent,
+    excludingHolidays,
+  } = await getContent<ISectionContactUs>('sectionContactUs', locale);
+
   return (
     <section className="ContactUs" id="ContactUs">
       <div className="container">
         <SectionTitleMotion>
-          <h2 className="section-title">Contact Us</h2>
+          <h2 className="section-title">{contactUsTitle}</h2>
         </SectionTitleMotion>
         <div className="ContactUs__flexContainer">
           <div className="ContactUs__descriptionWrapper">
@@ -21,47 +35,45 @@ export const ContactUs = () => {
               </h3>
             </ArticleTitleMotion>
             <DescriptionsMotion>
+              <p className="descriptionText descriptionText--gray">{email}</p>
+            </DescriptionsMotion>
+          </div>
+          <div className="ContactUs__descriptionWrapper">
+            <ArticleTitleMotion>
+              <h3 className="body-text ContactUs__descriptionWrapper-title">
+                {officeHoursName}
+              </h3>
+            </ArticleTitleMotion>
+            <DescriptionsMotion>
               <p className="descriptionText descriptionText--gray">
-                info@qualityineducation.org
+                {officeHoursContent}
+              </p>
+              <p className="descriptionText descriptionText--gray">
+                {excludingHolidays}
               </p>
             </DescriptionsMotion>
           </div>
           <div className="ContactUs__descriptionWrapper">
             <ArticleTitleMotion>
               <h3 className="body-text ContactUs__descriptionWrapper-title">
-                Office Hours
+                {addressName}
               </h3>
             </ArticleTitleMotion>
             <DescriptionsMotion>
               <p className="descriptionText descriptionText--gray">
-                Monday-Friday, 9:00 AM - 5:00 PM
-              </p>
-              <p className="descriptionText descriptionText--gray">
-                (excluding holidays)
+                {addressContent}
               </p>
             </DescriptionsMotion>
           </div>
           <div className="ContactUs__descriptionWrapper">
             <ArticleTitleMotion>
               <h3 className="body-text ContactUs__descriptionWrapper-title">
-                Address
+                {phoneName}
               </h3>
             </ArticleTitleMotion>
             <DescriptionsMotion>
               <p className="descriptionText descriptionText--gray">
-                +1 (555) 123-4567
-              </p>
-            </DescriptionsMotion>
-          </div>
-          <div className="ContactUs__descriptionWrapper">
-            <ArticleTitleMotion>
-              <h3 className="body-text ContactUs__descriptionWrapper-title">
-                Phone Number
-              </h3>
-            </ArticleTitleMotion>
-            <DescriptionsMotion>
-              <p className="descriptionText descriptionText--gray">
-                +1 (555) 123-4567
+                {phoneContent}
               </p>
             </DescriptionsMotion>
           </div>
@@ -69,4 +81,4 @@ export const ContactUs = () => {
       </div>
     </section>
   );
-};
+}
