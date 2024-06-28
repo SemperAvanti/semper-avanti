@@ -88,7 +88,7 @@ export const Slider: React.FC<SliderProps> = ({
           centeredSlides={true}
           onSwiper={(swiperInstance) => setSwiper(swiperInstance)}
           autoplay={{
-            delay: 3200,
+            delay: 2700,
             disableOnInteraction: false,
           }}
           modules={[Autoplay]}
@@ -99,6 +99,7 @@ export const Slider: React.FC<SliderProps> = ({
           allowTouchMove
           spaceBetween={24}
           centerInsufficientSlides={true}
+          simulateTouch={false}
         >
           {partners
             ? partnersCards.map((card, index) => (
