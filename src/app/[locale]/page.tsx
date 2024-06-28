@@ -48,7 +48,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
           title={secondSectionTitle}
           id="Partners"
         />
-        <FAQ locale={locale}/>
+        <FAQ locale={locale} />
         <ContactUs />
         <Footer />
       </main>

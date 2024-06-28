@@ -1,5 +1,4 @@
 import Image from 'next/image';
-
 import './Aqu.scss';
 import {
   ItemMotion,
@@ -11,7 +10,6 @@ import {
   ISectionAquTitleFields,
 } from '@/contentfulTypes/contentful';
 import { getContent, getMultipleContent } from '@/lib/api';
-
 export default async function Aqu({ locale }: { locale: string }) {
   const { sectionAquTitle } = await getContent<ISectionAquTitleFields>(
     'sectionAquTitle',
@@ -21,7 +19,6 @@ export default async function Aqu({ locale }: { locale: string }) {
     'sectionAquCard',
     locale,
   );
-
   return (
     <section className="aqu-section">
       <div className="container">
@@ -35,16 +32,18 @@ export default async function Aqu({ locale }: { locale: string }) {
             {cards &&
               cards.map((elem, id) => (
                 <div key={`aquCard-${id}`} className="aqu-section__item">
-                  {elem.cardImage?.fields?.file?.url && (
-                    <ItemMotion>
-                      <Image
-                        src={`${elem.cardImage?.fields?.file?.url}` ?? ''}
-                        alt={`icon of ${elem.cardImage?.fields?.title ?? ''}`}
-                        width={40}
-                        height={40}
-                      />
-                    </ItemMotion>
-                  )}
+                  <div className="aqu-card_image">
+                    {elem.cardImage?.fields?.file?.url && (
+                      <ItemMotion>
+                        <Image
+                          src={`${elem.cardImage.fields.file.url}`}
+                          alt={`icon of ${elem.cardImage.fields.title}`}
+                          width={40}
+                          height={40}
+                        />
+                      </ItemMotion>
+                    )}
+                  </div>
                   <h3 className="aqu-section__title">{elem.cardTitle}</h3>
                   <div className="aqu-section__text">
                     {elem.cardDescription}

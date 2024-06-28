@@ -65,7 +65,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 262px;
-    gap: 5px;
+    gap: 25px;
     padding-bottom: 64px;
     text-decoration-skip-ink: none;
 
@@ -78,6 +78,7 @@
   &__item {
     overflow: hidden;
     color: $color-black;
+    text-wrap: nowrap;
   }
 
   &__worldMap {
