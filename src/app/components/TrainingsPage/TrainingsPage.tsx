@@ -1,10 +1,5 @@
-'use client';
-import React, { useEffect, useState } from 'react';
 import TrainingCard from '../TrainingsCard/TrainingsCard';
 import './TrainingsPage.scss';
-import { fetchIds } from '@/lib/fetchIds';
-import { MenuData } from '@/app/types/menuData';
-import { useParams } from 'next/navigation';
 import {
   DescriptionsMotion,
   SectionTitleMotion,
@@ -12,30 +7,15 @@ import {
   TrainingImageMotionRight,
 } from '../MotionTemplates/templates';
 
-const TrainingPage = () => {
-  const [ids, setIds] = useState<MenuData | null>(null);
+type Props = {
+  id: string;
+};
 
-  const { locale } = useParams<{ locale: string }>();
-
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      const result = await fetchIds(locale);
-      setIds(result);
-    };
-
-    fetchDataAsync();
-  }, [locale]);
+const TrainingPage = ({ id }: Props) => {
   return (
     <>
       <section>
-        <div
-          className="container"
-          id={
-            (ids &&
-              ids.navItems[2]?.title.toLowerCase().replace(/\s+/g, '-')) ||
-            undefined
-          }
-        >
+        <div className="container" id={id}>
           <div className="trainings__name">
             <SectionTitleMotion>
               <h2 className="trainings__title">Trainings</h2>

@@ -3,49 +3,16 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import './Menu.scss';
 import Button from '../Button/Button';
-import { useRouter } from 'next/navigation';
-import { getContent } from '@/lib/api';
 import throttle from 'lodash.throttle';
 import LangMenu from './LangMenu';
+import { MenuData } from '@/app/types/menuData';
+import NavigationLinks from './NavigationLinks';
 
-type NavItem = {
-  title: string;
-};
-
-type MenuData = {
-  navItems: NavItem[];
-};
-
-const Menu = ({ locale }: { locale: string }) => {
-  const [data, setData] = useState<MenuData | null>(null);
+const Menu = ({ links }: { links: MenuData | null }) => {
   const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const prevScrollpos = useRef<number>(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getContent('navigation', locale);
-        const navItems =
-          response.navItems &&
-          response.navItems.map((item: string) => ({
-            title: item,
-          }));
-        const formattedData = { navItems };
-
-        setData(formattedData);
-      } catch (error) {
-        console.error('Error fetching content:', error);
-      }
-    };
-
-    fetchData();
-  }, [locale]);
-
-  function setLanguage(lang: string) {
-    route.push(lang);
-  }
-    
   const handleScroll = useCallback(() => {
     const currentScrollPos = window.scrollY;
     const isScrollingUp = prevScrollpos.current > currentScrollPos;
@@ -72,17 +39,14 @@ const Menu = ({ locale }: { locale: string }) => {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-    console.log('clicked', isOpen);
     const buttonIcon = document.querySelector('.buttonContainerMob__open');
     if (buttonIcon) {
       buttonIcon.classList.toggle('buttonClicked');
     }
+
+    console.log('clicked');
   };
-
-  useEffect(() => {
-    console.log('State data:', data);
-  }, [data]);
-
+  
   return (
     <div ref={headerRef} className="menu-container">
       <header className="header">
@@ -96,21 +60,7 @@ const Menu = ({ locale }: { locale: string }) => {
                 width={70}
                 height={79}
               />
-              {data && data.navItems ? (
-                data.navItems.map((item, index) => (
-                  <li key={index}>
-                    <a
-                      href={`#${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="navigation__item"
-                    >
-                      {item.title}
-                    </a>
-                  </li>
-                ))
-              ) : (
-                <div>Loading...</div>
-              )}
-
+              {links && <NavigationLinks links={links} />}
               <li>
                 <LangMenu />
               </li>
@@ -163,61 +113,7 @@ const Menu = ({ locale }: { locale: string }) => {
 
       <div className="mobileMenu" id="mobMenu">
         <ul className="mobileMenu__list">
-          <li className="mobileMenu__item">
-            <a href="#Home" className="navigation__item" onClick={handleClick}>
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="#AboutUs"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              About us
-            </a>
-          </li>
-          <li>
-            <a
-              href="#Trainings"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              Trainings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#Gallery"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              Gallery
-            </a>
-          </li>
-          <li>
-            <a
-              href="#Stories"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              Stories
-            </a>
-          </li>
-          <li>
-            <a
-              href="#Partners"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              Partners
-            </a>
-          </li>
-          <li>
-            <a href="#FAQ" className="navigation__item" onClick={handleClick}>
-              FAQ
-            </a>
-          </li>
+          {links && <NavigationLinks links={links} handleClick={handleClick} />}
           <li>
             <LangMenu />
           </li>

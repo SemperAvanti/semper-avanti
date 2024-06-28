@@ -1,9 +1,4 @@
-'use client';
-import { useEffect, useState } from 'react';
 import './sectionAboutUs.scss';
-import { fetchIds } from '@/lib/fetchIds';
-import { MenuData } from '@/app/types/menuData';
-import { useParams } from 'next/navigation';
 import {
   SectionTitleMotion,
   DescriptionsMotion,
@@ -11,27 +6,13 @@ import {
   ImageMotion,
 } from '../MotionTemplates/templates';
 
-export const SectionAboutUs = () => {
-  const [ids, setIds] = useState<MenuData | null>(null);
-  const { locale } = useParams<{ locale: string }>();
+type Props = {
+  id: string;
+};
 
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      const result = await fetchIds(locale);
-      setIds(result);
-    };
-
-    fetchDataAsync();
-  }, [locale]);
-
+export const SectionAboutUs = ({ id }: Props) => {
   return (
-    <section
-      className="sectionAboutUs"
-      id={
-        (ids && ids.navItems[1]?.title.toLowerCase().replace(/\s+/g, '-')) ||
-        undefined
-      }
-    >
+    <section className="sectionAboutUs" id={id}>
       <div className="sectionAboutUs__container container">
         <div className="sectionAboutUs__title">
           <SectionTitleMotion>
@@ -78,7 +59,7 @@ export const SectionAboutUs = () => {
             </DescriptionsMotion>
           </div>
         </div>
-        <div  className="sectionAboutUs--image">
+        <div className="sectionAboutUs--image">
           <ImageMotion>
             <picture>
               <source

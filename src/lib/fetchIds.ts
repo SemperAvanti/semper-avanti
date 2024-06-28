@@ -1,22 +1,16 @@
+import { INavigationFields } from '@/contentfulTypes/contentful';
 import { getContent } from '@/lib/api';
-
-type NavItem = {
-  title: string;
-};
-
-type MenuData = {
-  navItems: NavItem[];
-};
+import { MenuData } from '@/app/types/menuData';
 
 export const fetchIds = async (locale: string): Promise<MenuData | null> => {
   try {
-    const response = await getContent('navigation', locale);
+    const response: INavigationFields = await getContent('navigation', locale);
     const navItems =
       response.navItems &&
       response.navItems.map((item: string) => ({
         title: item,
       }));
-    const formattedData = { navItems };
+    const formattedData: MenuData = { navItems: navItems || [] };
     return formattedData;
   } catch (error) {
     return null;

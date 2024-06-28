@@ -4,9 +4,6 @@ import './gallery.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
 import Image from 'next/image';
-import { fetchIds } from '@/lib/fetchIds';
-import { MenuData } from '@/app/types/menuData';
-import { useParams } from 'next/navigation';
 import {
   DescriptionsMotion,
   ItemMotion,
@@ -14,21 +11,13 @@ import {
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
 
-const Gallery = () => {
+type Props = {
+  id: string;
+};
+
+const Gallery = ({ id }: Props) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [width, setWidth] = useState(0);
-  const [ids, setIds] = useState<MenuData | null>(null);
-
-  const { locale } = useParams<{ locale: string }>();
-
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      const result = await fetchIds(locale);
-      setIds(result);
-    };
-
-    fetchDataAsync();
-  }, [locale]);
 
   const updateSlidesPerView = useCallback(() => {
     if (swiper && swiper.params) {
@@ -180,13 +169,7 @@ const Gallery = () => {
 
   return (
     <section>
-      <div
-        className="gallery__container container"
-        id={
-          (ids && ids.navItems[3]?.title.toLowerCase().replace(/\s+/g, '-')) ||
-          undefined
-        }
-      >
+      <div className="gallery__container container" id={id}>
         <SectionTitleMotion>
           <h2 className="section-title gallery__title">Gallery</h2>
         </SectionTitleMotion>

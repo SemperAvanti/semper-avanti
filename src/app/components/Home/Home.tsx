@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
 import { getContent } from '@/lib/api';
-import { fetchIds } from '@/lib/fetchIds';
 import { ISectionHomeFields } from '@/contentfulTypes/contentful';
 import {
   DescriptionsMotion,
@@ -12,27 +11,17 @@ import {
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
 
-// Object below is only for country codes
-// {
-//   English = 'en-US',
-//   Spanisch = 'es-ES',
-//   Polish = 'pl-PL',
-//   French = 'fr-FR',
-// }
+type Props = {
+  locale: string;
+  id: string;
+};
 
-export default async function HomePage({ locale }: { locale: string }) {
-  const ids = await fetchIds(locale);
+export default async function HomePage({ locale, id }: Props) {
   const { sectionHomeTitle, sectionHomeDescription } =
     await getContent<ISectionHomeFields>('sectionHome', locale);
 
   return (
-    <section
-      className="home"
-      id={
-        (ids && ids.navItems[0]?.title.toLowerCase().replace(/\s+/g, '-')) ||
-        undefined
-      }
-    >
+    <section className="home" id={id}>
       <div className="home__title">
         <div className="home__title__container">
           <SectionTitleMotion>
@@ -41,10 +30,6 @@ export default async function HomePage({ locale }: { locale: string }) {
                 {sectionHomeTitle as string}
                 <div className="blueLine"></div>
               </span>
-
-              {/* <span className="home--titleWrapper--top">
-                Empower with AQE Educate.
-              </span> */}
             </h1>
           </SectionTitleMotion>
         </div>

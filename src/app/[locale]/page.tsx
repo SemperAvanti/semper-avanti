@@ -23,6 +23,15 @@ type Params = {
 
 export default async function Home({ params: { locale } }: { params: Params }) {
   const ids = await fetchIds(locale);
+
+  const IDS_FOR_HASH_ROUTING: string[] = [];
+
+  if (ids) {
+    ids.navItems.forEach((item) => {
+      IDS_FOR_HASH_ROUTING.push(item.title.toLowerCase().replace(/\s+/g, '-'));
+    });
+  }
+
   const { sectionTitle } = await getContent<ISectionStoriesTitleFields>(
     'sectionStoriesTitle',
     locale,
@@ -36,33 +45,25 @@ export default async function Home({ params: { locale } }: { params: Params }) {
 
   return (
     <>
-      <Menu locale={locale} />
+      <Menu links={ids} />
       <main>
-        <HomePage locale={locale} />
-        <SectionAboutUs />
+        <HomePage locale={locale} id={IDS_FOR_HASH_ROUTING[0]} />
+        <SectionAboutUs id={IDS_FOR_HASH_ROUTING[1]} />
         <Aqu />
-        <TrainingPage />
-        <Gallery />
+        <TrainingPage id={IDS_FOR_HASH_ROUTING[2]} />
+        <Gallery id={IDS_FOR_HASH_ROUTING[3]} />
         <Form />
         <SliderComponent
           partners={false}
           title={sectionTitle}
-          id={
-            (ids &&
-              ids.navItems[4]?.title.toLowerCase().replace(/\s+/g, '-')) ||
-            ''
-          }
+          id={IDS_FOR_HASH_ROUTING[4]}
         />
         <SliderComponent
           partners={true}
           title={secondSectionTitle}
-          id={
-            (ids &&
-              ids.navItems[5]?.title.toLowerCase().replace(/\s+/g, '-')) ||
-            ''
-          }
+          id={IDS_FOR_HASH_ROUTING[5]}
         />
-        <FAQ />
+        <FAQ id={IDS_FOR_HASH_ROUTING[6]} />
         <ContactUs />
         <Footer />
       </main>
