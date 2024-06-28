@@ -1,8 +1,8 @@
 import './scss/FAQ.scss';
 import {
-  ISectionFAQCardFields,
-  ISectionFAQFooterFields,
-  ISectionFAQTitleField,
+  ISectionFaqCardFields,
+  ISectionFaqFooterFields,
+  ISectionFaqTitleFields,
 } from '@/contentfulTypes/contentful';
 
 import { getContent, getMultipleContent } from '@/lib/api';
@@ -22,18 +22,18 @@ import {
 } from '../MotionTemplates/templates';
 
 export default async function FAQ({ locale }: { locale: string }) {
-  const { sectionTitle } = await getContent<ISectionFAQTitleField>(
+  const { sectionTitle } = await getContent<ISectionFaqTitleFields>(
     'sectionFaqTitle',
     locale,
   );
 
-  const questionCards = await getMultipleContent<ISectionFAQCardFields>(
+  const questionCards = await getMultipleContent<ISectionFaqCardFields>(
     'sectionFaqCard',
     locale,
   );
 
   const { sectionExplanation, sectionLink } =
-    await getContent<ISectionFAQFooterFields>('sectionFaqFooter', locale);
+    await getContent<ISectionFaqFooterFields>('sectionFaqFooter', locale);
 
   return (
     <section className="section" id="FAQ">
