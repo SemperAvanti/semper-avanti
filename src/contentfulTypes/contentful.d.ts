@@ -3,6 +3,34 @@
 import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
+export interface IEmailTemplateFields {
+  /** Salutations */
+  salutations: string;
+
+  /** Email content */
+  emailContent: Document;
+
+  /** Attachment */
+  attachment?: Asset | undefined;
+}
+
+export interface IEmailTemplate extends Entry<IEmailTemplateFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'emailTemplate';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface INavigationFields {
   /** nav-items */
   navItems?: string[] | undefined;
@@ -108,6 +136,124 @@ export interface ISectionAquTitle extends Entry<ISectionAquTitleFields> {
     contentType: {
       sys: {
         id: 'sectionAquTitle';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionContactUsFields {
+  /** email */
+  email: string;
+
+  /** Office hours name */
+  officeHoursName: string;
+
+  /** Office hours content */
+  officeHoursContent: string;
+
+  /** contact us title */
+  contactUsTitle: string;
+
+  /** Address name */
+  addressName: string;
+
+  /** Address content */
+  addressContent: string;
+
+  /** phone name */
+  phoneName: string;
+
+  /** phone content */
+  phoneContent: string;
+
+  /** excluding holidays */
+  excludingHolidays: string;
+}
+
+export interface ISectionContactUs extends Entry<ISectionContactUsFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionContactUs';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionFaqCardFields {
+  /** SectionAnswer */
+  sectionAnswer: string;
+
+  /** SectionQuestion */
+  sectionQuestion: string;
+}
+
+export interface ISectionFaqCard extends Entry<ISectionFaqCardFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionFaqCard';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionFaqFooterFields {
+  /** SectionLink */
+  sectionLink: string;
+
+  /** SectionExplanation */
+  sectionExplanation: string;
+}
+
+export interface ISectionFaqFooter extends Entry<ISectionFaqFooterFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionFaqFooter';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ISectionFaqTitleFields {
+  /** SectionTitle */
+  sectionTitle: string;
+}
+
+export interface ISectionFaqTitle extends Entry<ISectionFaqTitleFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sectionFaqTitle';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -392,85 +538,16 @@ export interface IWhyAqe extends Entry<IWhyAqeFields> {
   };
 }
 
-export interface ISectionFAQTitleField {
-  /** Section Title */
-  sectionTitle: string;
-}
-
-export interface ISectionFAQTitle
-  extends Entry<ISectionFAQTitleField> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'sectionFaqTitle';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface ISectionFAQCardFields {
-  id: string;
-  /** card--question */
-  sectionQuestion: string;
-  /** card--answer */
-  sectionAnswer: string;
-}
-
-export interface ISectionFaqCard extends Entry<ISectionFAQCardFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'sectionFaqCard';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface ISectionFAQFooterFields {
-  /** card--question */
-  sectionExplanation: string;
-  /** card--answer */
-  sectionLink: string;
-}
-
-export interface ISectionFaqFooter extends Entry<ISectionFAQFooterFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'sectionFaqFooter';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-sectionFaqFooter
-
 export type CONTENT_TYPE =
+  | 'emailTemplate'
   | 'navigation'
   | 'sectionAboutUs'
   | 'sectionAquCard'
   | 'sectionAquTitle'
+  | 'sectionContactUs'
+  | 'sectionFaqCard'
+  | 'sectionFaqFooter'
+  | 'sectionFaqTitle'
   | 'sectionForm'
   | 'sectionHome'
   | 'sectionPartnersCard'
@@ -479,16 +556,18 @@ export type CONTENT_TYPE =
   | 'sectionStoriesTitle'
   | 'sectionTrainings'
   | 'sectionTrainingsCard'
-  | 'sectionFaqCard'
-  | 'sectionFaqTitle'
-  | 'sectionFaqFooter'
   | 'whyAqe';
 
 export type IEntry =
+  | IEmailTemplate
   | INavigation
   | ISectionAboutUs
   | ISectionAquCard
   | ISectionAquTitle
+  | ISectionContactUs
+  | ISectionFaqCard
+  | ISectionFaqFooter
+  | ISectionFaqTitle
   | ISectionForm
   | ISectionHome
   | ISectionPartnersCard
@@ -497,12 +576,7 @@ export type IEntry =
   | ISectionStoriesTitle
   | ISectionTrainings
   | ISectionTrainingsCard
-  | IWhyAqe
-  | ISectionFaqTitle
-  | ISectionFaqCard
-  | ISectionFaqFooter;
-
-  
+  | IWhyAqe;
 
 export type LOCALE_CODE = 'en-US' | 'pl-PL';
 

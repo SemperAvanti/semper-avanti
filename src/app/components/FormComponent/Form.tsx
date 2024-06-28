@@ -3,10 +3,8 @@
 'use client';
 
 import './Form.scss';
-
 import { useState, useEffect } from 'react';
 import { ZodType, z, ZodIssue, ZodError } from 'zod';
-
 import { FormData } from '@/app/types/zod';
 import Button from '@/app/components/Button/Button';
 import { Input } from '@/app/components/InputComponent/Input';
@@ -22,6 +20,9 @@ type ContentState = {
   iAgreeToReceive: string | null;
   fullName: string | null;
   country: string | null;
+  emailContent: string | null;
+  salutations: string | null;
+  attachment: any;
 };
 
 const toStringOrNull = (value: any, fallback: string = ''): string | null => {
@@ -31,12 +32,14 @@ const toStringOrNull = (value: any, fallback: string = ''): string | null => {
     return value.toString();
   return fallback;
 };
+
 import {
   DescriptionsMotion,
   ItemMotion,
   ListMotion,
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
+import { IEmailTemplateFields } from '@/contentfulTypes/contentful';
 
 const formDataSchema: ZodType<FormData> = z.object({
   fullname: z.string().min(5, 'Error name').trim(),
@@ -59,12 +62,19 @@ export default function Form({ locale }: { locale: string }) {
     iAgreeToReceive: null,
     fullName: null,
     country: null,
+    emailContent: null,
+    salutations: null,
+    attachment: null,
   });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result: unknown = await getContent('sectionForm', locale);
+        const emailTemplate = await getContent<IEmailTemplateFields>(
+          'emailTemplate',
+          locale,
+        );
 
         // Type guard to check if result is an object and has the expected properties
         if (
@@ -74,9 +84,13 @@ export default function Form({ locale }: { locale: string }) {
           'fillTheForm' in result &&
           'iAgreeToReceive' in result &&
           'fullName' in result &&
-          'country' in result
+          'country' in result &&
+          'emailContent' in emailTemplate &&
+          'salutations' in emailTemplate &&
+          'attachment' in emailTemplate
         ) {
           const data = result as Record<string, any>;
+          const emailData = emailTemplate as Record<string, any>;
 
           setContent({
             getMoreInOurInfoPackage: toStringOrNull(
@@ -86,6 +100,9 @@ export default function Form({ locale }: { locale: string }) {
             iAgreeToReceive: toStringOrNull(data.iAgreeToReceive),
             fullName: toStringOrNull(data.fullName),
             country: toStringOrNull(data.country),
+            emailContent: toStringOrNull(emailData.emailContent),
+            salutations: toStringOrNull(emailData.salutations),
+            attachment: emailData.attachment,
           });
         } else {
           throw new Error('Unexpected result format');
@@ -157,7 +174,12 @@ export default function Form({ locale }: { locale: string }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          salutations: content.salutations,
+          emailContent: content.emailContent,
+          attachment: content.attachment,
+        }),
       });
 
       if (response.ok) {
