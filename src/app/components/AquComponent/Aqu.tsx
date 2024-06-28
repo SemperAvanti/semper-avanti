@@ -5,69 +5,54 @@ import {
   ListMotion,
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
-
-export const Aqu = () => {
-  // temporary mockup data
-  const data = [
-    {
-      id: 1,
-      title: 'Inspiring Environment',
-      text: 'Picture this: passionate educators coming together in a vibrant setting, fueled by cutting-edge pedagogy, interactive workshops, and collaborative learning. Our camps are more than just sessions',
-      icon: '/light.svg',
-    },
-    {
-      id: 2,
-      title: 'Refreshing Experience',
-      text: 'Picture this: passionate educators coming together in a vibrant setting, fueled by cutting-edge pedagogy, interactive workshops, and collaborative learning. Our camps are more than just sessions',
-      icon: '/battery.svg',
-    },
-    {
-      id: 3,
-      title: 'Practical Application',
-      text: 'Picture this: passionate educators coming together in a vibrant setting, fueled by cutting-edge pedagogy, interactive workshops, and collaborative learning. Our camps are more than just sessions',
-      icon: '/work-outline.svg',
-    },
-    {
-      id: 4,
-      title: 'Professional Growth',
-      text: 'Picture this: passionate educators coming together in a vibrant setting, fueled by cutting-edge pedagogy, interactive workshops, and collaborative learning. Our camps are more than just sessions',
-      icon: '/chart.svg',
-    },
-  ];
-
-  const header = 'Why AQE?';
-
+import {
+  ISectionAquCardFields,
+  ISectionAquTitleFields,
+} from '@/contentfulTypes/contentful';
+import { getContent, getMultipleContent } from '@/lib/api';
+export default async function Aqu({ locale }: { locale: string }) {
+  const { sectionAquTitle } = await getContent<ISectionAquTitleFields>(
+    'sectionAquTitle',
+    locale,
+  );
+  const cards = await getMultipleContent<ISectionAquCardFields>(
+    'sectionAquCard',
+    locale,
+  );
   return (
     <section className="aqu-section">
       <div className="container">
         <header className="aqu-section__header">
           <SectionTitleMotion>
-            <h2 className="aqu-section__header-text">{header}</h2>
+            <h2 className="aqu-section__header-text">{sectionAquTitle}</h2>
           </SectionTitleMotion>
         </header>
         <ListMotion>
           <div className="aqu-section__container">
-            {data.length ? (
-              data.map((elem) => (
-                <div key={elem.id} className="aqu-section__item">
-                  <ItemMotion>
-                    <Image
-                      src={elem.icon}
-                      alt={`icon of ${elem.title}`}
-                      width={40}
-                      height={40}
-                    />
-                  </ItemMotion>
-                  <h3 className="aqu-section__title">{elem.title}</h3>
-                  <div className="aqu-section__text">{elem.text}</div>
+            {cards &&
+              cards.map((elem, id) => (
+                <div key={`aquCard-${id}`} className="aqu-section__item">
+                  <div className="aqu-card_image">
+                    {elem.cardImage?.fields?.file?.url && (
+                      <ItemMotion>
+                        <Image
+                          src={`${elem.cardImage.fields.file.url}`}
+                          alt={`icon of ${elem.cardImage.fields.title}`}
+                          width={40}
+                          height={40}
+                        />
+                      </ItemMotion>
+                    )}
+                  </div>
+                  <h3 className="aqu-section__title">{elem.cardTitle}</h3>
+                  <div className="aqu-section__text">
+                    {elem.cardDescription}
+                  </div>
                 </div>
-              ))
-            ) : (
-              <div>loading...</div>
-            )}
+              ))}
           </div>
         </ListMotion>
       </div>
     </section>
   );
-};
+}

@@ -4,14 +4,9 @@ import Image from 'next/image';
 import './scss/StoriesCard.scss';
 import { ISectionStoriesCardFields } from '@/contentfulTypes/contentful';
 
-type OffsetProps = {
-  offset?: string | undefined;
-};
-
-type StoriesCardProps = OffsetProps & ISectionStoriesCardFields;
+type StoriesCardProps = ISectionStoriesCardFields;
 
 export const StoriesCard: React.FC<StoriesCardProps> = ({
-  offset,
   fullname,
   photo,
   quote,
@@ -20,7 +15,7 @@ export const StoriesCard: React.FC<StoriesCardProps> = ({
     typeof photo?.fields?.file?.url === 'string' ? photo.fields.file.url : '';
 
   return (
-    <div className="stories__card" style={{ marginRight: offset }}>
+    <div className="stories__card">
       <div className="stories__card--image">
         <Image
           src={`https:${imageUrl}`}

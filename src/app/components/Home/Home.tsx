@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
-import { getContent } from '@/lib/api';
-import { ISectionHomeFields } from '@/contentfulTypes/contentful';
+import { getContent, getMultipleContent } from '@/lib/api';
+import {
+  ISectionHomeFields,
+  ISectionTrainingsCardFields,
+} from '@/contentfulTypes/contentful';
 import {
   DescriptionsMotion,
   ImageMotion,
@@ -19,6 +22,10 @@ type Props = {
 export default async function HomePage({ locale, id }: Props) {
   const { sectionHomeTitle, sectionHomeDescription } =
     await getContent<ISectionHomeFields>('sectionHome', locale);
+  const trainingCards = await getMultipleContent<ISectionTrainingsCardFields>(
+    'sectionTrainingsCard',
+    locale,
+  );
 
   return (
     <section className="home" id={id}>
@@ -27,7 +34,7 @@ export default async function HomePage({ locale, id }: Props) {
           <SectionTitleMotion>
             <h1 className="home__h1">
               <span className="home--titleWrapper">
-                {sectionHomeTitle as string}
+                {sectionHomeTitle}
                 <div className="blueLine"></div>
               </span>
             </h1>
@@ -35,7 +42,7 @@ export default async function HomePage({ locale, id }: Props) {
         </div>
 
         <DescriptionsMotion>
-          <p className="home__text ">{sectionHomeDescription as string}</p>
+          <p className="home__text ">{sectionHomeDescription}</p>
         </DescriptionsMotion>
         <div className="home__button--desktop">
           <a href="#Home-form">
@@ -61,21 +68,20 @@ export default async function HomePage({ locale, id }: Props) {
       </ImageMotion>
       <ListMotion>
         <div className="home__links">
-          <LinkMotion>
-            <a href="#Trainings-malta" className="home__item body-text">
-              Malta
-            </a>
-          </LinkMotion>
-          <LinkMotion>
-            <a href="#Trainings-canary" className="home__item body-text">
-              Canary
-            </a>
-          </LinkMotion>
-          <LinkMotion>
-            <a href="#Trainings-ireland" className="home__item body-text">
-              Ireland
-            </a>
-          </LinkMotion>
+          {trainingCards &&
+            trainingCards.map((card) => {
+              return (
+                <LinkMotion key={`HomeLink-${card.countryName}`}>
+                  <a
+                    href={`#${card.countryName}`}
+                    className="home__item body-text"
+                    key={card.countryName}
+                  >
+                    {card.countryName}
+                  </a>
+                </LinkMotion>
+              );
+            })}
         </div>
       </ListMotion>
       <div className="home__button--mobile">

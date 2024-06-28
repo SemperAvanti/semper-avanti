@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-async-client-component */
 'use client';
 
 import './Form.scss';
@@ -12,6 +14,23 @@ import { Checkbox } from '@/app/components/CheckboxComponent/Checkbox';
 import { FormInitialData } from '@/app/types/formInitialData';
 import { initialData } from '@/app/components/FormComponent/helper';
 import { Modal } from '@/app/components/ModalComponent/Modal';
+import { getContent } from '@/lib/api';
+
+type ContentState = {
+  getMoreInOurInfoPackage: string | null;
+  fillTheForm: string | null;
+  iAgreeToReceive: string | null;
+  fullName: string | null;
+  country: string | null;
+};
+
+const toStringOrNull = (value: any, fallback: string = ''): string | null => {
+  if (value === null || value === undefined) return null;
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number' || typeof value === 'boolean')
+    return value.toString();
+  return fallback;
+};
 import {
   DescriptionsMotion,
   ItemMotion,
@@ -24,7 +43,7 @@ const formDataSchema: ZodType<FormData> = z.object({
   email: z.string().email('Error email format').trim(),
 });
 
-export const Form: React.FC = () => {
+export default function Form({ locale }: { locale: string }) {
   const [formData, setFormData] = useState<FormInitialData>(initialData);
   const [errors, setErrors] = useState<ZodIssue[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,6 +53,50 @@ export const Form: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [emailAddress, setEmailAddress] = useState('');
   const [isEmailSentSuccessfully, setIsEmailSentSuccessfully] = useState(true);
+  const [content, setContent] = useState<ContentState>({
+    getMoreInOurInfoPackage: null,
+    fillTheForm: null,
+    iAgreeToReceive: null,
+    fullName: null,
+    country: null,
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result: unknown = await getContent('sectionForm', locale);
+
+        // Type guard to check if result is an object and has the expected properties
+        if (
+          typeof result === 'object' &&
+          result !== null &&
+          'getMoreInOurInfoPackage' in result &&
+          'fillTheForm' in result &&
+          'iAgreeToReceive' in result &&
+          'fullName' in result &&
+          'country' in result
+        ) {
+          const data = result as Record<string, any>;
+
+          setContent({
+            getMoreInOurInfoPackage: toStringOrNull(
+              data.getMoreInOurInfoPackage,
+            ),
+            fillTheForm: toStringOrNull(data.fillTheForm),
+            iAgreeToReceive: toStringOrNull(data.iAgreeToReceive),
+            fullName: toStringOrNull(data.fullName),
+            country: toStringOrNull(data.country),
+          });
+        } else {
+          throw new Error('Unexpected result format');
+        }
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    };
+
+    fetchData();
+  }, [locale]);
 
   useEffect((): void => {
     setErrors([]);
@@ -127,11 +190,13 @@ export const Form: React.FC = () => {
     <section className="form" id="Home-form">
       <header className="form__header">
         <SectionTitleMotion>
-          <h2 className="form__header-text">Get more in our info package</h2>
+          <h2 className="form__header-text">
+            {content.getMoreInOurInfoPackage as string}
+          </h2>
         </SectionTitleMotion>
         <DescriptionsMotion>
           <p className="form__header-sub-text">
-            Fill the form and we&apos;ll send you a file with actual information
+            {content.fillTheForm as string}
           </p>
         </DescriptionsMotion>
       </header>
@@ -143,7 +208,7 @@ export const Form: React.FC = () => {
                 <ItemMotion>
                   <Input
                     htmlFor="full Name"
-                    label="Full Name *"
+                    label={`${content.fullName as string} *`}
                     type="text"
                     name="fullname"
                     value={formData.fullname}
@@ -173,7 +238,7 @@ export const Form: React.FC = () => {
                 <ItemMotion>
                   <Input
                     htmlFor="country"
-                    label="Country"
+                    label={content.country as string}
                     type="text"
                     name="country"
                     value={formData.country}
@@ -192,8 +257,7 @@ export const Form: React.FC = () => {
                   value={''}
                 />
                 <p className="form__checkbox-text">
-                  I agree to receive the information about the further courses
-                  from AQE
+                  {content.iAgreeToReceive as string}
                 </p>
               </div>
               <div className="form__input-elem">
@@ -215,4 +279,4 @@ export const Form: React.FC = () => {
       />
     </section>
   );
-};
+}

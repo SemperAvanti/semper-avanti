@@ -9,7 +9,7 @@ const nextConfig = {
     CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
   },
   images: {
-    domains: ['images.ctfassets.net'],
+    remotePatterns: [{ hostname: 'images.ctfassets.net' }],
   },
 };
 

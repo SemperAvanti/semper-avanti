@@ -65,7 +65,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 262px;
-    gap: 5px;
+    gap: 25px;
     padding-bottom: 64px;
     text-decoration-skip-ink: none;
 
@@ -78,6 +78,7 @@
   &__item {
     overflow: hidden;
     color: $color-black;
+    text-wrap: nowrap;
   }
 
   &__worldMap {
@@ -146,7 +147,7 @@
 
 .blueLine {
   background: rgba(94, 160, 248, 0.5);
-  height: 25%;
+  height: 40px;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -157,8 +158,7 @@
   transform: translateY(-10%);
 
   @include device(mobile) {
-    height: 24px;
-    //top: 70%;
+    height: 20px;
   }
 }
 

@@ -4,6 +4,7 @@
 .section {
   color: $color-black;
   width: 100%;
+  overflow: hidden;
 
   &__header {
     display: flex;
@@ -15,7 +16,7 @@
       text-align: center;
       user-select: none;
       pointer-events: none;
-      
+
       @include device(mobile) {
         font-size: 24px;
       }
