@@ -21,7 +21,12 @@ import {
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
 
-export default async function FAQ({ locale }: { locale: string }) {
+type Props = {
+  locale: string;
+  id: string;
+};
+
+export default async function FAQ({ locale, id }: Props) {
   const { sectionTitle } = await getContent<ISectionFaqTitleFields>(
     'sectionFaqTitle',
     locale,
