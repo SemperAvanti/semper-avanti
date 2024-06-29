@@ -56,6 +56,7 @@ const Menu = () => {
                 className="header__logo"
                 width={70}
                 height={79}
+                priority={true}
               />
               <li>
                 <a href="#Home" className="navigation__item">
@@ -111,6 +112,7 @@ const Menu = () => {
           className="headerMobile__logo"
           width={40}
           height={45}
+          priority={true}
         />
         <div className="buttonContainerMob">
           <a href="#Home-form">
