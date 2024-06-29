@@ -65,12 +65,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
         </div>
       </div>
 
-      <Slider
-        setSwiper={setSwiper}
-        slidesPerView="auto"
-        initialSlide={1}
-        partners={partners}
-      />
+      <Slider setSwiper={setSwiper} initialSlide={1} partners={partners} />
     </section>
   );
 };

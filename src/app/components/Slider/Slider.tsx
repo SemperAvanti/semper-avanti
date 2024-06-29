@@ -14,21 +14,18 @@ import {
   ISectionPartnersCardFields,
 } from '@/contentfulTypes/contentful';
 
-const STORIES_NUMBER_OF_CARDS = 11;
-const PARTNERS_NUMBER_OF_CARDS = 11;
+const STORIES_NUMBER_OF_CARDS = 16;
+const PARTNERS_NUMBER_OF_CARDS = 16;
 
 type SliderProps = {
   setSwiper: (swiperInstance: SwiperInstance) => void;
-  slidesPerView: number | 'auto';
   initialSlide: number;
   spaceBetween?: number;
-  slidesOffset?: number;
   partners: boolean;
 };
 
 export const Slider: React.FC<SliderProps> = ({
   setSwiper,
-  slidesPerView,
   initialSlide,
   partners,
 }) => {
@@ -93,11 +90,42 @@ export const Slider: React.FC<SliderProps> = ({
           }}
           modules={[Autoplay]}
           className="swiper"
-          slidesPerView={slidesPerView}
+          slidesPerView={1}
+          breakpoints={{
+            '@0.2': {
+              slidesPerView: 2,
+            },
+            '@0.4': {
+              slidesPerView: 2.5,
+            },
+            '@0.6': {
+              slidesPerView: 3,
+            },
+            '@0.8': {
+              slidesPerView: 3.5,
+            },
+            '@1': {
+              slidesPerView: 4,
+            },
+            '@1.2': {
+              slidesPerView: 4.5,
+            },
+            '@1.4': {
+              slidesPerView: 5,
+            },
+            '@1.6': {
+              slidesPerView: 5.5,
+            },
+            '@1.8': {
+              slidesPerView: 6,
+            },
+            '@2': {
+              slidesPerView: 6.5,
+            },
+          }}
           initialSlide={initialSlide}
           loop={true}
           allowTouchMove
-          spaceBetween={24}
           centerInsufficientSlides={true}
           simulateTouch={false}
         >
