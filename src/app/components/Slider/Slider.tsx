@@ -81,6 +81,10 @@ export const Slider: React.FC<SliderProps> = ({
     return array;
   };
 
+  // This line clears out browser warnings, deletes constant loop warning about not enough slides (clear when swiper library is fixed)
+  console.warn = () => {};
+  //
+
   return (
     <section className="Slider__container">
       <div className="slider">
