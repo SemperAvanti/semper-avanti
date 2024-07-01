@@ -1,6 +1,4 @@
-import React from 'react';
 import TrainingCard from '../TrainingsCard/TrainingsCard';
-
 import './TrainingsPage.scss';
 import {
   DescriptionsMotion,
@@ -14,7 +12,12 @@ import {
   ISectionTrainingsCardFields,
 } from '@/contentfulTypes/contentful';
 
-export default async function TrainingPage({ locale }: { locale: string }) {
+type Props = {
+  locale: string;
+  id: string;
+};
+
+export default async function TrainingPage({ locale, id }: Props) {
   const trainingCards = await getMultipleContent<ISectionTrainingsCardFields>(
     'sectionTrainingsCard',
     locale,
@@ -24,11 +27,11 @@ export default async function TrainingPage({ locale }: { locale: string }) {
   const cardFieldNames = Object.keys(data)
     .filter((key) => key.includes('cardField'))
     .map((key) => data[key as keyof ISectionTrainingsFields]);
-
+  
   return (
     <>
       <section>
-        <div className="container" id="Trainings">
+        <div className="container" id={id}>
           <div className="trainings__name">
             <SectionTitleMotion>
               <h2 className="trainings__title">{data.sectionTrainingsTitle}</h2>

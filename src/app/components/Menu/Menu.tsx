@@ -5,8 +5,10 @@ import './Menu.scss';
 import Button from '../Button/Button';
 import throttle from 'lodash.throttle';
 import LangMenu from './LangMenu';
+import { MenuData } from '@/app/types/menuData';
+import NavigationLinks from './NavigationLinks';
 
-const Menu = () => {
+const Menu = ({ links }: { links: MenuData | null }) => {
   const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const prevScrollpos = useRef<number>(0);
@@ -37,13 +39,14 @@ const Menu = () => {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-    console.log('clicked', isOpen);
     const buttonIcon = document.querySelector('.buttonContainerMob__open');
     if (buttonIcon) {
       buttonIcon.classList.toggle('buttonClicked');
     }
-  };
 
+    console.log('clicked');
+  };
+  
   return (
     <div ref={headerRef} className="menu-container">
       <header className="header">
@@ -58,41 +61,7 @@ const Menu = () => {
                 height={79}
                 priority={true}
               />
-              <li>
-                <a href="#Home" className="navigation__item">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#AboutUs" className="navigation__item">
-                  About us
-                </a>
-              </li>
-              <li>
-                <a href="#Trainings" className="navigation__item">
-                  Trainings
-                </a>
-              </li>
-              <li>
-                <a href="#Gallery" className="navigation__item">
-                  Gallery
-                </a>
-              </li>
-              <li>
-                <a href="#Stories" className="navigation__item">
-                  Stories
-                </a>
-              </li>
-              <li>
-                <a href="#Partners" className="navigation__item">
-                  Partners
-                </a>
-              </li>
-              <li>
-                <a href="#FAQ" className="navigation__item">
-                  FAQ
-                </a>
-              </li>
+              {links && <NavigationLinks links={links} />}
               <li>
                 <LangMenu />
               </li>
@@ -146,61 +115,7 @@ const Menu = () => {
 
       <div className="mobileMenu" id="mobMenu">
         <ul className="mobileMenu__list">
-          <li className="mobileMenu__item">
-            <a href="#Home" className="navigation__item" onClick={handleClick}>
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="#AboutUs"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              About us
-            </a>
-          </li>
-          <li>
-            <a
-              href="#Trainings"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              Trainings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#Gallery"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              Gallery
-            </a>
-          </li>
-          <li>
-            <a
-              href="#Stories"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              Stories
-            </a>
-          </li>
-          <li>
-            <a
-              href="#Partners"
-              className="navigation__item"
-              onClick={handleClick}
-            >
-              Partners
-            </a>
-          </li>
-          <li>
-            <a href="#FAQ" className="navigation__item" onClick={handleClick}>
-              FAQ
-            </a>
-          </li>
+          {links && <NavigationLinks links={links} handleClick={handleClick} />}
           <li>
             <LangMenu />
           </li>

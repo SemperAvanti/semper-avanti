@@ -8,7 +8,12 @@ import {
 } from '../MotionTemplates/templates';
 import { ISectionAboutUsFields } from '@/contentfulTypes/contentful';
 
-export default async function SectionAboutUs({ locale }: { locale: string }) {
+type Props = {
+  locale: string;
+  id: string;
+};
+
+export default async function SectionAboutUs({ locale, id }: Props) {
   const {
     sectionAboutUsImage,
     sectionAboutUsTitle,
@@ -19,7 +24,7 @@ export default async function SectionAboutUs({ locale }: { locale: string }) {
   } = await getContent<ISectionAboutUsFields>('sectionAboutUs', locale);
 
   return (
-    <section className="sectionAboutUs" id="AboutUs">
+    <section className="sectionAboutUs" id={id}>
       <div className="sectionAboutUs__container container">
         <div className="sectionAboutUs__title">
           <SectionTitleMotion>
@@ -57,6 +62,14 @@ export default async function SectionAboutUs({ locale }: { locale: string }) {
         {sectionAboutUsImage?.fields?.file?.url && (
           <picture className="sectionAboutUs--image">
             <ImageMotion>
+              <source
+                media="(max-width:640px)"
+                srcSet="images/meetingEvent-mobile.jpg"
+              />
+              <source
+                media="(max-width:1200px)"
+                srcSet="images/meetingEvent-tablet.jpg"
+              />
               <img
                 className="sectionAboutUs--image"
                 src={sectionAboutUsImage?.fields?.file?.url as string}

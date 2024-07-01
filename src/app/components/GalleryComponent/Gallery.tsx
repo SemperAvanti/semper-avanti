@@ -11,7 +11,11 @@ import {
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
 
-const Gallery = () => {
+type Props = {
+  id: string;
+};
+
+const Gallery = ({ id }: Props) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [width, setWidth] = useState(0);
 
@@ -161,10 +165,11 @@ const Gallery = () => {
 
   return (
     <section>
-      <div className="gallery__container container" id="Gallery">
+      <div className="gallery__container container" id={id}>
         <SectionTitleMotion>
           <h2 className="section-title gallery__title">Gallery</h2>
         </SectionTitleMotion>
+
         <div className="description-container">
           <DescriptionsMotion>
             <p className="description-text">

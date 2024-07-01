@@ -21,7 +21,12 @@ import {
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
 
-export default async function FAQ({ locale }: { locale: string }) {
+type Props = {
+  locale: string;
+  id: string;
+};
+
+export default async function FAQ({ locale, id }: Props) {
   const { sectionTitle } = await getContent<ISectionFaqTitleFields>(
     'sectionFaqTitle',
     locale,
@@ -36,7 +41,7 @@ export default async function FAQ({ locale }: { locale: string }) {
     await getContent<ISectionFaqFooterFields>('sectionFaqFooter', locale);
 
   return (
-    <section className="section" id="FAQ">
+    <section className="section" id={id}>
       <div className="FAQ__container container">
         <SectionTitleMotion>
           <h2 className="H2 FAQ__container--title">{sectionTitle}</h2>

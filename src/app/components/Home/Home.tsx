@@ -14,15 +14,12 @@ import {
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
 
-// Object below is only for country codes
-// {
-//   English = 'en-US',
-//   Spanisch = 'es-ES',
-//   Polish = 'pl-PL',
-//   French = 'fr-FR',
-// }
+type Props = {
+  locale: string;
+  id: string;
+};
 
-export default async function HomePage({ locale }: { locale: string }) {
+export default async function HomePage({ locale, id }: Props) {
   const { sectionHomeTitle, sectionHomeDescription } =
     await getContent<ISectionHomeFields>('sectionHome', locale);
   const trainingCards = await getMultipleContent<ISectionTrainingsCardFields>(
@@ -31,7 +28,7 @@ export default async function HomePage({ locale }: { locale: string }) {
   );
 
   return (
-    <section className="home" id="Home">
+    <section className="home" id={id}>
       <div className="home__title">
         <div className="home__title__container">
           <SectionTitleMotion>
@@ -39,10 +36,6 @@ export default async function HomePage({ locale }: { locale: string }) {
               <span className="home--titleWrapper">
                 {sectionHomeTitle}
                 <div className="blueLine"></div>
-              </span>
-
-              <span className="home--titleWrapper--top">
-                {sectionHomeTitle}
               </span>
             </h1>
           </SectionTitleMotion>
