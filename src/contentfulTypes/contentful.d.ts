@@ -53,6 +53,18 @@ export interface INavigation extends Entry<INavigationFields> {
   };
 }
 
+export interface ISectionContactUs {
+  email?: string;
+  officeHoursName?: string;
+  officeHoursContent?: string;
+  contactUsTitle?: string;
+  addressName?: string;
+  addressContent?: string;
+  phoneName?: string;
+  phoneContent?: string;
+  excludingHolidays?: string;
+}
+
 export interface ISectionAboutUsFields {
   /** sectionAboutUs--title */
   sectionAboutUsTitle?: string | undefined;

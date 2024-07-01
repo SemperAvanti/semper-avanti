@@ -59,6 +59,7 @@ const Menu = ({ links }: { links: MenuData | null }) => {
                 className="header__logo"
                 width={70}
                 height={79}
+                priority={true}
               />
               {links && <NavigationLinks links={links} />}
               <li>
@@ -80,6 +81,7 @@ const Menu = ({ links }: { links: MenuData | null }) => {
           className="headerMobile__logo"
           width={40}
           height={45}
+          priority={true}
         />
         <div className="buttonContainerMob">
           <a href="#Home-form">
