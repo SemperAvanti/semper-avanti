@@ -28,7 +28,7 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
 
   return (
     <>
-      <div className="training-card">
+      <div className="training-card" id={`${card.countryName}`}>
         <div className="training-card__nameContainer">
           <h3 className="training-card__name">
             <ArticleTitleMotion>

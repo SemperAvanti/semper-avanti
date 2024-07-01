@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import Button from '../Button/Button';
 import './Home.scss';
-import { getContent } from '@/lib/api';
-import { ISectionHomeFields } from '@/contentfulTypes/contentful';
+import { getContent, getMultipleContent } from '@/lib/api';
+import {
+  ISectionHomeFields,
+  ISectionTrainingsCardFields,
+} from '@/contentfulTypes/contentful';
 import {
   DescriptionsMotion,
   ImageMotion,
@@ -22,6 +25,10 @@ import {
 export default async function HomePage({ locale }: { locale: string }) {
   const { sectionHomeTitle, sectionHomeDescription } =
     await getContent<ISectionHomeFields>('sectionHome', locale);
+  const trainingCards = await getMultipleContent<ISectionTrainingsCardFields>(
+    'sectionTrainingsCard',
+    locale,
+  );
 
   return (
     <section className="home" id="Home">
@@ -68,21 +75,20 @@ export default async function HomePage({ locale }: { locale: string }) {
       </ImageMotion>
       <ListMotion>
         <div className="home__links">
-          <LinkMotion>
-            <a href="#Trainings-malta" className="home__item body-text">
-              Malta
-            </a>
-          </LinkMotion>
-          <LinkMotion>
-            <a href="#Trainings-canary" className="home__item body-text">
-              Canary
-            </a>
-          </LinkMotion>
-          <LinkMotion>
-            <a href="#Trainings-ireland" className="home__item body-text">
-              Ireland
-            </a>
-          </LinkMotion>
+          {trainingCards &&
+            trainingCards.map((card) => {
+              return (
+                <LinkMotion key={`HomeLink-${card.countryName}`}>
+                  <a
+                    href={`#${card.countryName}`}
+                    className="home__item body-text"
+                    key={card.countryName}
+                  >
+                    {card.countryName}
+                  </a>
+                </LinkMotion>
+              );
+            })}
         </div>
       </ListMotion>
       <div className="home__button--mobile">

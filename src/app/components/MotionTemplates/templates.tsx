@@ -82,6 +82,7 @@ export const ImageMotion: React.FC<TemplateProps> = ({ children }) => {
   );
 };
 
+
 export const TrainingImageMotionRight: React.FC<TemplateProps> = ({
   children,
 }) => {

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './scss/Slider.scss';
 import 'swiper/scss';
-import 'swiper/scss/navigation';
-import SwiperCore from 'swiper';
+import 'swiper/scss/autoplay';
 import { Autoplay } from 'swiper/modules';
 import { Swiper as SwiperInstance } from 'swiper/types';
 import { useParams } from 'next/navigation';
@@ -15,13 +14,13 @@ import {
   ISectionPartnersCardFields,
 } from '@/contentfulTypes/contentful';
 
-SwiperCore.use([Autoplay]);
+const STORIES_NUMBER_OF_CARDS = 11;
+const PARTNERS_NUMBER_OF_CARDS = 11;
 
 type SliderProps = {
   setSwiper: (swiperInstance: SwiperInstance) => void;
   slidesPerView: number | 'auto';
   initialSlide: number;
-  offset: string | undefined;
   spaceBetween?: number;
   slidesOffset?: number;
   partners: boolean;
@@ -31,7 +30,6 @@ export const Slider: React.FC<SliderProps> = ({
   setSwiper,
   slidesPerView,
   initialSlide,
-  offset,
   partners,
 }) => {
   const { locale } = useParams<{ locale: string }>();
@@ -45,7 +43,9 @@ export const Slider: React.FC<SliderProps> = ({
   useEffect(() => {
     getMultipleContent<ISectionStoriesCardFields>('sectionStoriesCard', locale)
       .then((storiesData) => {
-        setStoriesCards(storiesData || []);
+        setStoriesCards(
+          repeatSliderCards(storiesData || [], STORIES_NUMBER_OF_CARDS),
+        );
       })
       .catch((error) => {
         console.error('Error fetching stories cards:', error);
@@ -57,7 +57,9 @@ export const Slider: React.FC<SliderProps> = ({
       locale,
     )
       .then((partnersData) => {
-        setPartnersCards(partnersData || []);
+        setPartnersCards(
+          repeatSliderCards(partnersData || [], PARTNERS_NUMBER_OF_CARDS),
+        );
       })
       .catch((error) => {
         console.error('Error fetching partners cards:', error);
@@ -65,34 +67,53 @@ export const Slider: React.FC<SliderProps> = ({
       });
   }, [locale]);
 
+  const repeatSliderCards = <T,>(
+    array: T[],
+    intendedCardsNumber: number,
+  ): T[] => {
+    if (array.length < intendedCardsNumber) {
+      const repeatedArray = [...array];
+      while (repeatedArray.length < intendedCardsNumber) {
+        repeatedArray.push(...array);
+      }
+      return repeatedArray;
+    }
+    return array;
+  };
+
+  // This line clears out browser warnings, deletes constant loop warning about not enough slides (clear when swiper library is fixed)
+  console.warn = () => {};
+  //
+
   return (
-    <section className="Slider__container" style={{ marginLeft: offset }}>
+    <section className="Slider__container">
       <div className="slider">
         <Swiper
-          className="swiper"
-          onSwiper={(swiperInstance: SwiperInstance) =>
-            setSwiper(swiperInstance)
-          }
+          centeredSlides={true}
+          onSwiper={(swiperInstance) => setSwiper(swiperInstance)}
           autoplay={{
-            delay: 2300,
+            delay: 2700,
             disableOnInteraction: false,
           }}
-          loop
-          centeredSlides={true}
-          centeredSlidesBounds={true}
+          modules={[Autoplay]}
+          className="swiper"
           slidesPerView={slidesPerView}
           initialSlide={initialSlide}
+          loop={true}
           allowTouchMove
+          spaceBetween={24}
+          centerInsufficientSlides={true}
+          simulateTouch={false}
         >
           {partners
             ? partnersCards.map((card, index) => (
                 <SwiperSlide key={index} className="swiper__slide">
-                  <PartnersCard {...card} offset={offset} />
+                  <PartnersCard {...card} />
                 </SwiperSlide>
               ))
             : storiesCards.map((card, index) => (
                 <SwiperSlide key={index} className="swiper__slide">
-                  <StoriesCard {...card} offset={offset} />
+                  <StoriesCard {...card} />
                 </SwiperSlide>
               ))}
         </Swiper>
