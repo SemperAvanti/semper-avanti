@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer/Footer';
 import TrainingPage from '../components/TrainingsPage/TrainingsPage';
 import Gallery from '../components/GalleryComponent/Gallery';
 import HomePage from '../components/Home/Home';
-import { ContactUs } from '../components/ContactUs/ContactUs';
+import ContactUs from '../components/ContactUs/ContactUs';
 import SectionAboutUs from '../components/SectionAboutUs/SectionAboutUs';
 import Aqu from '../components/AquComponent/Aqu';
 import { getContent } from '@/lib/api';
@@ -49,7 +49,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
           id="Partners"
         />
         <FAQ locale={locale} />
-        <ContactUs />
+        <ContactUs locale={locale} />
         <Footer />
       </main>
     </>
