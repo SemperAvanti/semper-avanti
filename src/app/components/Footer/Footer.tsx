@@ -1,35 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
+import { MenuData } from '@/app/types/menuData';
+import NavigationLinks from '../Menu/NavigationLinks';
 import './footer.scss';
 
-const links = [
-  { text: 'Home', href: '#Home' },
-  { text: 'About us', href: '#AboutUs' },
-  { text: 'Trainings', href: '#Trainings' },
-  { text: 'Gallery', href: '#Gallery' },
-  { text: 'Stories', href: '#Stories' },
-  { text: 'Partners', href: '#Partners' },
-  { text: 'FAQ', href: '#FAQ' },
-  { text: '+1 (555) 123-4567', href: 'tel:+15551234567' },
-];
-
-export const Footer = () => {
+export const Footer = ({ links }: { links: MenuData | null }) => {
   return (
     <footer className="Footer">
       <div className="container">
-        <div className="Footer__gridContainer">
-          {links.map((link, index) => {
-            return (
-              <a
-                key={index}
-                className="Footer__gridContainer--link"
-                href={`${link.href}`}
-              >
-                {link.text}
-              </a>
-            );
-          })}
-        </div>
-
+        <ul className="Footer__gridContainer">
+          {links && (
+            <NavigationLinks
+              links={links}
+              class_name={'Footer__gridContainer--link'}
+            />
+          )}
+          <li key="phone_number">
+            <a href="tel:+15551234567" className="Footer__gridContainer--link">
+              +1 (555) 123-4567
+            </a>
+          </li>
+        </ul>
         <div className="Footer__bottomLabel">
           <p className="Footer__bottomLabel--description">
             Alliance for Quality Education. All rights reserved.

@@ -1,11 +1,12 @@
-import { MenuData } from "@/app/types/menuData";
+import { MenuData } from '@/app/types/menuData';
 
 type Props = {
   links: MenuData;
   handleClick?: () => void;
+  class_name: string;
 };
 
-const NavigationLinks = ({ links, handleClick }: Props) => {
+const NavigationLinks = ({ links, handleClick, class_name }: Props) => {
   return (
     <>
       {links ? (
@@ -13,7 +14,7 @@ const NavigationLinks = ({ links, handleClick }: Props) => {
           <li key={index}>
             <a
               href={`#${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-              className="navigation__item"
+              className={class_name}
               onClick={handleClick}
             >
               {item.title}

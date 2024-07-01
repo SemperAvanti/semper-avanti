@@ -64,7 +64,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
         />
         <FAQ locale={locale} id={IDS_FOR_HASH_ROUTING[6]} />
         <ContactUs locale={locale} />
-        <Footer />
+        <Footer links={ids} />
       </main>
     </>
   );
