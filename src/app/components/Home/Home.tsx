@@ -7,6 +7,7 @@ import {
   ISectionTrainingsCardFields,
 } from '@/contentfulTypes/contentful';
 import {
+  ArticleTitleMotion,
   DescriptionsMotion,
   ImageMotion,
   LinkMotion,
@@ -35,7 +36,7 @@ export default async function HomePage({ locale, id }: Props) {
             <h1 className="home__h1">
               <span className="home--titleWrapper">
                 {sectionHomeTitle}
-                <div className="blueLine"></div>
+                <ArticleTitleMotion class_name={'blueLine'} />
               </span>
             </h1>
           </SectionTitleMotion>
@@ -44,11 +45,13 @@ export default async function HomePage({ locale, id }: Props) {
         <DescriptionsMotion>
           <p className="home__text ">{sectionHomeDescription}</p>
         </DescriptionsMotion>
-        <div className="home__button--desktop">
-          <a href="#Home-form">
-            <Button name="Get info package" variant="primary" />
-          </a>
-        </div>
+        <DescriptionsMotion>
+          <div className="home__button--desktop">
+            <a href="#Home-form">
+              <Button name="Get info package" variant="primary" />
+            </a>
+          </div>
+        </DescriptionsMotion>
       </div>
       <ImageMotion>
         <Image
@@ -84,11 +87,13 @@ export default async function HomePage({ locale, id }: Props) {
             })}
         </div>
       </ListMotion>
-      <div className="home__button--mobile">
-        <a href="#Home-form">
-          <Button name="Get info package" variant="secondary" />
-        </a>
-      </div>
+      <DescriptionsMotion>
+        <div className="home__button--mobile">
+          <a href="#Home-form">
+            <Button name="Get info package" variant="secondary" />
+          </a>
+        </div>
+      </DescriptionsMotion>
     </section>
   );
 }

@@ -15,7 +15,7 @@ const client = createClient({
 
 export async function getContent<T>(
   contentType: CONTENT_TYPE,
-  locale: string,
+  locale?: string,
 ): Promise<T> {
   const response = await client.getEntries({
     content_type: contentType,

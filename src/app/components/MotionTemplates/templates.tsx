@@ -2,12 +2,14 @@
 import { Variants, motion } from 'framer-motion';
 
 type TemplateProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  class_name?: string;
 };
 
-export const SectionTitleMotion: React.FC<TemplateProps> = ({ children }) => {
+export const SectionTitleMotion: React.FC<TemplateProps> = ({ children, class_name }) => {
   return (
     <motion.div
+      className={ class_name }
       initial={{ y: -20, opacity: 0 }}
       animate={{
         y: 0,
@@ -25,9 +27,10 @@ export const SectionTitleMotion: React.FC<TemplateProps> = ({ children }) => {
   );
 };
 
-export const ArticleTitleMotion: React.FC<TemplateProps> = ({ children }) => {
+export const ArticleTitleMotion: React.FC<TemplateProps> = ({ children, class_name }) => {
   return (
     <motion.div
+      className={ class_name }
       initial={{ opacity: 0 }}
       whileInView={{
         opacity: 1,

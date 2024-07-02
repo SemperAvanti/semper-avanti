@@ -46,7 +46,7 @@ const Menu = ({ links }: { links: MenuData | null }) => {
 
     console.log('clicked');
   };
-  
+
   return (
     <div ref={headerRef} className="menu-container">
       <header className="header">
@@ -61,7 +61,9 @@ const Menu = ({ links }: { links: MenuData | null }) => {
                 height={79}
                 priority={true}
               />
-              {links && <NavigationLinks links={links} />}
+              {links && (
+                <NavigationLinks links={links} class_name="navigation__item" />
+              )}
               <li>
                 <LangMenu />
               </li>
@@ -115,7 +117,13 @@ const Menu = ({ links }: { links: MenuData | null }) => {
 
       <div className="mobileMenu" id="mobMenu">
         <ul className="mobileMenu__list">
-          {links && <NavigationLinks links={links} handleClick={handleClick} />}
+          {links && (
+            <NavigationLinks
+              links={links}
+              handleClick={handleClick}
+              class_name="navigation__item"
+            />
+          )}
           <li>
             <LangMenu />
           </li>

@@ -1,35 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
+import { MenuData } from '@/app/types/menuData';
+import NavigationLinks from '../Menu/NavigationLinks';
 import './footer.scss';
+import { getContent } from '@/lib/api';
+import { IPhoneNumberFields } from '@/contentfulTypes/contentful';
 
-const links = [
-  { text: 'Home', href: '#Home' },
-  { text: 'About us', href: '#AboutUs' },
-  { text: 'Trainings', href: '#Trainings' },
-  { text: 'Gallery', href: '#Gallery' },
-  { text: 'Stories', href: '#Stories' },
-  { text: 'Partners', href: '#Partners' },
-  { text: 'FAQ', href: '#FAQ' },
-  { text: '+1 (555) 123-4567', href: 'tel:+15551234567' },
-];
+export const Footer = async ({ links }: { links: MenuData | null }) => {
+  const { phoneTitle, phoneLink } = await getContent<IPhoneNumberFields>('phoneNumber');
 
-export const Footer = () => {
   return (
     <footer className="Footer">
       <div className="container">
-        <div className="Footer__gridContainer">
-          {links.map((link, index) => {
-            return (
-              <a
-                key={index}
-                className="Footer__gridContainer--link"
-                href={`${link.href}`}
-              >
-                {link.text}
-              </a>
-            );
-          })}
-        </div>
-
+        <ul className="Footer__gridContainer">
+          {links && (
+            <NavigationLinks
+              links={links}
+              class_name={'Footer__gridContainer--link'}
+            />
+          )}
+          <li key="phone_number">
+            <a
+              href={`tel:${phoneLink}`}
+              className="Footer__gridContainer--link"
+            >
+              {phoneTitle}
+            </a>
+          </li>
+        </ul>
         <div className="Footer__bottomLabel">
           <p className="Footer__bottomLabel--description">
             Alliance for Quality Education. All rights reserved.
