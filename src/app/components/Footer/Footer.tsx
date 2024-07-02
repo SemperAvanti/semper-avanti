@@ -2,8 +2,12 @@
 import { MenuData } from '@/app/types/menuData';
 import NavigationLinks from '../Menu/NavigationLinks';
 import './footer.scss';
+import { getContent } from '@/lib/api';
+import { IPhoneNumberFields } from '@/contentfulTypes/contentful';
 
-export const Footer = ({ links }: { links: MenuData | null }) => {
+export const Footer = async ({ links }: { links: MenuData | null }) => {
+  const { phoneTitle, phoneLink } = await getContent<IPhoneNumberFields>('phoneNumber');
+
   return (
     <footer className="Footer">
       <div className="container">
@@ -15,8 +19,11 @@ export const Footer = ({ links }: { links: MenuData | null }) => {
             />
           )}
           <li key="phone_number">
-            <a href="tel:+15551234567" className="Footer__gridContainer--link">
-              +1 (555) 123-4567
+            <a
+              href={`tel:${phoneLink}`}
+              className="Footer__gridContainer--link"
+            >
+              {phoneTitle}
             </a>
           </li>
         </ul>

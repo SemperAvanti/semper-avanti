@@ -550,6 +550,31 @@ export interface IWhyAqe extends Entry<IWhyAqeFields> {
   };
 }
 
+export interface IPhoneNumberFields {
+  /** Phone number*/
+  phoneTitle: string;
+
+  /** Phone number link */
+  phoneLink: string;
+}
+
+export interface IPhoneNumber extends Entry<IPhoneNumberFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'phoneNumber';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
   | 'emailTemplate'
   | 'navigation'
@@ -568,7 +593,8 @@ export type CONTENT_TYPE =
   | 'sectionStoriesTitle'
   | 'sectionTrainings'
   | 'sectionTrainingsCard'
-  | 'whyAqe';
+  | 'whyAqe'
+  | 'phoneNumber';
 
 export type IEntry =
   | IEmailTemplate
@@ -588,7 +614,8 @@ export type IEntry =
   | ISectionStoriesTitle
   | ISectionTrainings
   | ISectionTrainingsCard
-  | IWhyAqe;
+  | IWhyAqe
+  | IPhoneNumber;
 
 export type LOCALE_CODE = 'en-US' | 'pl-PL';
 
