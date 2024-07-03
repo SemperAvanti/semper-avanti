@@ -75,11 +75,7 @@ const Menu = ({
               </li>
               <div className="buttonContainer">
                 <a href="#Home-form">
-                  <Button
-                    shortText={true}
-                    variant="secondary"
-                    locale={locale}
-                  />
+                  <Button shortText={true} variant="secondary" />
                 </a>
               </div>
             </ul>
@@ -97,7 +93,7 @@ const Menu = ({
         />
         <div className="buttonContainerMob">
           <a href="#Home-form">
-            <Button shortText={true} variant="secondary" locale={locale} />
+            <Button shortText={true} variant="secondary" />
           </a>
 
           <a

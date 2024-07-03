@@ -10,7 +10,6 @@ interface TrainingCardProps {
   link: string;
   buttonLabel: string | undefined;
   fieldNames: (string | undefined)[];
-  locale: string
 }
 
 const TrainingCard: React.FC<TrainingCardProps> = ({
@@ -18,7 +17,6 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
   link,
   buttonLabel,
   fieldNames,
-  locale,
 }) => {
   const cardValues = [
     card.ITerm,
@@ -83,7 +81,7 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
         <div className="training-card__cont">
           <p className="training-card__info">{buttonLabel}</p>
           <a href={`${link}`}>
-            <Button variant="primary" locale={locale} />
+            <Button variant="primary" />
           </a>
         </div>
       </div>

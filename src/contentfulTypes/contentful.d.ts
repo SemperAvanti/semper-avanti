@@ -3,6 +3,31 @@
 import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
+export interface IButtonsFields {
+  /** GetInfo */
+  getInfo?: string | undefined;
+
+  /** GetInfoPackage */
+  getInfoPackage?: string | undefined;
+}
+
+export interface IButtons extends Entry<IButtonsFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'buttons';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface IEmailTemplateFields {
   /** Salutations */
   salutations: string;
@@ -53,16 +78,31 @@ export interface INavigation extends Entry<INavigationFields> {
   };
 }
 
-export interface ISectionContactUs {
-  email?: string;
-  officeHoursName?: string;
-  officeHoursContent?: string;
-  contactUsTitle?: string;
-  addressName?: string;
-  addressContent?: string;
-  phoneName?: string;
-  phoneContent?: string;
-  excludingHolidays?: string;
+export interface IPhoneNumberFields {
+  /** Phone link */
+  phoneLink: string;
+
+  /** Phone title */
+  phoneTitle: string;
+}
+
+/** Phone number for Footer */
+
+export interface IPhoneNumber extends Entry<IPhoneNumberFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'phoneNumber';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
 }
 
 export interface ISectionAboutUsFields {
@@ -550,34 +590,11 @@ export interface IWhyAqe extends Entry<IWhyAqeFields> {
   };
 }
 
-export interface IPhoneNumberFields {
-  /** Phone number*/
-  phoneTitle: string;
-
-  /** Phone number link */
-  phoneLink: string;
-}
-
-export interface IPhoneNumber extends Entry<IPhoneNumberFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'phoneNumber';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
 export type CONTENT_TYPE =
+  | 'buttons'
   | 'emailTemplate'
   | 'navigation'
+  | 'phoneNumber'
   | 'sectionAboutUs'
   | 'sectionAquCard'
   | 'sectionAquTitle'
@@ -593,12 +610,13 @@ export type CONTENT_TYPE =
   | 'sectionStoriesTitle'
   | 'sectionTrainings'
   | 'sectionTrainingsCard'
-  | 'whyAqe'
-  | 'phoneNumber';
+  | 'whyAqe';
 
 export type IEntry =
+  | IButtons
   | IEmailTemplate
   | INavigation
+  | IPhoneNumber
   | ISectionAboutUs
   | ISectionAquCard
   | ISectionAquTitle
@@ -614,8 +632,7 @@ export type IEntry =
   | ISectionStoriesTitle
   | ISectionTrainings
   | ISectionTrainingsCard
-  | IWhyAqe
-  | IPhoneNumber;
+  | IWhyAqe;
 
 export type LOCALE_CODE = 'en-US' | 'pl-PL';
 
