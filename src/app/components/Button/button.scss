@@ -12,13 +12,14 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  text-wrap: nowrap;
 
   &--primary {
     padding: 10px 55px;
   }
 
   &--secondary {
-    width: 100%;
+    min-width: 100%;
   }
 
   &--deactivated {

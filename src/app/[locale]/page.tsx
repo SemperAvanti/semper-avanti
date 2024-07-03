@@ -45,7 +45,7 @@ export default async function Home({ params: { locale } }: { params: Params }) {
 
   return (
     <>
-      <Menu links={ids} />
+      <Menu links={ids} locale={locale} />
       <main>
         <HomePage locale={locale} id={IDS_FOR_HASH_ROUTING[0]} />
         <SectionAboutUs locale={locale} id={IDS_FOR_HASH_ROUTING[1]} />
@@ -53,9 +53,10 @@ export default async function Home({ params: { locale } }: { params: Params }) {
         <TrainingPage locale={locale} id={IDS_FOR_HASH_ROUTING[2]} />
         <Gallery id={IDS_FOR_HASH_ROUTING[3]} />
         <Form locale={locale} />
-        <SliderComponent partners={false}
+        <SliderComponent
+          partners={false}
           title={sectionTitle}
-          id={IDS_FOR_HASH_ROUTING[4]} 
+          id={IDS_FOR_HASH_ROUTING[4]}
         />
         <SliderComponent
           partners={true}

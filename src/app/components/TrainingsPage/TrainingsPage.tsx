@@ -75,6 +75,7 @@ export default async function TrainingPage({ locale, id }: Props) {
                       card={card}
                       buttonLabel={data.wantMoreInfo}
                       link="#Home-form"
+                      locale={locale}
                     />
                   </div>
                 </div>

@@ -263,7 +263,7 @@ export default function Form({ locale }: { locale: string }) {
               <div className="form__input-elem">
                 <Button
                   variant={formData.checkbox ? btnColor : 'deactivated'}
-                  name="Get info package"
+                  locale={locale}
                 />
               </div>
             </div>

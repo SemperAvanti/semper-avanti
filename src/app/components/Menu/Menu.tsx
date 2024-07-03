@@ -8,7 +8,13 @@ import LangMenu from './LangMenu';
 import { MenuData } from '@/app/types/menuData';
 import NavigationLinks from './NavigationLinks';
 
-const Menu = ({ links }: { links: MenuData | null }) => {
+const Menu = ({
+  links,
+  locale,
+}: {
+  links: MenuData | null;
+  locale: string;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const prevScrollpos = useRef<number>(0);
@@ -69,7 +75,11 @@ const Menu = ({ links }: { links: MenuData | null }) => {
               </li>
               <div className="buttonContainer">
                 <a href="#Home-form">
-                  <Button name="Get info" variant="secondary" />
+                  <Button
+                    shortText={true}
+                    variant="secondary"
+                    locale={locale}
+                  />
                 </a>
               </div>
             </ul>
@@ -87,7 +97,7 @@ const Menu = ({ links }: { links: MenuData | null }) => {
         />
         <div className="buttonContainerMob">
           <a href="#Home-form">
-            <Button name="Get info" variant="secondary" />
+            <Button shortText={true} variant="secondary" locale={locale} />
           </a>
 
           <a
