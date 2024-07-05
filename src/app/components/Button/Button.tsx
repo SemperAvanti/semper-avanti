@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import './button.scss';
 import { getContent } from '@/lib/api';
 import { useParams } from 'next/navigation';
+import { IButtonsFields } from '@/contentfulTypes/contentful';
+import Loader from '../Loader/Loader';
 
 interface ButtonProps {
   variant: 'primary' | 'secondary' | 'deactivated';
@@ -10,7 +12,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ shortText = false, variant }) => {
-  const [buttons, setButtons] = useState(null);
+  const [buttons, setButtons] = useState<IButtonsFields | null>(null);
   const { locale } = useParams<{ locale: string }>();
 
   useEffect(() => {
@@ -20,7 +22,10 @@ const Button: React.FC<ButtonProps> = ({ shortText = false, variant }) => {
         if (cachedTexts) {
           setButtons(JSON.parse(cachedTexts));
         } else {
-          const data = await getContent('buttons', locale as string);
+          const data = await getContent<IButtonsFields>(
+            'buttons',
+            locale as string,
+          );
           localStorage.setItem(`buttonTexts-${locale}`, JSON.stringify(data));
           setButtons(data);
         }
@@ -32,18 +37,23 @@ const Button: React.FC<ButtonProps> = ({ shortText = false, variant }) => {
     fetchData();
   }, [locale]);
 
-  if (!buttons) return <></>;
-
   const buttonClass = `button button--${variant}`;
+
   return (
     <button
       key={'button'}
       className={buttonClass}
       disabled={variant === 'deactivated'}
     >
-      {shortText ? buttons.getInfo : buttons.getInfoPackage}
+      {buttons === null ? (
+        <Loader />
+      ) : shortText ? (
+        buttons.getInfo
+      ) : (
+        buttons.getInfoPackage
+      )}
     </button>
   );
 };
-
+// 
 export default Button;
