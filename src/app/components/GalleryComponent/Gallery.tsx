@@ -154,14 +154,14 @@ const Gallery = ({ id }: Props) => {
   */
 
   const SLIDE_OFFSET = useMemo(() => {
-    if (width > 740) { 
+    if (width > 740) {
       return 24;
-    } else if (width > 600) { 
+    } else if (width > 600) {
       return 18;
     } else {
       return 0;
     }
-  } , [width]);
+  }, [width]);
 
   return (
     <section>

@@ -55,5 +55,5 @@ const Button: React.FC<ButtonProps> = ({ shortText = false, variant }) => {
     </button>
   );
 };
-// 
+//
 export default Button;

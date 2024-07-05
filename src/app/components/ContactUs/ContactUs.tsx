@@ -5,7 +5,7 @@ import {
   DescriptionsMotion,
   SectionTitleMotion,
 } from '../MotionTemplates/templates';
-import { ISectionContactUs } from '@/contentfulTypes/contentful';
+import { ISectionContactUsFields } from '@/contentfulTypes/contentful';
 import { getContent } from '@/lib/api';
 
 export default async function ContactUs({ locale }: { locale: string }) {
@@ -19,7 +19,7 @@ export default async function ContactUs({ locale }: { locale: string }) {
     phoneName,
     phoneContent,
     excludingHolidays,
-  } = await getContent<ISectionContactUs>('sectionContactUs', locale);
+  } = await getContent<ISectionContactUsFields>('sectionContactUs', locale);
 
   return (
     <section className="ContactUs" id="ContactUs">

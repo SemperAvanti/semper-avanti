@@ -6,7 +6,8 @@ import { getContent } from '@/lib/api';
 import { IPhoneNumberFields } from '@/contentfulTypes/contentful';
 
 export const Footer = async ({ links }: { links: MenuData | null }) => {
-  const { phoneTitle, phoneLink } = await getContent<IPhoneNumberFields>('phoneNumber');
+  const { phoneTitle, phoneLink } =
+    await getContent<IPhoneNumberFields>('phoneNumber');
 
   return (
     <footer className="Footer">
