@@ -46,7 +46,7 @@
           max-width: 453px;
           margin-bottom: 16px;
         }
-    
+
         @include device(mobile) {
           font-size: 32px;
           font-weight: 500;
@@ -207,7 +207,7 @@
 
 .home--titleWrapper {
   position: relative;
-  
+
   &--top {
     position: absolute;
     top: 0;

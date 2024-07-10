@@ -81,7 +81,7 @@ const TrainingCard: React.FC<TrainingCardProps> = ({
         <div className="training-card__cont">
           <p className="training-card__info">{buttonLabel}</p>
           <a href={`${link}`}>
-            <Button name="Get info package" variant="primary" />
+            <Button variant="primary" />
           </a>
         </div>
       </div>

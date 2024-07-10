@@ -12,13 +12,20 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  text-wrap: nowrap;
 
   &--primary {
-    padding: 10px 55px;
+    padding: 10px 42px;
+    min-width: 343px;
+    box-sizing: border-box;
   }
 
   &--secondary {
-    width: 100%;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
 
   &--deactivated {
@@ -27,6 +34,7 @@
     cursor: not-allowed;
     pointer-events: none;
     width: 100%;
+    height: 100%;
   }
 
   &:hover {

@@ -6,10 +6,13 @@ type TemplateProps = {
   class_name?: string;
 };
 
-export const SectionTitleMotion: React.FC<TemplateProps> = ({ children, class_name }) => {
+export const SectionTitleMotion: React.FC<TemplateProps> = ({
+  children,
+  class_name,
+}) => {
   return (
     <motion.div
-      className={ class_name }
+      className={class_name}
       initial={{ y: -20, opacity: 0 }}
       animate={{
         y: 0,
@@ -27,10 +30,13 @@ export const SectionTitleMotion: React.FC<TemplateProps> = ({ children, class_na
   );
 };
 
-export const ArticleTitleMotion: React.FC<TemplateProps> = ({ children, class_name }) => {
+export const ArticleTitleMotion: React.FC<TemplateProps> = ({
+  children,
+  class_name,
+}) => {
   return (
     <motion.div
-      className={ class_name }
+      className={class_name}
       initial={{ opacity: 0 }}
       whileInView={{
         opacity: 1,
@@ -84,7 +90,6 @@ export const ImageMotion: React.FC<TemplateProps> = ({ children }) => {
     </motion.div>
   );
 };
-
 
 export const TrainingImageMotionRight: React.FC<TemplateProps> = ({
   children,

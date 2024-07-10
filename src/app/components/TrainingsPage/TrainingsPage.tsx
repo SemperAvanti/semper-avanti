@@ -27,7 +27,7 @@ export default async function TrainingPage({ locale, id }: Props) {
   const cardFieldNames = Object.keys(data)
     .filter((key) => key.includes('cardField'))
     .map((key) => data[key as keyof ISectionTrainingsFields]);
-  
+
   return (
     <>
       <section>

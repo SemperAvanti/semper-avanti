@@ -48,7 +48,7 @@ export default async function HomePage({ locale, id }: Props) {
         <DescriptionsMotion>
           <div className="home__button--desktop">
             <a href="#Home-form">
-              <Button name="Get info package" variant="primary" />
+              <Button variant="primary" />
             </a>
           </div>
         </DescriptionsMotion>
@@ -90,7 +90,7 @@ export default async function HomePage({ locale, id }: Props) {
       <DescriptionsMotion>
         <div className="home__button--mobile">
           <a href="#Home-form">
-            <Button name="Get info package" variant="secondary" />
+            <Button variant="secondary" />
           </a>
         </div>
       </DescriptionsMotion>
